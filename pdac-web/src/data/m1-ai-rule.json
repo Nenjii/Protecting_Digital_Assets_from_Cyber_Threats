@@ -1,0 +1,7 @@
+{
+  "_status": "Deck slide 37 and learner guide, Try it 1.2.2A (19 October 2026). The example is the deck notes' good example.",
+  "template": "In our unit, we may use {{approved tools}} for {{tasks}}. We never enter {{kinds of data}}. Before we use any AI output, {{who}} checks {{what}}. If something goes wrong, we report to {{whom}}.",
+  "examples": [
+    ["the office-approved assistant", "drafting and summarizing public documents", "names, ID numbers, health information or case details", "the drafter", "every fact and citation against the source", "our DPO"]
+  ]
+}

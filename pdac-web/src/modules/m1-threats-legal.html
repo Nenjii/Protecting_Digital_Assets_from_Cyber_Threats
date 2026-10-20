@@ -1,0 +1,794 @@
+<!--
+  Module 1 · Threat Landscape and Legal Governance · Day 1, 8:00 AM to 12:00 NN
+  41 slides, same IDs and order as the Module 1 deck (spec section 10).
+
+  Synced 20 October 2026: slide wording follows the Module 1 deck
+  (../source/Module 1 Threat Landscape and Legal Governance.pdf) and the
+  activities follow the Module 1 learner guide of 19 October 2026.
+  Speaker notes are the deck's, copied with:
+    npm run import-deck -- --json="Module 1 Threat Landscape and Legal Governance.json" --module=1 --notes
+  The import keeps each <p class="notes-web"> (how to drive this web slide).
+-->
+
+<!-- 1 -->
+<section id="cover" class="l-cover" data-min="2" data-footer="none">
+  <div class="cover-art"><i data-lucide="shield"></i></div>
+  <p class="kicker">Protecting Digital Assets from Cyber Threats · Module 1 of 5</p>
+  <h1>Threat Landscape and Legal Governance</h1>
+  <p class="subtitle">Who attacks government offices, and the rules we all answer to</p>
+  <div class="meta"><span>Nino Filipen Duque · DICT Region 2 · ICT Academy: Digital Workforce</span><span>Face-to-face 21 to 23 October 2026 · Online 26 to 28 October 2026</span></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> Good morning. For three days we will talk about protecting the information citizens trust government with. This is not only an IT course. If you encode, file, approve, release or keep information about people, you are already protecting digital assets.</p>
+    <p><b>ASK:</b> Raise your hand if you handled a citizen's personal information in the last week. (Expected: almost everyone.)</p>
+    <p><b>SAY:</b> That is why everyone here belongs in this room. This morning we cover who attacks offices like ours, and the laws and standards that tell us what to do.</p>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section id="flow" data-min="5" data-eyebrow="This morning" data-source="Module 1 learner guide, session flow">
+  <h2>Four lessons, short breaks, one quiz</h2>
+  <div class="body grid-2 flow-grid">
+    <table class="t compact">
+      <thead><tr><th>Time</th><th>Segment</th></tr></thead>
+      <tbody>
+        <tr data-start="08:00" data-end="08:15"><td>8:00 to 8:15</td><td>Opening, ground rules, privacy notice, teams <span class="now-tag">Now</span></td></tr>
+        <tr data-start="08:15" data-end="08:55"><td>8:15 to 8:55</td><td>1.1 Modern cyber threats <span class="now-tag">Now</span></td></tr>
+        <tr data-start="09:05" data-end="10:15"><td>9:05 to 10:15</td><td>1.2 Data Privacy Act (RA 10173) <span class="now-tag">Now</span></td></tr>
+        <tr data-start="10:25" data-end="10:55"><td>10:25 to 10:55</td><td>1.2.1 ISO/IEC 27001 <span class="now-tag">Now</span></td></tr>
+        <tr data-start="10:55" data-end="11:15"><td>10:55 to 11:15</td><td>1.2.2 ASEAN Guide on AI Governance and Ethics <span class="now-tag">Now</span></td></tr>
+        <tr data-start="11:15" data-end="11:25"><td>11:15 to 11:25</td><td>Your questions <span class="now-tag">Now</span></td></tr>
+        <tr data-start="11:25" data-end="11:50"><td>11:25 to 11:50</td><td>Quiz 1 (10%) and answer review <span class="now-tag">Now</span></td></tr>
+        <tr data-start="11:50" data-end="12:00"><td>11:50 to 12:00</td><td>Recap, Bring it home, afternoon preview <span class="now-tag">Now</span></td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <p class="flow-breaks"><i data-lucide="coffee"></i> Breaks 8:55 to 9:05 and 10:15 to 10:25</p>
+      <div class="note-box"><b>Ground rules.</b> Phones on silent. What is said here stays here. Fictional or already-public cases only: please do not share real incidents, systems or names from your own office.</div>
+      <div class="note-box"><b>Privacy notice.</b> We collect only your name, office and email, for attendance and scoring.</div>
+      <div class="note-box"><b>Teams.</b> 5 to 6 people from different offices, technical and non-technical mixed. The same teams for Module 2 and the Day 3 tabletop.</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes. SAY the ground rules: phones on silent; what is said here stays here (Chatham House rule); and please do not share real incidents, systems or names from your own office. We use fictional or already-public cases only.</p>
+    <p><b>PRIVACY NOTICE:</b> We collect only your name, office and email, for attendance and scoring. Scores are kept in one place with limited access and are released only as ILCDB directs. This is us practising what we teach.</p>
+    <p><b>TEAMS:</b> Form teams of 5 to 6 people from different offices, mixing technical and non-technical staff. These teams stay together for Module 2 and the Day 3 tabletop. Online: you are pre-assigned to breakout rooms.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the highlighted row follows the clock. The three boxes on the right are this slide's notes, shown so the room can read along.</p>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section id="objectives" data-min="3" data-eyebrow="From remembering to doing" data-source="Syllabus items 1.1, 1.2, 1.2.1, 1.2.2 · Course objective 1 · Learning outcome 1">
+  <h2>By noon, you will be able to</h2>
+  <ol class="levels body">
+    <li class="fragment"><span class="lv">Remember</span> Secret-Correct-Ready, Tell-Legit-Little, the 3S test, the 72-5 rule</li>
+    <li class="fragment"><span class="lv">Understand</span> Why offices are attacked, and who answers for what under the DPA</li>
+    <li class="fragment"><span class="lv">Apply</span> Sort data and judge everyday cases as compliant or not</li>
+    <li class="fragment"><span class="lv">Analyze</span> Break down a real incident: what failed, what the law required</li>
+    <li class="fragment"><span class="lv">Evaluate</span> Decide whether a breach must be reported, and defend it</li>
+    <li class="fragment"><span class="lv">Create</span> An AI rule for your unit and a map of one process you handle</li>
+    <li class="fragment"><span class="lv">Experiment</span> Test what content credentials show on an image and a screenshot</li>
+  </ol>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> We will not stop at memorizing. Each level builds on the one before. Remembering lets you understand; understanding lets you apply; and by the end you will create something you can use in your own office on Monday. The four memory phrases on the first line are your anchors for the whole course; you will hear them again on Day 2 and Day 3.</p>
+    <p><b>TIP:</b> Point out the Check yourself questions in the learner guide. Trying to recall an answer before looking is what makes learning stick, so they should not peek.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next level.</p>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section id="story" data-min="5" data-eyebrow="The story we follow · fictional" data-source="Fictional scenario, Module 1 learner guide">
+  <h2>Meet the Regional Social Services Office</h2>
+  <p class="lead">An online Assistance Portal and records of about 48,000 applicants: names, addresses, ID numbers, health information and e-wallet numbers.</p>
+  <div class="cast body">
+    <div class="person"><span class="avatar">E</span><b>Director Eva</b><span>Head of office</span></div>
+    <div class="person"><span class="avatar">C</span><b>Carla</b><span>Data Protection Officer</span></div>
+    <div class="person"><span class="avatar">A</span><b>Ana</b><span>IT officer</span></div>
+    <div class="person"><span class="avatar">B</span><b>Ben</b><span>Records clerk</span></div>
+    <div class="person"><span class="avatar">D</span><b>Dan</b><span>Cashier</span></div>
+    <div class="person"><span class="avatar">S</span><b>Sol</b><span>Social worker</span></div>
+  </div>
+  <p class="muted">The office, its people and its data are invented for training.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Every example today happens in one office, the RSSO. It is fictional, but it should feel familiar. Introduce each person and what they handle: Director Eva approves policies and public statements; Carla is the DPO and legal officer; Ana runs the portal, servers and backups; Ben encodes and files applications; Dan handles payouts and e-wallet lists; Sol does field visits and writes case notes.</p>
+    <p><b>ASK:</b> Which of these people are you most like? (Most participants will say Ben, Dan or Sol.)</p>
+    <p><b>SAY:</b> Good. By noon you will see that each of them can either open a door to an attacker or close it. The same office returns in Module 2 (threat model), Module 3 (controls), Module 4 (the lab) and Day 3 (the tabletop exercise).</p>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section id="cia" class="l-interactive" data-min="5" data-code="1.1" data-eyebrow="Modern cyber threats · Key idea" data-source="The CIA triad: confidentiality, integrity, availability">
+  <h2>Every record must stay Secret, Correct, Ready</h2>
+  <div class="stage"><pdac-cia-lab data-src="m1-cia-lab.json"></pdac-cia-lab></div>
+  <p class="sim-ask"><i data-lucide="circle-help"></i> Ask of anything you handle: what if it leaks, changes, or is gone for a week?</p>
+  <div class="it-depth">
+    <h3>What the demo really does</h3>
+    <p><b>Secret:</b> the message is encrypted with AES-GCM and a fresh 256-bit key, made by this browser's Web Crypto API. Without the key, what travels is meaningless.</p>
+    <p><b>Correct:</b> the payout list's SHA-256 fingerprint is taken when it is approved. Change one character and the fingerprint changes completely, so a check before paying catches the edit.</p>
+    <p><b>Ready:</b> a backup kept offline cannot be reached by ransomware on the network, so the office can restore from it.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> This is the most useful idea in the whole course. Every piece of information should stay Secret from the wrong people, Correct, and Ready when needed. Specialists call it the CIA triad; Secret, Correct, Ready is the same thing in plain words. Walk through the comparisons: a sealed envelope (anyone who opens it without permission breaks confidentiality); a stamped receipt (if someone alters the amount, integrity is broken); an office that opens on time (if citizens wait a week, availability is broken).</p>
+    <p><b>ASK:</b> Think of one record you handle. What happens if it leaks? If someone changes it? If it is gone for a week? Take two answers from non-IT participants first.</p>
+    <p><b>WATCH FOR:</b> People think security means only secrecy. Stress that a changed payout number or a portal that is down are security failures too, and often hurt citizens more.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press breaks, then protects, one goal: six presses in all. The comparisons (sealed envelope, stamped receipt, office open on time) are under each name. A shows all three protected, R resets. Short on time: run Secret, then name the other two.</p>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section id="actors" class="l-interactive" data-min="3" data-code="1.1" data-eyebrow="Modern cyber threats" data-source="Module 1 learner guide, Lesson 1.1 · Microsoft Digital Defense Report 2025" data-terms="ransomware,extortion,hacktivist" data-proofs="ms-motive">
+  <h2>Who attacks, and what they want</h2>
+  <div class="stage"><pdac-attackers data-src="m1-attackers.json"></pdac-attackers></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Explain the words as you go. Ransomware is software that locks your files and demands payment. Extortion is a threat to publish stolen data unless paid. A hacktivist attacks for a political or social cause, often by defacing a website (changing what it shows). An insider is anyone with legitimate access: staff, job-order and contract-of-service personnel, consultants.</p>
+    <p><b>SAY:</b> Two of the five are not outside attackers at all. An employee who forwards a list to a personal email to work faster is not a criminal, but the effect on the citizen can be the same. A vendor with weak passwords can become the door into our systems.</p>
+    <p><b>ASK:</b> Which of these five would most want what the RSSO holds? (Expected: criminals, because e-wallet numbers and ID numbers can be used for fraud.)</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press plays one attacker's scene (about five seconds; a press during a scene finishes it), in the slide's order: criminal groups, state-linked groups, hacktivists, insiders, vendors and partners. Or click a card. A shows the slide's table with "Most harm from insiders is accidental, not malicious"; E shows Microsoft's quote with a QR code.</p>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section id="numbers" class="l-tiles" data-min="3" data-code="1.1" data-eyebrow="What the numbers say · Microsoft Digital Defense Report 2025" data-source="Microsoft, 22 Oct 2025; Interaksyon, 3 Nov 2025; eSecurityPlanet" data-proofs="ms-data,ms-identity-surge">
+  <h2>Money drives attacks, and passwords are the front door</h2>
+  <pdac-stat-proof class="body">
+    <div class="tiles">
+      <div class="tile" data-proof="ms-motive"><div class="num"><span data-countup="52" data-suffix="%">52%</span></div><p class="cap">of attacks with a known motive involved extortion or ransomware</p></div>
+      <div class="tile" data-proof="ph-rank"><div class="num"><span data-countup="20" data-suffix="th">20th</span></div><p class="cap">The Philippines among the countries most affected, first half of 2025</p></div>
+      <div class="tile" data-proof="ms-password"><div class="num"><span data-countup="97" data-suffix="%">97%</span></div><p class="cap">of identity attacks are password attacks</p></div>
+      <div class="tile" data-proof="ms-mfa"><div class="num"><span data-countup="99" data-suffix="%">99%</span></div><p class="cap">of identity attacks can be blocked by multi-factor authentication</p></div>
+    </div>
+  </pdac-stat-proof>
+  <div class="it-depth">
+    <h3>More from the same report</h3>
+    <p>Espionage was the motive in only 4% of attacks with a known motive. Attackers tried to steal data in 80% of incidents. Identity-based attacks rose 32% in the first half of 2025.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> These come from Microsoft's Digital Defense Report 2025, based on what Microsoft observed across its customers and services. They are not a census, but they show clear patterns. 52 percent: of attacks where the motive was known, more than half involved extortion or ransomware; only 4 percent were espionage. Most attackers want money, not state secrets. 20th: the Philippines ranked 20th among the most affected countries in the first half of 2025. 97 percent: almost all attacks on accounts go after passwords, and identity-based attacks rose 32 percent in the same period. 99 percent: multi-factor authentication, meaning a second proof such as a code on your phone, can block more than 99 percent of identity-based attacks, according to Microsoft.</p>
+    <p><b>ASK:</b> Who here has MFA on their office email? On their personal email?</p>
+    <p><b>TAKEAWAY:</b> Turning on MFA is the single cheapest, strongest step anyone can take today.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press shows the next number's source: the exact quote, who published it and when, and a QR code to the page. A shows all four; E lists every source with bigger QR codes.</p>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section id="paths" class="l-interactive" data-min="5" data-code="1.1" data-eyebrow="Modern cyber threats" data-source="Module 1 learner guide, Lesson 1.1 · fictional office network" data-terms="phishing,mfa,patch,end-of-support" data-proofs="ms-password,ms-mfa">
+  <h2>Five doors attackers use</h2>
+  <div class="stage"><pdac-net-sim data-src="m1-doors.json"></pdac-net-sim></div>
+  <div class="it-depth">
+    <h3>Reading the map</h3>
+    <p>10.0.0.x is a private range used inside offices. 203.0.113.x is reserved for documentation, so these addresses belong to no one. DNS turns a name into an address; the firewall decides what may cross between the internet and the office.</p>
+    <p>The password check uses zxcvbn, an open-source estimator (github.com/zxcvbn-ts/zxcvbn), running in this browser. Nothing typed leaves the laptop.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Attackers rarely break in through clever technology. They walk through five ordinary doors. Phishing is a fake message that tricks you into clicking, opening a file or paying; by text message it is called smishing. Old systems and lapsed licences: an expired antivirus is an open door, as we will see in the 2023 case. Exposed websites: public pages or admin pages that show more than they should. Shared accounts: when five people use one password, no one can tell who did what. Personal apps: lists and scanned IDs in personal email or chat groups leave the office's control.</p>
+    <p><b>ASK:</b> Show of hands, no judgment: whose unit shares at least one account? Who has received official files through a personal chat group?</p>
+    <p><b>SAY:</b> The middle column is for everyone; the right column is for IT. Notice that every door has a desk side and a server-room side.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> tabs jump to a door. Each press plays the next step; a press during a step finishes it. Five minutes is tight: play "How it connects" and Door 1 in full, then one step per other door. Door 1 has the password check: click a sample, never a real password. A shows the slide's table (door, at your desk, what IT does).</p>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section id="case-2023" class="l-timeline" data-min="4" data-code="1.1" data-eyebrow="Case study · public facts · agency not named" data-source="Public news reports and an NPC statement (2023), held by the resource person">
+  <h2>Ransomware at a national agency, 2023</h2>
+  <div class="timeline body" style="--n:5">
+    <div class="event"><p class="when">A Friday, Sep 2023</p><p class="what">Ransomware locked dozens of computers; the website and online services went down. The agency refused to pay a ransom.</p></div>
+    <div class="event"><p class="when">3 days later</p><p class="what">The agency notified the NPC, which asked it to explain, called a hearing and planned an onsite investigation.</p></div>
+    <div class="event"><p class="when">4 days later</p><p class="what">Its initial investigation said no personal information had leaked.</p></div>
+    <div class="event"><p class="when">About 2 weeks later</p><p class="what">Stolen files appeared online. The NPC found sensitive personal data in them.</p></div>
+    <div class="event"><p class="when">17 days later</p><p class="what">The agency confirmed its antivirus subscription had lapsed in April; procurement had delayed the renewal.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> This is a real, public case. We do not name the agency, because some of you may work in agencies like it, and our aim is lessons, not blame. Many offices could have been in the same position. Read the timeline slowly and point out three things. First, availability: the website and online services went down, and the public felt it. Second, the first assessment said no personal data had leaked; about two weeks later the NPC found sensitive personal data in what the attackers published. First assessments can be wrong. Third, a basic control had lapsed: the antivirus subscription expired in April, five months before the attack, and procurement had delayed the renewal. That is a planning problem, not only a technical one.</p>
+    <p><b>NOTE:</b> The agency advised the people affected to watch their accounts, change passwords and beware of phishing and smishing, because leaked data is often used for scams. The NPC also warned that downloading or sharing leaked data can itself be a crime. If a participant names the agency, acknowledge it calmly and keep to the public facts.</p>
+    <p><b>FACILITATOR SOURCES:</b> see the References section of the facilitation plan.</p>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section id="case-2023-q" class="l-activity" data-min="6" data-timer="6" data-code="1.1" data-eyebrow="Try it 1.1B" data-level="Analyze" data-source="Learner guide, Try it 1.1B">
+  <h2>Read the 2023 case like an investigator</h2>
+  <div class="brief body">
+    <div class="box">
+      <h3>In your team</h3>
+      <ol>
+        <li>Which of the five doors does the lapsed antivirus relate to?</li>
+        <li>Which of Secret, Correct and Ready were hit, and in what order?</li>
+        <li>The first statement said no personal data leaked. What does that teach about waiting for certainty?</li>
+        <li>What could a non-IT employee have noticed, done or reported?</li>
+      </ol>
+    </div>
+    <div class="stack">
+      <div class="chips"><span class="chip"><i data-lucide="timer"></i> 6 minutes</span><span class="chip"><i data-lucide="users"></i> Teams</span></div>
+      <p>4 minutes in teams, then 2 to share. Write your answers in the learner guide.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes (4 in teams, 2 debrief).</p>
+    <p><b>ANSWERS:</b> 1. Door 2, old systems and lapsed licences. 2. Ready first (systems down), then Secret (stolen files published). 3. First assessments can be wrong, and the law requires notice on knowledge or reasonable belief, not certainty; you will see the 72-hour rule later. 4. Report expiry warnings and odd system behaviour; avoid suspicious links; in procurement and admin, plan security renewals before they expire; warn citizens about scams that use leaked data.</p>
+    <p><b>FACILITATION:</b> Ask a team with mostly non-IT members to answer question 4 first. Their answers show everyone has a role. Keep a list of good answers on the board; you will use it again in the recap.</p>
+  </aside>
+</section>
+
+<!-- 11 -->
+<section id="case-2026" data-min="4" data-code="1.1" data-eyebrow="Case study · September 2026 · agencies not named" data-source="DICT and CICC joint advisory, 8 Sep 2026 (Newsbytes, 10 Sep 2026)">
+  <h2>Attacks on agency websites, then a 24-hour check</h2>
+  <div class="two-col body">
+    <div class="col">
+      <p class="col-head"><i data-lucide="siren"></i> What DICT reported</p>
+      <ul>
+        <li>Unauthorized access to one agency's website</li>
+        <li>Another agency's web host altered; no sensitive data found compromised</li>
+        <li>A reported ransomware attack at a third: no evidence found</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="clipboard-check"></i> What every agency had to do</p>
+      <ul>
+        <li>Give the head a one-page readiness assessment within 24 hours</li>
+        <li>Fix critical weaknesses; MFA for admin accounts</li>
+        <li>Check backups restore; review vendor access</li>
+        <li>Report serious incidents immediately</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> This happened last month. We do not name the agencies. In early September, DICT confirmed unauthorized access to one national agency's website and an unauthorized change to another agency's web host; for the second, initial assessments found no sensitive databases or personal data compromised. A reported ransomware attack at a third agency was investigated, and DICT found no evidence of ransomware or a breach. Claims made online by attackers were not confirmed.</p>
+    <p><b>SAY:</b> On 8 September, DICT and the CICC put national agencies, GOCCs, LGUs and critical infrastructure operators on heightened cyber vigilance. Each had to give its head of office a one-page readiness assessment within 24 hours: the most serious risks, actions taken, help needed. Other priority measures: reduce unnecessary internet exposure, improve monitoring, and test incident response and continuity plans.</p>
+    <p><b>ASK:</b> Did your office prepare one? Who in your office would write it? (Many will not know. That is the point: they now know to ask.)</p>
+    <p><b>LINK:</b> This checklist returns in Bring it home at the end of the morning.</p>
+    <p><b>FACILITATOR SOURCES:</b> see the References section of the facilitation plan.</p>
+  </aside>
+</section>
+
+<!-- 12 -->
+<section id="act1" class="l-interactive" data-min="8" data-timer="8" data-code="1.1" data-eyebrow="Try it 1.1A" data-level="Apply" data-source="Learner guide, Try it 1.1A">
+  <h2>Secret, Correct or Ready?</h2>
+  <p class="brief-strip"><b>For each RSSO asset:</b> the most likely threat, what it hits first, and one thing your team would do. <span class="chip"><i data-lucide="timer"></i> 8 min</span></p>
+  <div class="stage"><pdac-match-board data-src="m1-assets.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 8 minutes (5 in teams, 3 debrief on two assets). Face-to-face: teams fill the table in the learner guide. Online: one poll per asset.</p>
+    <p><b>MODEL ANSWERS:</b> Applicant database: data theft with stolen passwords, Secret first; MFA and need-to-know access. Payout list: e-wallet numbers changed by a fraudster or insider, Correct first; two-person approval and call-back before any change. Portal: ransomware or traffic floods, Ready first; tested backups and a continuity plan. Email: phishing, Secret first and then everything the account can reach; MFA and a report button. Website: defacement, Correct first; updates and a protected admin page. Backup drive: ransomware reaching the backups, or theft, Ready first and Secret if stolen; an offline copy, encryption and restore tests.</p>
+    <p><b>DEBRIEF:</b> Accept any answer with a sound reason. Ask a non-IT member to present.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click an asset, then the goal it hits first. Check marks what is placed; A places every asset with its most likely threat and one thing to do (the guide's model answers).</p>
+  </aside>
+</section>
+
+<!-- 13 -->
+<section id="habits" class="l-two-col" data-min="2" data-code="1.1" data-eyebrow="What each of us does" data-break-after="10" data-source="Module 1 learner guide, Lesson 1.1">
+  <h2>Everyone closes doors</h2>
+  <div class="two-col body">
+    <div class="col">
+      <p class="col-head"><i data-lucide="laptop"></i> If you handle data</p>
+      <ul>
+        <li>Pause when a message rushes you</li>
+        <li>Never share your password</li>
+        <li>Use only approved tools for official files</li>
+        <li>Report anything odd at once</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="server"></i> If you run systems</p>
+      <ul>
+        <li>Turn on MFA, admin accounts first</li>
+        <li>Keep a patch and renewal calendar</li>
+        <li>Test that backups can be restored</li>
+        <li>Make reporting easy and blame-free</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> Before the break, here is what each of us does. If you handle data: pause when a message rushes you, and verify through a number you already know, never one in the message. Never share your password. Use only approved tools. Report anything odd at once, even if you are not sure; no one is punished for a false alarm. If you run systems: MFA starting with email, VPN and admin accounts; a calendar for patches and licence renewals (remember the 2023 case); test restores, not only backups; and make reporting easy and blame-free.</p>
+    <p><b>TRANSITION:</b> After the break we turn to the law that makes all of this an obligation: the Data Privacy Act.</p>
+  </aside>
+</section>
+
+<!-- 14 -->
+<section id="dpa-scope" class="l-statement" data-min="2" data-code="1.2" data-eyebrow="Data Privacy Act of 2012 (RA 10173) · Key idea" data-source="RA 10173, Data Privacy Act of 2012">
+  <p class="statement">Personal data is <em>held in trust</em></p>
+  <p class="support">Like money kept for someone else: use it only for its purpose, keep it safe, account for it, and report at once if any goes missing.</p>
+  <p class="support"><b>The law binds everyone who handles the data, not only the DPO or IT.</b></p>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> When a citizen gives us their information, it is like handing us money for safekeeping. We may use it only for what it was given for, we keep it safe, we account for it when asked, and if any of it goes missing we say so at once. That is the whole Data Privacy Act in one picture.</p>
+    <p><b>SAY:</b> The DPA binds the people who handle the data. Several DPA crimes, such as throwing records in the trash or giving access through negligence, can be committed by any employee, not only by the DPO or IT.</p>
+    <p><b>WATCH FOR:</b> Some participants believe privacy is the DPO's job alone. Correct this gently now; the penalties slide later makes it concrete.</p>
+  </aside>
+</section>
+
+<!-- 15 -->
+<section id="dpa-terms" class="l-table" data-min="4" data-code="1.2" data-eyebrow="Data Privacy Act" data-source="RA 10173, Sections 3(g), 3(l) and 4(a)" data-terms="personal-information,sensitive-personal-information">
+  <h2>What counts as personal data</h2>
+  <table class="t body">
+    <thead><tr><th>Type</th><th>Plain meaning</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td>Personal information</td><td>Identifies a person, alone or with other details</td><td>Name with address; mobile number; photo</td></tr>
+      <tr><td>Sensitive personal information</td><td>Protected more strictly by law</td><td>Age, marital status, religion, ethnic origin, health, education, offenses, government ID numbers</td></tr>
+      <tr><td>Not covered</td><td>A government employee's job details</td><td>Name, title, office address and phone on a citizen's charter; a position's salary range</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">The RSSO may publish "Ben, Records Clerk". Not Ben's home address or health record.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Personal information is anything that identifies a person, on its own or when combined with other details. A mobile number alone may not name someone, but combined with a barangay and a birthday it does. Sensitive personal information is protected more strictly. The full list in Section 3(l): race, ethnic origin, marital status, age, color, religious, philosophical or political affiliations; health, education, genetic or sexual life; offenses and court proceedings; government-issued numbers such as social security numbers, health records, licenses and tax returns; and anything classified by law.</p>
+    <p><b>SAY:</b> Most government offices hold sensitive information every day, because government ID numbers are on the list.</p>
+    <p><b>SAY:</b> Section 4(a) says the DPA does not cover information about a government employee that relates to their position: the fact that they work there, their title, office address and phone, their position's classification and salary range, and their name on documents they prepared at work. That is why a citizen's charter can list staff names.</p>
+    <p><b>ASK:</b> Is a birthday personal or sensitive? (It reveals age, which is on the sensitive list.)</p>
+  </aside>
+</section>
+
+<!-- 16 -->
+<section id="sort" class="l-interactive" data-min="5" data-timer="5" data-code="1.2" data-eyebrow="Try it 1.2A" data-level="Apply" data-source="Learner guide, Try it 1.2A · RA 10173 Secs. 3 and 4">
+  <h2>Personal, sensitive, or not covered?</h2>
+  <p class="brief-strip"><b>Mark each item P, S or N.</b> N means not covered by the DPA, or not personal information at all. <span class="chip"><i data-lucide="timer"></i> 5 min</span></p>
+  <div class="stage"><pdac-match-board data-src="m1-sort.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes. Face-to-face: three cards per person, P, S and N, held up together for each item. Online: a quick poll.</p>
+    <p><b>ANSWERS:</b> 1. Personal. 2. Sensitive, a government-issued number. 3. Sensitive, health information. 4. Not covered, Section 4(a). 5. Sensitive, age and marital status. 6. Personal; not on the sensitive list, but an e-wallet number can be used for fraud, so it counts as high risk in the breach test later. 7. Not personal information if no one can be identified; but very small counts, such as one applicant from a small town, can point to a person.</p>
+    <p><b>WATCH FOR:</b> Item 6 usually splits the room. Use the split to preview the 3S test: the breach rules care about sensitive data and data that can enable identity fraud.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> after the cards go up, click an item, then P, S or N. A places all seven with the guide's reasons.</p>
+  </aside>
+</section>
+
+<!-- 17 -->
+<section id="roles" data-min="4" data-code="1.2" data-eyebrow="Data Privacy Act" data-source="RA 10173, Sections 3(h), 3(i), 12(e), 13(b), 14, 21" data-terms="data-subject,pic,pip,dpo">
+  <h2>Who is who</h2>
+  <div class="cards c4 roles">
+    <div class="card"><h4>Data subject</h4><p>The person the data is about</p><p class="eg">An applicant</p></div>
+    <div class="card"><h4>Controller (PIC)</h4><p>Decides what is collected and why</p><p class="eg">The RSSO</p></div>
+    <div class="card"><h4>Processor (PIP)</h4><p>Handles data on the PIC's instructions</p><p class="eg">The SMS vendor</p></div>
+    <div class="card"><h4>DPO</h4><p>Accountable for compliance</p><p class="eg">Carla</p></div>
+  </div>
+  <div class="stack roles-notes">
+    <p class="callout">The office owns the filing cabinet; a vendor is a helper who opens it only for the job. If the helper loses a file, the office still answers.</p>
+    <p class="callout"><b>Lawful reason:</b> offices usually rely on their mandate under law, not only consent. The rest of the law still applies.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Four roles. The data subject is the person the data is about. The personal information controller, or PIC, decides what is collected and why: here, the RSSO as an office. A personal information processor, or PIP, handles the data for the PIC and follows its instructions, like the SMS vendor or a contractor hired to encode forms. The DPO is the person accountable for the office's compliance.</p>
+    <p><b>ANALOGY:</b> The office owns the filing cabinet. A vendor is a trusted helper who may open it only for the job and only as instructed. If the helper loses a file, the office still answers to the citizen; Sections 14 and 21 keep the controller responsible and require contracts or other reasonable means to protect the data.</p>
+    <p><b>LAWFUL REASON:</b> A government office usually processes data because its mandate under law requires it (Section 12(e)), or, for sensitive information, because a law or regulation requires it (Section 13(b)). Consent is not always the basis.</p>
+    <p><b>WATCH FOR:</b> People think that having a mandate means privacy rules do not apply. They still do: the principles, security duties and people's rights.</p>
+  </aside>
+</section>
+
+<!-- 18 -->
+<section id="dpa-principles" class="l-cards-3" data-min="4" data-code="1.2" data-eyebrow="Data Privacy Act · three principles" data-source="RA 10173, Section 11">
+  <h2>Tell, Legit, Little</h2>
+  <div class="cards body">
+    <div class="card"><span class="icon"><i data-lucide="megaphone"></i></span><h3>Tell <span class="term">(transparency)</span></h3><p>People know what you collect, why, and what you do with it</p><p class="eg">Did we give a privacy notice?</p></div>
+    <div class="card"><span class="icon"><i data-lucide="badge-check"></i></span><h3>Legit <span class="term">(legitimate purpose)</span></h3><p>Use data only for the declared, lawful purpose</p><p class="eg">Is this what it was collected for?</p></div>
+    <div class="card"><span class="icon"><i data-lucide="filter"></i></span><h3>Little <span class="term">(proportionality)</span></h3><p>Collect and keep only what the purpose needs</p><p class="eg">Do we need this field, this copy, this long?</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Section 11 has three principles. Remember them as Tell, Legit, Little. Tell: transparency, people know what we collect, why, and what we do with it; that is what a privacy notice on a form is for. Legit: legitimate purpose; use data only for the purpose we declared. Using the applicant list to invite people to a political event is not legitimate. Little: proportionality; collect and keep only what we need. If the form asks for religion and we never use it, remove the field.</p>
+    <p><b>ASK:</b> Think of one form your office uses. Is there a field you never use? (Collect two examples. This is the most practical change non-IT staff can propose on Monday.)</p>
+    <p><b>WATCH FOR:</b> Little also covers how long we keep data and how many copies exist: printouts, photocopies, files in personal folders.</p>
+  </aside>
+</section>
+
+<!-- 19 -->
+<section id="rights" data-min="3" data-code="1.2" data-eyebrow="Data Privacy Act · rights of data subjects" data-source="RA 10173, Sections 16 to 18; NPC, Rights of a Data Subject">
+  <h2>What citizens can ask of you</h2>
+  <div class="cards c4 rights">
+    <div class="card"><h4>Be informed</h4><p>Know what is processed and why</p></div>
+    <div class="card"><h4>Access</h4><p>Get a copy of their data</p></div>
+    <div class="card"><h4>Object</h4><p>Say no to some uses</p></div>
+    <div class="card"><h4>Rectify</h4><p>Have errors corrected</p></div>
+    <div class="card"><h4>Erase or block</h4><p>On valid grounds</p></div>
+    <div class="card"><h4>Damages</h4><p>Compensation for harm</p></div>
+    <div class="card"><h4>Portability</h4><p>Their data in a common format</p></div>
+    <div class="card"><h4>Complain</h4><p>To the National Privacy Commission</p></div>
+  </div>
+  <p class="callout rights-desk"><b>At your desk:</b> don't refuse and don't improvise. Follow the procedure, or refer to your DPO.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Citizens have eight rights. To be informed that their data is processed and why. To access a copy. To object to some uses, such as marketing or automated decisions. To have errors corrected. To have data erased or blocked on valid grounds. To be paid damages for harm caused by misuse. To get their electronic data in a common format. And to complain to the National Privacy Commission. Heirs can exercise these rights after a person dies.</p>
+    <p><b>AT YOUR DESK:</b> If an applicant asks to see or correct their record at the counter, do not refuse and do not improvise. Follow your office's procedure or refer to the DPO.</p>
+    <p><b>ASK:</b> Does your office have a procedure for these requests? Who handles them? (If many do not know, that is a Bring it home action.)</p>
+  </aside>
+</section>
+
+<!-- 20 -->
+<section id="measures" data-min="4" data-code="1.2" data-eyebrow="Data Privacy Act · keeping data safe" data-source="RA 10173, Section 20; NPC Circular 2023-06 (replaced Circular 16-01)">
+  <h2>Three kinds of security measures</h2>
+  <div class="cards c3">
+    <div class="card"><span class="icon"><i data-lucide="scroll-text"></i></span><h3>Organizational</h3><p>Rules, roles, routines: a privacy manual, a DPO, training, vendor contracts</p></div>
+    <div class="card"><span class="icon"><i data-lucide="building-2"></i></span><h3>Physical</h3><p>Places and things: locked cabinets, clean desks, shredding, a controlled server room</p></div>
+    <div class="card"><span class="icon"><i data-lucide="cpu"></i></span><h3>Technical</h3><p>Settings and software: MFA, encryption, backups, updates, logs</p></div>
+  </div>
+  <p class="callout measures-npc"><b>NPC Circular 2023-06</b> (since 30 March 2024, government and private): privacy by design, regular training, remote wipe on mobile devices, backup and continuity plans, and no fax for personal data.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Section 20 requires three kinds of measures. Organizational: rules, roles and routines, such as a privacy manual, a DPO, training and contracts with vendors. Physical: places and things, such as locked cabinets, a clean desk, shredding and a controlled server room. Technical: settings and software, such as passwords with MFA, encryption, backups, updates and logs. Notice that two of the three are not technical at all: non-IT staff carry out most of them.</p>
+    <p><b>SAY:</b> NPC Circular 2023-06 took effect on 30 March 2024 for both government and private offices, and replaced Circular 16-01. It requires privacy by design and by default (protection built into forms and systems from the start), regular training, access rules including the ability to remotely disconnect or wipe data on mobile devices, a business continuity plan with backup and restoration, and it bans sending personal data by fax.</p>
+    <p><b>ASK:</b> Which of the three does your unit do best? Which is weakest?</p>
+  </aside>
+</section>
+
+<!-- 21 -->
+<section id="gov-rules" class="l-table" data-min="5" data-code="1.2" data-eyebrow="Data Privacy Act · for government offices" data-source="RA 10173, Sections 22 to 24">
+  <h2>Extra rules for government</h2>
+  <table class="t compact body">
+    <thead><tr><th>Rule</th><th>What the law says</th><th>Section</th></tr></thead>
+    <tbody>
+      <tr><td>The head answers</td><td>Heads answer for securing the office's sensitive personal information</td><td>22</td></tr>
+      <tr><td>Clearance</td><td>No access to sensitive data without the agency head's security clearance</td><td>23</td></tr>
+      <tr><td>Off-site</td><td>Needs the head's approval within 2 business days; no answer means no</td><td>23</td></tr>
+      <tr><td>1,000 records</td><td>Approved off-site access covers no more than 1,000 records at a time</td><td>23</td></tr>
+      <tr><td>Encrypt</td><td>Devices and files used off-site must be encrypted</td><td>23</td></tr>
+      <tr><td>Contractors</td><td>1,000+ people's sensitive data: register with the NPC, same rules apply</td><td>24</td></tr>
+    </tbody>
+  </table>
+  <div class="note-box ben-q">
+    <p><b>Ben wants to finish encoding at home on a USB stick. What does he need?</b></p>
+    <p class="answer"><span class="answer-label">Answer:</span> Written approval from the head, no more than 1,000 records at a time, and an encrypted USB stick.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> These sections apply only to government, and few people know them. Section 22: heads of agencies answer for securing the sensitive personal information their office holds. Section 23: no employee may access sensitive personal information on government property or online without a security clearance from the head of the agency that holds it. Data may not be taken or accessed off-site without a request approved by the head, who must decide within two business days; no answer means no. Approved off-site access is limited to 1,000 records at a time, and anything used to store, carry or access it must be encrypted to the standard the NPC recognizes. Section 24: a contractor that handles sensitive personal information of 1,000 or more people for government must register its systems with the NPC and follow the same rules. ASK the question on the slide.</p>
+    <p><b>ANSWER:</b> written approval from the head, no more than 1,000 records at a time, and an encrypted USB stick.</p>
+    <p><b>ASK:</b> Has anyone ever taken work home this way? No names; just think about it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> A shows the answer to Ben's question under the table.</p>
+  </aside>
+</section>
+
+<!-- 22 -->
+<section id="act2" class="l-interactive" data-min="10" data-timer="10" data-code="1.2" data-eyebrow="Try it 1.2B" data-level="Apply and Evaluate" data-source="Learner guide, Try it 1.2B · RA 10173; NPC Circular 16-03">
+  <h2>Compliant, not compliant, or it depends?</h2>
+  <p class="brief-strip"><b>Vote on each case, then give the reason.</b> <span class="chip"><i data-lucide="timer"></i> 10 min</span></p>
+  <div class="stage"><pdac-vote-reveal data-src="m1-vignettes.json" data-options="compliant:Compliant|not-compliant:Not compliant|depends:It depends"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes. Vote on each (cards face-to-face, poll online), then ask one voter to give the reason before you reveal.</p>
+    <p><b>ANSWERS:</b> 1. Not compliant: anyone with the link can see ID numbers; if people with no right to it opened the link, it is likely a notifiable breach. 2. Not compliant: personal email is outside the office's control and access rules; payroll may include sensitive data such as tax and social security numbers. 3. Not compliant: data taken off-site must be encrypted (Section 23); sensitive HR data plus likely harm points to notification. 4. Not compliant: the office stays responsible for its vendors (Sections 14 and 21); the vendor needs a written agreement that sets its duties, and only the access its job needs. 5. Not compliant unless the tool is approved and personal data is removed first: pasting letters into a public tool discloses them to a third party. 6. It depends: no personal data, so not a personal data breach and no NPC notice; but it is a security incident: document it, fix it, check other systems, and report it under DICT's reporting mechanism.</p>
+    <p><b>TIP:</b> Item 6 is the bridge to the next slides.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> tap a button for each card raised, or press 1, 2, 3. The clicker reveals the answer, then moves to the next case.</p>
+  </aside>
+</section>
+
+<!-- 23 -->
+<section id="breach-types" class="l-cards-3" data-min="3" data-code="1.2" data-eyebrow="When something goes wrong" data-source="NPC Circular 16-03, Section 3" data-terms="personal-data-breach">
+  <h2>A breach is a Secret, Correct or Ready failure</h2>
+  <div class="cards body">
+    <div class="card"><span class="icon"><i data-lucide="lock"></i></span><h3>Confidentiality breach</h3><p>Data seen or taken without authority</p><p class="eg">Secret lost</p></div>
+    <div class="card"><span class="icon"><i data-lucide="circle-check"></i></span><h3>Integrity breach</h3><p>Data altered</p><p class="eg">Correct lost</p></div>
+    <div class="card"><span class="icon"><i data-lucide="power"></i></span><h3>Availability breach</h3><p>Data lost or destroyed</p><p class="eg">Ready lost</p></div>
+  </div>
+  <p class="callout">A security incident is wider: any event that affects or could affect data protection, including near misses. Report those too.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Here is where Lesson 1.1 and the law meet. NPC Circular 16-03 defines a personal data breach as a security failure that destroys, loses or alters personal data, or lets someone see or take it without authority. It names three kinds, and they are our three words. A confidentiality breach: data seen or taken. An integrity breach: data altered. An availability breach: data lost or destroyed. So in the 2023 case, the ransomware that locked the agency's systems was first an availability breach, and the publication of stolen files was a confidentiality breach.</p>
+    <p><b>SAY:</b> A security incident is wider: any event that affects or could affect data protection, including near misses that our safeguards stopped. Report near misses too; they show where the next breach will come from.</p>
+  </aside>
+</section>
+
+<!-- 24 -->
+<section id="breach-conditions" class="l-interactive" data-min="4" data-code="1.2" data-eyebrow="Must we notify the NPC? · NPC Circular 16-03" data-source="NPC Circular 16-03, Sections 11 and 13">
+  <h2>The 3S test: notify when all three are true</h2>
+  <div class="stage"><pdac-breach-flow data-src="m1-breach.json" data-part="3s"></pdac-breach-flow></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Not every breach must be reported to the NPC. Circular 16-03, Section 11, requires notification when three things are true. Remember them as the 3S. Sensitive: the data is sensitive personal information, or any information that could be used to enable identity fraud. Stolen: there is reason to believe someone not authorized acquired it; seeing or copying it counts. Serious: the acquisition is likely to give rise to a real risk of serious harm to the people affected.</p>
+    <p><b>SAY:</b> When you are unsure, Section 13 says to put the likelihood of harm first, and to weigh whether the breach involves 100 or more people, national security or public safety, information that the law requires to be confidential, or vulnerable groups.</p>
+    <p><b>ASK:</b> The defaced website from the last activity, with no personal data on the server: does it pass the 3S? (No: Sensitive fails. But it is still documented and reported as a security incident.)</p>
+    <p><b>WATCH FOR:</b> Stolen does not need proof. Reason to believe is enough.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> step through with the clicker (Sensitive, Stolen, Serious, the result, then "Unsure?"), or walk a case by setting Yes or No on each card. Try the defaced website: Sensitive is No, so the flow stops.</p>
+  </aside>
+</section>
+
+<!-- 25 -->
+<section id="breach-duties" class="l-interactive" data-min="5" data-code="1.2" data-eyebrow="Breach notification" data-source="NPC Circular 16-03, Secs. 17, 18, 22; NPC Advisory 2026-02 (11 May 2026)" data-terms="reasonable-belief,dbnms">
+  <h2>72-5</h2>
+  <p class="brief-strip"><b>72 hours to notify. Full report in 5 days from discovery.</b></p>
+  <div class="stage"><pdac-breach-flow data-src="m1-breach.json" data-part="clock"></pdac-breach-flow></div>
+  <div class="it-depth">
+    <h3>Filing</h3>
+    <p>Breach notifications and annual incident reports go only through the NPC's Data Breach Notification Management System (DBNMS), dbnms.privacy.gov.ph. The full breach report goes to admindbnms@privacy.gov.ph with the subject FBR_NameofPIC_NameofDPO, within 5 days from discovery, even while a request to the NPC is pending (NPC Advisory 2026-02, 11 May 2026).</p>
+    <p>Keep a record of every security incident and breach, notifiable or not, and send the NPC an annual summary (Circular 16-03, Sec. 22).</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Remember 72-5. The NPC must be notified within 72 hours of the office knowing or reasonably believing that a breach happened. Not certainty: reasonable belief. Think of a fire: you call when you smell smoke, not when you see ashes. The people affected must also be told within 72 hours, individually and through secure means; if that is not possible, the office must ask the NPC for an exemption or a postponement. Delay is allowed only to find the scope, stop further disclosure or restore systems, never to hide the breach. When 100 or more people are affected, or disclosure of sensitive information would harm them, there is no delay: notify within 72 hours using what you know. The full breach report follows within 5 days from discovery, even while any request to the NPC is pending (Advisory 2026-02).</p>
+    <p><b>HOW:</b> breach notifications and annual incident reports go only through the NPC's online Data Breach Notification Management System (DBNMS); the full breach report goes to admindbnms@privacy.gov.ph with the subject FBR_NameofPIC_NameofDPO. NPC silence is never approval.</p>
+    <p><b>AT YOUR DESK:</b> Your job is to report to your DPO or IT at once. The breach response team decides about the NPC. Concealing a breach is a crime in itself.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press lights the clock: hour 0 at reasonable belief, then 72 hours, then 5 days. The dates follow the "Reasonable belief at" button (try Friday 4:45 PM: the 72 hours end on Monday). The deck's six rules are in the table underneath.</p>
+  </aside>
+</section>
+
+<!-- 26 -->
+<section id="notify" class="l-interactive" data-min="10" data-timer="10" data-code="1.2" data-eyebrow="Try it 1.2C" data-level="Evaluate" data-source="Learner guide, Try it 1.2C · NPC Circular 16-03, Section 11">
+  <h2>Notify or not? Use the 3S, then defend it</h2>
+  <div class="stage"><pdac-three-s-check data-src="m1-notify.json"></pdac-three-s-check></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes (6 in teams, 4 debrief). Each team gives a decision and one sentence of reasoning.</p>
+    <p><b>MODEL ANSWERS:</b> 1. Lean towards notifying. E-wallet numbers can enable fraud (Sensitive); an unauthorized person received the list (Stolen); 230 people are involved and the deletion cannot be checked (Serious, and 100 or more people means no delay). Notify the NPC within 72 hours, document the recipient's confirmation, and consider telling the people affected to watch their accounts. The breach response team and DPO make the final call. 2. Usually not notifiable. Strong encryption with the key kept separate makes the data unreadable, so serious harm is unlikely. Still record it as an incident, wipe the laptop remotely if possible, and write down the reasons for the decision. If the password was taped to the laptop, the answer changes. 3. Not notifiable on these facts: an availability breach with no sign that data left. Document it, keep investigating, and report the cybersecurity incident to DICT. Many ransomware groups copy data before locking it, as in the 2023 case; if new evidence shows data was taken, the 72-hour clock starts when you learn it.</p>
+    <p><b>EMPHASIZE:</b> Reasonable people can differ on case 1; what matters is a documented, defensible decision within the deadline.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> for each case, set the team's answer for each S, choose Notify or Do not notify, then reveal the model answer (A or the clicker). Three cases in 10 minutes.</p>
+  </aside>
+</section>
+
+<!-- 27 -->
+<section id="penalties" class="l-table" data-min="4" data-code="1.2" data-eyebrow="Why it is personal · selected penalties" data-source="RA 10173, Sections 26, 27, 30, 32, 35, 36 · Training material, not legal advice">
+  <h2>Everyday mistakes can be crimes</h2>
+  <table class="t compact body">
+    <thead><tr><th>Act</th><th>How it happens</th><th>Personal info</th><th>Sensitive info</th><th>Sec.</th></tr></thead>
+    <tbody>
+      <tr><td>Negligent access</td><td>Lending your password</td><td>1 to 3 yrs; P500k to P2M</td><td>3 to 6 yrs; P500k to P4M</td><td>26</td></tr>
+      <tr><td>Improper disposal</td><td>Printed lists in the trash</td><td>6 mos to 2 yrs; P100k to P500k</td><td>1 to 3 yrs; P100k to P1M</td><td>27</td></tr>
+      <tr><td>Unauthorized disclosure</td><td>A list sent to someone with no right to it</td><td>1 to 3 yrs; P500k to P1M</td><td>3 to 5 yrs; P500k to P2M</td><td>32</td></tr>
+      <tr><td>Concealing a breach</td><td>Keeping quiet about a reportable breach</td><td>1.5 to 5 yrs; P500k to P1M</td><td>Same</td><td>30</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">100 or more people affected: the maximum penalty applies (Sec. 35). Public officers: also disqualified from office for twice the prison term (Sec. 36).</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> This slide is not meant to scare anyone. It shows that privacy is personal: these are acts any employee can commit. Negligence that gives someone access, for example lending your password or leaving the system open on a shared computer: 1 to 3 years and a fine of P500,000 to P2 million, or 3 to 6 years and up to P4 million if the information is sensitive. Throwing printed lists in the trash: 6 months to 2 years and P100,000 to P500,000, or 1 to 3 years and up to P1 million for sensitive information. Sending a list to someone with no right to it: 1 to 3 years, or 3 to 5 years for sensitive information. Concealing a breach that must be reported: 1 year and 6 months to 5 years and P500,000 to P1 million. When 100 or more people are affected, the maximum of the range applies. A public officer is also disqualified from public office for twice the prison term. The NPC can separately impose administrative fines of up to P5 million per act under Circular 2022-01.</p>
+    <p><b>TAKEAWAY:</b> The fix is cheap: never lend a password, shred, send only to people with a right to the data, and report at once. Remind them this is training material, not legal advice.</p>
+  </aside>
+</section>
+
+<!-- 28 -->
+<section id="gov-layer" data-min="3" data-code="1.2" data-eyebrow="The government layer" data-break-after="10" data-source="EO 58 (jur.ph; Inquirer); DICT circulars list (UP ITDC; National Admin. Register)">
+  <h2>On top of the DPA: national cybersecurity policy</h2>
+  <div class="cards c3 body">
+    <div class="card"><span class="icon"><i data-lucide="landmark"></i></span><h3>Executive Order No. 58</h3><p>4 April 2024. Adopts the National Cybersecurity Plan 2023-2028. Agencies and GOCCs adopt aligned plans; LGUs are encouraged to.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="file-text"></i></span><h3>DICT circulars, 2024</h3><p>003 protecting government digital assets; 004 layered security and defense; 005 incident reporting and disclosure; 006 vulnerability disclosure</p></div>
+    <div class="card"><span class="icon"><i data-lucide="split"></i></span><h3>Two reports, two regulators</h3><p>A personal data breach goes to the NPC. A cybersecurity incident is reported to DICT. One event can need both.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> On top of the DPA sits national cybersecurity policy. Executive Order No. 58, dated 4 April 2024, adopted the National Cybersecurity Plan 2023-2028. National agencies and GOCCs must adopt and implement aligned cybersecurity plans; LGUs are encouraged to. DICT then issued department circulars in 2024: No. 003 on cybersecurity protection of government digital assets, No. 004 on a layered security and defense approach, No. 005 on reporting and mandatory disclosure of cybersecurity incidents, and No. 006 on the Vulnerability Disclosure Initiative. Say only the titles: we will cover reporting in detail on Day 3.</p>
+    <p><b>KEY POINT:</b> two reports, two regulators. A personal data breach goes to the NPC under the DPA. A cybersecurity incident is reported to DICT under its reporting mechanism. The 2023 case needed both.</p>
+    <p><b>ASK:</b> Who in your office knows how to report to DICT? (Ask the ICT head; it is a Bring it home action.)</p>
+    <p><b>RESOURCE PERSON NOTE:</b> Before teaching any DICT reporting deadline, read the circular's full text; do not quote a number from memory.</p>
+  </aside>
+</section>
+
+<!-- 29 -->
+<section id="iso-what" class="l-cycle" data-min="9" data-code="1.2.1" data-eyebrow="ISO/IEC 27001 · Key idea" data-source="ISO/IEC 27001:2022, clauses 4 to 10 · 27002 explains each control · 27701 covers privacy" data-terms="isms,soa">
+  <h2>A yearly cycle for security, like the budget cycle</h2>
+  <div class="cycle body">
+    <div class="step fragment"><span class="k">Clauses 4 to 6</span><h3>Plan</h3><p>Context, leadership, risks and controls</p></div>
+    <div class="step fragment"><span class="k">Clauses 7 and 8</span><h3>Do</h3><p>People, skills, documents; carry out the plan</p></div>
+    <div class="step fragment"><span class="k">Clause 9</span><h3>Check</h3><p>Is it working? Monitor, audit, review</p></div>
+    <div class="step fragment"><span class="k">Clause 10</span><h3>Act</h3><p>Fix and improve, then plan again</p></div>
+  </div>
+  <p class="cycle-return fragment">back to Plan</p>
+  <p class="callout">ISO/IEC 27001 is the international standard for an information security management system (ISMS). Offices can be certified against it. The Statement of Applicability lists which controls apply, which do not, and why.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 9 minutes.</p>
+    <p><b>SAY:</b> The DPA tells us what to protect and when to report. ISO/IEC 27001 tells us how to manage security so it does not depend on one careful person. It is the international standard for an information security management system, or ISMS: an organized way to decide which protections we need, put them in place, check that they work, and improve them.</p>
+    <p><b>ANALOGY:</b> You already know this cycle from the yearly planning and budget process: plan, implement, check results, adjust. ISO calls it plan-do-check-act. Clauses 4 to 10 are seven questions: 4, what do we protect and what affects us; 5, does top management lead; 6, what are our risks and which controls do we need; 7, do we have the people, skills and documents; 8, are we doing what we planned; 9, is it working; 10, what do we fix. The Statement of Applicability is the office's checklist of all Annex A controls: which apply, which do not, and why.</p>
+    <p><b>RELATED:</b> ISO/IEC 27002 explains how to apply each control. ISO/IEC 27701 covers privacy; its 2025 edition can be used on its own.</p>
+    <p><b>WATCH FOR:</b> Alignment is not certification. An office can follow the cycle without being certified.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next step of the cycle, then "back to Plan".</p>
+  </aside>
+</section>
+
+<!-- 30 -->
+<section id="iso-annex" class="l-cards-4" data-min="8" data-code="1.2.1" data-eyebrow="Annex A, 2022 edition" data-source="ISO/IEC 27001:2022 Annex A (control names via Scrut and CertPro)">
+  <h2>93 controls: Rules, People, Places, Tech</h2>
+  <div class="cards body">
+    <div class="card"><span class="big" data-countup="37">37</span><h3>Rules</h3><p>Organizational: 5.9 asset inventory · 5.15 access control · 5.24 to 5.28 incidents</p></div>
+    <div class="card"><span class="big" data-countup="8">8</span><h3>People</h3><p>6.3 awareness, education and training · 6.7 remote working</p></div>
+    <div class="card"><span class="big" data-countup="14">14</span><h3>Places</h3><p>Physical: 7.9 security of assets off-premises</p></div>
+    <div class="card"><span class="big" data-countup="34">34</span><h3>Tech</h3><p>Technological: 8.5 secure authentication · 8.13 backup · 8.24 cryptography</p></div>
+  </div>
+  <p class="callout">37 + 8 + 14 + 34 = <b>93</b>. These numbers are our common language for the rest of the course.</p>
+  <div class="it-depth">
+    <h3>Control numbers</h3>
+    <p>Organizational 5.1 to 5.37 · People 6.1 to 6.8 · Physical 7.1 to 7.14 · Technological 8.1 to 8.34.</p>
+    <p>The slide's examples in full: 5.9 Inventory of information and other associated assets; 5.15 Access control; 5.24 to 5.28 Incident management, ending with 5.28 Collection of evidence; 6.3 Information security awareness, education and training; 6.7 Remote working; 7.9 Security of assets off-premises; 8.5 Secure authentication; 8.13 Information backup; 8.24 Use of cryptography.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 8 minutes.</p>
+    <p><b>SAY:</b> Annex A lists 93 controls in four themes. Remember them as Rules, People, Places, Tech. Rules, the organizational controls, 37 of them: policies, roles and routines, such as 5.9, keeping an inventory of information and assets; 5.15, access control; and 5.24 to 5.28, incident management, which ends with 5.28, collection of evidence. People, 8 controls: screening, training and behaviour, such as 6.3, awareness, education and training, and 6.7, remote working. Places, the physical controls, 14: rooms, locks and equipment, such as 7.9, security of assets off-premises (the laptop in the car). Tech, the technological controls, 34: systems and settings, such as 8.5, secure authentication; 8.13, information backup; and 8.24, use of cryptography.</p>
+    <p><b>ASK:</b> Which theme does a non-IT employee work in most? (All of them: Rules when following procedures, People when trained, Places when locking cabinets, and Tech when using MFA.) Do not read out all 93; participants meet these numbers again in Modules 3 to 5.</p>
+  </aside>
+</section>
+
+<!-- 31 -->
+<section id="iso-dpa" class="l-table" data-min="6" data-code="1.2.1" data-eyebrow="How the pieces fit" data-source="RA 10173; NPC Circulars 16-03 and 2023-06; ISO/IEC 27001:2022">
+  <h2>The DPA says what; ISO 27001 helps with how</h2>
+  <table class="t body">
+    <thead><tr><th>The DPA and NPC ask for...</th><th>ISO 27001 helps you...</th></tr></thead>
+    <tbody>
+      <tr><td>Organizational, physical and technical measures (Sec. 20)</td><td>Choose them by risk and record them in the Statement of Applicability</td></tr>
+      <tr><td>A breach response team, records and reports (Circ. 16-03)</td><td>Run incident management and evidence collection (5.24 to 5.28)</td></tr>
+      <tr><td>Regular staff training (Circ. 2023-06)</td><td>Run and measure awareness and training (6.3)</td></tr>
+      <tr><td>Backup, restoration and continuity (Circ. 2023-06)</td><td>Back up and test restores (8.13) within the continuity plan</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">Start small: list your assets, find the top risks (Module 2), pick controls, name owners, check yearly.</p>
+  <div class="it-depth">
+    <h3>Keep the Statement of Applicability alive</h3>
+    <p>Keep it as a living document and map each control to evidence (a policy, a log, a screenshot), so an NPC compliance check takes hours, not weeks.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> The DPA and NPC circulars say what must be in place. ISO 27001 is a way to get there and to prove it. Walk across each row. Section 20 asks for organizational, physical and technical measures; ISO helps you choose them by risk and record them in the Statement of Applicability. Circular 16-03 asks for a breach response team, records and reports; ISO's incident controls, 5.24 to 5.28, cover the same ground. Circular 2023-06 asks for regular training and for backup, restoration and continuity; ISO controls 6.3 and 8.13 cover them.</p>
+    <p><b>SAY:</b> You do not need certification to benefit. Start small: list your information assets, find the top risks (that is this afternoon's Module 2), choose controls, give each one an owner, and check once a year.</p>
+    <p><b>IT DEPTH:</b> keep the Statement of Applicability as a living document and map each control to evidence (a policy, a log, a screenshot), so an NPC compliance check takes hours, not weeks.</p>
+  </aside>
+</section>
+
+<!-- 32 -->
+<section id="act3" class="l-interactive" data-min="7" data-timer="5" data-code="1.2.1" data-eyebrow="Try it 1.2.1" data-level="Apply and Analyze" data-source="Learner guide, Try it 1.2.1 · ISO/IEC 27001:2022 Annex A">
+  <h2>Rules, People, Places or Tech?</h2>
+  <p class="brief-strip"><b>Which theme would have caught it?</b> Match each incident to Rules, People, Places or Tech. <span class="chip"><i data-lucide="timer"></i> 5 min</span></p>
+  <div class="stage"><pdac-match-board data-src="m1-annex.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes (5 in teams, 2 debrief).</p>
+    <p><b>ANSWERS:</b> 1. Rules: access rights must end when the contract ends (the access control family, 5.15 to 5.18). 2. People: awareness, education and training (6.3). 3. Places: physical security of the server room. 4. Tech: use of cryptography (8.24). 5. Rules: inventory of information and other associated assets (5.9).</p>
+    <p><b>DEBRIEF:</b> Point out that only one of the five is purely technical. Most security failures are about rules, people and places, which is why everyone in the room has a part.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click an incident, then a theme. A places all five with the control that would have caught it.</p>
+  </aside>
+</section>
+
+<!-- 33 -->
+<section id="asean" class="l-cards-3" data-min="4" data-code="1.2.2" data-eyebrow="ASEAN Guide on AI Governance and Ethics · Key idea" data-source="ASEAN Guide (Rajah &amp; Tann summary); Expanded Guide on Generative AI (asean.org)">
+  <h2>Seven principles, three questions</h2>
+  <div class="cards body">
+    <div class="card"><span class="icon"><i data-lucide="handshake"></i></span><h3>Can we trust it?</h3><ul><li>Transparency and explainability</li><li>Robustness and reliability</li><li>Security and safety</li></ul></div>
+    <div class="card"><span class="icon"><i data-lucide="scale"></i></span><h3>Is it fair to people?</h3><ul><li>Fairness and equity</li><li>Human-centricity</li></ul></div>
+    <div class="card"><span class="icon"><i data-lucide="message-circle-question"></i></span><h3>Who answers for it?</h3><ul><li>Privacy and data governance</li><li>Accountability and integrity</li></ul></div>
+  </div>
+  <p class="callout">Voluntary guide, 4th ASEAN Digital Ministers' Meeting, 2 February 2024. Expanded Guide for generative AI, January 2025.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>KEY IDEA:</b> Treat an AI tool like a new assistant: check its work, never hand it data it should not see, and keep a human responsible for every decision about a person.</p>
+    <p><b>SAY:</b> Many of us already use free AI chatbots to draft letters or summarize documents. The ASEAN Guide on AI Governance and Ethics, a voluntary guide unveiled at the 4th ASEAN Digital Ministers' Meeting on 2 February 2024, gives seven principles. Seven is hard to remember, so group them into three questions. Can we trust it: transparency and explainability, robustness and reliability, security and safety. Is it fair to people: fairness and equity, human-centricity. Who answers for it and its data: privacy and data governance, accountability and integrity. An Expanded Guide for generative AI followed in January 2025.</p>
+    <p><b>ASK:</b> Who has used an AI chatbot for work this month? (No judgment. Most hands go up. The next slides are about using it safely.)</p>
+  </aside>
+</section>
+
+<!-- 34 -->
+<section id="genai-risks" data-min="3" data-code="1.2.2" data-eyebrow="Expanded Guide on generative AI, 2025" data-source="Expanded ASEAN Guide on AI Governance and Ethics: Generative AI (January 2025)" data-terms="generative-ai,deepfake">
+  <h2>Six things that can go wrong</h2>
+  <div class="cards c3 body">
+    <div class="card"><h4>Mistakes</h4><p>Confident wrong answers; treating it like a person</p></div>
+    <div class="card"><h4>Disinformation</h4><p>Invented facts, laws or citations</p></div>
+    <div class="card"><h4>Deepfakes and fraud</h4><p>A cloned voice of the director asking for a transfer</p></div>
+    <div class="card"><h4>Copyright</h4><p>Protected text or images copied into official work</p></div>
+    <div class="card"><h4>Privacy</h4><p>Citizen data typed into public tools</p></div>
+    <div class="card"><h4>Bias</h4><p>Unfair results for some groups of people</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> The Expanded Guide names six risks of generative AI, the kind of AI that writes text or makes images and audio. In its own words: mistakes and anthropomorphism (confident but wrong answers, and treating the tool as if it were a person); factually inaccurate responses and disinformation (invented facts, laws or citations; always check a citation before you use it); deepfakes, impersonation, fraudulent and malicious activities (a cloned voice of the director asking for an urgent transfer); infringement of intellectual property rights; privacy and confidentiality (citizen data typed into public tools); and propagation of embedded biases (unfair results for some groups).</p>
+    <p><b>ASK:</b> Which of the six is most likely in your office this year? (Usually privacy and invented facts.)</p>
+  </aside>
+</section>
+
+<!-- 35 -->
+<section id="ai-office" class="l-table" data-min="4" data-code="1.2.2" data-eyebrow="In your office · NPC Advisory 2024-04" data-source="NPC Advisory 2024-04 (19 Dec 2024), on AI systems processing personal data">
+  <h2>Your AI rules at work</h2>
+  <table class="t body">
+    <thead><tr><th>Situation</th><th>Rule</th></tr></thead>
+    <tbody>
+      <tr><td>Drafting a letter with a public chatbot</td><td>Remove names, ID numbers and case details, or use an approved tool</td></tr>
+      <tr><td>A tool ranks or screens applicants</td><td>A trained person reviews each decision; applicants can contest it</td></tr>
+      <tr><td>A vendor switches on AI features</td><td>Ask what data it uses and where it goes, before allowing it</td></tr>
+      <tr><td>An urgent call or video from "the director"</td><td>Verify through a number you already know</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">The DPA applies to AI: tell people, stay accountable for vendors, use only needed data, keep human review of risky decisions.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> In the Philippines, NPC Advisory 2024-04, dated 19 December 2024, applies the Data Privacy Act to AI systems that process personal data. In plain words: tell people how AI is used on their data; the office stays accountable even when a vendor runs the AI; where automated decisions carry significant risk, a competent person must review them and people must be able to question and contest them; watch for and reduce bias; keep data accurate; use only the personal data the AI actually needs; have a lawful basis first, and remember that publicly available data is still protected; and let people exercise their rights. Walk through the four rules on the slide.</p>
+    <p><b>ASK:</b> Case: the screening tool rejects an applicant and no one can explain why. Which ASEAN principle is at stake? (Transparency and explainability; under the NPC advisory, the applicant must also be able to contest it.)</p>
+  </aside>
+</section>
+
+<!-- 36 -->
+<section id="credentials" class="l-demo" data-min="4" data-code="1.2.2" data-eyebrow="Try it 1.2.2B" data-level="Experiment" data-demo="credentials" data-source="contentcredentials.org · Content Authenticity Initiative FAQ" data-terms="content-credentials">
+  <h2>Where did this image come from?</h2>
+  <div class="demo body">
+    <ol class="steps">
+      <li><b>Predict.</b> What will the original show? And a screenshot of it?</li>
+      <li><b>Test.</b> Upload both sample files to Content Credentials Verify.</li>
+      <li><b>Discuss.</b> What does a missing credential tell you, and what not?</li>
+    </ol>
+    <div class="demo-launch">
+      <p class="demo-url">contentcredentials.org/verify</p>
+      <a class="pdac-btn pdac-btn--primary demo-open" href="https://contentcredentials.org/verify" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i> Open in a new tab</a>
+      <p class="demo-rule">A signal of origin, not a deepfake detector. Your own sample files only.</p>
+      <p class="demo-hint">No connection? Press <span class="kbd">F</span> for the recorded clip.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>PREPARE:</b> two files of your own: an image that carries Content Credentials (for example one exported from a tool that adds them) and a screenshot of the same image. Test both on the venue network the day before.</p>
+    <p><b>SAY:</b> Content Credentials are signed information attached to a file that shows how it was made and edited, and tampering with them leaves a trace. They follow an open standard called C2PA, which the Expanded ASEAN Guide points to for content provenance.</p>
+    <p><b>PREDICT:</b> Ask the room what each file will show.</p>
+    <p><b>TEST:</b> Upload both. The original shows its history; the screenshot shows no content credential.</p>
+    <p><b>DISCUSS:</b> A missing credential does not prove a file is fake; it only means the origin is unknown, because screenshots and many re-saved files do not carry credentials. Credentials can show AI generation only if the AI tool adds them. They are a signal of origin, not a deepfake detector.</p>
+    <p><b>RULE:</b> Never upload office or citizen files to a public site. If the site does not load, play the 60-second clip.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the button opens contentcredentials.org/verify in a new tab. If the site does not load, F plays the recorded clip (public/fallback/credentials.mp4).</p>
+  </aside>
+</section>
+
+<!-- 37 -->
+<section id="ai-rule" class="l-interactive" data-min="5" data-code="1.2.2" data-eyebrow="Try it 1.2.2A" data-level="Create" data-source="Learner guide, Try it 1.2.2A">
+  <h2>Write your unit's AI rule</h2>
+  <p class="brief-strip"><b>On your own, 5 minutes.</b> Fill in the sentence for your own unit, then read it to the person beside you.</p>
+  <div class="stage center-v"><pdac-fill-template data-src="m1-ai-rule.json"></pdac-fill-template></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes (3 writing, 2 sharing).</p>
+    <p><b>SAY:</b> Fill in the sentence for your own unit; it is also in your learner guide. Then read yours to the person beside you. Invite two volunteers to read theirs aloud, ideally one from a non-IT unit.</p>
+    <p><b>GOOD EXAMPLE:</b> In our unit, we may use the office-approved assistant for drafting and summarizing public documents. We never enter names, ID numbers, health information or case details. Before we use any AI output, the drafter checks every fact and citation against the source. If something goes wrong, we report to our DPO.</p>
+    <p><b>WHY THIS MATTERS:</b> This is the Create level. A rule they wrote themselves is far more likely to be used on Monday than one they were told.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> type a volunteer's rule into the blanks; nothing is saved. A fills in the deck's good example.</p>
+  </aside>
+</section>
+
+<!-- 38 -->
+<section id="qa" class="l-statement" data-min="10" data-footer="none" data-eyebrow="Questions and answers · 10 minutes">
+  <p class="statement">Your questions</p>
+  <p class="support">Anything unclear about threats, the Data Privacy Act, ISO 27001 or AI? Questions we cannot finish now go on the parking lot and are answered before Day 3 ends.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes. Start with the parking-lot questions collected so far. Online, the co-host reads questions from the chat.</p>
+    <p><b>COMMON QUESTIONS AND SHORT ANSWERS:</b> (1) Does the DPA apply to paper records? Yes. It covers personal information whether or not it is recorded in electronic form, and Circular 2023-06 has rules for paper filing systems. (2) We have a mandate; do we still need a privacy notice? Yes. Transparency still applies even when consent is not the basis. (3) Who decides whether to notify the NPC? The office's breach response team, which must include at least one person who can make immediate decisions; the DPO may be a member. (4) Is our office certified to ISO 27001? Most are not, and certification is not required by the DPA; following the cycle still helps. (5) Can we use ChatGPT or similar tools? Follow your office's approved-tools policy; never enter personal data into public tools. If a question needs a legal opinion, say so and refer it to the DPO or the NPC. Do not guess.</p>
+  </aside>
+</section>
+
+<!-- 39 -->
+<section id="quiz1" data-min="25" data-timer="20" data-timer-label="Quiz 1" data-eyebrow="Quiz 1 · 10% of your grade" data-source="ILCDB-approved form">
+  <h2>15 items · 20 minutes</h2>
+  <p class="quiz-rules">Closed book, one attempt. Threats (5), Data Privacy Act (6), ISO/IEC 27001 (3), ASEAN AI guide (1).</p>
+  <div class="body center-v"><pdac-qr-panel data-link="quiz1"></pdac-qr-panel></div>
+  <p class="muted">Face-to-face: scan the QR code · Online: link in the chat</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 25 minutes (20 for the quiz, 5 for the answer review).</p>
+    <p><b>BEFORE THE SESSION:</b> add the QR code and short link for this run's quiz form to this slide; keep printed copies and answer sheets as backup.</p>
+    <p><b>DURING:</b> start the countdown on the main screen; walk the room face-to-face; online, keep cameras on where bandwidth allows.</p>
+    <p><b>AFTER:</b> review the two or three items most people missed, using the desk card phrases (Secret-Correct-Ready, Tell-Legit-Little, 3S, 72-5, Rules-People-Places-Tech). Scenario items test reasoning, for example whether a described incident meets the three notification conditions.</p>
+  </aside>
+</section>
+
+<!-- 40 -->
+<section id="recap" class="l-statement" data-min="5" data-blackout-first data-footer="none">
+  <p class="eyebrow">Recap · your desk card</p>
+  <h2>Six phrases to carry into this afternoon</h2>
+  <pdac-phrases data-keys="cia,tll,gov,3s-72-5,rppt,asean" data-cols="3" data-recap></pdac-phrases>
+  <p class="recap-doubt"><b>When in doubt: report to your DPO or IT at once.</b> <span>The full desk card is in your learner guide</span></p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>RETRIEVAL FIRST:</b> before you reveal the slide (black screen with B), ask the room to call out the memory phrases from this morning. Then reveal and check. This recall is what fixes them in memory. SAY each one with its action: Secret, Correct, Ready: ask what happens if a record leaks, changes or is gone for a week. Tell, Legit, Little: tell people, use data only for its purpose, collect and keep only what is needed. Clearance, approval, 1,000, encrypt: the government rules for taking data off-site. 3S, then 72-5: Sensitive, Stolen, Serious; then 72 hours to notify and 5 days for the full report. Rules, People, Places, Tech: ISO's four themes, 93 controls. Trust it, Fair, Who answers: the three AI questions. And when in doubt, report to your DPO or IT at once.</p>
+    <p><b>TIP:</b> Open Module 2 this afternoon with three of these as a quick quiz; recalling them again after a break makes them stick.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> this slide opens blacked out. Let the room call out the phrases, then press B to reveal and check.</p>
+  </aside>
+</section>
+
+<!-- 41 -->
+<section id="home" data-min="5" data-eyebrow="Bring it home · in your learner guide" data-source="Module 1 learner guide, Bring it home">
+  <h2>Three things to do with this morning</h2>
+  <div class="cards c3 home-tasks">
+    <div class="card"><span class="k">Create</span><h3>Map one process</h3><p>Collect, store, use, share, keep, dispose. Find one weak point and one fix.</p></div>
+    <div class="card"><span class="k">Evaluate</span><h3>Readiness mini-check</h3><p>Nine questions based on the September 2026 advisory.</p></div>
+    <div class="card"><span class="k">Commit</span><h3>Three 30-day actions</h3><p>Each with a date and a sign that it worked.</p></div>
+  </div>
+  <div class="home-next">
+    <p class="callout">This afternoon, Module 2: find where these threats meet the RSSO's systems, and build a threat model and risk matrix (20%).</p>
+    <p class="muted">Next · Module 2: Assessing Cyber Risks and Threat Modeling, 1:00 PM</p>
+  </div>
+  <div class="exit-card is-corner">
+    <p class="exit-card__k"><i data-lucide="clipboard-check"></i> Before you go</p>
+    <pdac-qr-panel data-link="exit-m1"></pdac-qr-panel>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Learning sticks when you use it within days. Your learner guide has three Bring it home tasks. Map one process you handle, from collecting the data to disposing of it, and find one weak point and one fix; your map feeds this afternoon's risk assessment. Do the readiness mini-check, nine questions based on the September 2026 DICT and CICC advisory; each unticked box is a candidate action. Write three 30-day commitments, each with a date and a sign that it worked; we come back to them at the course close on Day 3.</p>
+    <p><b>PREVIEW:</b> This afternoon we take the RSSO and find where these threats meet its systems, then build a threat model and a risk matrix as a team; that activity is worth 20 percent. Thank everyone and announce the lunch break.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> leave this slide up for the exit check: about 5 minutes, anonymous, not graded. People see the right answers as soon as they submit. Online run: also paste the short link in the chat. At lunch, run showExitCheckResults and open Module 2 with what is still unclear. The nine readiness questions are also an interactive checklist in the gallery (?m=gallery#/g-readiness) if you want to run them with the room.</p>
+  </aside>
+</section>

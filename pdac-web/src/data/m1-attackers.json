@@ -1,0 +1,60 @@
+{
+  "_status": "Web demo for the 'actors' slide. 'who', 'want' and 'how' are the deck's table, in the deck's order; 'note' is the deck's line under it. Each scene is an invented RSSO illustration in three beats, following the learner guide's 'What they usually do'; proof quotes come from src/data/sources.json.",
+  "intro": "Five kinds of attacker, five different goals. Press → to watch each one, or click a card.",
+  "note": "Most harm from insiders is accidental, not malicious.",
+  "attackers": [
+    {
+      "id": "criminal",
+      "who": "Criminal groups",
+      "want": "Money",
+      "how": "Ransomware, extortion, fake invoices",
+      "icon": "skull",
+      "scene": "ransom",
+      "hits": ["ready", "secret"],
+      "beats": ["Files on the shared drive lock, one after another.", "A note demands payment for the key.", "Then the threat: pay, or the records go online."],
+      "proof": "ms-motive"
+    },
+    {
+      "id": "state",
+      "who": "State-linked groups",
+      "want": "Secrets, influence",
+      "how": "Quiet, long intrusions to collect data",
+      "icon": "eye",
+      "scene": "spy",
+      "hits": ["secret"],
+      "beats": ["A quiet way in. No alarm.", "Documents and personal data leave, a little at a time, for months.", "Found much later, often from an outside tip."],
+      "proof": "ms-motive"
+    },
+    {
+      "id": "hacktivists",
+      "who": "Hacktivists",
+      "want": "Attention for a cause",
+      "how": "Defacing or crashing websites, leaking data",
+      "icon": "megaphone",
+      "scene": "deface",
+      "hits": ["correct", "ready", "secret"],
+      "beats": ["The portal's home page, as citizens know it.", "Defaced overnight: the attackers' message replaces it.", "Then the leak: internal documents posted for everyone to see."]
+    },
+    {
+      "id": "insiders",
+      "who": "Insiders",
+      "want": "Gain, revenge, convenience",
+      "how": "Misusing access; files on personal accounts",
+      "icon": "user-x",
+      "scene": "insider",
+      "hits": ["secret"],
+      "beats": ["Ben wants to finish the beneficiary list at home tonight.", "He sends it to his personal email: faster than asking for approval.", "No bad intent, but the list now sits outside the office's control."]
+    },
+    {
+      "id": "vendors",
+      "who": "Vendors and partners",
+      "want": "Nothing: they are the door",
+      "card": "Wants nothing: they are the door",
+      "how": "Their weak account becomes your way in",
+      "icon": "handshake",
+      "scene": "vendor",
+      "hits": ["secret"],
+      "beats": ["The SMS vendor's account can reach the RSSO's applicant list, to send status texts.", "Its password was weak and used on other sites. Someone else signs in as the vendor.", "Through the vendor's door: 48,000 applicants' names and mobile numbers."]
+    }
+  ]
+}

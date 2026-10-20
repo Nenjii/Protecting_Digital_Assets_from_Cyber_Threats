@@ -1,0 +1,278 @@
+{
+  "_readme": "Proof for the numbers and key facts on the slides. Every quote was copied word for word from the page on the date in 'checked' (tools/check-data.mjs keeps 'short' a part of 'quote'); text in [brackets] marks a table or list rebuilt in one line. A tile shows its proof with data-proof=\"<proof id>\" inside <pdac-stat-proof>; a slide lists more with data-proofs; the E key shows every proof on the current slide with a QR code to the page. Module 2's extra sources are the pages its learner guide links to.",
+  "sources": [
+    {
+      "id": "ms-mddr-2025",
+      "publisher": "Microsoft Source EMEA",
+      "author": "Jana Cvetko",
+      "title": "Microsoft Digital Defense Report 2025: Extortion and Ransomware Drive Over Half of Cyberattacks",
+      "date": "22 October 2025",
+      "url": "https://news.microsoft.com/source/emea/features/microsoft-digital-defense-report-2025-extortion-and-ransomware-drive-over-half-of-cyberattacks/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "record-identity-2025",
+      "publisher": "The Record (Recorded Future News)",
+      "author": "Jonathan Greig",
+      "title": "Microsoft warns of a 32% surge in identity hacks, mainly driven by stolen passwords",
+      "date": "16 October 2025",
+      "url": "https://therecord.media/microsoft-warns-of-surge-identity-hacks-passwords",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "interaksyon-ph-2025",
+      "publisher": "Interaksyon (Philstar.com)",
+      "title": "Philippines among Top 20 countries most targeted by cyberattacks in 2025",
+      "date": "3 November 2025",
+      "url": "https://media.interaksyon.com/trends-spotlights/2025/11/03/304354/philippines-among-top-20-countries-most-targeted-by-cyberattacks-in-2025/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "sw-dbir-2026",
+      "publisher": "SecurityWeek",
+      "author": "Ionut Arghire",
+      "title": "Verizon DBIR 2026: Vulnerability Exploitation Overtakes Credential Theft as Top Breach Vector",
+      "date": "19 May 2026",
+      "url": "https://www.securityweek.com/verizon-dbir-2026-vulnerability-exploitation-overtakes-credential-theft-as-top-breach-vector/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "hns-dbir-2026",
+      "publisher": "Help Net Security",
+      "author": "Zeljka Zorz",
+      "title": "Verizon DBIR: Vulnerability exploitation is the dominant initial access vector",
+      "date": "20 May 2026",
+      "url": "https://www.helpnetsecurity.com/2026/05/20/verizon-2026-dbir-findings/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "mitre-attack-18",
+      "publisher": "The MITRE Corporation",
+      "title": "MITRE ATT&CK Enterprise matrix, version 18.1 (techniques used in the attack chain demo)",
+      "date": "13 November 2025",
+      "url": "https://attack.mitre.org/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "tmm",
+      "publisher": "Threat Modeling Manifesto working group",
+      "title": "Threat Modeling Manifesto",
+      "date": "web page, undated",
+      "url": "https://threatmodelingmanifesto.org/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "ms-learn-stride",
+      "publisher": "Microsoft Learn",
+      "title": "Threat modeling framework (training module unit)",
+      "date": "12 May 2025",
+      "url": "https://learn.microsoft.com/en-us/training/modules/tm-use-a-framework-to-identify-threats-and-find-ways-to-reduce-or-eliminate-risk/1b-threat-modeling-framework",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "eccouncil-killchain",
+      "publisher": "EC-Council Cybersecurity Exchange",
+      "title": "The Cyber Kill Chain: The Seven Steps of a Cyberattack",
+      "date": "1 January 2022",
+      "url": "https://www.eccouncil.org/cybersecurity-exchange/threat-intelligence/cyber-kill-chain-seven-steps-cyberattack",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "vortenza-email",
+      "publisher": "Vortenza",
+      "author": "Vortenza Editorial Team",
+      "title": "SPF, DKIM, and DMARC Explained in Plain English (2026)",
+      "date": "14 June 2026",
+      "url": "https://www.vortenza.com/guides/spf-dkim-dmarc-explained",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "sa-deepfake-2024",
+      "publisher": "Security Affairs",
+      "author": "Pierluigi Paganini",
+      "title": "Crooks stole $25.5 million from a multinational firm using a 'deepfake' video call",
+      "date": "5 February 2024",
+      "url": "https://securityaffairs.com/158651/cyber-crime/cyber-heist-with-deepfake-tech",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "newsbytes-scamsafe",
+      "publisher": "Newsbytes.PH",
+      "title": "CICC launches ScamSafe as scam threats persist",
+      "date": "20 December 2025",
+      "url": "https://newsbytes.ph/2025/12/20/cicc-launches-scamsafe-as-scam-threats-persist/",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "lawphil-ra12010",
+      "publisher": "The LawPhil Project",
+      "title": "Republic Act No. 12010, the Anti-Financial Account Scamming Act (AFASA)",
+      "date": "20 July 2024",
+      "url": "https://lawphil.net/statutes/repacts/ra2024/ra_12010_2024.html",
+      "checked": "20 October 2026"
+    },
+    {
+      "id": "cisa-kev",
+      "publisher": "Cybersecurity and Infrastructure Security Agency (CISA)",
+      "title": "Known Exploited Vulnerabilities Catalog (JSON feed)",
+      "date": "16 October 2026",
+      "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "checked": "20 October 2026"
+    }
+  ],
+  "proofs": [
+    {
+      "id": "ms-motive",
+      "source": "ms-mddr-2025",
+      "quote": "Microsoft has released its latest Microsoft Digital Defense Report revealing that over 52% of cyberattacks with known motivations are driven by extortion and ransomware, while espionage accounts for just 4%.",
+      "short": "over 52% of cyberattacks with known motivations are driven by extortion and ransomware, while espionage accounts for just 4%."
+    },
+    {
+      "id": "ms-data",
+      "source": "ms-mddr-2025",
+      "quote": "In 80% of incidents, attackers aimed to steal data, underscoring the universal nature of this threat.",
+      "short": "In 80% of incidents, attackers aimed to steal data"
+    },
+    {
+      "id": "ms-mfa",
+      "source": "ms-mddr-2025",
+      "quote": "For individuals, using multi-factor authentication (MFA)—especially phishing-resistant MFA—can block over 99% of identity-based attacks.",
+      "short": "using multi-factor authentication (MFA)—especially phishing-resistant MFA—can block over 99% of identity-based attacks."
+    },
+    {
+      "id": "ms-password",
+      "source": "record-identity-2025",
+      "quote": "“more than 97% of identity attacks are password attacks.”",
+      "who": "Amy Hogan-Burney, corporate vice president, Microsoft"
+    },
+    {
+      "id": "ms-identity-surge",
+      "source": "record-identity-2025",
+      "quote": "“In the first half of 2025 alone, identity based attacks surged by 32%,” said Amy Hogan-Burney, a corporate vice president at Microsoft.",
+      "short": "“In the first half of 2025 alone, identity based attacks surged by 32%,”"
+    },
+    {
+      "id": "ph-rank",
+      "source": "interaksyon-ph-2025",
+      "quote": "The Philippines ranked 20th globally in the first half of 2025 among countries most affected by cyberattacks, according to the Microsoft Digital Defense Report 2025.",
+      "short": "The Philippines ranked 20th globally in the first half of 2025 among countries most affected by cyberattacks"
+    },
+    {
+      "id": "dbir-exploit",
+      "source": "sw-dbir-2026",
+      "quote": "Approximately 31% of the breaches were the result of unpatched vulnerabilities being exploited. Credential abuse, which was the top entry point in last year’s DBIR, accounted for 13% of the breaches.",
+      "short": "Approximately 31% of the breaches were the result of unpatched vulnerabilities being exploited."
+    },
+    {
+      "id": "dbir-patch",
+      "source": "sw-dbir-2026",
+      "quote": "The median time for full patching increased to 43 days in 2025, up from 32 days in the previous year. According to the report, organizations patched only 26% of the security defects in CISA’s Known Exploited Vulnerabilities (KEV) catalog last year, a drop from 38% in 2024.",
+      "short": "The median time for full patching increased to 43 days in 2025, up from 32 days in the previous year."
+    },
+    {
+      "id": "dbir-kev",
+      "source": "hns-dbir-2026",
+      "quote": "Only 26% of the CISA “known exploited” vulnerabilities – arguably the most critical-to-address flaws, since they are actually leveraged by attackers – had been fully remediated by the 13,000 polled organizations."
+    },
+    {
+      "id": "dbir-third",
+      "source": "sw-dbir-2026",
+      "quote": "An increased reliance on third-party software and services has expanded organizations’ attack surface and led to a 60% increase in breaches with third-party involvement last year, reaching 48% of the total.",
+      "short": "led to a 60% increase in breaches with third-party involvement last year, reaching 48% of the total."
+    },
+    {
+      "id": "dbir-human-62",
+      "source": "sw-dbir-2026",
+      "quote": "Per the Verizon 2026 DBIR, 62% of breaches involved a human element, social engineering accounted for 16% of breaches, and the median rate of success was 40% higher in mobile-centric phishing attacks than via email.",
+      "short": "Per the Verizon 2026 DBIR, 62% of breaches involved a human element"
+    },
+    {
+      "id": "dbir-human-16",
+      "source": "sw-dbir-2026",
+      "quote": "Per the Verizon 2026 DBIR, 62% of breaches involved a human element, social engineering accounted for 16% of breaches, and the median rate of success was 40% higher in mobile-centric phishing attacks than via email.",
+      "short": "social engineering accounted for 16% of breaches"
+    },
+    {
+      "id": "dbir-human-40",
+      "source": "sw-dbir-2026",
+      "quote": "Per the Verizon 2026 DBIR, 62% of breaches involved a human element, social engineering accounted for 16% of breaches, and the median rate of success was 40% higher in mobile-centric phishing attacks than via email.",
+      "short": "the median rate of success was 40% higher in mobile-centric phishing attacks than via email."
+    },
+    {
+      "id": "dbir-scope",
+      "source": "sw-dbir-2026",
+      "quote": "The number of analyzed security incidents has increased to 31,000. Of these, more than 22,000 were confirmed breaches, nearly double compared to last year’s 12,195 confirmed breaches."
+    },
+    {
+      "id": "tmm-questions",
+      "source": "tmm",
+      "quote": "At the highest levels, when we threat model, we ask four key questions : What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job?"
+    },
+    {
+      "id": "ms-stride",
+      "source": "ms-learn-stride",
+      "quote": "Microsoft engineers find security design issues using the six major threat categories in the STRIDE framework: [Spoofing: Pretending to be someone or something else · Tampering: Changing data without authorization · Repudiation: Not claiming responsibility for an action taken · Information disclosure: Seeing data without permission · Denial of service: Overwhelming the system · Elevation of privilege: Having permissions I shouldn't have]",
+      "short": "Microsoft engineers find security design issues using the six major threat categories in the STRIDE framework:"
+    },
+    {
+      "id": "kill-chain",
+      "source": "eccouncil-killchain",
+      "quote": "The Cyber Kill Chain is divided into seven stages: reconnaissance, weaponization, delivery, exploitation, installation, command and control (C2), and actions on objectives."
+    },
+    {
+      "id": "spf",
+      "source": "vortenza-email",
+      "quote": "SPF (Sender Policy Framework) is a list of the servers and IP addresses that are allowed to send email on behalf of your domain."
+    },
+    {
+      "id": "dkim",
+      "source": "vortenza-email",
+      "quote": "DKIM (DomainKeys Identified Mail) is a cryptographic signature applied to every email you send, which proves the email came from your domain and was not modified in transit."
+    },
+    {
+      "id": "dmarc",
+      "source": "vortenza-email",
+      "quote": "DMARC (Domain-based Message Authentication, Reporting, and Conformance) is a policy that tells receiving mail servers what to do when an email fails SPF or DKIM, and sends you reports about those failures."
+    },
+    {
+      "id": "deepfake-hk",
+      "source": "sa-deepfake-2024",
+      "quote": "Scammers successfully stole HK$200 million (approximately $25.5 million) from a multinational company in Hong Kong by employing a deepfake video call to deceive an employee into transferring the funds."
+    },
+    {
+      "id": "deepfake-15",
+      "source": "sa-deepfake-2024",
+      "quote": "The employee executed the money transfers during the meeting and transferred around HK$200 million to five bank accounts, with 15 transactions."
+    },
+    {
+      "id": "scamsafe",
+      "source": "newsbytes-scamsafe",
+      "quote": "The Cybercrime Investigation and Coordinating Center (CICC) has launched ScamSafe, a new public reporting and information platform, as authorities warn that scammers remain active despite a year-on-year decline in reported online fraud cases.",
+      "short": "The Cybercrime Investigation and Coordinating Center (CICC) has launched ScamSafe, a new public reporting and information platform"
+    },
+    {
+      "id": "scamsafe-date",
+      "source": "newsbytes-scamsafe",
+      "quote": "An officer from the PNP puts his signature on the interactive board during the launch of ScamSafe in Quezon City on Friday, Dec. 19 (Photo from CICC)",
+      "short": "during the launch of ScamSafe in Quezon City on Friday, Dec. 19"
+    },
+    {
+      "id": "ra12010-se",
+      "source": "lawphil-ra12010",
+      "quote": "(b) Social Engineering Schemes. - A social engineering scheme is committed by a person who obtains sensitive identifying information of another person, through deception or fraud, resulting in unauthorized access and control over the person's Financial Account, by performing any of the following acts:",
+      "short": "A social engineering scheme is committed by a person who obtains sensitive identifying information of another person, through deception or fraud, resulting in unauthorized access and control over the person's Financial Account"
+    },
+    {
+      "id": "ra12010-mule",
+      "source": "lawphil-ra12010",
+      "quote": "(a) Money Muling Activities. - A person performing any of the followings acts for the purpose of obtaining, receiving, depositing, transferring, or withdrawing proceeds that are known to be derived from crimes, offenses, or social engineering schemes shall be considered as a money mule:",
+      "short": "A person performing any of the followings acts for the purpose of obtaining, receiving, depositing, transferring, or withdrawing proceeds that are known to be derived from crimes, offenses, or social engineering schemes shall be considered as a money mule"
+    },
+    {
+      "id": "kev-count",
+      "source": "cisa-kev",
+      "quote": "\"title\": \"CISA Catalog of Known Exploited Vulnerabilities\", \"catalogVersion\": \"2026.10.16\", \"dateReleased\": \"2026-10-16T17:15:48.8752Z\", \"count\": 1748",
+      "short": "\"count\": 1748"
+    }
+  ]
+}

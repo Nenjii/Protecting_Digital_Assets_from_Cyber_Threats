@@ -1,0 +1,11 @@
+{
+  "name": "pdac-worksheets",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node make-docx.mjs .."
+  },
+  "dependencies": {
+    "docx": "9.13.0"
+  }
+}

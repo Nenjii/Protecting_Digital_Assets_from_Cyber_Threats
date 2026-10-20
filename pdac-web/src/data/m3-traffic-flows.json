@@ -1,0 +1,117 @@
+{
+  "_status": "Draft for the Module 3 deck (fictional RSSO network). Align wording with the Module 3 learner guide when it exists.",
+  "zones": {
+    "internet": "Internet",
+    "vendor": "SMS vendor",
+    "dmz": "Portal server",
+    "db": "Database",
+    "lan": "Staff network"
+  },
+  "rules": [
+    {
+      "id": "r1",
+      "action": "allow",
+      "from": "internet",
+      "to": "dmz",
+      "service": "HTTPS 443",
+      "why": "Citizens reach the Assistance Portal"
+    },
+    {
+      "id": "r2",
+      "action": "allow",
+      "from": "dmz",
+      "to": "db",
+      "service": "Database 5432",
+      "why": "Only the portal talks to the database"
+    },
+    {
+      "id": "r3",
+      "action": "allow",
+      "from": "lan",
+      "to": "dmz",
+      "service": "SSH 22",
+      "why": "Ana maintains the server from the office"
+    },
+    {
+      "id": "r4",
+      "action": "allow",
+      "from": "vendor",
+      "to": "dmz",
+      "service": "HTTPS 443",
+      "why": "The SMS vendor sends delivery reports"
+    },
+    {
+      "id": "r5",
+      "action": "deny",
+      "from": "internet",
+      "to": "any",
+      "service": "Any",
+      "why": "Block everything else from the internet"
+    }
+  ],
+  "flows": [
+    {
+      "id": "t1",
+      "label": "A citizen opens the portal",
+      "from": "internet",
+      "to": "dmz",
+      "service": "HTTPS 443",
+      "expect": "allow"
+    },
+    {
+      "id": "t2",
+      "label": "Someone tries the database directly",
+      "from": "internet",
+      "to": "db",
+      "service": "Database 5432",
+      "expect": "deny"
+    },
+    {
+      "id": "t3",
+      "label": "The portal saves an application",
+      "from": "dmz",
+      "to": "db",
+      "service": "Database 5432",
+      "expect": "allow"
+    },
+    {
+      "id": "t4",
+      "label": "Ana updates the server from the office",
+      "from": "lan",
+      "to": "dmz",
+      "service": "SSH 22",
+      "expect": "allow"
+    },
+    {
+      "id": "t5",
+      "label": "Someone tries remote desktop from outside",
+      "from": "internet",
+      "to": "dmz",
+      "service": "RDP 3389",
+      "expect": "deny"
+    },
+    {
+      "id": "t6",
+      "label": "The SMS vendor sends a delivery report",
+      "from": "vendor",
+      "to": "dmz",
+      "service": "HTTPS 443",
+      "expect": "allow"
+    }
+  ],
+  "start": [
+    "r5",
+    "r1",
+    "r2",
+    "r3",
+    "r4"
+  ],
+  "answer": [
+    "r1",
+    "r4",
+    "r2",
+    "r3",
+    "r5"
+  ],
+  "lesson": "**Order matters:** specific allow rules first, broad blocks last, then the default deny."
+}

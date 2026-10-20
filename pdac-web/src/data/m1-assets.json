@@ -1,0 +1,16 @@
+{
+  "_status": "Learner guide, Try it 1.1A and its model answers (19 October 2026). The column is what each asset's most likely threat hits first; the reason gives the threat and one thing to do.",
+  "categories": [
+    { "id": "secret", "label": "Secret", "term": "confidentiality", "icon": "lock" },
+    { "id": "correct", "label": "Correct", "term": "integrity", "icon": "circle-check" },
+    { "id": "ready", "label": "Ready", "term": "availability", "icon": "power" }
+  ],
+  "items": [
+    { "id": "a1", "text": "Applicant database", "answer": "secret", "why": "Data theft using stolen passwords. Do: MFA and access only for staff who need it." },
+    { "id": "a2", "text": "Payout list", "answer": "correct", "why": "E-wallet numbers changed by a fraudster or insider. Do: two-person approval and call-back before any change." },
+    { "id": "a3", "text": "Assistance Portal", "answer": "ready", "why": "Ransomware, or traffic floods that crash it. Do: tested backups and a continuity plan." },
+    { "id": "a4", "text": "Office email", "answer": "secret", "why": "Phishing: Secret, then everything the account can reach. Do: MFA, a report button, training." },
+    { "id": "a5", "text": "Public website", "answer": "correct", "why": "Defacement. Do: updates, a protected admin page, monitoring." },
+    { "id": "a6", "text": "Backup drive", "answer": "ready", "why": "Ransomware reaching the backups, or theft: Ready, and Secret if stolen. Do: an offline copy, encryption, regular restore tests." }
+  ]
+}

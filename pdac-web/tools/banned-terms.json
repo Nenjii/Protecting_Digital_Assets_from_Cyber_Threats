@@ -1,0 +1,4 @@
+{
+  "_readme": "Names that must never appear on slides or in data (spec section 2, constraint 4). The two public case studies are shown without naming the agencies. Add the September 2026 agencies' names here once you know them, so the check catches them.",
+  "terms": ["PhilHealth", "Philippine Health Insurance Corporation", "Medusa"]
+}

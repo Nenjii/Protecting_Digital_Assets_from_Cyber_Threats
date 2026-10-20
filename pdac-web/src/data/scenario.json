@@ -1,0 +1,18 @@
+{
+  "office": "Regional Social Services Office (RSSO), fictional Region Q",
+  "label": "Fictional office. Not a real agency.",
+  "publicSystem": "Assistance Portal: citizens apply online for social assistance",
+  "dataHeld": "About 48,000 applicants: names, addresses, birthdates, government ID numbers, health information for medical assistance, e-wallet numbers for payouts",
+  "internalWorkflow": "Staff approve applications; a shared spreadsheet is still used for tracking",
+  "vendor": "An SMS notification vendor with API access",
+  "infrastructure": "Server in the office server room; remote staff on VPN; some staff on personal phones",
+  "people": [
+    { "name": "Director Eva", "role": "Head of office" },
+    { "name": "Carla", "role": "DPO and legal officer" },
+    { "name": "Ana", "role": "IT officer" },
+    { "name": "Ben", "role": "Records clerk" },
+    { "name": "Dan", "role": "Cashier" },
+    { "name": "Sol", "role": "Social worker" }
+  ],
+  "systemRoles": ["Clerk", "Supervisor", "Administrator", "Auditor"]
+}

@@ -1,0 +1,47 @@
+{
+  "_status": "Web demo for the 'layers' slide. Ten everyday attacks against the deck's three layers, in its order: people, process, technology (email filtering, phishing-resistant MFA, least privilege, offline backups). Each attack is caught by the first switched-on layer, left to right, that can catch it. Which layer catches which attack is a teaching simplification, not a measurement. Invented office, names and addresses (198.51.100.x is a documentation range).",
+  "layers": [
+    { "id": "people", "label": "Staff who recognize tricks and report without fear", "layer": "People", "icon": "users" },
+    { "id": "process", "label": "Routines that do not depend on one person being fooled", "layer": "Process", "icon": "workflow" },
+    { "id": "tech", "label": "Tools that block or limit the damage", "layer": "Technology", "icon": "shield-check" }
+  ],
+  "attacks": [
+    { "id": "a1", "label": "Fake login email", "short": "Email", "icon": "mail", "stoppedBy": ["tech", "people"] },
+    { "id": "a2", "label": "Fake login email", "short": "Email", "icon": "mail", "stoppedBy": ["tech"] },
+    { "id": "a3", "label": "Fake “parcel” text", "short": "Text", "icon": "message-circle", "stoppedBy": ["people"] },
+    { "id": "a4", "label": "Caller posing as IT", "short": "Call", "icon": "phone-call", "stoppedBy": ["people"] },
+    { "id": "a5", "label": "Unexpected invoice file", "short": "Invoice", "icon": "paperclip", "stoppedBy": ["tech", "people"] },
+    { "id": "a6", "label": "Supplier: new bank account", "short": "Bank", "icon": "landmark", "stoppedBy": ["process"] },
+    { "id": "a7", "label": "“Director”: urgent transfer", "short": "Transfer", "icon": "banknote", "stoppedBy": ["people", "process"] },
+    { "id": "a8", "label": "Mail faking our own address", "short": "Spoofed", "icon": "mail-warning", "stoppedBy": ["tech"], "spoof": true },
+    { "id": "a9", "label": "Password guessing at login", "short": "Guessing", "icon": "key-round", "stoppedBy": ["tech"] },
+    { "id": "a10", "label": "Login prompt after prompt", "short": "Prompts", "icon": "smartphone", "stoppedBy": ["people"] }
+  ],
+  "spoof": {
+    "from": "director@rsso-regionq.gov.ph",
+    "sentBy": "a server at 198.51.100.66",
+    "checks": [
+      { "name": "SPF", "plain": "Is this server allowed to send for the office?", "result": "No: not on the office's list" },
+      { "name": "DKIM", "plain": "Is the message signed by the office?", "result": "No valid signature" },
+      { "name": "DMARC", "plain": "What does the office tell receivers to do?", "result": "Reject it" }
+    ]
+  },
+  "scenes": [
+    { "on": [], "title": "No layers", "text": "Ten everyday attacks on the RSSO. With nothing in the way, every one of them lands." },
+    {
+      "on": ["people"],
+      "title": "People: staff who recognize tricks and report",
+      "text": "Short, regular awareness sessions and a no-blame reporting channel. Staff catch the fake login, the text, the call and the prompt that keeps coming back."
+    },
+    {
+      "on": ["people", "process"],
+      "title": "Process: routines, not one person's judgment",
+      "text": "A call-back to a known number and a second approver before any payment or bank-detail change stop the payment tricks."
+    },
+    {
+      "on": ["people", "process", "tech"],
+      "title": "Technology: tools that block or limit the damage",
+      "text": "Email filtering, phishing-resistant MFA, least privilege, offline backups. The filter stops the mail faking our own address; MFA stops the guessed password. One click is not a disaster: the layers cover each other's holes."
+    }
+  ]
+}

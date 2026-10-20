@@ -1,0 +1,10 @@
+{
+  "_readme": "Fill in this run's Google or Microsoft Forms links before each run, then run: npm run qr && npm run build",
+  "quiz1": { "label": "Quiz 1 · Module 1", "url": "", "short": "", "note": "15 items · 20 minutes" },
+  "quiz2": { "label": "Quiz 2 · Module 2", "url": "", "short": "", "note": "12 items · 15 minutes" },
+  "ra-submit": { "label": "Risk assessment submission", "url": "", "short": "", "note": "Submit by 4:45 PM · grace period to 8:00 AM" },
+  "exit-m1": { "label": "Exit check · Module 1", "url": "", "short": "", "note": "Anonymous · about 5 minutes" },
+  "exit-m2": { "label": "Exit check · Module 2", "url": "", "short": "", "note": "Anonymous · about 5 minutes" },
+  "phishing-quiz": { "label": "Phishing quiz by Jigsaw (Google)", "url": "https://phishingquiz.withgoogle.com/", "short": "phishingquiz.withgoogle.com", "note": "Make up a name and email: they stay on your phone · needs internet" },
+  "live-poll": { "label": "Live poll", "url": "", "short": "", "note": "Slido or Mentimeter: paste your event link here (press L on any slide)" }
+}

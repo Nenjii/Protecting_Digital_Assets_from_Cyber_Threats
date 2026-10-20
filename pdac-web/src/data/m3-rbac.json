@@ -1,0 +1,114 @@
+{
+  "_status": "Draft for the Module 3 deck (fictional RSSO Assistance Portal). Align with the Module 3 learner guide and the lab's roles.",
+  "system": "RSSO Assistance Portal (fictional)",
+  "roles": [
+    {
+      "id": "clerk",
+      "label": "Clerk"
+    },
+    {
+      "id": "supervisor",
+      "label": "Supervisor"
+    },
+    {
+      "id": "admin",
+      "label": "Administrator"
+    },
+    {
+      "id": "auditor",
+      "label": "Auditor"
+    }
+  ],
+  "functions": [
+    {
+      "id": "encode",
+      "label": "Encode an application"
+    },
+    {
+      "id": "approve",
+      "label": "Approve an application"
+    },
+    {
+      "id": "release",
+      "label": "Release a payout"
+    },
+    {
+      "id": "export",
+      "label": "Export the applicant list",
+      "sensitive": true
+    },
+    {
+      "id": "users",
+      "label": "Manage user accounts"
+    },
+    {
+      "id": "viewlog",
+      "label": "View the audit log"
+    },
+    {
+      "id": "editlog",
+      "label": "Delete audit log entries"
+    }
+  ],
+  "start": {
+    "clerk": [
+      "encode",
+      "approve",
+      "export"
+    ],
+    "supervisor": [
+      "approve",
+      "release",
+      "export"
+    ],
+    "admin": [
+      "encode",
+      "approve",
+      "release",
+      "export",
+      "users",
+      "viewlog",
+      "editlog"
+    ],
+    "auditor": [
+      "viewlog",
+      "export"
+    ]
+  },
+  "recommended": {
+    "clerk": [
+      "encode"
+    ],
+    "supervisor": [
+      "approve"
+    ],
+    "admin": [
+      "users"
+    ],
+    "auditor": [
+      "viewlog"
+    ]
+  },
+  "conflicts": [
+    {
+      "a": "encode",
+      "b": "approve",
+      "why": "encodes and approves the same application"
+    },
+    {
+      "a": "approve",
+      "b": "release",
+      "why": "approves and releases the same payout"
+    },
+    {
+      "a": "users",
+      "b": "editlog",
+      "why": "manages accounts and can erase the audit trail"
+    },
+    {
+      "a": "encode",
+      "b": "release",
+      "why": "encodes an application and releases its payout"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "course": "Protecting Digital Assets from Cyber Threats",
+  "program": "DICT ILCDB · 20 hours",
+  "resourcePerson": "Nino Filipen Duque",
+  "runs": [
+    {
+      "label": "Face-to-face",
+      "dates": "Wednesday 21 to Friday 23 October 2026"
+    },
+    {
+      "label": "Online",
+      "dates": "Monday 26 to Wednesday 28 October 2026"
+    }
+  ],
+  "modules": [
+    {
+      "key": "1",
+      "number": 1,
+      "file": "m1-threats-legal.html",
+      "title": "Threat Landscape and Legal Governance",
+      "day": 1,
+      "session": "Morning",
+      "start": "08:00",
+      "end": "12:00",
+      "status": "Draft from the spec: sync with the deck"
+    },
+    {
+      "key": "2",
+      "number": 2,
+      "file": "m2-risk-threat-modeling.html",
+      "title": "Assessing Cyber Risks and Threat Modeling",
+      "day": 1,
+      "session": "Afternoon",
+      "start": "13:00",
+      "end": "17:00",
+      "status": "Matches the learner guide: sync speaker notes with the deck"
+    },
+    {
+      "key": "3",
+      "number": 3,
+      "file": "m3-security-controls.html",
+      "title": "Security Controls and Data Protection",
+      "day": 2,
+      "session": "Morning",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "key": "4",
+      "number": 4,
+      "file": "m4-endpoint-workflows.html",
+      "title": "Endpoint Security and Safe Digital Workflows",
+      "day": 2,
+      "session": "Afternoon",
+      "start": "13:00",
+      "end": "17:00"
+    },
+    {
+      "key": "5",
+      "number": 5,
+      "file": "m5-incident-response.html",
+      "title": "Incident Response and Integrated Capstone",
+      "day": 3,
+      "session": "Morning",
+      "start": "08:00",
+      "end": "12:00"
+    },
+    {
+      "key": "gallery",
+      "number": null,
+      "file": "x-gallery.html",
+      "title": "Component gallery",
+      "subtitle": "Every interactive with its keys. The Module 3 to 5 components wait here until those decks exist."
+    }
+  ]
+}

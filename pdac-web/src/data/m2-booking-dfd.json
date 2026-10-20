@@ -1,0 +1,47 @@
+{
+  "_status": "The learner guide's worked example (Module 2 learner guide, pages 8 and 9): citizen and staff outside, 2 steps, 1 store, 2 trust boundaries. The three worked threats are the guide's; the others are extra examples for clicking.",
+  "title": "Data flow map of the RSSO's online appointment booking page (fictional)",
+  "size": [1310, 470],
+  "nodes": [
+    { "id": "citizen", "type": "external", "label": "Citizen", "x": 0, "y": 150, "w": 160, "h": 100 },
+    { "id": "p1", "type": "process", "label": "Book appointment", "x": 400, "y": 200, "r": 86 },
+    { "id": "d1", "type": "store", "label": "Appointments list", "x": 576, "y": 162, "w": 250, "h": 76 },
+    { "id": "p2", "type": "process", "label": "View and confirm", "x": 990, "y": 200, "r": 86 },
+    { "id": "staff", "type": "external", "label": "Staff", "x": 1150, "y": 150, "w": 160, "h": 100 }
+  ],
+  "flows": [
+    { "id": "f1", "from": "citizen", "to": "p1", "label": "name, mobile, purpose", "name": "Booking details: name, mobile number and purpose", "lx": 126, "ly": 134 },
+    { "id": "f2", "from": "p1", "to": "d1", "name": "New booking saved to the list" },
+    { "id": "f3", "from": "d1", "to": "p2", "name": "Bookings read from the list" },
+    { "id": "f4", "from": "p2", "to": "staff", "both": true, "name": "Staff check the list and confirm" },
+    { "id": "f5", "from": "p2", "to": "citizen", "label": "confirmation SMS", "name": "Confirmation SMS to the citizen", "via": [[990, 410], [80, 410]], "lx": 640, "ly": 396 }
+  ],
+  "boundaries": [
+    { "id": "b1", "label": "Trust boundary: internet to office", "points": [[280, 16], [280, 456]], "lx": 292, "ly": 40 },
+    { "id": "b2", "label": "Trust boundary: cloud vendor", "points": [[560, 122], [842, 122], [842, 278], [560, 278], [560, 122]], "lx": 701, "ly": 106, "anchor": "middle" }
+  ],
+  "letters": [
+    { "letter": "S", "name": "Spoofing", "plain": "pretending to be someone else", "breaks": "authentication (who you are)" },
+    { "letter": "T", "name": "Tampering", "plain": "changing data without permission", "breaks": "integrity (Correct)" },
+    { "letter": "R", "name": "Repudiation", "plain": "denying you did something, with no record to prove it", "breaks": "non-repudiation (what you did)" },
+    { "letter": "I", "name": "Information disclosure", "plain": "data seen by the wrong people", "breaks": "confidentiality (Secret)" },
+    { "letter": "D", "name": "Denial of service", "plain": "making the system unavailable", "breaks": "availability (Ready)" },
+    { "letter": "E", "name": "Elevation of privilege", "plain": "getting powers you should not have", "breaks": "authorization (what you may do)" }
+  ],
+  "applies": {
+    "external": ["S", "R"],
+    "process": ["S", "T", "R", "I", "D", "E"],
+    "store": ["T", "R", "I", "D"],
+    "flow": ["T", "I", "D"]
+  },
+  "threats": [
+    { "id": "t1", "element": "p1", "letter": "S", "threat": "Someone books in another person's name and number.", "control": "A one-time code sent to the mobile number.", "worked": true },
+    { "id": "t2", "element": "d1", "letter": "I", "threat": "The list is shared by a public link.", "control": "Access only for named staff accounts.", "worked": true },
+    { "id": "t3", "element": "p1", "letter": "D", "threat": "Automated fake bookings fill every slot.", "control": "Limit bookings per number; a human check.", "worked": true },
+    { "id": "t4", "element": "f1", "letter": "I", "threat": "Someone on the same public Wi-Fi reads the booking details.", "control": "HTTPS on every page." },
+    { "id": "t5", "element": "d1", "letter": "T", "threat": "Someone changes or deletes bookings in the list.", "control": "Edit rights for named staff only; keep the change history." },
+    { "id": "t6", "element": "p2", "letter": "R", "threat": "A booking is cancelled and nobody can say who did it.", "control": "Named accounts, and a log of who confirms or cancels." },
+    { "id": "t7", "element": "p2", "letter": "E", "threat": "A citizen opens the staff view by changing the page address.", "control": "Check the user's role on every staff page." },
+    { "id": "t8", "element": "staff", "letter": "S", "threat": "Someone signs in as staff with a guessed password.", "control": "MFA on every staff account." }
+  ]
+}

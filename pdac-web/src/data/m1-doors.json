@@ -1,0 +1,291 @@
+{
+  "_status": "Web simulation for the 'paths' slide (five doors). Fictional office, invented addresses: 10.x is a private range and 203.0.113.x, 198.51.100.x are documentation ranges that never belong to anyone. The door names, 'desk' (what it looks like at your desk) and 'it' (what IT does) and the summary table are the Module 1 deck's table, word for word; keep them in sync with the deck.",
+  "title": "The RSSO office network and its five doors",
+  "map": {
+    "size": [1140, 700],
+    "zones": [
+      { "id": "internet", "label": "Internet", "x": 10, "y": 10, "w": 350, "h": 680, "tone": "internet" },
+      { "id": "office", "label": "RSSO office network", "x": 380, "y": 10, "w": 750, "h": 470, "tone": "office" },
+      { "id": "home", "label": "Homes and phones", "x": 380, "y": 500, "w": 750, "h": 190, "tone": "home" }
+    ],
+    "nodes": [
+      { "id": "attacker", "label": "Attacker", "icon": "skull", "x": 95, "y": 150, "role": "attacker" },
+      { "id": "fakepage", "label": "Fake page", "sub": "look-alike", "icon": "app-window", "x": 265, "y": 150, "role": "attacker" },
+      { "id": "email", "label": "Email service", "sub": "in the cloud", "icon": "mail", "x": 95, "y": 345, "role": "cloud" },
+      { "id": "net", "label": "Internet", "icon": "globe", "x": 265, "y": 345, "role": "net" },
+      { "id": "chat", "label": "Chat app", "sub": "servers abroad", "icon": "message-circle", "x": 95, "y": 560, "role": "cloud" },
+      { "id": "citizen", "label": "Citizen", "sub": "at home", "icon": "smartphone", "x": 265, "y": 560, "role": "person" },
+      { "id": "firewall", "label": "Firewall", "sub": "203.0.113.10", "icon": "shield", "x": 470, "y": 250, "role": "net" },
+      { "id": "portal", "label": "Assistance Portal", "sub": "web server", "icon": "app-window", "x": 680, "y": 150, "role": "server" },
+      { "id": "db", "label": "Applicant database", "sub": "48,000 records", "icon": "database", "x": 910, "y": 150, "role": "server" },
+      { "id": "pc", "label": "Office PC", "sub": "Ben · 10.0.0.23", "icon": "monitor", "x": 680, "y": 340, "role": "device" },
+      { "id": "backup", "label": "Backup drive", "sub": "online 24/7", "icon": "hard-drive", "x": 1050, "y": 340, "role": "server" },
+      { "id": "phone", "label": "Sol's phone", "sub": "personal", "icon": "smartphone", "x": 780, "y": 560, "role": "person" },
+      { "id": "contractor", "label": "Ex-contractor", "sub": "left 2 months ago", "icon": "laptop", "x": 1010, "y": 560, "role": "person" }
+    ],
+    "links": [
+      { "from": "attacker", "to": "net" },
+      { "from": "fakepage", "to": "net" },
+      { "from": "email", "to": "net" },
+      { "from": "chat", "to": "net" },
+      { "from": "citizen", "to": "net" },
+      { "from": "net", "to": "firewall" },
+      { "from": "firewall", "to": "portal" },
+      { "from": "firewall", "to": "pc" },
+      { "from": "portal", "to": "db" },
+      { "from": "pc", "to": "db" },
+      { "from": "db", "to": "backup" },
+      { "from": "pc", "to": "phone" },
+      { "from": "phone", "to": "net", "via": [[780, 490], [330, 490]] },
+      { "from": "contractor", "to": "net", "via": [[1010, 490], [330, 490]] }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "intro",
+      "tab": "How it connects",
+      "label": "How the office network works",
+      "steps": [
+        {
+          "title": "Your office on the internet",
+          "text": "Every device inside has a private address, like the office PC's 10.0.0.23. The **firewall** is the office's one front door to the internet, with one public address.",
+          "pre": { "firewall": "focus|One public address" }
+        },
+        {
+          "title": "A citizen opens the portal",
+          "text": "Her phone looks up the portal's name (DNS) and gets 203.0.113.10. Her request crosses the internet; the firewall lets web traffic through to the portal only, and the page comes back.",
+          "send": [{"route": ["citizen", "net", "firewall", "portal"], "label": "Request"}, {"route": ["portal", "firewall", "net", "citizen"], "label": "Page"}],
+          "set": { "citizen": "ok|✓ Page loaded", "firewall": "ok|Web traffic only" }
+        },
+        {
+          "title": "The lock: HTTPS keeps it Secret",
+          "text": "With HTTPS the data travels encrypted. Anyone in between (the café Wi-Fi, an internet provider) sees scrambled bytes, not names and ID numbers.",
+          "send": [{"route": ["citizen", "net", "firewall", "portal"], "kind": "secure", "label": "Encrypted"}],
+          "set": { "portal": "ok|✓ Received safely" }
+        },
+        {
+          "title": "Every way in is also a way in for attackers",
+          "text": "Attackers use the same cables. Next: the five doors they use most, and how the office closes each one.",
+          "pre": { "attacker": "focus|Looking for a way in" }
+        }
+      ]
+    },
+    {
+      "id": "door1",
+      "tab": "Door 1",
+      "label": "Door 1 · Phishing and stolen passwords",
+      "breaks": ["secret", "correct"],
+      "desk": "A message rushing you to verify, open or pay",
+      "it": "Filtering, MFA, a report button",
+      "steps": [
+        {
+          "title": "A fake “password expiry” email",
+          "text": "The attacker sends Ben an email that looks like it comes from IT. It passes through the email service and lands in his inbox.",
+          "send": [
+            { "route": ["attacker", "net", "email"], "kind": "attack", "label": "Fake email" },
+            { "route": ["email", "net", "firewall", "pc"], "kind": "attack", "label": "Fake email" }
+          ],
+          "set": { "pc": "warn|Email opened" }
+        },
+        {
+          "title": "Ben types his password on a fake page",
+          "text": "The link opens a look-alike login page. What Ben types goes straight to the attacker.",
+          "send": [{"route": ["pc", "firewall", "net", "fakepage"], "kind": "leak", "label": "Password"}],
+          "set": { "pc": "bad|✗ Password stolen", "fakepage": "bad|Has Ben's password" }
+        },
+        {
+          "title": "The attacker logs in as Ben",
+          "text": "With the password alone, the attacker opens Ben's mailbox: payout emails, attachments, and a trusted address to send fake requests from.",
+          "send": [{"route": ["attacker", "net", "email"], "kind": "attack", "label": "Log in as Ben"}],
+          "set": { "email": "bad|✗ Signed in as Ben" },
+          "verdict": { "tone": "bad", "text": "Door open: Secret and Correct are at risk" }
+        },
+        {
+          "title": "How long would a password last?",
+          "text": "Most password attacks are guessing at scale, using lists from earlier leaks. Pick a sample, never a real password.",
+          "widget": "password"
+        },
+        {
+          "close": true,
+          "title": "Close it: MFA and email filtering",
+          "text": "The filter stops most fake emails. If a password is still stolen, the login asks for a second factor the attacker does not have.",
+          "send": [
+            { "route": ["attacker", "net", "email"], "kind": "attack", "label": "Fake email", "blockAt": "email" },
+            { "route": ["attacker", "net", "email"], "kind": "attack", "label": "Log in as Ben", "blockAt": "email" }
+          ],
+          "set": { "email": "ok|✓ Filtered · MFA asked" },
+          "verdict": { "tone": "ok", "text": "Door closed: a stolen password is not enough" },
+          "proof": "ms-mfa"
+        }
+      ]
+    },
+    {
+      "id": "door2",
+      "tab": "Door 2",
+      "label": "Door 2 · Old systems and lapsed licences",
+      "breaks": ["ready", "secret"],
+      "desk": "Warnings that updates or antivirus expired",
+      "it": "Patch and renew on a schedule",
+      "steps": [
+        {
+          "title": "Out of support, out of date",
+          "text": "The firewall's software no longer gets security fixes, and the antivirus licence on the office PC lapsed months ago. Nobody noticed.",
+          "pre": { "firewall": "warn|Support ended", "pc": "warn|Antivirus expired" }
+        },
+        {
+          "title": "A known flaw, found by automated scans",
+          "text": "Attackers scan the whole internet for systems with flaws that are already public. The office firewall answers.",
+          "pre": { "firewall": "warn|Support ended", "pc": "warn|Antivirus expired" },
+          "send": [{"route": ["attacker", "net", "firewall"], "kind": "attack", "label": "Known exploit"}],
+          "set": { "firewall": "bad|✗ Taken over" }
+        },
+        {
+          "title": "Data copied, then everything locked",
+          "text": "From inside, they copy the applicant data out, then run ransomware on the PC, the database and the always-connected backup.",
+          "pre": { "firewall": "bad|✗ Taken over" },
+          "send": [
+            { "route": ["db", "pc", "firewall", "net", "attacker"], "kind": "leak", "label": "Data copied" },
+            { "route": ["firewall", "pc", "db"], "kind": "attack", "label": "Ransomware" },
+            { "route": ["db", "backup"], "kind": "attack", "label": "Encrypt", "with": true }
+          ],
+          "set": { "pc": "bad|✗ Locked", "db": "bad|✗ Locked", "backup": "bad|✗ Locked too", "portal": "bad|✗ Down" },
+          "verdict": { "tone": "bad", "text": "Door open: Ready is gone, Secret too" }
+        },
+        {
+          "close": true,
+          "title": "Close it: patch, renew, retire",
+          "text": "Supported software with this month's fixes turns the known exploit away. A renewed licence and an offline backup limit the damage if something still gets in.",
+          "pre": { "pc": "ok|✓ Licence renewed", "backup": "ok|✓ Offline copy" },
+          "send": [{"route": ["attacker", "net", "firewall"], "kind": "attack", "label": "Known exploit", "blockAt": "firewall"}],
+          "set": { "firewall": "ok|✓ Patched" },
+          "verdict": { "tone": "ok", "text": "Door closed" }
+        }
+      ]
+    },
+    {
+      "id": "door3",
+      "tab": "Door 3",
+      "label": "Door 3 · Exposed websites",
+      "breaks": ["secret", "correct", "ready"],
+      "desk": "Public pages that show more than they should",
+      "it": "Test, harden, monitor",
+      "steps": [
+        {
+          "title": "A website with a weak spot",
+          "text": "The portal runs an add-on nobody updated, and its admin page is open to the whole internet with the vendor's default password.",
+          "pre": { "portal": "warn|Old add-on · /admin open" }
+        },
+        {
+          "title": "The attacker walks in through the admin page",
+          "text": "Automated tools try the default password on thousands of sites a day. It works here.",
+          "pre": { "portal": "warn|Old add-on · /admin open" },
+          "send": [{"route": ["attacker", "net", "firewall", "portal"], "kind": "attack", "label": "Try /admin"}],
+          "set": { "portal": "bad|✗ Admin taken" }
+        },
+        {
+          "title": "Records copied, home page defaced",
+          "text": "The portal can read the database, so the attacker can too: every applicant's record goes out, and the home page now shows the attacker's message.",
+          "pre": { "portal": "bad|✗ Admin taken" },
+          "send": [
+            { "route": ["portal", "db"], "kind": "attack", "label": "Read all" },
+            { "route": ["db", "portal", "firewall", "net", "attacker"], "kind": "leak", "label": "48,000 records" }
+          ],
+          "set": { "db": "bad|✗ Copied", "portal": "bad|✗ Defaced" },
+          "verdict": { "tone": "bad", "text": "Door open: Secret, Correct and Ready all hit" }
+        },
+        {
+          "close": true,
+          "title": "Close it: update, scan, close what is not used",
+          "text": "The add-on is updated, the admin page is reachable from the office only, and its default password is gone. A regular scan checks it stays that way.",
+          "send": [{"route": ["attacker", "net", "firewall", "portal"], "kind": "attack", "label": "Try /admin", "blockAt": "portal"}],
+          "set": { "portal": "ok|✓ Updated · admin closed" },
+          "verdict": { "tone": "ok", "text": "Door closed" }
+        }
+      ]
+    },
+    {
+      "id": "door4",
+      "tab": "Door 4",
+      "label": "Door 4 · Shared accounts",
+      "breaks": ["correct"],
+      "desk": "One unit password on a sticky note",
+      "it": "One account per person, with logs",
+      "steps": [
+        {
+          "title": "One login for everybody",
+          "text": "Five staff approve payouts with one shared login, “approvals”. A contractor who left two months ago still knows its password, and his VPN access was never removed.",
+          "pre": { "db": "warn|Shared login: approvals", "contractor": "warn|VPN still works" }
+        },
+        {
+          "title": "A payout changed from home",
+          "text": "The ex-contractor connects over the VPN and logs in as “approvals”. He changes one payout's e-wallet number to his own.",
+          "pre": { "db": "warn|Shared login: approvals" },
+          "send": [{"route": ["contractor", "net", "firewall", "pc", "db"], "kind": "attack", "label": "Log in: approvals"}],
+          "set": { "db": "bad|✗ Payout changed", "contractor": "bad|In the system" }
+        },
+        {
+          "title": "Who did it? Nobody can tell",
+          "text": "The log only says “approvals”. Six people knew that password, so no one can prove who changed the payout.",
+          "pre": { "db": "bad|✗ Payout changed", "contractor": "bad|In the system" },
+          "screen": {
+            "title": "Approval log",
+            "lines": ["14:02 approvals changed #4471", "      e-wallet …2048 → …7731", "14:03 approvals approved batch 12", "Who is “approvals”? Six people."]
+          },
+          "verdict": { "tone": "bad", "text": "Door open: Correct is broken, and no proof who did it" }
+        },
+        {
+          "close": true,
+          "title": "Close it: one account each, leavers removed",
+          "text": "Everyone has their own login, so the log names a person. Accounts and VPN access end on a person's last day.",
+          "pre": { "db": "ok|✓ Named accounts", "contractor": "off|Account closed" },
+          "send": [{"route": ["contractor", "net", "firewall"], "kind": "attack", "label": "VPN login", "blockAt": "firewall"}],
+          "set": { "firewall": "ok|✓ Login refused" },
+          "screen": { "title": "Approval log", "lines": ["14:02 b.reyes  approved #4471", "14:03 e.santos second approval", "One person, one name, every time."] },
+          "verdict": { "tone": "ok", "text": "Door closed" }
+        }
+      ]
+    },
+    {
+      "id": "door5",
+      "tab": "Door 5",
+      "label": "Door 5 · Personal apps for official files",
+      "breaks": ["secret"],
+      "desk": "Lists sent by personal email or chat",
+      "it": "Approved tools that are easy to use",
+      "steps": [
+        {
+          "title": "Work on a personal phone",
+          "text": "Sol needs the beneficiary list at a community visit. The quickest way: a photo of the screen on her own phone.",
+          "send": [{"route": ["db", "pc"], "label": "List"}, {"route": ["pc", "phone"], "kind": "leak", "label": "Photo of the list"}],
+          "set": { "phone": "warn|List on a personal phone" }
+        },
+        {
+          "title": "Shared in a group chat, then forwarded",
+          "text": "She sends it to the team's group chat. The chat company's servers are outside the office, and anyone in the group can forward it on.",
+          "pre": { "phone": "warn|List on a personal phone" },
+          "send": [{"route": ["phone", "net", "chat"], "kind": "leak", "label": "Sent to group"}],
+          "set": { "chat": "bad|✗ Forwarded on" },
+          "verdict": { "tone": "bad", "text": "Door open: Secret is gone and cannot be recalled" }
+        },
+        {
+          "close": true,
+          "title": "Close it: office tools, managed phones",
+          "text": "Sol opens the list in the office's approved app on a managed phone: encrypted on the way, nothing saved on the device, and the office can wipe it if lost.",
+          "send": [{"route": ["db", "pc", "firewall", "net", "phone"], "kind": "secure", "label": "Approved app"}],
+          "set": { "phone": "ok|✓ Managed office app" },
+          "verdict": { "tone": "ok", "text": "Door closed" }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": ["Door", "What it looks like at your desk", "What IT does"],
+    "rows": [
+      ["1. Phishing and stolen passwords", "A message rushing you to verify, open or pay", "Filtering, MFA, a report button"],
+      ["2. Old systems and lapsed licences", "Warnings that updates or antivirus expired", "Patch and renew on a schedule"],
+      ["3. Exposed websites", "Public pages that show more than they should", "Test, harden, monitor"],
+      ["4. Shared accounts", "One unit password on a sticky note", "One account per person, with logs"],
+      ["5. Personal apps for official files", "Lists sent by personal email or chat", "Approved tools that are easy to use"]
+    ]
+  }
+}

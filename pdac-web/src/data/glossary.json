@@ -1,0 +1,291 @@
+[
+  {
+    "id": "asset",
+    "term": "Asset",
+    "plain": "Anything the office values and must protect: data, systems, devices, people's trust."
+  },
+  {
+    "id": "threat",
+    "term": "Threat",
+    "plain": "Something or someone that could cause harm: an attacker, a flood, a careless click."
+  },
+  {
+    "id": "vulnerability",
+    "term": "Vulnerability",
+    "plain": "A weakness a threat can use: an old system, a shared password, a missing step.",
+    "match": [
+      "weakness",
+      "weaknesses"
+    ]
+  },
+  {
+    "id": "likelihood",
+    "term": "Likelihood",
+    "plain": "How probable it is that the harm happens."
+  },
+  {
+    "id": "impact",
+    "term": "Impact",
+    "plain": "How bad it is if the harm happens."
+  },
+  {
+    "id": "risk",
+    "term": "Risk",
+    "plain": "Likelihood × impact: how much a possible harm should worry us."
+  },
+  {
+    "id": "control",
+    "term": "Control",
+    "plain": "Anything that lowers a risk: a rule, a habit, a lock, a setting.",
+    "match": [
+      "controls"
+    ]
+  },
+  {
+    "id": "ransomware",
+    "term": "Ransomware",
+    "plain": "Malicious software that locks files and demands payment to unlock them."
+  },
+  {
+    "id": "extortion",
+    "term": "Extortion",
+    "plain": "Threatening to leak or destroy data unless the victim pays."
+  },
+  {
+    "id": "hacktivist",
+    "term": "Hacktivist",
+    "plain": "An attacker who acts for a political or social cause rather than money.",
+    "match": [
+      "hacktivists"
+    ]
+  },
+  {
+    "id": "phishing",
+    "term": "Phishing",
+    "plain": "A fake message that tricks you into clicking, paying or giving away a password."
+  },
+  {
+    "id": "mfa",
+    "term": "MFA",
+    "plain": "Multi-factor login: a password plus a second proof, such as a code on your phone.",
+    "match": [
+      "multi-factor login",
+      "multi-factor authentication"
+    ]
+  },
+  {
+    "id": "patch",
+    "term": "Patch",
+    "plain": "An update that fixes a known weakness in software.",
+    "match": [
+      "patching",
+      "patches"
+    ]
+  },
+  {
+    "id": "end-of-support",
+    "term": "End of support",
+    "plain": "When a maker stops fixing a product. Its weaknesses stay open for good.",
+    "match": [
+      "end-of-support"
+    ]
+  },
+  {
+    "id": "personal-information",
+    "term": "Personal information",
+    "plain": "Any information that identifies a person, alone or with other details (RA 10173 Sec. 3(g))."
+  },
+  {
+    "id": "sensitive-personal-information",
+    "term": "Sensitive personal information",
+    "plain": "Personal information that can cause greater harm: health, age, religion, marital status, government ID numbers and more (Sec. 3(l))."
+  },
+  {
+    "id": "data-subject",
+    "term": "Data subject",
+    "plain": "The person the data is about.",
+    "match": [
+      "data subjects"
+    ]
+  },
+  {
+    "id": "pic",
+    "term": "Personal information controller (PIC)",
+    "plain": "The organization that decides why and how personal data is used.",
+    "match": [
+      "PIC",
+      "controller"
+    ]
+  },
+  {
+    "id": "pip",
+    "term": "Personal information processor (PIP)",
+    "plain": "An organization that handles personal data only on the controller's instructions.",
+    "match": [
+      "PIP",
+      "processor"
+    ]
+  },
+  {
+    "id": "dpo",
+    "term": "Data protection officer (DPO)",
+    "plain": "The person who makes sure the office follows the Data Privacy Act.",
+    "match": [
+      "DPO"
+    ]
+  },
+  {
+    "id": "personal-data-breach",
+    "term": "Personal data breach",
+    "plain": "Personal data seen, changed, lost or destroyed when it should not be.",
+    "match": [
+      "breach",
+      "breaches"
+    ]
+  },
+  {
+    "id": "reasonable-belief",
+    "term": "Reasonable belief",
+    "plain": "Enough facts that a sensible person would think a breach happened. You do not need proof."
+  },
+  {
+    "id": "dbnms",
+    "term": "DBNMS",
+    "plain": "The NPC's online Data Breach Notification Management System."
+  },
+  {
+    "id": "npc",
+    "term": "NPC",
+    "plain": "The National Privacy Commission, which enforces the Data Privacy Act."
+  },
+  {
+    "id": "encryption",
+    "term": "Encryption",
+    "plain": "Scrambling data so only someone with the key can read it.",
+    "match": [
+      "encrypted",
+      "encrypt"
+    ]
+  },
+  {
+    "id": "isms",
+    "term": "ISMS",
+    "plain": "Information security management system: the ongoing way an office plans, runs, checks and improves its security.",
+    "match": [
+      "management system"
+    ]
+  },
+  {
+    "id": "soa",
+    "term": "Statement of Applicability",
+    "plain": "The list of Annex A controls an office uses, and why it uses or skips each one.",
+    "match": [
+      "SoA"
+    ]
+  },
+  {
+    "id": "generative-ai",
+    "term": "Generative AI",
+    "plain": "AI that writes text, pictures, audio or video on request."
+  },
+  {
+    "id": "deepfake",
+    "term": "Deepfake",
+    "plain": "A fake video, picture or voice made with AI to look real.",
+    "match": [
+      "deepfakes"
+    ]
+  },
+  {
+    "id": "content-credentials",
+    "term": "Content Credentials",
+    "plain": "Signed information attached to a file that shows where it came from and how it was edited."
+  },
+  {
+    "id": "flat-network",
+    "term": "Flat network",
+    "plain": "A network with no internal walls, so one infected computer can reach all the others."
+  },
+  {
+    "id": "cvss",
+    "term": "CVSS",
+    "plain": "A 0 to 10 score for how severe a software weakness is."
+  },
+  {
+    "id": "stride",
+    "term": "STRIDE",
+    "plain": "Six kinds of threat: spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege."
+  },
+  {
+    "id": "trust-boundary",
+    "term": "Trust boundary",
+    "plain": "A line on a data flow map where data passes between areas with different levels of trust.",
+    "match": [
+      "trust boundaries"
+    ]
+  },
+  {
+    "id": "social-engineering",
+    "term": "Social engineering",
+    "plain": "Tricking people, rather than computers, into giving access or money."
+  },
+  {
+    "id": "dmarc",
+    "term": "DMARC",
+    "plain": "An email setting that tells other servers what to do with mail that fakes your office's address.",
+    "match": [
+      "SPF",
+      "DKIM"
+    ]
+  },
+  {
+    "id": "spear-phishing",
+    "term": "Spear phishing",
+    "plain": "A phishing message written for one person, using details about them."
+  },
+  {
+    "id": "smishing",
+    "term": "Smishing",
+    "plain": "Phishing by text message (SMS)."
+  },
+  {
+    "id": "vishing",
+    "term": "Vishing",
+    "plain": "Phishing by phone call (voice)."
+  },
+  {
+    "id": "quishing",
+    "term": "Quishing",
+    "plain": "Phishing through a QR code that leads to a fake site."
+  },
+  {
+    "id": "pretexting",
+    "term": "Pretexting",
+    "plain": "Inventing a believable story to get information or help."
+  },
+  {
+    "id": "baiting",
+    "term": "Baiting",
+    "plain": "Leaving something tempting, like a USB stick, so someone plugs it in."
+  },
+  {
+    "id": "tailgating",
+    "term": "Tailgating",
+    "plain": "Following an authorized person through a locked door."
+  },
+  {
+    "id": "bec",
+    "term": "Business email compromise",
+    "plain": "A fake or hijacked email from a boss or supplier asking for a payment."
+  },
+  {
+    "id": "mfa-fatigue",
+    "term": "MFA fatigue",
+    "plain": "Sending login prompts again and again until someone taps Yes."
+  },
+  {
+    "id": "kill-chain",
+    "term": "Cyber Kill Chain",
+    "plain": "Seven steps most attacks go through, from scouting to stealing. Breaking any step stops the attack."
+  }
+]

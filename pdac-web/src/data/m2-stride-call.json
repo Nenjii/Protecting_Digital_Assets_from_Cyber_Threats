@@ -1,0 +1,24 @@
+{
+  "_status": "The deck's quick check (slide 16): six RSSO cases a to f, and the answers in its notes (synced 20 October 2026).",
+  "categories": [
+    { "id": "S", "label": "S", "term": "spoofing" },
+    { "id": "T", "label": "T", "term": "tampering" },
+    { "id": "R", "label": "R", "term": "repudiation" },
+    { "id": "I", "label": "I", "term": "information disclosure" },
+    { "id": "D", "label": "D", "term": "denial of service" },
+    { "id": "E", "label": "E", "term": "elevation of privilege" }
+  ],
+  "items": [
+    {
+      "id": "c1",
+      "text": "a. A shared login means no one can tell who approved a payout.",
+      "answer": "R",
+      "why": "Repudiation: there is no record of who did what, so non-repudiation is broken."
+    },
+    { "id": "c2", "text": "b. The applicant list is shared by a public link.", "answer": "I", "why": "Information disclosure: breaks Secret." },
+    { "id": "c3", "text": "c. Someone logs in with Ben's stolen password.", "answer": "S", "why": "Spoofing: breaks authentication." },
+    { "id": "c4", "text": "d. A clerk account reaches the admin page.", "answer": "E", "why": "Elevation of privilege: breaks authorization." },
+    { "id": "c5", "text": "e. A payout amount is edited in the spreadsheet.", "answer": "T", "why": "Tampering: breaks Correct." },
+    { "id": "c6", "text": "f. Ransomware or floods of traffic take the portal down.", "answer": "D", "why": "Denial of service: breaks Ready." }
+  ]
+}

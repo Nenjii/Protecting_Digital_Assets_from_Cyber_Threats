@@ -1,0 +1,43 @@
+{
+  "_status": "Scale labels, bands and the two worked register entries (w1, w2) follow the Module 2 learner guide, pages 7 and 9. m1 to m3 are the deck's worked examples for the 5 by 5 slide (slide 18 notes).",
+  "likelihood": ["Rare", "Unlikely", "Possible", "Likely", "Almost certain"],
+  "impact": ["Minor", "Moderate", "Serious", "Major", "Severe"],
+  "bands": [
+    { "label": "Low", "min": 1, "max": 4, "cls": "band-low" },
+    { "label": "Medium", "min": 5, "max": 9, "cls": "band-medium" },
+    { "label": "High", "min": 10, "max": 16, "cls": "band-high" },
+    { "label": "Critical", "min": 20, "max": 25, "cls": "band-critical" }
+  ],
+  "caption": "Low 1 to 4 · Medium 5 to 9 · High 10 to 16 · Critical 20 to 25 (this course's bands, not a standard). Treat Critical and High first.",
+  "risks": [
+    {
+      "id": "m1",
+      "label": "Admin page open to the internet, default password",
+      "likelihood": 4,
+      "impact": 5,
+      "note": "Exposed pages are attacked all the time; 48,000 people's sensitive data."
+    },
+    { "id": "m2", "label": "Visitor logbook with names only, at the front desk", "likelihood": 2, "impact": 2, "note": "Names only, low harm." },
+    {
+      "id": "m3",
+      "label": "Unlikely, but the harm would be severe",
+      "likelihood": 2,
+      "impact": 5,
+      "note": "Even an unlikely event is High when the harm is severe."
+    },
+    {
+      "id": "w1",
+      "label": "Appointments list exposed by a public link",
+      "likelihood": 4,
+      "impact": 3,
+      "note": "Owner: Ana (IT officer) · Reduce: remove public links, named accounts only."
+    },
+    {
+      "id": "w2",
+      "label": "Fake bookings fill the calendar",
+      "likelihood": 3,
+      "impact": 2,
+      "note": "Owner: Ben (records clerk) · Reduce: booking limit per number; review daily."
+    }
+  ]
+}

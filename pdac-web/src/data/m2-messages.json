@@ -1,0 +1,113 @@
+{
+  "_status": "The learner guide's eight Try it 2.3 messages (Module 2 learner guide, pages 12, 13 and 19), drawn as fictional samples. Verdicts and warning signs follow the guide's model answers. Every name, address and domain is invented: .example domains can never be real.",
+  "options": [{ "id": "phish", "label": "Phish" }, { "id": "legit", "label": "Legit" }],
+  "messages": [
+    {
+      "id": "msg1", "channel": "email", "answer": "phish", "verdict": "Phish",
+      "from": "DICT Advisory <[[c1|advisory@dict-gov-ph.verify-portal.example]]>",
+      "to": "ben.records@rsso-regionq.gov.ph",
+      "subject": "DICT Advisory: verify your government mailbox [[c2|within 24 hours]]",
+      "time": "Mon 7:42 AM",
+      "body": "Dear mailbox user,\n\nUnder a new security advisory, every government mailbox must be verified. Mailboxes that are not verified will be closed.\n\nVerify my mailbox",
+      "link": "[[c3|https://dict-gov-ph.verify-portal.example/login]]",
+      "cues": [
+        { "id": "c1", "slam": "S", "text": "A look-alike address: **dict-gov-ph.verify-portal.example** is not a .gov.ph domain." },
+        { "id": "c2", "slam": "M", "text": "A 24-hour deadline, written to rush you." },
+        { "id": "c3", "slam": "L", "text": "A login link. Never sign in from a link in a message." }
+      ],
+      "why": "Close it and report it to your IT unit. If you are unsure, call IT on the number you already have."
+    },
+    {
+      "id": "msg2", "channel": "email", "answer": "phish", "verdict": "Phish until verified (business email compromise)",
+      "from": "Northgate Office Supplies <billing@northgate-supplies-regionq.com>",
+      "to": "dan.cashier@rsso-regionq.gov.ph",
+      "subject": "Invoice 4471",
+      "time": "Thu 3:58 PM",
+      "body": "Good afternoon, Dan,\n\n[[c1|We have changed banks.]] Please pay invoice 4471 to our new account [[c2|today]].\n\nThank you,\nAccounts, Northgate Office Supplies",
+      "cues": [
+        { "id": "c1", "slam": "M", "text": "A change of bank details: the classic sign of business email compromise." },
+        { "id": "c2", "slam": "M", "text": "Urgency: pay today." }
+      ],
+      "why": "The address may look right: the supplier's own account may be hijacked. Call the supplier on the number in your files and get a second approval before any bank-detail change."
+    },
+    {
+      "id": "msg3", "channel": "sms", "answer": "phish", "verdict": "Phish (smishing)",
+      "sender": "Unknown number",
+      "body": "RSSO: your assistance payout [[c2|is on hold]]. [[c3|Update your details]] at [[c1|s.example/rq7Kp]]",
+      "time": "Today 10:15 AM",
+      "cues": [
+        { "id": "c1", "slam": "L", "text": "A short link hides where it really goes." },
+        { "id": "c2", "slam": "M", "text": "Pressure about a payout." },
+        { "id": "c3", "slam": "M", "text": "A request to update your details by text." }
+      ],
+      "why": "Check payout news only through the office's official channels. Report scam texts to 1326."
+    },
+    {
+      "id": "msg4", "channel": "voice", "answer": "phish", "verdict": "Phish (vishing)",
+      "caller": "Private number",
+      "duration": "0:38",
+      "time": "Today 8:05 AM",
+      "body": "Good morning. [[c1|This is Officer Santos of the cybercrime police.]] Your SIM is linked to a fraud complaint. [[c2|To confirm SIM ownership, call us back and read out the one-time code we just sent to your phone.]] [[c3|If we do not hear from you today, your number will be blocked.]]",
+      "cues": [
+        { "id": "c1", "slam": "S", "text": "Authority: anyone can say they are from law enforcement." },
+        { "id": "c2", "slam": "M", "text": "A request for a one-time code. Never share a one-time code with anyone." },
+        { "id": "c3", "slam": "M", "text": "A threat and a deadline, so you act before you check." }
+      ],
+      "why": "Do not call back. Report it to 1326. If you are worried, call the agency on a number you look up yourself."
+    },
+    {
+      "id": "msg5", "channel": "qr", "answer": "phish", "verdict": "Phish (quishing)",
+      "poster": {
+        "title": "[[c1|Scan to claim your cash aid today.]]",
+        "body": "Cash aid for residents · scan with your phone",
+        "place": "[[c2|Taped outside the office: no seal, not on the official notice board]]"
+      },
+      "body": "[[c3|No web address printed under the code]]",
+      "cues": [
+        { "id": "c1", "slam": "M", "text": "A reward with a deadline: cash aid today." },
+        { "id": "c2", "slam": "S", "text": "An unofficial poster. Who put it up?" },
+        { "id": "c3", "slam": "L", "text": "The QR code hides where it goes: a claim page that asks for your details." }
+      ],
+      "why": "Do not scan it. Check the office's official channels, and tell the staff so they can take it down."
+    },
+    {
+      "id": "msg6", "channel": "email", "answer": "phish", "verdict": "Phish from a hijacked account",
+      "from": "Sol, Social Worker <sol.sw@rsso-regionq.gov.ph>",
+      "to": "ben.records@rsso-regionq.gov.ph",
+      "subject": "(no subject)",
+      "time": "Tue 6:12 PM",
+      "body": "[[c1|Pls review this file urgently]]\n\nOpen file",
+      "link": "[[c2|https://docs-viewer.example/rsso-regionq/signin]]",
+      "cues": [
+        { "id": "c1", "slam": "M", "text": "Urgency and an unusual tone: no greeting, no context, not how Sol writes." },
+        { "id": "c2", "slam": "L", "text": "The link opens a page that asks for your email password. A shared file never needs it." }
+      ],
+      "why": "Sol's account may be hijacked. Call Sol on a number you already know before opening anything, and tell your IT unit."
+    },
+    {
+      "id": "msg7", "channel": "email", "answer": "legit", "verdict": "Legit",
+      "from": "HR Unit <[[c1|hr@rsso-regionq.gov.ph]]>",
+      "to": "all-staff@rsso-regionq.gov.ph",
+      "subject": "Reminder: privacy training tomorrow, 9:00 AM",
+      "time": "Wed 2:30 PM",
+      "body": "Good afternoon, everyone.\n\nA reminder that the privacy training is tomorrow at 9:00 AM in the conference room, [[c3|as announced in the memo on the bulletin board]]. [[c2|No sign-up or reply needed.]]\n\nHR Unit",
+      "cues": [
+        { "id": "c1", "slam": "S", "text": "HR's usual address." },
+        { "id": "c2", "slam": "M", "text": "No link, no attachment, nothing asked of you." },
+        { "id": "c3", "slam": "M", "text": "It matches the memo on the bulletin board: you can check it yourself." }
+      ],
+      "why": "A known sender, nothing to click, and every detail can be checked in the office."
+    },
+    {
+      "id": "msg8", "channel": "sms", "answer": "legit", "verdict": "Legit",
+      "sender": "[[c1|QSAVINGS]]",
+      "body": "Q Savings: a purchase of P2,450.00 was made with your debit card on 20 Oct at 2:14 PM. [[c2|If this was not you, call the number on the back of your card.]]",
+      "time": "Today 2:15 PM",
+      "cues": [
+        { "id": "c1", "slam": "S", "text": "Your bank's registered sender name." },
+        { "id": "c2", "slam": "L", "text": "No link. It sends you to a number you already have: the one on your card." }
+      ],
+      "why": "It asks for nothing and points you to a channel you control: the number on your card, never one in a message."
+    }
+  ]
+}

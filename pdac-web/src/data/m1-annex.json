@@ -1,0 +1,16 @@
+{
+  "_status": "Learner guide, Try it 1.2.1 and its answers (19 October 2026). Item wording follows the deck slide.",
+  "categories": [
+    { "id": "rules", "label": "Rules", "term": "organizational", "icon": "scroll-text" },
+    { "id": "people", "label": "People", "term": "people", "icon": "users" },
+    { "id": "places", "label": "Places", "term": "physical", "icon": "building-2" },
+    { "id": "tech", "label": "Tech", "term": "technological", "icon": "cpu" }
+  ],
+  "items": [
+    { "id": "x1", "text": "A former contractor's account still active three months later", "answer": "rules", "why": "Access rights must end when the contract ends (the access control family, 5.15 to 5.18)." },
+    { "id": "x2", "text": "A clerk opened a fake invoice; no one had trained staff to spot one", "answer": "people", "why": "Awareness, education and training (6.3)." },
+    { "id": "x3", "text": "The server room key hangs by the door; no one logs who takes it", "answer": "places", "why": "Physical security of the server room." },
+    { "id": "x4", "text": "The portal's login page did not encrypt passwords in transit", "answer": "tech", "why": "Use of cryptography (8.24)." },
+    { "id": "x5", "text": "No one knew which systems held citizen ID numbers", "answer": "rules", "why": "Inventory of information and other associated assets (5.9)." }
+  ]
+}

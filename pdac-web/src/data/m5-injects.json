@@ -1,0 +1,12 @@
+[
+  { "round": 1, "scenarioTime": "Fri 16:45", "atMinute": 0,  "text": "Helpdesk reports renamed files and a ransom note on the file server." },
+  { "round": 1, "scenarioTime": "Fri 17:30", "atMinute": 8,  "text": "Monitoring shows a large outbound transfer to an unknown address over the last two days." },
+  { "round": 1, "scenarioTime": "Fri 19:00", "atMinute": 16, "text": "The account used belongs to a contractor who left last month." },
+  { "round": 2, "scenarioTime": "Sat 09:00", "atMinute": 0,  "text": "A social media post claims 48,000 records will leak in 72 hours." },
+  { "round": 2, "scenarioTime": "Sat 11:00", "atMinute": 8,  "text": "A reporter calls the office asking for comment." },
+  { "round": 2, "scenarioTime": "Sat 13:00", "atMinute": 15, "text": "The last clean offline backup is nine days old." },
+  { "round": 2, "scenarioTime": "Sat 15:00", "atMinute": 22, "text": "The DPO confirms the data includes ID numbers and health information." },
+  { "round": 3, "scenarioTime": "Sun 10:00", "atMinute": 0,  "text": "The head of office asks to deny the incident and pay the ransom." },
+  { "round": 3, "scenarioTime": "Mon 08:00", "atMinute": 10, "text": "Services must reopen today." },
+  { "round": 3, "scenarioTime": "Mon 10:00", "atMinute": 17, "text": "A vendor says it can restore everything in six hours." }
+]

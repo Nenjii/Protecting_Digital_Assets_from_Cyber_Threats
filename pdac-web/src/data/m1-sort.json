@@ -1,0 +1,17 @@
+{
+  "_status": "Try it 1.2A: item wording from the deck slide, answers from the learner guide (19 October 2026), in the same order.",
+  "categories": [
+    { "id": "P", "label": "Personal", "hint": "P: identifies a person" },
+    { "id": "S", "label": "Sensitive personal", "hint": "S: the Sec. 3(l) list" },
+    { "id": "N", "label": "Not covered", "hint": "N: or not personal at all" }
+  ],
+  "items": [
+    { "id": "s1", "text": "An applicant's full name and home address", "answer": "P", "why": "Identifies a person." },
+    { "id": "s2", "text": "An applicant's social security number", "answer": "S", "why": "A government-issued number." },
+    { "id": "s3", "text": "A medical certificate for medical assistance", "answer": "S", "why": "Health information." },
+    { "id": "s4", "text": "Ben's name and job title on the citizen's charter", "answer": "N", "why": "Information about a government employee's position (Sec. 4(a))." },
+    { "id": "s5", "text": "An applicant's age and marital status", "answer": "S", "why": "Age and marital status are on the sensitive list." },
+    { "id": "s6", "text": "An applicant's mobile and e-wallet numbers", "answer": "P", "why": "Not on the sensitive list, but an e-wallet number can be used for fraud, so treat it as high risk in the 3S test." },
+    { "id": "s7", "text": "\"1,240 applicants this quarter, by province\", no names", "answer": "N", "why": "Not personal information if no one can be identified from the totals. Be careful with very small counts, which can point to one person." }
+  ]
+}

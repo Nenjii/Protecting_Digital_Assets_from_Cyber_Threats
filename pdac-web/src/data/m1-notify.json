@@ -1,0 +1,31 @@
+{
+  "_status": "Learner guide, Try it 1.2C and its model answers (19 October 2026). Case wording follows the deck slide; the 3S wording follows the deck's 3S slide.",
+  "questions": [
+    { "key": "sensitive", "label": "Sensitive?", "plain": "Sensitive personal information, or data that could enable identity fraud" },
+    { "key": "stolen", "label": "Stolen?", "plain": "Reason to believe someone not authorized got hold of it" },
+    { "key": "serious", "label": "Serious?", "plain": "Likely to cause a real risk of serious harm to the people affected" }
+  ],
+  "scenarios": [
+    {
+      "id": "n1",
+      "text": "Dan emails the payout list (230 names, e-wallet numbers, amounts) to a wrong outside address. The recipient says they deleted it.",
+      "sensitive": "yes", "stolen": "yes", "serious": "likely",
+      "decision": "Lean towards notifying", "notify": true,
+      "why": "E-wallet numbers can enable fraud, an unauthorized person received the list, and 230 people are involved; the recipient's promise lowers the risk but cannot be checked. Notify the NPC within 72 hours, document the recipient's confirmation, and consider telling the people affected to watch their accounts. The breach response team and DPO make the final call."
+    },
+    {
+      "id": "n2",
+      "text": "Sol's laptop with case notes is stolen. Its disk is encrypted with a strong password that was not stored with it.",
+      "sensitive": "yes", "stolen": "yes", "serious": "unlikely",
+      "decision": "Usually not notifiable", "notify": false,
+      "why": "Strong encryption with the key kept separate makes the data unreadable, so serious harm is unlikely. Still record it as an incident, wipe the laptop remotely if possible, and write down why you decided. If the password was taped to the laptop, the answer changes."
+    },
+    {
+      "id": "n3",
+      "text": "Ransomware locks the portal for two days. Ana's logs show no data left the network.",
+      "sensitive": "yes", "stolen": "no evidence", "serious": "n/a",
+      "decision": "Not notifiable on these facts", "notify": false,
+      "why": "An availability breach with no sign that data left. Document it, keep investigating, and report the cybersecurity incident to DICT. Many ransomware groups copy data before locking it, so if new evidence shows data was taken, the 72-hour clock starts when you learn it."
+    }
+  ]
+}

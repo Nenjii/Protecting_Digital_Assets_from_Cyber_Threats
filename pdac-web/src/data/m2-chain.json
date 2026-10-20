@@ -1,0 +1,49 @@
+{
+  "_status": "Web demo for the 'attack-path' slide. The seven links keep the deck slide's wording; each names the MITRE ATT&CK tactic it matches (tactic names come from src/data/attack.json, built by npm run attack). Three defenses are the deck's examples (delivery, exploitation, actions on objectives); the others are the course's controls, not a complete list.",
+  "title": "Attackers move in steps",
+  "links": [
+    { "id": "recon", "name": "Reconnais­sance", "plain": "Research the target", "tactics": ["TA0043"] },
+    { "id": "weapon", "name": "Weaponi­zation", "plain": "Prepare the attack", "tactics": ["TA0042"] },
+    { "id": "delivery", "name": "Delivery", "plain": "Send it, such as by phishing", "tactics": ["TA0001"] },
+    { "id": "exploit", "name": "Exploitation", "plain": "Break in", "tactics": ["TA0002"] },
+    { "id": "install", "name": "Installation", "plain": "Settle in", "tactics": ["TA0003"] },
+    { "id": "c2", "name": "Command and control", "plain": "Take remote control", "tactics": ["TA0011"] },
+    { "id": "actions", "name": "Actions on objectives", "plain": "Steal, lock or destroy", "tactics": ["TA0010", "TA0040"] }
+  ],
+  "defenses": [
+    { "id": "share-less", "label": "Share less about the office online", "layer": "People", "stops": "recon" },
+    { "id": "filter", "label": "Email filtering", "layer": "Technology", "stops": "delivery" },
+    { "id": "report", "label": "Staff spot and report the phishing email", "layer": "People", "stops": "delivery" },
+    { "id": "patched", "label": "The weakness was already patched", "layer": "Technology", "stops": "exploit" },
+    { "id": "watch", "label": "Firewall watches outgoing traffic", "layer": "Technology", "stops": "c2" },
+    { "id": "access", "label": "MFA and limited access keep the data out of reach", "layer": "Technology", "limits": "actions" }
+  ],
+  "scenes": [
+    {
+      "title": "No defenses: the attack runs to the end",
+      "text": "Each step leads to the next. Nothing stops it, so it ends with data stolen and files locked.",
+      "on": []
+    },
+    { "title": "Email filtering breaks it at Delivery", "text": "The phishing email never reaches Ben. Steps 4 to 7 never happen.", "on": ["filter"] },
+    {
+      "title": "The filter misses one. Staff spot and report it",
+      "text": "No filter catches everything. Ben spots the phishing email and reports it: the attack stops at Delivery.",
+      "on": ["report"]
+    },
+    {
+      "title": "Ben clicks. The weakness was already patched",
+      "text": "People make mistakes on a busy payout day. The attack needs an old weakness, but it was patched: it stops at Exploitation.",
+      "on": ["patched"]
+    },
+    {
+      "title": "Everything else failed: MFA and limited access",
+      "text": "The attacker gets in and reaches the last step, but MFA and limited access keep the data out of reach.",
+      "on": ["access"]
+    },
+    {
+      "title": "Each step is a chance to stop them",
+      "text": "With every defense on, the chain breaks at the first step it can. Each control you add is one more chance to stop it, early.",
+      "on": ["share-less", "filter", "report", "patched", "watch", "access"]
+    }
+  ]
+}

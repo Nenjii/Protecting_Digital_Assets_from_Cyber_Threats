@@ -1,0 +1,42 @@
+{
+  "_status": "Deck slides 24 (the 3S test) and 25 (72-5), and the Module 1 learner guide (19 October 2026). The rules table is the deck's 72-5 table.",
+  "steps": [
+    { "key": "sensitive", "label": "Sensitive", "question": "Sensitive personal information, or data that could enable identity fraud" },
+    { "key": "stolen", "label": "Stolen", "question": "Reason to believe someone not authorized got hold of it" },
+    { "key": "serious", "label": "Serious", "question": "Likely to cause a real risk of serious harm to the people affected" }
+  ],
+  "allYes": "**Notify** the NPC and the people affected, within 72 hours.",
+  "anyNo": "Not notifiable on these facts. **Document it** as an incident and keep watching: new facts can change the answer.",
+  "unsure": {
+    "title": "Unsure?",
+    "primary": "Weigh the **likelihood of harm** first; also:",
+    "factors": [
+      "100 or more people",
+      "public safety",
+      "legally confidential data",
+      "vulnerable groups"
+    ],
+    "source": "NPC Circular 16-03, Section 13"
+  },
+  "clock": {
+    "start": "Hour 0",
+    "startLabel": "Know or reasonably believe",
+    "deadlines": [
+      { "at": "72 hours", "hours": 72, "label": "Notify the NPC and the people affected" },
+      { "at": "5 days", "label": "Full report, from discovery" }
+    ],
+    "phrase": "Smell smoke? Call. Don't wait for ashes.",
+    "rules": [
+      ["NPC", "Within 72 hours of knowing or reasonably believing a breach happened"],
+      ["People affected", "Within 72 hours, individually, by secure means; else ask the NPC for an exemption or postponement"],
+      ["No delay", "100 or more people, or harmful sensitive data: notify within 72 hours on what you know"],
+      ["How", "Online through the NPC's DBNMS; the full report to admindbnms@privacy.gov.ph"],
+      ["Records", "Document every incident; an annual summary to the NPC"],
+      ["NPC silence", "Is not approval; approvals are in writing"]
+    ]
+  },
+  "presets": [
+    { "label": "Friday 4:45 PM", "value": "2026-10-23T16:45" },
+    { "label": "Monday 9:00 AM", "value": "2026-10-26T09:00" }
+  ]
+}

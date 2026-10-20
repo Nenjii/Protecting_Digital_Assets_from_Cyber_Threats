@@ -1,0 +1,36 @@
+/* Design tokens: same palette and type as the Slides deck (spec section 6).
+   Fonts are self-hosted through @fontsource (imported in src/main.ts), so the
+   build works with the network unplugged. */
+:root {
+  /* color */
+  --navy:        #14213D;  /* dark: headings, dark slides */
+  --navy-2:      #1F2E4F;  /* cards on dark slides */
+  --paper:       #F7F6F2;  /* light background */
+  --white:       #FFFFFF;  /* cards on light slides */
+  --ink-soft:    #3F4A5E;  /* body text on light */
+  --ink-muted:   #6A7385;  /* footers, captions (24px or larger only) */
+  --mist:        #BFC8D8;  /* body text on dark */
+  --rule:        #DCE1E8;  /* card borders */
+  --accent:      #B5561A;  /* eyebrows, numbers, activity slides */
+  --accent-deep: #9A4614;  /* boxes on activity slides */
+  --accent-soft: #F2A65A;  /* accent on dark slides */
+  --accent-ink:  #FBF4EC;  /* text on accent slides (keep it 32px or larger) */
+  --ok:          #2E6B4F;  /* "Correct" state, always with the word */
+  --no:          #9B2C2C;  /* "Not quite" state, always with the words */
+  --ok-soft:     #E3F0E9;
+  --no-soft:     #F7E4E4;
+  --warn:        #8A5A00;
+  --warn-soft:   #FFF1D6;
+
+  /* type */
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body:    "IBM Plex Sans", Arial, sans-serif;
+  --fs-hero: 120px; --fs-h2: 72px; --fs-h3: 44px; --fs-body: 32px; --fs-small: 24px;
+
+  /* layout on the 1920×1080 canvas */
+  --margin: 128px; --gap: 32px; --radius: 16px;
+
+  /* Overlays live outside the scaled slide canvas. --u is one canvas pixel in
+     viewport units, so calc(24 * var(--u)) is "24px on the 1920×1080 canvas". */
+  --u: min(calc(100vw / 1920), calc(100vh / 1080));
+}

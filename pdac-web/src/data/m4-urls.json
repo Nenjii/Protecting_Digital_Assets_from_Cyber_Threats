@@ -1,0 +1,10 @@
+{
+  "_status": "Draft for the Module 4 deck. All names are invented around the fictional Region Q; none is a real office.",
+  "cases": [
+    { "url": "https://rsso-regionq.gov.ph/assistance/apply", "verdict": "real", "note": "The name just before **.gov.ph** is **rsso-regionq**: the office's own site (fictional)." },
+    { "url": "https://rsso-regionq.gov.ph.regionq-assist-claim.top/login", "verdict": "look-alike", "note": "Everything before **regionq-assist-claim.top** is decoration its owner chose. It has a padlock too: **the padlock means encrypted, not trustworthy.**" },
+    { "url": "https://portal.rsso-regionq.gov.ph/reset-password", "verdict": "real", "note": "A subdomain (portal.) of the real name is still the real office." },
+    { "url": "https://rsso-regionq.com/payout/verify?id=48213", "verdict": "look-alike", "note": "Same words, wrong ending: **.com**, not **.gov.ph**. Government offices use .gov.ph." },
+    { "url": "http://rssoregionq-gov.online/ayuda", "verdict": "look-alike", "note": "No padlock, a hyphen where a dot should be, and **.online**. Not a .gov.ph address at all." }
+  ]
+}

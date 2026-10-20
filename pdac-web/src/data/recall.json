@@ -1,0 +1,36 @@
+{
+  "_status": "Module 2 questions match the Module 2 deck's recall slide (synced 20 October 2026). Modules 3 to 5 are drafts.",
+  "2": {
+    "title": "From this morning",
+    "questions": [
+      { "q": "The portal is locked by ransomware. Secret, Correct or Ready?", "a": "**Ready** (availability).", "from": "1.1" },
+      { "q": "A breach must be reported when three things are true. Which three?", "a": "**3S:** Sensitive, Stolen, Serious.", "from": "1.2" },
+      { "q": "Notify within how many hours? Full report within how many days?", "a": "**72-5:** 72 hours to notify; full report within 5 days from discovery.", "from": "1.2" }
+    ]
+  },
+  "3": {
+    "title": "From Day 1",
+    "questions": [
+      { "q": "Name the four threat modeling questions.", "a": "What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job?", "from": "2.2" },
+      { "q": "Likelihood 4, impact 4. Score and band?", "a": "**16, High** (5 by 5).", "from": "2.2" },
+      { "q": "What do the letters in SLAM stand for?", "a": "Sender, Links, Attachments, Message.", "from": "2.3" },
+      { "q": "Ben wants 2,500 records on a USB stick at home. What does Sec. 23 require?", "a": "Clearance, approval, 1,000, encrypt.", "from": "1.2" }
+    ]
+  },
+  "4": {
+    "title": "From this morning and Day 1",
+    "questions": [
+      { "q": "A firewall reads its rules in what order?", "a": "From the top; the first rule that matches decides, then the default deny.", "from": "3.1" },
+      { "q": "Encryption at rest or in transit: a stolen laptop?", "a": "**At rest.**", "from": "3.2" },
+      { "q": "Name the four ways to treat a risk.", "a": "**TARA:** Transfer, Avoid, Reduce, Accept.", "from": "2.2" }
+    ]
+  },
+  "5": {
+    "title": "From Days 1 and 2",
+    "questions": [
+      { "q": "When does the 72-hour clock start?", "a": "At **reasonable belief**: smell smoke, not ashes.", "from": "1.2" },
+      { "q": "Which goal does ransomware hit first?", "a": "**Ready** (availability), often Secret too when data is stolen.", "from": "1.1" },
+      { "q": "A padlock in the address bar means what?", "a": "The connection is encrypted. It does **not** mean the site is trustworthy.", "from": "4.2" }
+    ]
+  }
+}

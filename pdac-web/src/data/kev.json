@@ -1,0 +1,55 @@
+{
+  "_readme": "Made by npm run kev from CISA's Known Exploited Vulnerabilities feed. Counts only; the full catalog stays at CISA. Shown by <pdac-kev-card> on M2 manage-vulns.",
+  "title": "CISA Catalog of Known Exploited Vulnerabilities",
+  "catalogVersion": "2026.10.16",
+  "dateReleased": "2026-10-16T17:15:48.8752Z",
+  "count": 1748,
+  "addedPastYear": 307,
+  "ransomware": 361,
+  "topVendors": [
+    [
+      "Microsoft",
+      390
+    ],
+    [
+      "Cisco",
+      101
+    ],
+    [
+      "Apple",
+      95
+    ],
+    [
+      "Adobe",
+      82
+    ],
+    [
+      "Google",
+      75
+    ]
+  ],
+  "newest": [
+    {
+      "vendor": "BeyondTrust",
+      "product": "Remote Support",
+      "dateAdded": "2026-10-16",
+      "dueDate": "2026-10-19",
+      "daysToFix": 3
+    },
+    {
+      "vendor": "Fortinet",
+      "product": "Multiple Products",
+      "dateAdded": "2026-10-16",
+      "dueDate": "2026-10-19",
+      "daysToFix": 3
+    },
+    {
+      "vendor": "Atlassian",
+      "product": "Multiple Products",
+      "dateAdded": "2026-10-15",
+      "dueDate": "2026-10-18",
+      "daysToFix": 3
+    }
+  ],
+  "catalogPage": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+}

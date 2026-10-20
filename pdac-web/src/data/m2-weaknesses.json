@@ -1,0 +1,65 @@
+{
+  "_status": "The learner guide's Try it 2.1 situations and model answers (Module 2 learner guide, pages 5 and 18). A different answer with a sound reason can also be right.",
+  "items": [
+    {
+      "id": "w1",
+      "text": "The portal's admin page can be reached from the internet, and it still uses the vendor's default password.",
+      "answer": "technology",
+      "facts": [
+        { "k": "Weakness", "v": "Admin page open to the internet with a default password" },
+        { "k": "Data at risk", "v": "Every applicant record" },
+        { "k": "One fix", "v": "Close the admin page to the internet; change the password; add MFA" }
+      ]
+    },
+    {
+      "id": "w2",
+      "text": "The whole approval team uses one login for the approval spreadsheet.",
+      "answer": ["people", "process"],
+      "facts": [
+        { "k": "Weakness", "v": "Shared login" },
+        { "k": "Data at risk", "v": "The approval spreadsheet and payouts" },
+        { "k": "One fix", "v": "One account per person, with logs" }
+      ]
+    },
+    {
+      "id": "w3",
+      "text": "A contractor who left two months ago can still connect through the VPN.",
+      "answer": "process",
+      "facts": [
+        { "k": "Weakness", "v": "Access not removed when a contractor left" },
+        { "k": "Data at risk", "v": "Everything the VPN reaches" },
+        { "k": "One fix", "v": "Disable accounts on the last day; review accounts monthly" }
+      ]
+    },
+    {
+      "id": "w4",
+      "text": "Backups run every night, but no one has ever tried to restore one.",
+      "answer": "process",
+      "facts": [
+        { "k": "Weakness", "v": "Backups never test-restored" },
+        { "k": "Data at risk", "v": "All data, if ransomware strikes" },
+        { "k": "One fix", "v": "Test a restore regularly; keep an offline copy" }
+      ]
+    },
+    {
+      "id": "w5",
+      "text": "Field staff carry applicant forms on their personal USB sticks.",
+      "answer": ["technology", "process"],
+      "facts": [
+        { "k": "Weakness", "v": "Applicant forms on personal USB sticks" },
+        { "k": "Data at risk", "v": "Sensitive applicant data" },
+        { "k": "One fix", "v": "Office-issued encrypted USB sticks, with the head's approval and at most 1,000 records at a time (DPA Sec. 23)" }
+      ]
+    },
+    {
+      "id": "w6",
+      "text": "The server's operating system reached end of support last year and no longer gets security updates.",
+      "answer": "technology",
+      "facts": [
+        { "k": "Weakness", "v": "Operating system out of support" },
+        { "k": "Data at risk", "v": "The server and everything on it" },
+        { "k": "One fix", "v": "Plan the upgrade; meanwhile isolate it and record the risk" }
+      ]
+    }
+  ]
+}

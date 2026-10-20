@@ -1,0 +1,19 @@
+{
+  "_status": "Learner guide, Bring it home 2: the readiness mini-check (19 October 2026), word for word. Shown in the gallery (g-readiness); the deck's last slide lists it as one of three tasks.",
+  "source": "Module 1 learner guide, readiness mini-check · DICT and CICC advisory, 8 September 2026",
+  "items": [
+    { "id": "r1", "text": "We know our most serious cyber risk, and the head of office knows it too." },
+    { "id": "r2", "text": "Administrator and email accounts use multi-factor authentication." },
+    { "id": "r3", "text": "Critical security updates are applied, and antivirus and other licences are renewed before they expire." },
+    { "id": "r4", "text": "Only the systems that must be on the internet are on it." },
+    { "id": "r5", "text": "Someone watches the logs or alerts and knows what to do with them." },
+    { "id": "r6", "text": "We restored a backup successfully in the last six months." },
+    { "id": "r7", "text": "We know which vendors can reach our systems or data, and we review that access." },
+    { "id": "r8", "text": "Staff know how to report an incident, and to whom." },
+    { "id": "r9", "text": "We tested our incident response and continuity plans this year." }
+  ],
+  "bands": [
+    { "min": 9, "label": "All nine today. Check again in six months." },
+    { "min": 0, "label": "Each unticked box is a candidate for your 30-day commitments." }
+  ]
+}

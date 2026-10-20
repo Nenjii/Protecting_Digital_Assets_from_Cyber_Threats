@@ -1,0 +1,16 @@
+{
+  "_status": "Learner guide, Try it 1.2B and its answers (19 October 2026). Case wording follows the deck slide.",
+  "options": [
+    { "id": "compliant", "label": "Compliant" },
+    { "id": "not-compliant", "label": "Not compliant" },
+    { "id": "depends", "label": "It depends" }
+  ],
+  "items": [
+    { "id": "v1", "text": "A beneficiary list with ID numbers shared as a public spreadsheet link.", "answer": "not-compliant", "reason": "Anyone with the link can see ID numbers. If the link was opened by people with no right to it, this is likely a notifiable breach." },
+    { "id": "v2", "text": "Payroll emailed to a personal address to work from home.", "answer": "not-compliant", "reason": "Personal email is outside the office's control and its access rules; payroll data may include sensitive information." },
+    { "id": "v3", "text": "A laptop with unencrypted HR files stolen from a car.", "answer": "not-compliant", "reason": "Data taken off-site must be encrypted (Sec. 23). With sensitive HR data and likely harm, the 3S test points to notification." },
+    { "id": "v4", "text": "A vendor given full database access with no written agreement.", "answer": "not-compliant", "reason": "The office stays responsible for what its vendors do (Secs. 14 and 21). The vendor needs a written agreement that sets its duties, and only the access its job needs." },
+    { "id": "v5", "text": "Citizen letters pasted into a free public chatbot.", "answer": "not-compliant", "reason": "Not compliant, unless the tool is approved and the personal data is removed first. Pasting letters into a public tool discloses them to a third party." },
+    { "id": "v6", "text": "A defaced website on a server holding no personal data.", "answer": "depends", "reason": "Without personal data it is not a personal data breach, so there is no NPC notice. It is still a security incident: document it, fix it, check other systems, and report it under DICT's reporting mechanism." }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "_status": "Web demo for the 'cia' slide. The three goals keep the deck slide's wording (name, plain meaning, comparison); each demo then shows the deck's loss example (records leak, a payout number is changed, the portal is down). Applicant, e-wallet and payout data are invented.",
+  "goals": [
+    { "id": "secret", "name": "Secret", "term": "confidentiality", "plain": "Only the right people see it", "example": "Like a sealed envelope", "icon": "lock" },
+    { "id": "correct", "name": "Correct", "term": "integrity", "plain": "Kept accurate and unaltered", "example": "Like a stamped receipt", "icon": "circle-check" },
+    { "id": "ready", "name": "Ready", "term": "availability", "plain": "Works when people need it", "example": "Like an office open on time", "icon": "power" }
+  ],
+  "secret": {
+    "scene": "Ben sends an application from café Wi-Fi",
+    "message": "Applicant: Juana Dela Paz · ID 0000-1111-2222",
+    "spy": "Someone else on the same Wi-Fi sees:",
+    "attack": "Send without encryption",
+    "defend": "Send with HTTPS",
+    "bad": "Readable by anyone listening",
+    "ok": "Scrambled: useless without the key"
+  },
+  "correct": {
+    "scene": "The payout list Director Eva approved",
+    "rows": [
+      { "name": "J. Dela Paz", "wallet": "•••• 2048", "amount": "₱5,000" },
+      { "name": "R. Santos", "wallet": "•••• 5531", "amount": "₱5,000" },
+      { "name": "M. Reyes", "wallet": "•••• 0974", "amount": "₱3,000" }
+    ],
+    "tamper": { "row": 0, "wallet": "•••• 7731", "amount": "₱50,000" },
+    "attack": "Someone edits a payout",
+    "defend": "Check the fingerprint before paying",
+    "bad": "Changed after approval: do not pay",
+    "ok": "Same as approved: safe to pay"
+  },
+  "ready": {
+    "scene": "Payout day at the Assistance Portal",
+    "attack": "Ransomware locks the server",
+    "defend": "Restore from the offline backup",
+    "bad": "Portal down: citizens turned away",
+    "ok": "Portal back up from the backup"
+  }
+}

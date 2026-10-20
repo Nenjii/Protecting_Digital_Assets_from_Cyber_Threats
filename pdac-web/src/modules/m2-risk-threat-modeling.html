@@ -1,0 +1,841 @@
+<!--
+  Module 2 · Assessing Cyber Risks and Threat Modeling · Day 1, 1:00 to 5:00 PM
+  42 slides, same IDs and order as the Module 2 deck (spec section 10).
+  Opening and closing IDs carry an m2- prefix so no ID repeats Module 1 in ?m=all.
+
+  Synced 20 October 2026: slide wording follows the Module 2 deck
+  (../source/Module 2 Assessing Cyber Risks and Threat Modeling.pdf); activities
+  and the worked example follow the Module 2 learner guide of 19 October 2026.
+  Speaker notes are the deck's, copied with:
+    npm run import-deck -- --json="Module 2 Assessing Cyber Risks and Threat Modeling.json" --module=2 --notes
+  The import keeps each <p class="notes-web"> (how to drive this web slide).
+-->
+
+<!-- 1 -->
+<section id="m2-cover" class="l-cover" data-min="1" data-footer="none">
+  <div class="cover-art"><i data-lucide="crosshair"></i></div>
+  <p class="kicker">Protecting Digital Assets from Cyber Threats · Module 2 of 5</p>
+  <h1>Assessing Cyber Risks and Threat Modeling</h1>
+  <p class="subtitle">Find the weak spots, predict the attacks, and spot the tricks aimed at people</p>
+  <div class="meta"><span>Nino Filipen Duque · DICT Region 2 · ICT Academy: Digital Workforce</span><span>Day 1 afternoon · Face-to-face 21 October 2026 · Online 26 October 2026</span></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>SAY:</b> Welcome back. This morning we learned who attacks offices like ours and what the law expects of us. This afternoon we get practical: we find the weak spots before an attacker does, we predict where attacks are most likely to come from, and we learn to spot the tricks aimed at people. At 3:50 your team uses all of it in the graded risk assessment. Keep the same teams and the same RSSO story from this morning.</p>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section id="m2-recall" class="l-interactive" data-min="5" data-code="1.1, 1.2" data-eyebrow="Recall · no notes" data-level="Remember" data-source="Module 1">
+  <h2>Three questions from this morning</h2>
+  <div class="stage"><pdac-recall data-src="recall.json" data-module="2"></pdac-recall></div>
+  <p class="sim-ask"><i data-lucide="circle-help"></i> Answer first, then check your desk card.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>RETRIEVAL:</b> Ask all three before anyone looks at notes. Recalling after a break is what fixes this morning in memory. Face-to-face: teams agree an answer in 30 seconds, then call it out. Online: a three-question poll, or answers typed in the chat on your signal.</p>
+    <p><b>ANSWERS:</b> 1. Ready (availability) is hit first. If the attackers also steal files, Secret is hit too, as in this morning's 2023 case. 2. The 3S test: Sensitive (sensitive personal information, or information that could enable identity fraud), Stolen (there is reason to believe an unauthorized person got it), and Serious (a real risk of serious harm to the people affected). 3. The 72-5 rule: notify the NPC and the people affected within 72 hours of knowing, or reasonably believing, that a breach happened; send the full report within 5 days.</p>
+    <p><b>WATCH FOR:</b> anyone who says notification waits until the investigation is certain. Correct it gently: reasonable belief is enough.</p>
+    <p><b>LINK:</b> This morning was about what happens after a breach. This afternoon is about before: where could a breach happen at the RSSO, how likely is it, and what do we fix first?</p>
+    <p class="notes-web"><b>ON SCREEN:</b> everyone answers first; the clicker reveals one answer at a time.</p>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section id="m2-flow" data-min="2" data-eyebrow="This afternoon · Day 1" data-source="Course syllabus · facilitation plan">
+  <h2>Three lessons, a quiz and a team assessment</h2>
+  <div class="body grid-2 flow-grid">
+    <table class="t compact">
+      <thead><tr><th>Time</th><th>Segment</th></tr></thead>
+      <tbody>
+        <tr data-start="13:00" data-end="13:10"><td>1:00 to 1:10</td><td>Recall and roadmap <span class="now-tag">Now</span></td></tr>
+        <tr data-start="13:10" data-end="13:50"><td>1:10 to 1:50</td><td>2.1 Vulnerabilities and personal data <span class="now-tag">Now</span></td></tr>
+        <tr data-start="13:50" data-end="14:35"><td>1:50 to 2:35</td><td>2.2 Predicting where attacks come from <span class="now-tag">Now</span></td></tr>
+        <tr data-start="14:45" data-end="15:25"><td>2:45 to 3:25</td><td>2.3 Attacks aimed at people <span class="now-tag">Now</span></td></tr>
+        <tr data-start="15:35" data-end="15:50"><td>3:35 to 3:50</td><td>Quiz 2 (10%) <span class="now-tag">Now</span></td></tr>
+        <tr data-start="15:50" data-end="16:45"><td>3:50 to 4:45</td><td>Team risk assessment of the RSSO Assistance Portal (20%) <span class="now-tag">Now</span></td></tr>
+        <tr data-start="16:45" data-end="17:00"><td>4:45 to 5:00</td><td>Questions, Day 1 close, Day 2 preview <span class="now-tag">Now</span></td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <p class="flow-breaks"><i data-lucide="coffee"></i> Breaks 2:35 to 2:45 and 3:25 to 3:35</p>
+      <div class="card"><span class="k">Graded · 10%</span><h4>Quiz 2</h4><p>12 items in 15 minutes, on 2.1 to 2.3.</p></div>
+      <div class="card"><span class="k">Graded · 20%</span><h4>Team risk assessment</h4><p>A threat model and a risk register for the RSSO Assistance Portal. The scenario, templates and rubric are in your learner guide.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> Same teams as this morning, and the same fictional office. Walk the timetable.</p>
+    <p><b>PREVIEW THE GRADED TASK:</b> at 3:50 your team builds a threat model and a risk register for the RSSO Assistance Portal, worth 20 percent of the course grade. The scenario, templates and rubric are in your learner guide. Everything before 3:50 is a tool for that task, so mark the templates as we go. Quiz 2 at 3:35 covers 2.1 to 2.3: 12 items in 15 minutes, worth 10 percent.</p>
+    <p><b>ONLINE:</b> breakout rooms are the same as this morning.</p>
+    <p><b>REMIND:</b> if your team made a data map in Bring it home this morning, keep it open; it helps in the risk assessment.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the highlighted row follows the clock. The two cards are the graded parts from this slide's notes.</p>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section id="m2-objectives" data-min="2" data-eyebrow="From remembering to doing" data-source="Syllabus items 2.1, 2.2, 2.3 · Course objectives 1 and 2 · Learning outcome 2">
+  <h2>By 5:00 PM, you will be able to</h2>
+  <ol class="levels body">
+    <li class="fragment"><span class="lv">Remember</span> The seven risk words, the six STRIDE threats, TARA and SLAM</li>
+    <li class="fragment"><span class="lv">Understand</span> How a threat, a weakness and a risk differ, using a house</li>
+    <li class="fragment"><span class="lv">Apply</span> Spot weaknesses in office situations; tell phishing from genuine messages</li>
+    <li class="fragment"><span class="lv">Analyze</span> Draw where data flows, and ask what can go wrong at each step</li>
+    <li class="fragment"><span class="lv">Evaluate</span> Rate risks by likelihood and impact, and decide what to treat first</li>
+    <li class="fragment"><span class="lv">Create</span> A threat model and a risk register, with your team (graded)</li>
+  </ol>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> The same ladder as this morning, from remembering to creating. The words on the first line are this afternoon's anchors: the house, STRIDE, TARA and SLAM. They go on your desk card at the end of the day. The last line is the graded task: by 4:45 every team will have created a threat model and a risk register for the RSSO.</p>
+    <p><b>TIP:</b> The learner guide has Check yourself questions after each lesson. Ask participants to try recalling the answer before looking; the effort of recalling is what makes it stick.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next level.</p>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section id="house" class="l-interactive" data-min="5" data-code="2.1" data-eyebrow="Vulnerabilities and personal data · Key idea" data-source="Module 2 learner guide, Lesson 2.1 · bands: this course's 5 by 5" data-terms="asset,threat,vulnerability,control">
+  <h2>A risk is a threat meeting a weakness in something you value</h2>
+  <div class="stage"><pdac-house-sim data-src="m2-house.json"></pdac-house-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Four words first, with a picture everyone knows. Picture your house. The asset is the house and everything inside it. The threat is a burglar. The vulnerability is the window you left unlocked. The control is the lock, the grille or the dog. Now the same four words at the RSSO. The asset is the applicant database. The threat is a criminal group that wants ID numbers. The vulnerability is an admin page that anyone on the internet can reach, still using the vendor's default password. The control is a strong unique password, multi-factor authentication, and no admin page open to the public.</p>
+    <p><b>ASK:</b> In your own office, what is one valuable asset, and what is one unlocked window? Take two answers from non-IT participants first, and keep them anonymous.</p>
+    <p><b>WATCH FOR:</b> people who call the burglar the risk. The burglar is the threat; the risk is the chance and size of the loss, which is the next slide.</p>
+    <p><b>KEY POINT:</b> We cannot stop criminals from existing, but we can lock the window. Most of our power is in removing weaknesses.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press plays the next scene: asset, threat, vulnerability, the break-in, the controls, then the same four words at the RSSO. Watch the risk score fall as each way in closes: no weakness, no risk. Click any weakness to switch its control yourself, then "Try to get in". A jumps to the last scene, R starts over.</p>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section id="risk-words" data-min="4" data-code="2.1" data-eyebrow="Rating a risk" data-source="Module 2 learner guide, Lesson 2.1" data-terms="likelihood,impact,risk">
+  <h2>Risk is likelihood combined with impact</h2>
+  <div class="formula body">
+    <div class="f-part"><span class="f-k">Likelihood</span><span class="f-v">How probable it is</span><span class="f-eg"><b>In a house</b> How often burglars try that street</span><span class="f-eg"><b>At the RSSO</b> How often such pages are attacked</span></div>
+    <span class="f-op">×</span>
+    <div class="f-part"><span class="f-k">Impact</span><span class="f-v">How bad it would be</span><span class="f-eg"><b>In a house</b> What you would lose</span><span class="f-eg"><b>At the RSSO</b> 48,000 people's sensitive data exposed</span></div>
+    <span class="f-op">=</span>
+    <div class="f-part is-result"><span class="f-k">Risk</span><span class="f-v">Likelihood combined with impact</span><span class="f-eg"><b>In a house</b> The chance of losing your valuables, and how much</span><span class="f-eg"><b>At the RSSO</b> A data breach the office must report</span></div>
+  </div>
+  <p class="callout"><b>No weakness, no risk, even if threats exist.</b> Most of your power is in removing weaknesses.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> A threat and a weakness together make a risk, but risks are not equal, so we rate each one on two things. Likelihood is how probable it is: for a house, how often burglars try your street; for the RSSO, how often pages like that exposed admin page are attacked. Often, because attackers use automated tools that search the internet for exposed login pages. Impact is how bad it would be: for the RSSO, the sensitive data of 48,000 people exposed, which this morning's law makes a notifiable breach. Put the two together and you have the risk. In 2.2 we turn this into a score from 1 to 25.</p>
+    <p><b>KEY POINT:</b> Read the dark box aloud. No weakness, no risk, even if threats exist.</p>
+    <p><b>ASK:</b> Which is easier for an office to change, the number of criminals in the world or its own weaknesses? (Its own weaknesses.)</p>
+    <p><b>LINK:</b> This is why the next slides are all about finding weaknesses.</p>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section id="weak-spots" class="l-cards-3" data-min="5" data-code="2.1" data-eyebrow="Where weaknesses hide" data-source="Module 2 learner guide, Lesson 2.1" data-terms="end-of-support,flat-network">
+  <h2>Look in people, process and technology</h2>
+  <div class="cards body weak-cards">
+    <div class="card"><span class="icon"><i data-lucide="users"></i></span><h3>People</h3><ul><li>Shared accounts</li><li>Untrained staff</li><li>Passwords written down</li></ul><p class="k">At the RSSO</p><p>One login for the whole approval team</p></div>
+    <div class="card"><span class="icon"><i data-lucide="workflow"></i></span><h3>Process</h3><ul><li>No routine to remove access when people leave</li><li>Backups never test-restored</li><li>No check before changing payment details</li></ul><p class="k">At the RSSO</p><p>A contractor who left two months ago can still log in</p></div>
+    <div class="card"><span class="icon"><i data-lucide="cpu"></i></span><h3>Technology</h3><ul><li>Unpatched or unsupported systems</li><li>Default passwords</li><li>Admin pages open to the internet</li><li>Files shared by public link</li><li>Outdated website plugins</li><li>Unencrypted laptops and USB sticks</li><li>One flat network</li><li>Lapsed security licences</li></ul><p class="k">At the RSSO</p><p>The server's operating system reached end of support last year</p></div>
+  </div>
+  <p class="callout">Check all three, not only technology.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Weaknesses are not only technical. Walk the three cards. People: shared accounts mean no one is accountable for what happens in them; untrained staff click; passwords end up on sticky notes. Process: no routine to remove access when someone leaves; backups that have never been test-restored, so no one knows whether they work; no check before payment details are changed. Technology: systems that are unpatched or out of support, default passwords, admin pages open to the internet, files shared by public link, old website plugins, unencrypted laptops and USB sticks, one flat network where every computer can reach every other one, and lapsed security licences. This morning's 2023 case had one of these: an antivirus subscription that had expired months before the attack.</p>
+    <p><b>PLAIN WORDS:</b> end of support means the maker no longer releases security fixes, so every weakness found from then on stays open.</p>
+    <p><b>ASK:</b> Which card holds the weakness you see most often in offices like yours? Take one answer per card.</p>
+    <p><b>WATCH FOR:</b> the idea that security is only IT's job. People and process weaknesses are fixed by managers and staff. Non-IT participants often spot them first.</p>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section id="vuln-numbers" class="l-tiles" data-min="4" data-code="2.1" data-eyebrow="What the numbers say · Verizon 2026 Data Breach Investigations Report" data-source="Verizon 2026 DBIR, via SecurityWeek (19 May) and TechRepublic (21 May 2026)" data-proofs="dbir-kev,dbir-scope">
+  <h2>Unfixed weaknesses are now the top way in</h2>
+  <pdac-stat-proof class="body">
+    <div class="tiles" style="--n:3">
+      <div class="tile" data-proof="dbir-exploit"><div class="num"><span data-countup="31" data-suffix="%">31%</span></div><p class="cap">of breaches started with attackers exploiting a vulnerability, ahead of stolen credentials at 13%</p></div>
+      <div class="tile" data-proof="dbir-patch"><div class="num"><span data-countup="43">43</span> days</div><p class="cap">median time to fix the most serious known-exploited weaknesses; only 26% were fully fixed</p></div>
+      <div class="tile" data-proof="dbir-third"><div class="num"><span data-countup="48" data-suffix="%">48%</span></div><p class="cap">of breaches involved a third party, such as a vendor, up from 30% a year earlier</p></div>
+    </div>
+  </pdac-stat-proof>
+  <p class="tiles-note">Based on more than 22,000 confirmed breaches in 145 countries.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> These numbers come from Verizon's 2026 Data Breach Investigations Report, which studied more than 22,000 confirmed breaches in 145 countries. It is one of the largest yearly studies of real breaches. 31 percent: exploiting a vulnerability overtook stolen passwords as the most common way in; stolen credentials were 13 percent. In plain words, attackers increasingly climb through unlocked windows. 43 days: for weaknesses that attackers are known to be actively using, the most urgent kind, the median time to fix rose to 43 days, up from 32, and only about a quarter were fully fixed. Attackers do not wait that long. 48 percent: nearly half of breaches involved a third party such as a vendor or partner, up from 30 percent a year earlier. The RSSO's SMS vendor and e-wallet provider are part of its risk.</p>
+    <p><b>ASK:</b> Who in your office decides when security updates are installed? Who checks what your vendors do with your data?</p>
+    <p><b>LINK:</b> From this morning: under the DPA, the office stays accountable for personal data that its vendors process for it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press shows the next number's source with a QR code to the article. E lists all of them, including the 26% and the report's size.</p>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section id="manage-vulns" data-min="5" data-code="2.1" data-eyebrow="Managing weaknesses" data-source="ISO/IEC 27001 control 5.9 · RA 10175 Sec. 4(a)(1) · CVSS v4.0 · CISA KEV" data-terms="cvss,patch">
+  <h2>Four habits that close weaknesses</h2>
+  <div class="body grid-2">
+    <ol class="big-list habits-list">
+      <li><b>Know what you have.</b> Keep an inventory of systems and information. You cannot protect what you have not listed.</li>
+      <li><b>Patch on a schedule.</b> Update regularly, fastest for weaknesses known to be exploited. Renew licences before they lapse.</li>
+      <li><b>Test only with permission.</b> Probing a system without authority can be illegal access under RA 10175. Get it in writing.</li>
+      <li><b>Scores are an input, not the decision.</b> CVSS rates technical severity. What a weakness could cost your office sets the order.</li>
+    </ol>
+    <div class="stack">
+      <div class="note-box">
+        <h4>CVSS severity, 0 to 10</h4>
+        <table class="t compact">
+          <tbody>
+            <tr><td>Low</td><td>0.1 to 3.9</td></tr>
+            <tr><td>Medium</td><td>4.0 to 6.9</td></tr>
+            <tr><td>High</td><td>7.0 to 8.9</td></tr>
+            <tr><td>Critical</td><td>9.0 to 10.0</td></tr>
+          </tbody>
+        </table>
+        <p class="tool-links"><span class="tl-k">Score the admin page:</span>
+          <a class="pdac-btn pdac-btn--quiet" href="tools/cvss-v4/index.html#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N" target="_blank" rel="noopener"><i data-lucide="globe"></i> On the internet</a>
+          <a class="pdac-btn pdac-btn--quiet" href="tools/cvss-v4/index.html#CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N" target="_blank" rel="noopener"><i data-lucide="building-2"></i> Office only</a>
+        </p>
+      </div>
+      <pdac-kev-card data-proof="kev-count"></pdac-kev-card>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Four habits. One, know what you have. You cannot protect a server or a spreadsheet you do not know exists; ISO 27001 calls this the inventory of information and other associated assets, control 5.9. Two, patch on a schedule: install security updates regularly, and fastest for weaknesses that attackers are known to be using. Renew security licences before they lapse, as the 2023 case taught us. Three, test only with permission. Scanning or probing a system without authority can be illegal access under the Cybercrime Prevention Act, RA 10175. Only authorized staff or contractors test, and only with written authority. This returns on Day 2, when we audit a training application under written rules of engagement. Four, scores are an input, not the decision. CVSS, the Common Vulnerability Scoring System, rates how technically severe a weakness is, from 0 to 10. A Medium weakness on the server that holds 48,000 records may matter more than a High one on a test machine with no data.</p>
+    <p><b>ASK:</b> In your office, who keeps the list of systems, and when was it last updated?</p>
+    <p><b>IT DEPTH (optional):</b> take one published weakness with its CVSS score and ask what it would cost the RSSO if exploited; the business impact can change the order of fixing.</p>
+    <p><b>IF RUNNING LATE:</b> skip the IT depth.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the two buttons open the official CVSS 4.0 calculator (FIRST), bundled so it works offline: the same default-password admin page scores 9.3 Critical on the internet and 8.7 High inside the office. Then the slide's point: the score is technical severity, not what the 48,000 records are worth.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the dark card is CISA's list of weaknesses attackers already use (npm run kev refreshes it before each run). "Fastest for weaknesses known to be exploited": CISA gives US agencies days, not months. E shows the catalog's own header.</p>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section id="lifecycle" data-min="5" data-code="2.1" data-eyebrow="Personal data has a life cycle" data-source="RA 10173 Sec. 11 (proportionality), Sec. 23 (off-site), Sec. 27 (disposal)" data-terms="personal-information">
+  <h2>Data leaks where it moves or is copied</h2>
+  <div class="lifecycle body">
+    <div class="stage-card fragment"><span class="k">Collect</span><p class="weak">Forms asking for more than needed</p><p class="rule">Little: collect only what the purpose needs</p></div>
+    <div class="stage-card fragment"><span class="k">Store</span><p class="weak">Spreadsheets on desktops; unencrypted laptops</p><p class="rule">Keep it in approved places with access control</p></div>
+    <div class="stage-card fragment"><span class="k">Use</span><p class="weak">Shared logins; screens visible to visitors</p><p class="rule">One account per person; need-to-know access</p></div>
+    <div class="stage-card fragment"><span class="k">Share</span><p class="weak">Email attachments, chat groups, public links, vendor exports</p><p class="rule">Only to those entitled, through approved, secure channels</p></div>
+    <div class="stage-card fragment"><span class="k">Keep</span><p class="weak">Old copies in backups and test systems</p><p class="rule">Keep only as long as needed</p></div>
+    <div class="stage-card fragment"><span class="k">Dispose</span><p class="weak">Printouts in the trash; old drives sold or thrown away</p><p class="rule">Shred paper; wipe or destroy drives</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Personal data has a life, from the moment we collect it to the day we dispose of it, and it is most at risk where it moves or is copied. Walk the six stages left to right. Ask the room for an example of each leak before you read it. Collect: forms that ask for more than the purpose needs; the rule is Little, this morning's proportionality principle. Store: spreadsheets saved on desktops, and unencrypted laptops. Use: shared logins, and screens that visitors can read over a clerk's shoulder. Share: email attachments, chat groups, public links and vendor exports; share only with those entitled to the data, through approved and secure channels. Keep: old copies forgotten in backups and test systems; keep data only as long as it is needed. Dispose: printouts in the trash, and old drives sold or thrown away; shred paper, and wipe or destroy drives. Improper disposal is a crime under Section 27 of the DPA.</p>
+    <p><b>LINK:</b> This morning's government rule applies at Store and Share. Sensitive data accessed off-site needs the head's approval, at most 1,000 records at a time, and encryption (Section 23).</p>
+    <p><b>ASK:</b> At which stage does your own unit leak most? Most offices say Share.</p>
+    <p><b>BRING IT HOME:</b> the process map some teams made this morning follows these same six stages.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next stage, left to right, so the room can name the leak first.</p>
+  </aside>
+</section>
+
+<!-- 11 -->
+<section id="spot" class="l-interactive" data-min="10" data-timer="10" data-code="2.1" data-eyebrow="Try it 2.1" data-level="Apply" data-source="Learner guide, Try it 2.1">
+  <h2>Spot the weakness</h2>
+  <p class="brief-strip"><b>For each situation:</b> name the weakness, where it sits, the data at risk, and one fix. <span class="chip"><i data-lucide="timer"></i> 10 min</span></p>
+  <div class="stage"><pdac-vote-reveal data-src="m2-weaknesses.json" data-options="people:People|process:Process|technology:Technology"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes (6 in teams, 4 debrief). Face-to-face: teams fill the Try it 2.1 table in the learner guide. Online: give each breakout room two situations, then debrief in the main room.</p>
+    <p><b>MODEL ANSWERS (accept others with a sound reason):</b> 1. Admin page open to the internet with a default password; technology; every applicant record; close the admin page to the internet, change the password and add MFA. 2. Shared login; people and process; the approval spreadsheet and payouts; one account per person, with logs. 3. Access not removed when a contractor left; process; everything the VPN reaches; disable accounts on the last day and review accounts monthly. 4. Backups never test-restored; process; all data, if ransomware strikes; test a restore regularly and keep an offline copy. 5. Applicant forms on personal USB sticks; technology and process; sensitive applicant data; office-issued encrypted USB sticks, with the head's approval and at most 1,000 records at a time (DPA Section 23). 6. Operating system out of support; technology; the server and everything on it; plan the upgrade, and meanwhile isolate the server and record the risk in the register.</p>
+    <p><b>DEBRIEF:</b> Ask a team with mostly non-IT members to answer situations 2, 3 and 4 first. These are process weaknesses that managers and staff can fix without new technology.</p>
+    <p><b>LINK:</b> Several of these six return in the graded risk assessment, so teams should keep their answers.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room votes where each weakness sits (press 1, 2, 3); the clicker reveals the guide's answer with the weakness, the data at risk and one fix, then moves to the next situation.</p>
+  </aside>
+</section>
+
+<!-- 12 -->
+<section id="check-2-1" data-min="2" data-code="2.1" data-eyebrow="Check yourself 2.1 · answer from memory" data-source="Learner guide, Check yourself 2.1">
+  <h2>Before we move on</h2>
+  <ol class="checks body">
+    <li><b>In the house comparison, what is the vulnerability?</b><span class="answer"><span class="answer-label">Answer:</span> The window left unlocked.</span></li>
+    <li><b>Name the three places where weaknesses hide.</b><span class="answer"><span class="answer-label">Answer:</span> People, process and technology.</span></li>
+    <li><b>In Verizon's 2026 report, what was the most common way attackers got in?</b><span class="answer"><span class="answer-label">Answer:</span> Exploiting vulnerabilities, at 31% of breaches, ahead of stolen credentials at 13%.</span></li>
+    <li><b>Why is a CVSS score not enough to decide what to fix first?</b><span class="answer"><span class="answer-label">Answer:</span> CVSS measures technical severity, not what the weakness would cost your office. A Medium weakness on the system that holds 48,000 records may matter more than a High one on a test machine.</span></li>
+  </ol>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask each question to the whole room and wait for answers before confirming. Do not show the answers on screen.</p>
+    <p><b>ANSWERS:</b> 1. The window left unlocked. 2. People, process and technology. 3. Exploiting vulnerabilities, at 31% of breaches, ahead of stolen credentials at 13%. 4. CVSS measures technical severity, not what the weakness would cost your office. A Medium weakness on the system that holds 48,000 records may matter more than a High one on a test machine.</p>
+    <p><b>TIP:</b> The same four questions are in the learner guide. Anyone who missed one should mark it to review before Quiz 2.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the answers stay hidden. The deck says not to show them; press A only if the room needs to settle one.</p>
+  </aside>
+</section>
+
+<!-- 13 -->
+<section id="tm-questions" data-proofs="tmm-questions" class="l-cards-4" data-min="3" data-code="2.2" data-eyebrow="Predicting where attacks come from · Key idea" data-source="Threat Modeling Manifesto · steps follow the learner guide, Lesson 2.2">
+  <h2>Draw where the data goes, then ask what can go wrong</h2>
+  <div class="cards body">
+    <div class="card"><span class="big">1</span><h4>What are we working on?</h4><p>Step 1: draw it</p></div>
+    <div class="card"><span class="big">2</span><h4>What can go wrong?</h4><p>Steps 2 and 3: STRIDE and the attack path</p></div>
+    <div class="card"><span class="big">3</span><h4>What are we going to do about it?</h4><p>Step 4: rate and treat</p></div>
+    <div class="card"><span class="big">4</span><h4>Did we do a good enough job?</h4><p>Check with the people who run the process</p></div>
+  </div>
+  <p class="callout">This is threat modeling. Anyone who knows a process can do it.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Threat modeling sounds technical, but it rests on four plain questions, set out in the Threat Modeling Manifesto by a group of practitioners. What are we working on? We draw the process. What can go wrong? We go through a checklist, step by step, and look at how attackers move. What are we going to do about it? We rate the risks and choose a treatment for each. Did we do a good enough job? We check the result with the people who actually run the process.</p>
+    <p><b>KEY POINT:</b> Anyone who knows a process can do this. Ben knows the approval spreadsheet better than any outside expert, and Dan knows exactly how payouts reach the e-wallet provider. Knowing the work is what makes a threat model accurate.</p>
+    <p><b>ASK:</b> When did your office last ask "what can go wrong?" before launching a new online form or service?</p>
+    <p><b>LINK:</b> The next slides are the four steps, in order. Your team uses the same steps at 3:50.</p>
+  </aside>
+</section>
+
+<!-- 14 -->
+<section id="dfd-shapes" data-min="4" data-code="2.2" data-eyebrow="Step 1, draw it" data-source="Module 2 learner guide, Lesson 2.2 · Microsoft Learn: threat modeling" data-terms="trust-boundary">
+  <h2>A data flow map uses five shapes</h2>
+  <div class="shapes body">
+    <div class="shape-card"><svg viewBox="0 0 120 80" aria-hidden="true"><rect x="10" y="14" width="100" height="52" class="sh"/></svg><h4>Rectangle</h4><p>Someone or something outside the system</p><p class="eg">A citizen; the SMS vendor</p></div>
+    <div class="shape-card"><svg viewBox="0 0 120 80" aria-hidden="true"><circle cx="60" cy="40" r="32" class="sh"/></svg><h4>Circle</h4><p>A step that handles data</p><p class="eg">"Check application"</p></div>
+    <div class="shape-card"><svg viewBox="0 0 120 80" aria-hidden="true"><path d="M10 20h100M10 60h100" class="sh"/></svg><h4>Two lines</h4><p>A place where data is stored</p><p class="eg">The applicant database; a spreadsheet</p></div>
+    <div class="shape-card"><svg viewBox="0 0 120 80" aria-hidden="true"><path d="M10 40h86" class="sh"/><path d="M92 28l18 12-18 12z" class="sh-fill"/></svg><h4>Arrow</h4><p>Data moving</p><p class="eg">Application details sent to the portal</p></div>
+    <div class="shape-card"><svg viewBox="0 0 120 80" aria-hidden="true"><path d="M10 40h100" class="sh-boundary"/></svg><h4>Dashed line</h4><p>A trust boundary: where data passes into someone else's control</p><p class="eg">Between the internet and the office</p></div>
+  </div>
+  <p class="callout"><b>Trust boundaries matter most:</b> attacks usually happen where data crosses one.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Step 1 answers "what are we working on?" by drawing it, and five shapes are enough. A rectangle is someone or something outside the system that sends or receives data: a citizen, or the SMS vendor. A circle is a step that handles data, named with a verb, such as "Check application". Two parallel lines are a place where data is stored: the applicant database, or a spreadsheet. An arrow is data moving, labelled with what moves. A dashed line is a trust boundary, where data passes into someone else's control: between the internet and the office, or between the office and a vendor.</p>
+    <p><b>KEY POINT:</b> Read the dark box aloud. Attacks usually happen where data crosses a trust boundary, so that is where we look hardest.</p>
+    <p><b>ASK:</b> In the RSSO portal, where does data leave the office's control? (To the SMS vendor, to the e-wallet provider, and to staff phones and home connections.)</p>
+    <p><b>TIP:</b> Neatness does not matter. A complete map drawn by hand beats a beautiful one that misses a vendor.</p>
+    <p><b>PLAIN WORDS:</b> specialists call this a data flow diagram, or DFD.</p>
+  </aside>
+</section>
+
+<!-- 15 -->
+<section id="stride" data-proofs="ms-stride" data-min="5" data-code="2.2" data-eyebrow="Step 2, find what can go wrong" data-source="Microsoft Learn, threat modeling framework" data-terms="stride">
+  <h2>STRIDE: six things that can go wrong</h2>
+  <table class="t body stride-table">
+    <thead><tr><th>Letter</th><th>Threat</th><th>In plain words</th><th>Breaks</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td>S</td><td>Spoofing</td><td>Pretending to be someone else</td><td>Who you are (authentication)</td></tr>
+      <tr class="fragment"><td>T</td><td>Tampering</td><td>Changing data without permission</td><td>Correct (integrity)</td></tr>
+      <tr class="fragment"><td>R</td><td>Repudiation</td><td>Denying you did something, with no record to prove it</td><td>What you did (non-repudiation)</td></tr>
+      <tr class="fragment"><td>I</td><td>Information disclosure</td><td>Data seen by the wrong people</td><td>Secret (confidentiality)</td></tr>
+      <tr class="fragment"><td>D</td><td>Denial of service</td><td>Making the system unavailable</td><td>Ready (availability)</td></tr>
+      <tr class="fragment"><td>E</td><td>Elevation of privilege</td><td>Getting powers you should not have</td><td>What you may do (authorization)</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">T, I and D are this morning's Correct, Secret and Ready.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Step 2 answers "what can go wrong?". STRIDE is a checklist of six kinds of threats, developed at Microsoft. Each letter is a question to ask at every step and every trust boundary on your map. S, spoofing: pretending to be someone else, for example logging in with Ben's stolen password; it breaks authentication, the proof of who you are. T, tampering: changing data without permission, such as editing a payout amount; it breaks integrity, this morning's Correct. R, repudiation: denying you did something when there is no record to prove it; with a shared login, no one can tell who approved a payout. I, information disclosure: data seen by the wrong people, such as the applicant list shared by a public link; it breaks Secret. D, denial of service: making the system unavailable, through ransomware or floods of traffic; it breaks Ready. E, elevation of privilege: getting powers you should not have, such as a clerk account that reaches the admin page; it breaks authorization.</p>
+    <p><b>MEMORY HOOK:</b> three letters are this morning's Secret, Correct, Ready: I, T and D. The other three are about identity: who you are (S), what you did (R), and what you may do (E).</p>
+    <p><b>ASK:</b> Which STRIDE threats does a shared password make easier? (Spoofing and repudiation.)</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next letter. The RSSO examples are the next slide's quick check, so they are not shown here.</p>
+  </aside>
+</section>
+
+<!-- 16 -->
+<section id="stride-call" class="l-interactive" data-min="3" data-code="2.2" data-eyebrow="Quick check · whole room" data-level="Apply" data-source="Microsoft Learn: STRIDE">
+  <h2>Which STRIDE letter?</h2>
+  <p class="brief-strip"><b>Call out the letter, then say what it breaks.</b> <span class="chip"><i data-lucide="timer"></i> 3 min</span></p>
+  <div class="stage"><pdac-match-board data-src="m2-stride-call.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes. Read each situation and let the room call out the letter before you confirm. Online: answers in the chat, then confirm.</p>
+    <p><b>ANSWERS:</b> a. R, repudiation: there is no record of who did what, so non-repudiation is broken. b. I, information disclosure: breaks Secret. c. S, spoofing: breaks authentication. d. E, elevation of privilege: breaks authorization. e. T, tampering: breaks Correct. f. D, denial of service: breaks Ready.</p>
+    <p><b>WATCH FOR:</b> confusion between S and E. Spoofing is pretending to be someone else; elevation is getting more power than your own account should have.</p>
+    <p><b>IF TIME ALLOWS:</b> ask which single change helps with a, c and d together. (One named account per person, protected with MFA, with only the access each role needs.)</p>
+    <p class="notes-web"><b>ON SCREEN:</b> after the room calls each one, click the case, then its letter. A places all six with what each breaks.</p>
+  </aside>
+</section>
+
+<!-- 17 -->
+<section id="attack-path" data-proofs="kill-chain" class="l-interactive" data-min="4" data-code="2.2" data-eyebrow="Step 3, see the attack path" data-source="Lockheed Martin Cyber Kill Chain, via EC-Council · MITRE ATT&amp;CK updates, October 2025">
+  <h2>Attackers move in steps</h2>
+  <div class="stage"><pdac-chain-breaker data-src="m2-chain.json"></pdac-chain-breaker></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Step 3 looks at how attackers move. Lockheed Martin's Cyber Kill Chain names seven steps. Reconnaissance: they research the target, for example staff names and email addresses on the office website. Weaponization: they prepare the attack, such as a fake invoice carrying a harmful file. Delivery: they send it, often by phishing. Exploitation: they break in, through a click or an unpatched weakness. Installation: they settle in so they can come back. Command and control: they take remote control. Actions on objectives: they steal, lock or destroy.</p>
+    <p><b>KEY POINT:</b> Each step is a chance to spot and stop them. A clerk who reports a phishing email stops the attack at delivery; a patch already applied stops it at exploitation; MFA and limited access keep the data out of reach even if attackers get in.</p>
+    <p><b>ASK:</b> At which step can a non-IT employee stop an attack? (Delivery, by spotting and reporting; and reconnaissance, by sharing less about the office online.)</p>
+    <p><b>IT DEPTH:</b> MITRE ATT&amp;CK is a free knowledge base of real attacker techniques. Its Enterprise matrix, version 18 from October 2025, groups them under 14 tactics, from reconnaissance to impact. IT staff can use it to check what their monitoring would detect.</p>
+    <p><b>IF RUNNING LATE:</b> skip the IT depth box.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press plays the next scene: no defenses, email filtering, then the slide's three examples one at a time (staff report the phishing email at Delivery; the weakness was already patched at Exploitation; MFA and limited access at Actions on objectives), then all of them. Or tick defenses yourself and press "Run the attack". A shows every defense on; R resets.</p>
+  </aside>
+  <div class="it-depth">
+    <h3>MITRE ATT&amp;CK</h3>
+    <p>MITRE ATT&amp;CK is a free knowledge base of real attacker behaviour. Its Enterprise matrix (version 18, October 2025) groups techniques under 14 tactics, from reconnaissance to impact.</p>
+    <p>The tactic name on each step comes from MITRE's own data on GitHub (mitre-attack/attack-stix-data, version 18.1), bundled with the presentation by <code>npm run attack</code>. © 2025 The MITRE Corporation. This work is reproduced and distributed with the permission of The MITRE Corporation.</p>
+  </div>
+</section>
+
+<!-- 18 -->
+<section id="matrix" class="l-interactive" data-min="6" data-code="2.2" data-eyebrow="Step 4, rate it" data-source="The bands used in this course · Example: likelihood 4 × impact 3 = 12, High">
+  <h2>Score each risk: likelihood × impact</h2>
+  <div class="stage"><pdac-risk-matrix data-src="m2-risks.json" data-risks="m1,m2,m3"></pdac-risk-matrix></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> Now we rate. Give each threat a likelihood from 1, rare, to 5, almost certain, and an impact from 1, minor, to 5, severe. Multiply them, and the score runs from 1 to 25. This course uses four bands: Low 1 to 4, Medium 5 to 9, High 10 to 16, Critical 20 to 25. Treat Critical and High first.</p>
+    <p><b>WORKED EXAMPLE:</b> the RSSO admin page open to the internet with a default password. Likelihood? Attackers search for exposed pages all the time, so 4, likely. Impact? The sensitive data of 48,000 people, so 5, severe. Score 20, Critical: point to the cell. Now a visitor logbook with names only, left on the front desk: likelihood 2, impact 2, score 4, Low.</p>
+    <p><b>ASK:</b> A risk has likelihood 2 and impact 5. Score and band? (10, High: even an unlikely event is High when the harm is severe.)</p>
+    <p><b>WATCH FOR:</b> teams that rate everything 5. Ask for a one-line reason for each rating; consistency matters more than precision, and the rubric rewards justified ratings.</p>
+    <p><b>PLAIN WORDS:</b> these numbers are careful judgements, not measurements. Two careful teams may differ by one point, and that is fine.</p>
+    <p><b>NOTE:</b> scores of 17 to 19 cannot occur, because no two numbers from 1 to 5 multiply to them.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> place the slide's worked examples live: click a risk, then its cell (the admin page, 4 × 5 = 20, Critical; the visitor logbook, 2 × 2 = 4, Low; the room's question, 2 × 5 = 10, High). A places them. The bands are this course's convention, not a standard.</p>
+  </aside>
+</section>
+
+<!-- 19 -->
+<section id="tara" class="l-cards-4" data-min="5" data-code="2.2" data-eyebrow="Step 4, then treat it" data-source="ISO/IEC 27005: sharing, avoidance, modification and retention">
+  <h2>Choose one treatment for each risk: TARA</h2>
+  <div class="cards body">
+    <div class="card"><span class="k">ISO 27005: sharing</span><h3>Transfer</h3><p>Pass part of the consequence to someone else</p><p class="eg">Insurance; a vendor contract with security duties</p></div>
+    <div class="card"><span class="k">ISO 27005: avoidance</span><h3>Avoid</h3><p>Stop the activity that creates the risk</p><p class="eg">Stop collecting a field you do not need</p></div>
+    <div class="card"><span class="k">ISO 27005: modification</span><h3>Reduce</h3><p>Add a control that lowers likelihood or impact</p><p class="eg">MFA, encryption, training</p></div>
+    <div class="card"><span class="k">ISO 27005: retention</span><h3>Accept</h3><p>Keep the risk, with written approval</p><p class="eg">A Low risk that costs more to fix than it could lose</p></div>
+  </div>
+  <p class="callout">Then record it in the <b>risk register</b>: the risk, its owner, likelihood, impact, score, treatment, and the risk left after treatment.</p>
+  <div class="it-depth"><h3>Where the register starts</h3><p>The asset inventory (ISO/IEC 27001 control 5.9) lists what you are protecting; the register lists what could go wrong with it. ISO 27001 asks risk owners to approve the treatment plan and accept the risk that is left (clause 6.1.3).</p></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> Still Step 4: what are we going to do about each risk? There are four choices; remember TARA. Transfer: pass part of the consequence to someone else, for example insurance, or a vendor contract that gives the vendor security duties. Avoid: stop the activity that creates the risk, for example stop collecting a field you never use. Reduce: add a control that lowers the likelihood or the impact, such as MFA, encryption or training; this is the most common choice. Accept: keep the risk, with written approval, when it is Low and would cost more to fix than it could ever lose.</p>
+    <p><b>CAUTION:</b> Transfer moves some of the cost, never the accountability. Under the DPA, the office stays responsible for personal data that its vendors process for it (Sections 14 and 21).</p>
+    <p><b>REGISTER:</b> read the dark box. Every risk gets an owner, a named person rather than a unit, so someone answers for it. The risk left after treatment is the score you expect once the control is in place. ISO 27001 asks risk owners to approve the treatment plan and to accept the risk that is left (clause 6.1.3).</p>
+    <p><b>ASK:</b> The RSSO buys cyber insurance. Which treatment is that, and is the office still accountable? (Transfer; yes, it is.)</p>
+    <p><b>PLAIN WORDS:</b> ISO/IEC 27005, the risk management guide in the ISO 27000 family, calls these sharing, avoidance, modification and retention.</p>
+  </aside>
+</section>
+
+<!-- 20 -->
+<section id="worked-map" class="l-interactive" data-min="7" data-code="2.2" data-eyebrow="Worked example · Step 1, draw it · fictional" data-level="Analyze" data-source="Fictional example · the same map is in your learner guide, Lesson 2.2">
+  <h2>The booking page: data crosses two trust boundaries</h2>
+  <p class="brief-strip">Citizens book an office visit online. A cloud form service keeps the list. Staff confirm by SMS.</p>
+  <div class="stage"><pdac-dfd-stride data-src="m2-booking-dfd.json"></pdac-dfd-stride></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes.</p>
+    <p><b>CO-BUILD FIRST:</b> before showing this slide, draw the map live with the room, on the whiteboard face-to-face or on the shared canvas online, using the same template teams will use at 3:50. Then reveal this slide as the clean version.</p>
+    <p><b>QUESTION 1, WHAT ARE WE WORKING ON:</b> the RSSO's online appointment booking page. Citizens give their name, mobile number and purpose; a cloud form service keeps the list; staff check it and send a confirmation by SMS. DRAW, asking the room at each step: the citizen, a rectangle, outside the system; "Book appointment", a circle; the appointments list, two lines, kept by the vendor; "View and confirm", a circle; staff, a rectangle; an arrow for each flow, including the confirmation SMS going back to the citizen.</p>
+    <p><b>BOUNDARIES:</b> ask "where does the data pass into someone else's control?" Mark the dashed line between the internet and the office, and the dashed box around the vendor's cloud service.</p>
+    <p><b>KEY POINT:</b> the citizen's data crosses two trust boundaries, from the internet into the office and then into a vendor's cloud. Those crossings are where attacks are most likely, so Step 2 looks there first.</p>
+    <p><b>ASK:</b> What data crosses each boundary? (Name, mobile number and purpose going in; the SMS confirmation going out.)</p>
+    <p><b>WATCH FOR:</b> maps that forget return flows such as the SMS. Data going out to people crosses boundaries too.</p>
+    <p><b>IF RUNNING LATE:</b> skip the live drawing and walk through this slide instead; the whole worked example can shrink to 8 minutes.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> co-build the map first on the board, then show this one. Click any shape or arrow for the STRIDE threats that apply; A shows the three worked threats.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> I opens the same map as an OWASP Threat Dragon model: open it in the Threat Dragon app to show the guide's threats in a real tool, then add one more threat live.</p>
+  </aside>
+  <div class="it-depth">
+    <h3>The same map in OWASP Threat Dragon</h3>
+    <p>Threat Dragon is OWASP's free, open-source threat modeling tool. This model has the same shapes, both trust boundaries and the guide's three worked threats, built from this slide's data.</p>
+    <p class="tool-links"><a class="pdac-btn pdac-btn--quiet" href="tools/threat-dragon/rsso-booking-page.json" download><i data-lucide="file-text"></i> rsso-booking-page.json</a></p>
+    <p>Open it in Threat Dragon 2.6.2 (desktop app, works offline): Open an existing threat model, then the diagram.</p>
+  </div>
+</section>
+
+<!-- 21 -->
+<section id="worked-threats" class="l-interactive" data-min="4" data-code="2.2" data-eyebrow="Worked example · Step 2 at each element" data-source="Fictional example · learner guide, Lesson 2.2, worked example">
+  <h2>Three things that could go wrong</h2>
+  <div class="stage"><pdac-dfd-stride data-src="m2-booking-dfd.json" data-view="threats"></pdac-dfd-stride></div>
+  <p class="sim-ask"><i data-lucide="circle-help"></i> Ask all six STRIDE letters at each element, then keep the threats that matter.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Step 2: walk STRIDE along the map, starting where data crosses a boundary. Three threats are enough to show the method. Spoofing at "Book appointment": someone books in another person's name and number; a one-time code sent to that mobile number proves the person controls it. Information disclosure at the appointments list: the list is shared by a public link, so anyone with the link can see who is visiting and why; the control is access for named staff accounts only. Denial of service at "Book appointment": automated fake bookings fill every slot, so real citizens cannot book; limit bookings per number and add a human check.</p>
+    <p><b>ASK:</b> What other threats can the room find? Take two. Likely answers: tampering, someone changes bookings in the list; repudiation, a shared vendor login hides who deleted a booking; elevation of privilege, a staff account with admin rights on the form service it does not need; information disclosure, an SMS that reveals the purpose of the visit, such as a medical concern, to anyone who sees the phone.</p>
+    <p><b>TIP:</b> the "Who is harmed" column in the team threat table keeps attention on citizens, not only on systems.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the clicker reveals one row at a time.</p>
+  </aside>
+</section>
+
+<!-- 22 -->
+<section id="worked-register" class="l-interactive" data-min="4" data-code="2.2" data-eyebrow="Worked example · Step 4 in the risk register" data-break-after="10" data-source="Fictional example · learner guide, Lesson 2.2 · the course's 5 by 5 bands">
+  <h2>Two risks, rated and treated</h2>
+  <div class="stage"><pdac-risk-matrix data-src="m2-risks.json" data-risks="w1,w2"></pdac-risk-matrix></div>
+  <p class="sim-ask"><i data-lucide="circle-help"></i> Every risk has a named owner, and High comes before Medium.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Step 4: rate, treat and record. The public link: likelihood 4, because public links are easy to forward and hard to control once shared; impact 3, because the list holds names, mobile numbers and visit purposes, which can reveal private matters, but no ID numbers or health records. Score 12, High. Owner: Ana, the IT officer, because she manages the form service settings. Treatment: Reduce, by removing public links and allowing named staff accounts only. Fake bookings: likelihood 3, possible; impact 2, moderate, because citizens are delayed and staff time is lost, but no data is exposed. Score 6, Medium. Owner: Ben, who runs the bookings. Treatment: Reduce, with a booking limit per number and a daily review.</p>
+    <p><b>ASK:</b> After Ana removes the public links, what risk is left? (For example, likelihood 2 times impact 3 gives 6, Medium. That goes in the register as the risk left after treatment.)</p>
+    <p><b>KEY POINT:</b> every rating needs a one-line reason. That is exactly what the rubric checks at 3:50.</p>
+    <p><b>LINK:</b> The team template in the learner guide has these same columns, plus a column for the control and the reason.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a risk, then its cell, or press A: the public link at 4 × 3 = 12, High (owner Ana); fake bookings at 3 × 2 = 6, Medium (owner Ben).</p>
+  </aside>
+</section>
+
+<!-- 23 -->
+<section id="check-2-2" data-min="2" data-code="2.2" data-eyebrow="Check yourself 2.2 · after the break" data-source="Learner guide, Check yourself 2.2">
+  <h2>Welcome back: five quick ones</h2>
+  <ol class="checks body">
+    <li><b>What are the four threat modeling questions?</b><span class="answer"><span class="answer-label">Answer:</span> What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job?</span></li>
+    <li><b>What does a dashed line mean on a data flow map, and why does it matter?</b><span class="answer"><span class="answer-label">Answer:</span> A trust boundary, where data passes into someone else's control. Attacks usually happen where data crosses one.</span></li>
+    <li><b>Which three STRIDE threats match Secret, Correct and Ready?</b><span class="answer"><span class="answer-label">Answer:</span> Information disclosure (Secret), tampering (Correct) and denial of service (Ready).</span></li>
+    <li><b>A risk has likelihood 4 and impact 4. What are its score and band?</b><span class="answer"><span class="answer-label">Answer:</span> 16, High.</span></li>
+    <li><b>What do the letters of TARA stand for?</b><span class="answer"><span class="answer-label">Answer:</span> Transfer, Avoid, Reduce, Accept.</span></li>
+  </ol>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Recalling after a break is what makes 2.2 stick, so ask before anyone opens the guide. Take answers from different teams.</p>
+    <p><b>ANSWERS:</b> 1. What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job? 2. A trust boundary, where data passes into someone else's control. Attacks usually happen where data crosses one. 3. Information disclosure (Secret), tampering (Correct) and denial of service (Ready). 4. 16, High. 5. Transfer, Avoid, Reduce, Accept.</p>
+    <p><b>LINK:</b> Now 2.3, the attacks aimed at people. They cross trust boundaries too: a phishing email is data crossing from the internet into your inbox.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> answers stay hidden until you press A.</p>
+  </aside>
+</section>
+
+<!-- 24 -->
+<section id="human-key" class="l-tiles" data-min="3" data-code="2.3" data-eyebrow="Attacks aimed at people · Key idea" data-source="Verizon 2026 DBIR, as reported by SecurityWeek (19 May 2026)">
+  <h2>Tricking people is cheaper than breaking systems</h2>
+  <pdac-stat-proof class="body">
+    <div class="tiles" style="--n:3">
+      <div class="tile" data-proof="dbir-human-62"><div class="num"><span data-countup="62" data-suffix="%">62%</span></div><p class="cap">of breaches involved the human element: a mistake, a click on a phishing link, a misused password</p></div>
+      <div class="tile" data-proof="dbir-human-16"><div class="num"><span data-countup="16" data-suffix="%">16%</span></div><p class="cap">of breaches were caused by social engineering, meaning tricks played on people</p></div>
+      <div class="tile" data-proof="dbir-human-40"><div class="num"><span data-countup="40" data-suffix="%">40%</span></div><p class="cap">higher median success for phishing on mobile phones than by email</p></div>
+    </div>
+  </pdac-stat-proof>
+  <p class="tiles-note"><b>Your best defense is a habit: pause, verify, report.</b></p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Attackers trick people because it is cheaper and faster than breaking systems: one convincing message can open every door that the person's account can open. In Verizon's 2026 report, 62 percent of breaches involved the human element, meaning a person's mistake, a click on a phishing link, or a misused password. 16 percent of breaches were caused by social engineering, which means tricks played on people. And phishing on mobile phones succeeded more often than phishing by email, with a median success rate 40 percent higher. Think about why: a small screen hides the real sender and the real link, and we read messages on the move.</p>
+    <p><b>KEY POINT:</b> This is not about blaming people. It means people are part of the defense, and a habit beats a warning: pause, verify, report.</p>
+    <p><b>ASK:</b> How many of you read work messages on your phone? (Most.) So the phone is where this afternoon's skills matter most.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press shows the next number's source: all three come from one sentence in SecurityWeek's report on the 2026 DBIR. E shows it with a QR code.</p>
+  </aside>
+</section>
+
+<!-- 25 -->
+<section id="tricks" data-min="6" data-code="2.3" data-eyebrow="The tricks, in plain words" data-source="Module 2 learner guide, Lesson 2.3" data-terms="phishing,social-engineering">
+  <h2>Twelve tricks to know by name</h2>
+  <div class="tricks body">
+    <div><b>Phishing</b><span>A fake email to make you click, open a file or give a password</span></div>
+    <div><b>Spear phishing</b><span>Phishing written for you, using your name, office or boss</span></div>
+    <div><b>Whaling</b><span>Phishing aimed at heads of office and senior officials</span></div>
+    <div><b>Smishing</b><span>Phishing by text message, often with a short link</span></div>
+    <div><b>Vishing</b><span>Phishing by phone call, posing as an agency, a bank or the police</span></div>
+    <div><b>Quishing</b><span>A QR code that leads to a fake page</span></div>
+    <div><b>Business email compromise</b><span>A fake or hijacked account asks to change bank details or pay urgently</span></div>
+    <div><b>Pretexting</b><span>A made-up story: "I'm from IT and need your one-time code"</span></div>
+    <div><b>MFA fatigue</b><span>Sign-in prompts again and again until someone taps Approve</span></div>
+    <div><b>Tailgating</b><span>Following an authorized person through a secured door</span></div>
+    <div><b>USB baiting</b><span>A "lost" USB stick left for someone to plug in</span></div>
+    <div><b>Deepfakes</b><span>AI-made voice or video of a real person, such as a boss asking for money</span></div>
+  </div>
+  <p class="callout">Ransomware usually enters the same way: through a phishing message or a stolen password.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> Knowing the names helps people recognize and report these tricks. Go row by row and ask for an example of each from the room, without names. Phishing, spear phishing, whaling and smishing: the same trick by email or text, from mass messages to ones written for one person or for a head of office. Vishing: phone calls, often from a caller posing as an agency, a bank or the police. Quishing: a QR code, for example on a poster, that leads to a fake page. Business email compromise: a fake or hijacked supplier or official account asks to change bank details or to pay an urgent invoice. Pretexting: a made-up story to get information, such as "I'm from IT and need your one-time code". MFA fatigue: repeated sign-in prompts until someone taps Approve just to make them stop; if you get a prompt you did not start, deny it and report it. Tailgating: following someone through a secured door. USB baiting: a "lost" USB stick left for someone to plug in. Deepfakes: AI-made voice or video of a real person, which links back to this morning's generative AI risks.</p>
+    <p><b>KEY POINT (footer):</b> ransomware usually starts the same way, with a phishing message or a stolen password; then attackers spread inside, steal data and lock files.</p>
+    <p><b>ASK:</b> Which of these has someone in your office received this year? Smishing and vishing are the usual answers.</p>
+  </aside>
+</section>
+
+<!-- 26 -->
+<section id="real-cases" data-proofs="deepfake-hk,deepfake-15" class="l-cards-3" data-min="3" data-code="2.3" data-eyebrow="Two real examples" data-source="PNA, 26 September 2024 · Security Affairs, 5 February 2024">
+  <h2>Impostors borrow a name, a voice, a face</h2>
+  <div class="cards c2 body">
+    <div class="card"><span class="k">September 2024 · Philippines</span><h3>Callers posing as DICT staff</h3><p>Callers claimed to be from DICT and said a person's SIM card was "recommended for suspension" over illegal activity. The CICC's advice: ignore such calls and report them to hotline 1326.</p></div>
+    <div class="card"><span class="k">February 2024 · Hong Kong</span><h3>A deepfake video call</h3><p>A finance employee joined a video call with what looked like the company's chief financial officer and colleagues. Everyone else on the call was a deepfake. The employee made 15 transfers totaling HK$200 million, about US$25.5 million.</p></div>
+  </div>
+  <p class="callout">Both borrowed a trusted name and added pressure. The defense is the same: stop, and verify through a channel you already know.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Two real cases, one at home and one abroad. First: in September 2024, the CICC warned of callers claiming to be from DICT who told people their SIM card was "recommended for suspension" over illegal activity. The fear of losing your number is the pressure. The CICC's advice was to ignore such calls and report them to hotline 1326. Second: in February 2024, a finance employee at a multinational company's Hong Kong office joined a video call with what looked like the company's chief financial officer and several colleagues. Everyone else on the call was a deepfake. The employee made 15 transfers totaling 200 million Hong Kong dollars, about 25.5 million US dollars.</p>
+    <p><b>KEY POINT:</b> Both borrowed a trusted name and added pressure. Seeing a face or hearing a voice is no longer proof of who someone is. The defense is the same as for any message: stop, and verify through a channel you already know, such as calling back on a number from your own records.</p>
+    <p><b>ASK:</b> At the RSSO, what would stop a deepfake "Director Eva" from ordering an urgent payout? (A call-back to a known number, and a second approver.)</p>
+    <p><b>LINK:</b> This morning's ASEAN guide listed deepfakes and fraud among the generative AI risks.</p>
+  </aside>
+</section>
+
+<!-- 27 -->
+<section id="slam" data-min="4" data-code="2.3" data-eyebrow="Check any message" data-source="Module 2 learner guide, Lesson 2.3 · CyberChef (GCHQ)">
+  <h2>Check it with SLAM</h2>
+  <div class="slam body">
+    <div class="slam-l"><span class="L">S</span><b>Sender</b><p>A known name with an odd address; free email for "official" mail; a misspelled agency domain</p></div>
+    <div class="slam-l"><span class="L">L</span><b>Links</b><p>The real address (hover or long-press) does not match the sender; short links; login pages reached from a message</p></div>
+    <div class="slam-l"><span class="L">A</span><b>Attachments</b><p>Files you did not expect: archives, documents asking you to enable content, "invoices"</p></div>
+    <div class="slam-l"><span class="L">M</span><b>Message</b><p>Urgency, threats, rewards, secrecy; requests for passwords, one-time codes, payments or bank changes</p></div>
+  </div>
+  <p class="callout"><b>Then: pause, verify, report.</b> Verify through a number or address you already know, never one in the message. Never share a one-time code with anyone.</p>
+  <p class="tool-links"><span class="tl-k">Like an analyst, in CyberChef:</span>
+    <a class="pdac-btn pdac-btn--quiet" href="tools/cyberchef/index.html#recipe=Parse_URI()&amp;input=aHR0cHM6Ly9kaWN0LWdvdi1waC52ZXJpZnktcG9ydGFsLmV4YW1wbGUvbG9naW4%3D" target="_blank" rel="noopener"><i data-lucide="search"></i> Read the link</a>
+    <a class="pdac-btn pdac-btn--quiet" href="tools/cyberchef/index.html#recipe=Defang_URL(true,true,true,%27Valid%20domains%20and%20full%20URLs%27)&amp;input=aHR0cHM6Ly9kaWN0LWdvdi1waC52ZXJpZnktcG9ydGFsLmV4YW1wbGUvbG9naW4KaHR0cHM6Ly9zLmV4YW1wbGUvcnE3S3AKaHR0cHM6Ly9kb2NzLXZpZXdlci5leGFtcGxlL3Jzc28tcmVnaW9ucS9zaWduaW4%3D" target="_blank" rel="noopener"><i data-lucide="shield-check"></i> Defang links for your report</a>
+  </p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> SLAM is a four-step check for any message, on any device. S, Sender: a name you know but an odd address; a free email account sending an "official" message; an agency domain spelled slightly wrong. Philippine government offices normally use addresses ending in .gov.ph. L, Links: on a computer, hover over the link; on a phone, press and hold it, and read the real address before you tap. Be wary of short links, and of login pages reached from a message. A, Attachments: files you did not expect, especially compressed archives, documents that ask you to "enable content", and surprise "invoices". M, Message: urgency, threats, rewards and secrecy, or any request for passwords, one-time codes, payments or changes to bank details.</p>
+    <p><b>THEN:</b> pause, verify, report. Verify through a number or address you already know, never the one in the message, because the scammer controls anything in the message. Never share a one-time code with anyone; no genuine agency, bank or IT unit needs it.</p>
+    <p><b>ASK:</b> Which SLAM letter would have caught the deepfake call? (M: an urgent, secret request for transfers. Then verify by calling back.)</p>
+    <p><b>PRACTICE:</b> the next activity uses SLAM on eight messages.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the two buttons open CyberChef (GCHQ's analyst toolkit), bundled so it works offline, with the fictional links from Try it 2.3. "Read the link" splits the address: the real site is verify-portal.example, not a .gov.ph domain. "Defang" turns links into hxxps[://]…[.]example, so a link pasted into a report to IT cannot be clicked by accident.</p>
+  </aside>
+</section>
+
+<!-- 28 -->
+<section id="layers" data-proofs="spf,dkim,dmarc" class="l-interactive" data-min="4" data-code="2.3" data-eyebrow="Defense in layers" data-source="SPF, DKIM and DMARC: Vortenza guide · learner guide, Lesson 2.3" data-terms="dmarc">
+  <h2>Three layers, so one click is not a disaster</h2>
+  <div class="stage"><pdac-layers-sim data-src="m2-layers.json"></pdac-layers-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> No single defense is enough, so we build three layers, the same People, Process and Technology we used to find weaknesses. People: staff who recognize tricks and report them without fear of blame. The no-blame part matters: the person who reports a click within minutes protects the office; the one who hides it out of embarrassment lets the attack spread. Process: routines that do not depend on one person being fooled. Before any payment or bank-detail change, a call-back to a number already on file and a second approver. A call-back to the real person on a known number is exactly what defeats a fake bank-detail request or a deepfake order. Technology: email filtering; phishing-resistant MFA, such as passkeys or security keys, which a fake login page cannot capture and reuse; least privilege, so each account reaches only what its job needs; and offline backups that ransomware cannot reach.</p>
+    <p><b>IT DEPTH:</b> three email records help receivers spot forged mail that claims to come from your domain: SPF, DKIM and DMARC. Ask IT staff to check that their domain has all three, and that the DMARC policy moves from none toward quarantine or reject.</p>
+    <p><b>ASK:</b> Which layer could Dan, the cashier, add tomorrow without buying anything? (The call-back and second-approver routine.)</p>
+    <p><b>IF RUNNING LATE:</b> skip the IT depth box.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press adds one layer, in the slide's order, and sends the same ten attacks: 10 land with no layers, then 4 with people, 3 with process, 0 with technology. When technology comes on, the card on the right shows why the faked-address email failed SPF, DKIM and DMARC. A switches every layer on, R resets.</p>
+  </aside>
+  <div class="it-depth">
+    <h3>Email records</h3>
+    <p><b>SPF</b> lists the servers allowed to send mail for your domain. <b>DKIM</b> signs each message so changes can be detected. <b>DMARC</b> tells receivers what to do with mail that fails those checks (<code>none</code>, <code>quarantine</code> or <code>reject</code>) and sends you reports.</p>
+  </div>
+</section>
+
+<!-- 29 -->
+<section id="phish-1" class="l-interactive" data-min="7" data-timer="15" data-timer-label="Try it 2.3 (both slides)" data-code="2.3" data-eyebrow="Try it 2.3 · all messages fictional" data-level="Apply" data-source="Learner guide, Try it 2.3 (fictional messages)">
+  <h2>Phish or legit? Messages 1 to 4</h2>
+  <div class="stage"><pdac-phish-or-legit data-src="m2-messages.json" data-range="1-4"></pdac-phish-or-legit></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes for messages 1 to 4 (4 in teams, 3 for the debrief).</p>
+    <p><b>ALL FICTIONAL:</b> say so clearly. The web address in message 1 ends in .example, a name reserved for examples, so it can never be a real site. Face-to-face: teams vote with a show of hands or cards, then name the warning signs. Online: one poll per message, then reasons in the chat.</p>
+    <p><b>ANSWERS:</b> 1. Phish. A look-alike address that is not a .gov.ph domain, a 24-hour deadline, and a login link. 2. Phish until verified: business email compromise. A bank-detail change plus urgency. Call the supplier on the number in your own files, and get a second approval. 3. Phish: smishing. A short link, pressure about a payout, and a request to update details by text. 4. Phish: vishing. Authority plus a request for a one-time code. Never share a one-time code; report the call to 1326.</p>
+    <p><b>WATCH FOR:</b> teams that call message 2 legit because the supplier is real. A real supplier's email account can be hijacked; the request itself is the warning sign.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> vote phish or legit, then name the warning signs with SLAM; the clicker reveals the verdict and marks the signs. One 15-minute timer covers both slides: start it here with T and let it run into phish-2.</p>
+  </aside>
+</section>
+
+<!-- 30 -->
+<section id="phish-2" class="l-interactive" data-min="8" data-code="2.3" data-eyebrow="Try it 2.3 · continued · all messages fictional" data-level="Apply" data-demo="scamcheck" data-source="Learner guide, Try it 2.3 (fictional messages)">
+  <h2>Phish or legit? Messages 5 to 8</h2>
+  <div class="stage"><pdac-phish-or-legit data-src="m2-messages.json" data-range="5-8"></pdac-phish-or-legit></div>
+  <p class="demo-strip"><a class="pdac-btn pdac-btn--quiet" href="https://scamcheck.ph" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i> Try ScamCheck.ph</a> <span>Fictional messages 3 and 6 only. Not an official government tool. <span class="kbd">F</span> plays the recorded clip.</span></p>
+  <aside class="notes">
+    <p><b>TIME:</b> 8 minutes for messages 5 to 8 (4 in teams, 4 for the debrief and the experiment).</p>
+    <p><b>ANSWERS:</b> 5. Phish: quishing. A QR code on an unofficial poster leading to a claim page. Check the office's official channels instead. 6. Phish from a hijacked account: urgency, an unusual tone, and a link to a password page. Call your colleague to check, and report it. 7. Legit: a known sender, no link or attachment, and it matches the memo. 8. Legit: no link, and it tells you to call a number you already have, the one on your card.</p>
+    <p><b>KEY POINT:</b> the two genuine messages show what safe looks like: nothing to click, and a way to verify that you already control.</p>
+    <p><b>EXPERIMENT (4 minutes, if the internet works):</b> open ScamCheck.ph on the projector and paste messages 3 and 6, which are fictional. Before pressing check, ask the room to predict the verdict; then compare.</p>
+    <p><b>SAY:</b> ScamCheck.ph is a free AI-assisted checker built by the civic-tech group BetterGov.PH. It is not an official government tool, and AI results can be wrong, so your SLAM check and verification still decide. Never paste real names, account numbers, one-time codes or official records into any public checker.</p>
+    <p><b>FALLBACK:</b> with no connection, skip the experiment and use the time for the debrief.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the button opens ScamCheck.ph in a new tab for the experiment; with no connection, F plays the recorded clip or skip it.</p>
+  </aside>
+</section>
+
+<!-- 31 -->
+<section id="report" data-proofs="scamsafe,scamsafe-date,ra12010-se,ra12010-mule" data-break-link="phishing-quiz" class="l-cards-3" data-min="3" data-code="2.3" data-eyebrow="Where to report" data-break-after="10" data-source="PNA (1326) · Newsbytes, 20 Dec 2025 (ScamSafe) · RA 12010, 20 July 2024">
+  <h2>Report fast: speed beats embarrassment</h2>
+  <div class="cards body">
+    <div class="card"><span class="k">At work</span><h3>Your IT unit or DPO</h3><p>A suspicious message or call, or you clicked something: tell them at once.</p></div>
+    <div class="card"><span class="k">A scam aimed at you or citizens</span><h3>Hotline 1326</h3><p>The government's 24/7 Inter-Agency Response Center: CICC, DICT, NTC and NPC, with the PNP and NBI. Or report through CICC ScamSafe.</p></div>
+    <div class="card"><span class="k">A second opinion</span><h3>ScamCheck.ph</h3><p>A free civic-tech checker, not an official tool. Remove names, account numbers and codes first; never use it for official records.</p></div>
+  </div>
+  <p class="callout"><b>RA 12010 (AFASA, 2024):</b> tricking someone into giving account details, and letting your account move scam money (money muling), are crimes. Never lend or sell access to your e-wallet or bank account.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Reporting fast matters more than anything else on this slide. At work: if a message or call looks wrong, or you already clicked, tell your IT unit or DPO at once. Minutes count, and no one should be blamed for reporting. This links to this morning's 72-hour clock: the office cannot notify on time about something it never hears. For scams aimed at you or at citizens: hotline 1326, the government's 24/7 Inter-Agency Response Center, run by the CICC, DICT, NTC and NPC, with the PNP and NBI as its law enforcement arm. Or CICC ScamSafe, the reporting and information platform launched on 19 December 2025. For a second opinion on a message: ScamCheck.ph, a free civic-tech checker; it is not an official government tool, so strip out personal details first.</p>
+    <p><b>THE LAW:</b> under the Anti-Financial Account Scamming Act, RA 12010 of 20 July 2024, social engineering schemes that trick people into giving account details, and money muling, letting your account be used to move scam money, are crimes. Tell citizens and family members: never lend or sell access to your e-wallet or bank account.</p>
+    <p><b>ASK:</b> Who has saved 1326 in their phone? Ask everyone to save it now, before the break.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> break next: press K. The break screen shows the QR code for Jigsaw's (Google) phishing quiz, about 5 minutes on a phone; it needs internet. It asks for a made-up name and email, which stay on the phone. Good practice right before Quiz 2.</p>
+  </aside>
+</section>
+
+<!-- 32 -->
+<section id="quiz2" data-min="15" data-timer="15" data-timer-label="Quiz 2" data-eyebrow="Quiz 2 · 10% of your grade" data-source="ILCDB-approved form">
+  <h2>12 items · 15 minutes</h2>
+  <p class="quiz-rules">Closed book, one attempt. Vulnerabilities and personal data (4), threat modeling and risk (5), attacks aimed at people (3).</p>
+  <div class="body center-v"><pdac-qr-panel data-link="quiz2"></pdac-qr-panel></div>
+  <p class="muted">Face-to-face: scan the QR code · Online: link in the chat</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 15 minutes.</p>
+    <p><b>BEFORE THE SESSION:</b> add the QR code and short link for this run's Quiz 2 form to this slide; the online run uses its own form, so its answers stay separate. Keep printed copies and answer sheets as backup.</p>
+    <p><b>DURING:</b> start a 15-minute countdown on the main screen. Face-to-face, walk the room; online, keep cameras on where bandwidth allows.</p>
+    <p><b>FORM SETTINGS:</b> quiz mode, one point per item, shuffled questions and options, one response per person, and scores released only after the review. Collect name and office only.</p>
+    <p><b>CONTENT:</b> 12 items, ten multiple choice (four of them short scenarios) and two true or false, all drawn from the Check yourself questions and the desk card.</p>
+    <p><b>AFTER:</b> there is no review slot here, because the risk assessment starts at 3:50. Review the two or three most-missed items in the 4:45 close, then release the scores. The answer key is in the facilitator-only Quiz Bank.</p>
+  </aside>
+</section>
+
+<!-- 33 -->
+<section id="ra-scenario" data-min="2" data-eyebrow="Graded risk assessment · 20% · 3:50 to 4:45 · fictional scenario" data-source="Fictional office · scenario, templates and rubric in the learner guide">
+  <h2>The RSSO Assistance Portal</h2>
+  <div class="body grid-2 ra-points">
+    <ol class="big-list">
+      <li>Citizens apply on the portal and upload a valid ID and, for medical assistance, a medical certificate.</li>
+      <li>Each application holds name, address, birthdate, mobile number, government ID number, health information and e-wallet number.</li>
+      <li>Applications are saved in the applicant database on the office server, in the server room.</li>
+      <li>Ben exports new applications to a shared approval spreadsheet, where supervisors approve them.</li>
+    </ol>
+    <ol class="big-list" start="5">
+      <li>Dan uploads approved payouts (names, e-wallet numbers and amounts) to the e-wallet provider's business portal.</li>
+      <li>An SMS vendor receives names and mobile numbers through a system link and texts status updates to applicants.</li>
+      <li>Ana manages the server. Remote staff connect through a VPN, and some open the approval spreadsheet on personal phones.</li>
+      <li>Each night, a backup is copied to a USB drive kept in the server room.</li>
+    </ol>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> This is the system your team will assess. Read it as a story, following the data. Citizens apply online with an ID and, for medical assistance, a medical certificate, so each application holds sensitive data. It lands in the applicant database on the office server. Ben exports new applications to a shared approval spreadsheet. Dan uploads approved payouts to the e-wallet provider's business portal. An SMS vendor receives names and mobile numbers through a system link. Ana manages the server; remote staff use a VPN, and some open the approval spreadsheet on personal phones. Each night a backup goes to a USB drive in the server room.</p>
+    <p><b>ASK:</b> How many places does the data leave the office's control? (At least four: the SMS vendor, the e-wallet provider, personal phones, and remote connections.) And which copy of the data is easiest to walk away with? (The backup USB drive.)</p>
+    <p><b>KEY POINT:</b> everything here is fictional. Teams should not add details from their own office's real systems.</p>
+  </aside>
+</section>
+
+<!-- 34 -->
+<section id="ra-map" class="l-table" data-min="1" data-eyebrow="Graded risk assessment · a starter list for your map" data-source="Learner guide: Graded risk assessment, a starter list for your map">
+  <h2>Start with these, then add what is missing</h2>
+  <table class="t body">
+    <thead><tr><th>Shape</th><th>Elements</th></tr></thead>
+    <tbody>
+      <tr><td>Rectangles (outside the system)</td><td>Citizen; SMS vendor; e-wallet provider; staff working from home</td></tr>
+      <tr><td>Circles (steps)</td><td>Submit application; approve application; pay out; send SMS update</td></tr>
+      <tr><td>Two lines (stores)</td><td>Applicant database; approval spreadsheet; backup USB drive</td></tr>
+      <tr><td>Dashed lines (trust boundaries)</td><td>You decide where data passes into someone else's control</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">Use the five shapes only. A complete map matters more than a neat one.</p>
+  <p class="tool-links"><span class="tl-k">Optional, for IT-minded teams:</span>
+    <a class="pdac-btn pdac-btn--quiet" href="tools/threat-dragon/rsso-portal-starter.json" download><i data-lucide="file-text"></i> The starter list as an OWASP Threat Dragon model</a>
+  </p>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>SAY:</b> To save time, here is a starter list for your map. Four rectangles: the citizen, the SMS vendor, the e-wallet provider, and staff working from home. Four steps: submit, approve, pay out, and send SMS update. Three stores: the applicant database, the approval spreadsheet, and the backup USB drive. The trust boundaries are for your team to decide: where does data pass into someone else's control? Add anything you think is missing, such as personal phones.</p>
+    <p><b>TIP:</b> a complete map drawn by hand beats a neat one that misses a vendor.</p>
+  </aside>
+</section>
+
+<!-- 35 -->
+<section id="ra-deliver" data-min="1" data-eyebrow="Graded risk assessment · what to submit" data-source="Learner guide: Graded risk assessment">
+  <h2>Five things your team hands in</h2>
+  <ol class="big-list deliver-list">
+    <li>A data flow map with every trust boundary marked</li>
+    <li>At least 8 threats, each with its STRIDE letter and the element it attacks</li>
+    <li>A 5 by 5 risk matrix with your top 5 risks placed, each with a one-line reason for its ratings</li>
+    <li>For each top-5 risk: a TARA treatment, a control, and an owner from the RSSO cast</li>
+    <li>A contribution line: each member's name and what they did</li>
+  </ol>
+  <p class="callout">The threat table (8 rows) and the risk register (top 5) templates are in your learner guide.</p>
+  <p class="muted">Face-to-face: A3 sheets photographed, plus the typed tables · Online: your team's shared document</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>SAY:</b> Five things. A data flow map with every trust boundary marked. At least eight threats, each with its STRIDE letter and the element it attacks. A 5 by 5 risk matrix with your top five risks placed, each with a one-line reason for its ratings. For each top-five risk: a TARA treatment, a control, and an owner from the RSSO cast. And a contribution line with each member's name and what they did.</p>
+    <p><b>FORMAT:</b> face-to-face, photograph your A3 sheets and add the typed tables; online, work in your team's shared document. One file per team.</p>
+    <p><b>TIP:</b> the templates in the learner guide already have the right columns, so teams do not need to design their own.</p>
+  </aside>
+</section>
+
+<!-- 36 -->
+<section id="ra-rubric" class="l-table" data-min="1" data-eyebrow="Graded risk assessment · how it is scored" data-source="Scored after the session by facilitators · same rubric in your learner guide">
+  <h2>100 points, scaled to 20% of your grade</h2>
+  <table class="t body">
+    <thead><tr><th>Criterion</th><th>Points</th><th>Full marks means</th></tr></thead>
+    <tbody>
+      <tr><td>Scope and scenario understanding</td><td>15</td><td>Assets, data and the system boundary are stated correctly</td></tr>
+      <tr><td>Threat model</td><td>35</td><td>A data flow map with trust boundaries; at least 8 threats mapped to STRIDE and to the element they attack</td></tr>
+      <tr><td>Risk matrix</td><td>30</td><td>Likelihood and impact rated consistently and justified; the top 5 risks prioritized</td></tr>
+      <tr><td>Treatment</td><td>20</td><td>Each top risk has a relevant control, an owner and a TARA treatment</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">Every member receives the team score.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>SAY:</b> The rubric, so nothing is a surprise. Scope, 15 points: state correctly what the assets, the data and the system boundary are. Threat model, 35 points, the biggest share: a map with trust boundaries, and at least eight threats tied to STRIDE and to the element they attack. Risk matrix, 30 points: ratings that are consistent and justified, with the top five prioritized. Treatment, 20 points: each top risk has a relevant control, an owner and a TARA treatment. Everyone on the team receives the team score. The contribution line is used only for exceptions, and any exception is flagged to ILCDB rather than decided here.</p>
+    <p><b>TIP:</b> a one-line reason beside each rating is the cheapest way to earn the matrix points.</p>
+  </aside>
+</section>
+
+<!-- 37 -->
+<section id="ra-build" data-min="35" data-timer="35" data-timer-label="Risk assessment: team build" data-checkpoints="10:4:05 map done, trust boundaries marked|20:4:15 at least 8 threats, each with a STRIDE letter|27:4:22 top 5 risks rated on the matrix, with reasons|35:4:30 treatment, control and owner for each top risk" data-eyebrow="Graded risk assessment · team build · 35 minutes" data-source="Learner guide: Graded risk assessment">
+  <h2>Build your threat model</h2>
+  <div class="body grid-2">
+    <ol class="milestones">
+      <li><span class="t">4:05</span> Map done, trust boundaries marked</li>
+      <li><span class="t">4:15</span> At least 8 threats, each with a STRIDE letter</li>
+      <li><span class="t">4:22</span> Top 5 risks rated on the matrix, with reasons</li>
+      <li><span class="t">4:30</span> Treatment, control and owner for each top risk</li>
+    </ol>
+    <div class="note-box build-roles"><p><b>Roles:</b> facilitator, scribe, map drawer, timekeeper, presenter.</p><p><b>Start with the citizen:</b> what could go wrong for the people whose data this is?</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 35 minutes (3:55 to 4:30).</p>
+    <p><b>START:</b> confirm every team has the scenario, the starter list and the templates, then leave this slide up for the whole build.</p>
+    <p><b>CHECKPOINTS:</b> call out each time on the slide; a team that is behind should move on and come back later.</p>
+    <p><b>FACE-TO-FACE:</b> A3 canvases for the map and the matrix, sticky notes for threats, and one laptop per team to type the tables. Circulate, spending no more than 3 minutes per table.</p>
+    <p><b>ONLINE:</b> one pre-built shared document per team in its breakout room; you and the co-host visit each room about every 10 minutes.</p>
+    <p><b>COACHING QUESTIONS (ask, do not answer):</b> Where does data leave the office's control? What happens if someone changes the approval spreadsheet? Who could deny approving a payout? What if the backup drive is stolen, or the vendor link is abused? What does a lost personal phone expose?</p>
+    <p><b>MIXED TEAMS:</b> non-IT members often see the process weaknesses first, in approvals, exports, payouts and backups; IT members help name them with STRIDE.</p>
+    <p><b>EXPECT TO SEE (for scoring; do not hand out):</b> spoofing of staff logins over the VPN; tampering with the approval spreadsheet or the payout file; repudiation through shared logins; disclosure through the SMS link, personal phones or a lost backup drive; denial of service by ransomware reaching the server and the backup; elevation of privilege through a clerk account with admin rights.</p>
+    <p><b>IF RUNNING LATE:</b> keep the full build time and shorten the gallery to two teams instead.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press T to start the 35 minutes; a chime sounds at each checkpoint on the slide.</p>
+  </aside>
+</section>
+
+<!-- 38 -->
+<section id="ra-gallery" data-min="10" data-timer="10" data-eyebrow="Graded risk assessment · gallery feedback · 10 minutes" data-source="Learner guide: Graded risk assessment">
+  <h2>One strength, one missing threat</h2>
+  <div class="two-col gallery-cols">
+    <div class="col"><p class="col-head"><i data-lucide="users"></i> Face-to-face</p><p>Leave your sheets on the table. Visit the next team's table and leave two sticky notes: one strength, and one threat they missed.</p></div>
+    <div class="col"><p class="col-head"><i data-lucide="monitor"></i> Online</p><p>Two teams share their screens for 3 minutes each. Everyone else types one strength and one missing threat in the chat.</p></div>
+  </div>
+  <p class="callout">Then add any missing threat you agree with. Your team decides.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes (4:30 to 4:40).</p>
+    <p><b>PURPOSE:</b> feedback before submission, so teams can improve their own work. The gallery itself is not scored.</p>
+    <p><b>FACE-TO-FACE:</b> teams leave their sheets on the table and rotate clockwise to the next table for 5 minutes. Each visiting team leaves two sticky notes: one strength, and one threat the other team missed. Everyone then returns for 3 minutes to read the notes and decide what to add.</p>
+    <p><b>ONLINE:</b> two teams share their screens for 3 minutes each while everyone else types one strength and one missing threat in the chat; then all teams take 2 minutes in their rooms to update.</p>
+    <p><b>SAY:</b> Accept or ignore the feedback; your team decides.</p>
+    <p><b>WATCH FOR:</b> copying. Adding a threat you agree with is fine; copying another team's matrix is not.</p>
+    <p><b>IF RUNNING LATE:</b> two teams only, then straight to submission.</p>
+  </aside>
+</section>
+
+<!-- 39 -->
+<section id="ra-submit" data-min="5" data-eyebrow="Graded risk assessment · submit · 5 minutes" data-source="Learner guide: Graded risk assessment">
+  <h2>Submit by 4:45 PM</h2>
+  <p class="quiz-rules">One file per team, through the submission link. Include the contribution line.</p>
+  <div class="body center-v"><pdac-qr-panel data-link="ra-submit"></pdac-qr-panel></div>
+  <p class="muted">Face-to-face: photograph your A3 sheets and attach the typed tables · Online: submit your team's shared document · Connectivity problem? The grace period runs until 8:00 AM tomorrow.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes (4:40 to 4:45).</p>
+    <p><b>BEFORE THE SESSION:</b> put this run's submission link on this slide and in the chat; keep the face-to-face and online submissions in separate folders.</p>
+    <p><b>SAY:</b> One file per team through the submission link, by 4:45. Face-to-face: photograph your A3 sheets clearly, in good light, and attach the typed tables. Online: submit your team's shared document. Include the contribution line.</p>
+    <p><b>GRACE PERIOD:</b> if connectivity fails, the grace period runs until 8:00 AM tomorrow. It is for connection problems only, not for extra work.</p>
+    <p><b>CHECK:</b> before moving on, confirm on your list that every team has submitted a file.</p>
+    <p><b>STORAGE:</b> the submissions hold fictional data only, but keep them where ILCDB approves, with the other scores.</p>
+  </aside>
+</section>
+
+<!-- 40 -->
+<section id="m2-recap" class="l-statement" data-min="5" data-blackout-first data-footer="none">
+  <p class="eyebrow">Recap · your desk card additions</p>
+  <h2>Eight phrases to carry into Day 2</h2>
+  <pdac-phrases data-keys="house,ppt,four-q,stride,5x5,tara,slam,1326" data-cols="4" data-recap></pdac-phrases>
+  <p class="recap-doubt"><b>When a message feels wrong: pause, verify, report.</b> <span>The full desk card is in your learner guide</span></p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>RETRIEVAL FIRST:</b> before you reveal this slide, black the screen or leave the previous slide up, and ask the room to call out this afternoon's memory phrases. Then reveal and check. SAY each one with its action. The house: find and remove weaknesses; no weakness, no risk. People, Process, Technology: check all three, not only technology. Four questions: ask them about any process before it changes.</p>
+    <p><b>STRIDE:</b> ask each letter at every trust boundary. 5 by 5: likelihood times impact; treat Critical and High first.</p>
+    <p><b>TARA:</b> choose one treatment for every risk, with an owner.</p>
+    <p><b>SLAM:</b> then pause, verify through a known number, and report. 1326: the government's 24/7 scam hotline, alongside CICC ScamSafe; incidents at work go to your IT unit or DPO. CHECK YOURSELF 2.3, as spaced recall: What does SLAM stand for? Why verify through a number you already know? (The scammer controls any number or link in the message.) Where should a citizen report a scam call? (Hotline 1326, or CICC ScamSafe.) Name one process control that stops a fake bank-detail change. (A call-back to a number already on file, plus a second approver.)</p>
+    <p class="notes-web"><b>ON SCREEN:</b> opens blacked out. Let the room call out this afternoon's phrases, then press B to reveal and check.</p>
+  </aside>
+</section>
+
+<!-- 41 -->
+<section id="m2-qa" class="l-statement" data-min="6" data-footer="none" data-eyebrow="Questions and answers · Quiz 2 review · 6 minutes">
+  <p class="statement">Your questions</p>
+  <p class="support">Parking-lot questions first, then the Quiz 2 items most people missed. Anything unclear about weaknesses, threat modeling, the risk matrix or phishing?</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes (about 3 for questions and 3 for the Quiz 2 review). Start with the parking-lot questions; online, the co-host reads them from the chat.</p>
+    <p><b>QUIZ 2 REVIEW:</b> open the form's summary, pick the two or three items most people missed, and explain each with its desk card phrase. Then release the scores.</p>
+    <p><b>COMMON QUESTIONS AND SHORT ANSWERS:</b> (1) Do we need special software for threat modeling? No. Paper, a whiteboard or any drawing tool works; the thinking matters, not the tool. (2) Who in our office should own a risk? The person who manages the process or system, named in the register, with the head of office approving any risk that is accepted. (3) Can we scan our own office systems to find weaknesses? Only with written authority from the head of office, and only by authorized staff or contractors; without authority it can be illegal access under RA 10175. (4) Is a vendor's CVSS score enough? It tells you technical severity; the impact on your office decides the order of fixing. (5) What if someone already clicked a phishing link? Report it to IT or the DPO at once, follow IT's instructions, and change the password from a different, safe device. If a question needs a legal opinion, say so and refer it to the DPO or the NPC. Do not guess.</p>
+  </aside>
+</section>
+
+<!-- 42 -->
+<section id="day1-close" class="l-two-col" data-min="4" data-eyebrow="Day 1 close · see you tomorrow" data-source="Course syllabus">
+  <h2>Day 2: from finding risks to fixing them</h2>
+  <div class="two-col day2">
+    <div class="col">
+      <p class="col-head"><i data-lucide="calendar-clock"></i> Morning · 8:00 AM</p>
+      <h3>Module 3: Security Controls and Data Protection Strategies</h3>
+      <p>Firewalls, encryption, MFA and access control, then a team workshop (completion recorded)</p>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="laptop"></i> Afternoon · 1:00 PM</p>
+      <h3>Module 4: Endpoint Security and Safe Digital Workflows</h3>
+      <p>Devices, unsafe sites and shadow IT, then an individual audit of a training web application (20%)</p>
+    </div>
+  </div>
+  <p class="day2-note">Face-to-face: Thursday 22 October · Online: Tuesday 27 October. Face-to-face participants, please bring a laptop with a current browser. <span>Risk assessment grace period: until 8:00 AM tomorrow, for connectivity problems only.</span></p>
+  <div class="exit-card is-wide">
+    <div>
+      <p class="exit-card__k"><i data-lucide="clipboard-check"></i> Before you go</p>
+      <h3>The Module 2 exit check</h3>
+      <p>About 5 minutes, anonymous, not graded. What stuck, what is still unclear, and what I should change.</p>
+    </div>
+    <pdac-qr-panel data-link="exit-m2"></pdac-qr-panel>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> Today we learned what can go wrong. This morning: who attacks offices like ours, and what the law expects. This afternoon: where the weaknesses are, how to predict attacks, and how to spot the tricks aimed at people. Tomorrow we fix things. Morning, Module 3: security controls and data protection, including firewalls, encryption, MFA and access control, then a team workshop; it is not graded, but completion is recorded. Afternoon, Module 4: endpoint security and safe digital workflows, then an individual audit of a training web application, worth 20 percent. It is designed so that non-IT participants can do it: you check and record things anyone can see on screen.</p>
+    <p><b>DATES:</b> face-to-face, Thursday 22 October; online, Tuesday 27 October.</p>
+    <p><b>BRING:</b> face-to-face participants bring a laptop with a current browser; online participants join a few minutes early to test their connection.</p>
+    <p><b>REMIND:</b> the grace period for today's risk assessment runs until 8:00 AM tomorrow, for connection problems only.</p>
+    <p><b>BRING IT HOME:</b> tonight, pick one process in your own office and ask the four questions in your head; nothing to write or submit. Thank everyone and close Day 1.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> leave this slide up while people fill in the exit check. They see the right answers as soon as they submit. Online run: also paste the short link in the chat. Tonight, run showExitCheckResults and open Day 2 with what is still unclear.</p>
+  </aside>
+</section>

@@ -1,0 +1,103 @@
+{
+  "_status": "Web demo for the 'house' slide. Asset, threat, weakness and control follow the Module 2 learner guide's house table (pages 2 and 3). Likelihood follows the open ways in (0 → 1, 1 → 3, 2 → 4, 3 → 5); bands are this course's 5 by 5 bands. 'at' positions are on a 900 × 540 drawing.",
+  "views": [
+    {
+      "id": "house",
+      "tab": "In a house",
+      "building": "house",
+      "asset": { "label": "Your house and what is inside", "short": "What is inside", "icon": "piggy-bank", "at": [655, 290], "harm": "✗ Valuables stolen" },
+      "threat": { "label": "A burglar", "icon": "footprints", "at": [150, 400] },
+      "impact": 4,
+      "weak": [
+        { "id": "window", "label": "A window left unlocked", "icon": "app-window", "at": [360, 295], "control": "a lock", "controlIcon": "lock" },
+        { "id": "door", "label": "A back door with no grille", "icon": "door-open", "at": [510, 428], "control": "a grille", "controlIcon": "grid-3x3" },
+        { "id": "yard", "label": "A dark, empty back yard", "icon": "moon", "at": [845, 420], "control": "a dog", "controlIcon": "dog" }
+      ],
+      "reduce": []
+    },
+    {
+      "id": "rsso",
+      "tab": "At the RSSO",
+      "building": "office",
+      "asset": { "label": "The applicant database: 48,000 people", "short": "48,000 records", "icon": "database", "at": [655, 270], "harm": "✗ Data exposed" },
+      "threat": { "label": "A criminal group after ID numbers", "short": "Criminal group", "icon": "skull", "at": [150, 400] },
+      "impact": 5,
+      "weak": [
+        {
+          "id": "admin",
+          "label": "An admin page open to the internet",
+          "icon": "app-window",
+          "at": [360, 270],
+          "control": "no public admin page",
+          "controlIcon": "ban"
+        },
+        {
+          "id": "default",
+          "label": "The vendor's default password",
+          "icon": "key-round",
+          "at": [510, 428],
+          "control": "a strong unique password and MFA",
+          "pill": "Password + MFA",
+          "controlIcon": "smartphone"
+        }
+      ],
+      "reduce": [{"id": "encrypt", "label": "Encryption", "icon": "lock", "at": [705, 430], "impact": 3, "why": "Lower the impact: stolen records stay unreadable"}]
+    }
+  ],
+  "scenes": [
+    { "view": "house", "show": ["asset"], "on": [], "title": "Asset: something of value", "text": "Your house and what is inside. What would you lose?" },
+    {
+      "view": "house",
+      "show": ["asset", "threat"],
+      "on": [],
+      "title": "Threat: something that could cause harm",
+      "text": "A burglar. We cannot make burglars disappear."
+    },
+    {
+      "view": "house",
+      "show": ["asset", "threat", "weak"],
+      "on": [],
+      "title": "Vulnerability: a weakness a threat can use",
+      "text": "A window left unlocked, a door with no grille, a dark yard. Watch the risk."
+    },
+    {
+      "view": "house",
+      "show": ["asset", "threat", "weak"],
+      "on": [],
+      "attempt": true,
+      "title": "Threat meets weakness",
+      "text": "The burglar tries the ways in. One is open."
+    },
+    {
+      "view": "house",
+      "show": ["asset", "threat", "weak"],
+      "on": ["window", "door", "yard"],
+      "attempt": true,
+      "title": "Control: a measure that lowers the risk",
+      "text": "A lock, a grille, a dog. No weakness, no risk."
+    },
+    {
+      "view": "rsso",
+      "show": ["asset", "threat", "weak"],
+      "on": [],
+      "title": "Same idea at the RSSO",
+      "text": "Threat: a criminal group after ID numbers. Vulnerability: an admin page open to the internet, still on the vendor's default password."
+    },
+    {
+      "view": "rsso",
+      "show": ["asset", "threat", "weak"],
+      "on": [],
+      "attempt": true,
+      "title": "The group gets in",
+      "text": "Impact: 48,000 people's sensitive data exposed, a breach the office must report."
+    },
+    {
+      "view": "rsso",
+      "show": ["asset", "threat", "weak"],
+      "on": ["admin", "default", "encrypt"],
+      "attempt": true,
+      "title": "A strong unique password, MFA, no public admin page",
+      "text": "Both ways in are closed: no weakness, no risk. Encryption lowers the impact if something still gets through."
+    }
+  ]
+}
