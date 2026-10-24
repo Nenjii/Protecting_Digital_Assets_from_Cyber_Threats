@@ -9,7 +9,11 @@ interface LayersData {
   attacks: Attack[];
   spoof?: { from: string; sentBy: string; checks: { name: string; plain: string; result: string }[] };
   scenes: { on: string[]; title: string; text: string }[];
+  /** Words on the chrome: the attack column, where attacks land, and the send button. */
+  labels?: { source?: string; land?: string; fire?: string };
 }
+
+const NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
 
 /**
  * <pdac-layers-sim data-src="m2-layers.json"> defense in layers. Ten everyday
@@ -38,9 +42,11 @@ export class PdacLayersSim extends PdacBase {
     this.style.setProperty('--layers', String(this.data.layers.length));
     // Three wide layer columns hold three tiles across; four narrower ones hold two.
     this.style.setProperty('--tray-cols', this.data.layers.length <= 3 ? '3' : '2');
+    const n = this.data.attacks.length;
+    const labels = this.data.labels ?? {};
     this.innerHTML = `
       <div class="ly-grid">
-        <div class="ly-col ly-src"><p class="ly-head">${icon('skull')} Attacks</p><div class="ly-tray ly-queue"></div></div>
+        <div class="ly-col ly-src"><p class="ly-head">${icon('skull')} ${esc(labels.source ?? 'Attacks')}</p><div class="ly-tray ly-queue"></div></div>
         ${this.data.layers.map((l) => `
           <div class="ly-col ly-layer" data-layer="${l.id}">
             <button type="button" class="ly-head ly-toggle" data-toggle="${l.id}" aria-pressed="false">
@@ -50,7 +56,7 @@ export class PdacLayersSim extends PdacBase {
             </button>
             <div class="ly-tray"></div>
           </div>`).join('')}
-        <div class="ly-col ly-office"><p class="ly-head">${icon('building-2')} Lands at the RSSO</p><div class="ly-tray"></div></div>
+        <div class="ly-col ly-office"><p class="ly-head">${icon('building-2')} ${esc(labels.land ?? 'Lands at the RSSO')}</p><div class="ly-tray"></div></div>
         <div class="ly-flight" aria-hidden="true"></div>
       </div>
       <div class="ly-bottom">
@@ -59,7 +65,7 @@ export class PdacLayersSim extends PdacBase {
       </div>
       <div class="pdac-bar">
         <div class="pdac-bar__left">
-          <button type="button" class="pdac-btn pdac-btn--primary" data-act="fire">${icon('play')} Send the ten attacks</button>
+          <button type="button" class="pdac-btn pdac-btn--primary" data-act="fire">${icon('play')} ${esc(labels.fire ?? `Send the ${NUMBER_WORDS[n] ?? n} attacks`)}</button>
           <button type="button" class="pdac-btn pdac-btn--quiet" data-act="next">Next scene ${icon('chevron-right')}</button>
         </div>
         <p class="pdac-bar__status ly-count" aria-live="polite"></p>

@@ -1,0 +1,25 @@
+{
+  "_status": "Module 4, Lesson 4.3 'Sharing safely: the Traffic Light Protocol' (learner guide of 21 October 2026): TLP 2.0 labels and who may see each, plus the guide's Try it 4.3 items 3 and 4. Cases invented around the fictional RSSO.",
+  "options": [
+    { "id": "yes", "label": "Yes, share it" },
+    { "id": "no", "label": "No" },
+    { "id": "ask", "label": "Ask the sender first" }
+  ],
+  "items": [
+    { "id": "t1", "who": "TLP:AMBER", "text": "An alert says two RSSO staff email addresses appear in a newly reported breach. May you post it in the all-staff chat?", "answer": "no",
+      "facts": [{ "k": "AMBER", "v": "Your organization and its clients, on a need-to-know basis" }],
+      "reason": "Ana and the two staff need it; the all-staff chat does not." },
+    { "id": "t2", "who": "TLP:GREEN", "text": "A partner office shares a list of mobile numbers used by scammers posing as the RSSO. May you post the list on the office's public Facebook page?", "answer": "no",
+      "facts": [{ "k": "GREEN", "v": "Your community, such as partner offices; not the public" }],
+      "reason": "To warn citizens, ask the sender's permission, or write your own warning without the list." },
+    { "id": "t3", "who": "TLP:CLEAR", "text": "A public advisory on a new SMS scam. May you put it in the monthly bulletin and on the notice board?", "answer": "yes",
+      "facts": [{ "k": "CLEAR", "v": "Anyone; no limits" }],
+      "reason": "Share it as widely as helps." },
+    { "id": "t4", "who": "TLP:RED", "text": "A briefing names the RSSO in an ongoing investigation. Ana is a named recipient. May she brief her team?", "answer": "ask",
+      "facts": [{ "k": "RED", "v": "The named recipients only; no further sharing" }],
+      "reason": "When in doubt, ask the sender before sharing further." },
+    { "id": "t5", "who": "No label", "text": "A report with no TLP label, from a vendor's security team, about your VPN product. Its sender is unclear about sharing.", "answer": "ask",
+      "facts": [{ "k": "The habit", "v": "When in doubt, ask the sender before sharing further" }],
+      "reason": "Remember RED, AMBER, GREEN, CLEAR: from tightest to open." }
+  ]
+}

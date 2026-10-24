@@ -1,0 +1,54 @@
+{
+  "_status": "Module 3, Lesson 3.1 'At your desk, in the server room' (learner guide of 21 October 2026), word for word. Every control has two sides: what you do at your desk, and what IT sets up in the server room.",
+  "prompt": "Whose side is it on? **You need to understand both, even if you only do the first.**",
+  "categories": [
+    {
+      "id": "desk",
+      "label": "At your desk",
+      "icon": "laptop"
+    },
+    {
+      "id": "server",
+      "label": "In the server room",
+      "icon": "server"
+    }
+  ],
+  "items": [
+    {
+      "id": "s1",
+      "text": "Use the VPN for office systems when away, and never share your VPN account",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s2",
+      "text": "Default-deny rules, reviewed on a schedule, with logs watched",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s3",
+      "text": "Report security alerts and odd behaviour on your computer",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s4",
+      "text": "Zones that keep guests, devices and staff apart from the servers",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s5",
+      "text": "Never plug unknown devices into the office network",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s6",
+      "text": "MFA on VPN and admin accounts; no remote desktop open to the internet",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    }
+  ]
+}

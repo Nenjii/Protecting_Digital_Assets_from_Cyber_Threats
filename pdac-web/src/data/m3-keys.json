@@ -1,0 +1,47 @@
+{
+  "_status": "Module 3, Lesson 3.2 'Keys: the part people forget' (learner guide of 21 October 2026): who holds the key, where it is kept, who can recover it, when it changes. Cases invented around the fictional RSSO; case 4 follows the guide's Try it 3.2 model answer 7.",
+  "options": [
+    { "id": "safe", "label": "Safe" },
+    { "id": "unsafe", "label": "Not safe" }
+  ],
+  "items": [
+    {
+      "id": "k1",
+      "text": "Ana keeps the nightly backup's encryption key in a text file on the same backup drive.",
+      "answer": "unsafe",
+      "facts": [{ "k": "Where is it kept?", "v": "Apart from the data it protects, never on the same drive or server" }],
+      "reason": "Whoever steals both can read everything."
+    },
+    {
+      "id": "k2",
+      "text": "The database key is held by Ana, with a backup custodian, and a sealed recovery copy that Director Eva approved.",
+      "answer": "safe",
+      "facts": [
+        { "k": "Who holds the key?", "v": "A named key custodian, for example Ana, with a backup custodian" },
+        { "k": "Who can recover it?", "v": "Through a sealed recovery procedure approved by the head of office" }
+      ],
+      "reason": "The office can open its own data even when Ana is away."
+    },
+    {
+      "id": "k3",
+      "text": "Ana's assistant, who knew where the backup key is kept, leaves the RSSO. Nothing changes.",
+      "answer": "unsafe",
+      "facts": [{ "k": "When does it change?", "v": "On a schedule, and at once when a custodian leaves or a key may be exposed" }],
+      "reason": "A key someone outside the office may know is no longer secret."
+    },
+    {
+      "id": "k4",
+      "text": "Dan emails the encrypted payout file to the e-wallet provider, with its password in the same email.",
+      "answer": "unsafe",
+      "facts": [{ "k": "The guide's answer", "v": "Use the provider's business portal over HTTPS instead of email; if email cannot be avoided, an encrypted file with the password sent another way" }],
+      "reason": "A password that travels with the file opens it for anyone who intercepts the email."
+    },
+    {
+      "id": "k5",
+      "text": "Only Ana knows the key to the encrypted database. There is no recovery procedure.",
+      "answer": "unsafe",
+      "facts": [{ "k": "Who can recover it?", "v": "Through a sealed recovery procedure approved by the head of office" }],
+      "reason": "One absence, or one lost key, locks the office out of its own data: Ready is hit."
+    }
+  ]
+}

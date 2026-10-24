@@ -1,0 +1,67 @@
+{
+  "_status": "Module 3, Lesson 3.3 'Zero Trust in four habits' (learner guide of 21 October 2026): verify every request, assume breach, least privilege, keep checking. Requests invented around the fictional RSSO cast; the checks are the guide's: who you are, from which device, whether your role needs it.",
+  "options": [
+    { "id": "allow", "label": "Allow" },
+    { "id": "more", "label": "Ask for more proof" },
+    { "id": "block", "label": "Block and review" }
+  ],
+  "items": [
+    {
+      "id": "z1", "who": "9:05 AM · inside the office",
+      "text": "Ben signs in to the portal from his office PC, passes MFA, and opens an application assigned to him.",
+      "answer": "allow",
+      "facts": [
+        { "k": "Who you are", "v": "✓ Ben, with MFA" },
+        { "k": "Device", "v": "✓ His office PC, updated" },
+        { "k": "Role needs it", "v": "✓ A case assigned to him" },
+        { "k": "Behaviour", "v": "✓ Usual time and place" }
+      ],
+      "reason": "Every check passes, so the request is allowed. The point is that it was **checked**, even inside the office."
+    },
+    {
+      "id": "z2", "who": "2:10 AM · from abroad",
+      "text": "Someone signs in with Dan's correct password from a laptop the office has never seen.",
+      "answer": "block",
+      "facts": [
+        { "k": "Who you are", "v": "? A password only: no second proof" },
+        { "k": "Device", "v": "✗ Unknown laptop" },
+        { "k": "Behaviour", "v": "✗ Unusual place and time" }
+      ],
+      "reason": "Keep checking: a login from an unusual place is blocked and reviewed. A correct password proves nothing on its own."
+    },
+    {
+      "id": "z3", "who": "10:30 AM · inside the office",
+      "text": "A staff PC on the office network asks the applicant database for all 48,000 records.",
+      "answer": "block",
+      "facts": [
+        { "k": "Who you are", "v": "? A staff PC, not a person" },
+        { "k": "Role needs it", "v": "✗ No staff role exports everything" },
+        { "k": "Assume breach", "v": "Plan as if an attacker is already inside" }
+      ],
+      "reason": "**Being inside the office network proves nothing.** Least privilege: give only the access the job needs."
+    },
+    {
+      "id": "z4", "who": "11:15 AM · field visit",
+      "text": "Sol, on her office phone, opens one applicant's case from a network she has never used before.",
+      "answer": "more",
+      "facts": [
+        { "k": "Who you are", "v": "✓ Sol, signed in earlier" },
+        { "k": "Device", "v": "✓ Her managed office phone" },
+        { "k": "Role needs it", "v": "✓ Her own case" },
+        { "k": "Behaviour", "v": "? A new network" }
+      ],
+      "reason": "Verify every request, not once at the door: something changed, so the policy asks her to prove it is still her (MFA again), then lets her work."
+    },
+    {
+      "id": "z5", "who": "3:00 PM · admin pages",
+      "text": "Ana tries to open the portal's admin pages from her everyday account, the one she uses for email.",
+      "answer": "block",
+      "facts": [
+        { "k": "Who you are", "v": "✓ Ana" },
+        { "k": "Role needs it", "v": "✗ Admin work uses a separate admin account, only for admin work" },
+        { "k": "Device", "v": "Admin pages answer on the admin network only" }
+      ],
+      "reason": "Least privilege for admins too: a phishing email opened in her everyday account must not reach the admin pages."
+    }
+  ]
+}

@@ -58,7 +58,7 @@ const current = (page) => page.evaluate(() => window.pdacDeck.getCurrentSlide().
 }
 
 // 2. Every slide of every module: render, A, R
-for (const m of ['1', '2', 'gallery']) {
+for (const m of ['1', '2', '3', '4', '5', 'gallery']) {
   console.log(`Module ${m}: every slide, A then R on interactives`);
   const { page, errors } = await open(`${base}?m=${m}`);
   await ready(page);
@@ -175,6 +175,52 @@ for (const m of ['1', '2', 'gallery']) {
   ok((await projectorCount()) !== before, `clicking "Next" in the speaker view moves the projector's interactive on too (was "${before}", now "${await projectorCount()}")`);
   const rxCount = await rx.locator('#act2 .vr-count').textContent();
   ok(rxCount === (await projectorCount()), 'the speaker view\'s own preview stays in step with the projector after that click');
+
+  // The reverse direction: a demo button or in-slide key on the PROJECTOR must
+  // show up in the speaker-view preview too (these fire no reveal.js event, so
+  // the notes plugin alone never syncs them).
+  await page.keyboard.press('r'); // reset the interactive on both pages
+  await page.waitForTimeout(400);
+  const previewCount = () => rx.locator('#act2 .vr-count').textContent();
+  const beforeRev = await previewCount();
+  await page.locator('#act2 [data-act="next"]').click();
+  await page.waitForTimeout(400);
+  ok((await previewCount()) !== beforeRev, `clicking "Next" on the projector advances the speaker view's preview too (was "${beforeRev}", now "${await previewCount()}")`);
+  await page.keyboard.press('a');
+  await page.waitForTimeout(400);
+  ok(await rx.locator('#act2 .vr-reveal.is-on').count() === 1, 'A pressed on the projector reveals the answer in the speaker view');
+
+  // Manual sorting on the match-board: clicking a chip then a column (a div, not
+  // a button) must relay by the item's id, not its position, because placing an
+  // item removes it from the pool and shifts the others. This is the real
+  // facilitator action from the bug report.
+  await go(page, 'sort');
+  await go(rx, 'sort');
+  await page.waitForTimeout(200);
+  const readPlaced = (ctx) => ctx.evaluate(() => {
+    const out = {};
+    document.querySelectorAll('#sort .mb-cat').forEach((cat) => {
+      const col = cat.getAttribute('data-cat');
+      cat.querySelectorAll('[data-item]').forEach((chip) => { out[chip.getAttribute('data-item')] = col; });
+    });
+    return out;
+  });
+  const sortIds = await rx.evaluate(() => ({
+    items: [...document.querySelectorAll('#sort .mb-pool [data-item]')].map((b) => b.getAttribute('data-item')),
+    cols: [...document.querySelectorAll('#sort .mb-cat')].map((c) => c.getAttribute('data-cat')),
+  }));
+  const wantPlaced = {};
+  for (let i = 0; i < 3; i++) {
+    const item = sortIds.items[i], col = sortIds.cols[i % sortIds.cols.length];
+    wantPlaced[item] = col;
+    await rx.locator(`#sort [data-item="${item}"]`).first().click();
+    await rx.waitForTimeout(120);
+    await rx.locator(`#sort .mb-cat[data-cat="${col}"]`).first().click(); // the column drop zone
+    await page.waitForTimeout(200);
+  }
+  await page.waitForTimeout(300);
+  ok(JSON.stringify(await readPlaced(page)) === JSON.stringify(wantPlaced),
+    `sorting items in the speaker view places the same items in the same columns on the projector (${JSON.stringify(await readPlaced(page))})`);
   await rx.close();
   await page.close();
 }
@@ -262,6 +308,96 @@ for (const m of ['1', '2', 'gallery']) {
   ok(await g.page.locator('#g-password .pw-score b').textContent() !== '', 'Password lab: zxcvbn loads from the local bundle and rates a sample');
   ok(g.errors.length === 0, `no errors${g.errors.length ? ': ' + [...new Set(g.errors)].join(' | ') : ''}`);
   await g.page.close();
+}
+
+// 5b. Modules 3 and 4 (built from their learner guides, 21 October 2026)
+{
+  console.log('Modules 3 and 4: simulations and activities');
+  const m3 = await open(`${base}?m=3`);
+  await ready(m3.page);
+  const p3 = m3.page;
+
+  await go(p3, 'lock-seal-sign');
+  await p3.keyboard.press('PageDown');
+  await p3.waitForTimeout(500);
+  ok(await current(p3) === 'lock-seal-sign' && (await p3.locator('#lock-seal-sign .lss-caption .ns-k').textContent()).includes('Scene 1 of 10'), 'Lock, seal, sign: the clicker steps inside the demo (no nested slides)');
+  await p3.keyboard.press('a');
+  await p3.waitForFunction(() => document.querySelector('#lock-seal-sign .lss-caption .ns-k')?.textContent.includes('Scene 10'), null, { timeout: 10000 }).catch(() => {});
+  const lss = await p3.locator('#lock-seal-sign .lss-verdict').allTextContents();
+  ok(lss.some((t) => /Readable/.test(t)) && lss.some((t) => /Does not match/.test(t)) && lss.some((t) => /Not signed by the RSSO/.test(t)), `Lock, seal, sign: A runs all ten scenes with live crypto (${lss.length} verdicts)`);
+  await p3.keyboard.press('r');
+
+  await go(p3, 'try-3-1');
+  await p3.waitForTimeout(300);
+  await p3.keyboard.press('1'); await p3.keyboard.press('1'); await p3.keyboard.press('2');
+  const votes = await p3.locator('#try-3-1 .ns-opt__n').allTextContents();
+  ok(votes[0] === '2' && votes[1] === '1', `Try it 3.1: number keys vote on the prediction (${votes.slice(0, 3).join('/')})`);
+  await p3.keyboard.press('PageDown');
+  ok(await current(p3) === 'try-3-1' && await p3.locator('#try-3-1 .ns-opt.is-answer').count() === 1, 'Try it 3.1: → reveals the guide\'s answer and stays on the slide');
+  await p3.keyboard.press('PageDown');
+  await p3.waitForTimeout(300);
+  ok((await p3.locator('#try-3-1 .ns-title').textContent()).includes('Default deny'), 'Try it 3.1: → again plays the control on the map');
+  await p3.keyboard.press('r');
+
+  await go(p3, 'check-3-1');
+  await p3.keyboard.press('PageDown');
+  ok(await current(p3) === 'check-3-1' && await p3.locator('#check-3-1 .ck-item.is-revealed').count() === 1, 'Check yourself: → reveals the first answer and stays on the slide');
+  await p3.locator('#check-3-1 [data-check="3"]').click();
+  ok(await p3.locator('#check-3-1 .ck-item.is-revealed').count() === 2, 'Check yourself: a click on a question shows its own answer');
+  await p3.keyboard.press('a');
+  ok(await p3.locator('#check-3-1 .ck-item.is-revealed').count() === 5 && (await p3.locator('#check-3-1 .ck-status').textContent()).includes('5 of 5'), 'Check yourself: A reveals all five answers');
+  await p3.keyboard.press('r');
+  ok(await p3.locator('#check-3-1 .ck-item.is-revealed').count() === 0, 'Check yourself: R hides them again');
+
+  await go(p3, 'ws-task-a');
+  ok(await p3.locator('#ws-task-a .rp-panel').isHidden(), 'Workshop: the model answer is hidden at the start of the task');
+  await p3.keyboard.press('a');
+  ok(await p3.locator('#ws-task-a .rp-panel').isVisible() && (await p3.locator('#ws-task-a .rp-panel').textContent()).includes('Default deny'), 'Workshop: A opens the model rule set over the slide');
+  await p3.keyboard.press('r');
+  ok(await p3.locator('#ws-task-a .rp-panel').isHidden(), 'Workshop: R closes it');
+
+  await go(p3, 'fw-rules');
+  await p3.keyboard.press('a');
+  await p3.waitForTimeout(3600);
+  ok((await p3.locator('#fw-rules .fw-log').textContent()).includes('6 of 6 as intended'), 'Firewall: A fixes the rules and all six connections are handled as intended');
+  await p3.keyboard.press('r');
+
+  await go(p3, 'try-3-3');
+  await p3.locator('#try-3-3 [data-role="clerk"][data-fn="encode"]').click();
+  await p3.locator('#try-3-3 [data-role="clerk"][data-fn="approve"]').click();
+  ok(await p3.locator('#try-3-3 .rb-cell.is-conflict').count() === 2, 'Roles: encode plus approve for one role lights a conflict');
+  await p3.keyboard.press('a');
+  ok((await p3.locator('#try-3-3 .rb-conflicts').textContent()).includes('No conflicts') && (await p3.locator('#try-3-3 .rb-note').allTextContents()).includes('Assigned cases'), "Roles: A shows the guide's answer, with its notes, and no conflicts");
+  ok(m3.errors.length === 0, `no errors${m3.errors.length ? ': ' + [...new Set(m3.errors)].join(' | ') : ''}`);
+  await p3.close();
+
+  const m4 = await open(`${base}?m=4`);
+  await ready(m4.page);
+  const p4 = m4.page;
+  await go(p4, 'baseline');
+  await p4.keyboard.press('a');
+  ok((await p4.locator('#baseline .ly-count').textContent()).includes('0 of 10'), 'Endpoint baseline: with update, protect, encrypt and lock on, none of the ten attacks lands');
+  await go(p4, 'try-4-2a');
+  ok(await p4.locator('#try-4-2a .pl-browser').count() === 1, 'Safe or suspicious: screen 1 is a browser window');
+  await p4.keyboard.press('PageDown');
+  ok((await p4.locator('#try-4-2a .pl-verdict').textContent()).includes('Suspicious'), 'Safe or suspicious: → reveals the verdict and the clues');
+  await go(p4, 'shadow-it');
+  await p4.keyboard.press('2');
+  await p4.keyboard.press('PageDown');
+  ok(await p4.locator('#shadow-it .ns-opt.is-answer').count() === 1, 'Shadow IT: the prediction reveals its answer');
+  await go(p4, 'audit-debrief');
+  await p4.locator('#audit-debrief [data-tile="f1"]').click();
+  ok((await p4.locator('#audit-debrief .rg-count').textContent()).includes('1 of 12') && (await p4.locator('#audit-debrief .rg-detail').textContent()).includes('B10'), 'Debrief: clicking a tile turns it over, counts it, and shows its evidence');
+  await p4.keyboard.press('a');
+  ok((await p4.locator('#audit-debrief .rg-count').textContent()).includes('12 of 12'), 'Debrief: A turns over all twelve findings');
+  await go(p4, 'tlp');
+  await p4.keyboard.press('e');
+  await p4.waitForTimeout(400);
+  const ev4 = await p4.locator('#pdac-evidence .pdac-panel__body').textContent();
+  ok(/FIRST/.test(ev4) && /AMBER\+STRICT/.test(ev4) && await p4.locator('#pdac-evidence .ev-qr svg').count() === 1, 'E on TLP quotes FIRST\'s TLP 2.0 definitions, with a QR code');
+  await p4.keyboard.press('Escape');
+  ok(m4.errors.length === 0, `no errors${m4.errors.length ? ': ' + [...new Set(m4.errors)].join(' | ') : ''}`);
+  await p4.close();
 }
 
 // 6. Bundled tools work offline, and the presenter keys that point to them

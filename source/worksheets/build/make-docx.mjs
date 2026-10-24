@@ -1,5 +1,5 @@
-// Renders DOCS (content.mjs) into printable .docx files.
-//   node make-docx.mjs <out-dir>
+// Renders DOCS (content.mjs, Day 1; content-day2.mjs, Day 2) into printable .docx files.
+//   node make-docx.mjs <out-dir> [filter,filter]   (only files whose name contains a filter)
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
@@ -7,7 +7,11 @@ import {
   WidthType, BorderStyle, ShadingType, AlignmentType, PageOrientation,
   LevelFormat, Packer, PageNumber, TabStopType, TabStopPosition,
 } from 'docx';
-import { DOCS } from './content.mjs';
+import { DOCS as DAY1 } from './content.mjs';
+import { DOCS as DAY2 } from './content-day2.mjs';
+
+const filters = (process.argv[3] ?? '').split(',').map((f) => f.trim()).filter(Boolean);
+const DOCS = [...DAY1, ...DAY2].filter((d) => !filters.length || filters.some((f) => d.file.includes(f)));
 
 const outDir = process.argv[2];
 if (!outDir) { console.error('usage: node make-docx.mjs <out-dir>'); process.exit(1); }
@@ -129,7 +133,7 @@ function blocksToChildren(blocks) {
   const children = [];
   for (const b of blocks) {
     if (b.pagebreak) { children.push(new Paragraph({ children: [], pageBreakBefore: true })); continue; }
-    if (b.landscape) continue; // handled at section level by the caller
+    if (b.landscape || b.portrait) continue; // handled at section level by the caller
     if (b.h2) children.push(h2(b.h2));
     else if (b.p) children.push(para(b.p));
     else if (b.q) children.push(...question(b));
@@ -143,10 +147,12 @@ function blocksToChildren(blocks) {
 }
 
 function splitAtLandscape(blocks) {
-  // Returns [{landscape:false, blocks:[...]}, {landscape:true, blocks:[...]}, ...]
+  // Returns [{landscape:false, blocks:[...]}, {landscape:true, blocks:[...]}, ...];
+  // {landscape:true} starts landscape pages, {portrait:true} goes back to portrait.
   const sections = [{ landscape: false, blocks: [] }];
   for (const b of blocks) {
     if (b.landscape) { sections.push({ landscape: true, blocks: [] }); continue; }
+    if (b.portrait) { sections.push({ landscape: false, blocks: [] }); continue; }
     sections[sections.length - 1].blocks.push(b);
   }
   return sections.filter((s) => s.blocks.length);

@@ -2,6 +2,7 @@ import { PdacAttackers } from './attackers';
 import { PdacBreachFlow } from './breach-flow';
 import { PdacChainBreaker } from './chain-breaker';
 import { PdacChecklist } from './checklist';
+import { PdacChecks } from './checks';
 import { PdacCiaLab } from './cia-lab';
 import { PdacCountdown } from './countdown';
 import { PdacCryptoVisual } from './crypto-visual';
@@ -14,6 +15,7 @@ import { PdacHouseSim } from './house-sim';
 import { PdacInjectClock } from './inject-clock';
 import { PdacKevCard } from './kev-card';
 import { PdacLayersSim } from './layers-sim';
+import { PdacLockSealSign } from './lock-seal-sign';
 import { PdacMatchBoard } from './match-board';
 import { PdacNetSim } from './net-sim';
 import { PdacPasswordLab } from './password-lab';
@@ -22,6 +24,8 @@ import { PdacPhraseIcon, PdacPhrases } from './phrases';
 import { PdacQrPanel } from './qr-panel';
 import { PdacRbacMatrix } from './rbac-matrix';
 import { PdacRecall } from './recall';
+import { PdacRevealGrid } from './reveal-grid';
+import { PdacRevealPanel } from './reveal-panel';
 import { PdacRiskMatrix } from './risk-matrix';
 import { PdacStatProof } from './stat-proof';
 import { PdacThreeSCheck } from './three-s-check';
@@ -59,6 +63,10 @@ const registry: Record<string, CustomElementConstructor> = {
   'pdac-layers-sim': PdacLayersSim,
   'pdac-password-lab': PdacPasswordLab,
   'pdac-kev-card': PdacKevCard,
+  'pdac-lock-seal-sign': PdacLockSealSign,
+  'pdac-reveal-grid': PdacRevealGrid,
+  'pdac-checks': PdacChecks,
+  'pdac-reveal-panel': PdacRevealPanel,
 };
 
 export function registerComponents(): void {

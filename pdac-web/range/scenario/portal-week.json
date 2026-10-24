@@ -1,0 +1,1564 @@
+{
+  "_status": "Module 5 LAN game 'RSSO Live'. A DIFFERENT incident from the graded capstone tabletop: no Friday ransomware story, no ended-vendor account (f1/f3), no e-wallet call-back (f5), no backup-drive facts (f9), and no inject wording from the White Cell Guide. Awareness level: plain-language moves named for the course's own doors (M1), steps (M2) and Module 4 findings; no tools, commands or technique detail. Everything is fictional. Scoring reasons double as the teaching points. Server-only: this file and its reasons never reach a participant device.",
+  "id": "portal-week",
+  "title": "RSSO Live: a week on the Assistance Portal",
+  "brief": {
+    "attack": "You are a criminal group. Get into the RSSO, reach the applicant records, and copy or change what you can before the office notices. Each move takes time and may run into a control.",
+    "defend": "You are the RSSO response team. First PREPARE: pick which four Module 4 findings to fix. Then watch the signs, tell them apart from normal office life, contain without destroying evidence, and do your legal duties on time."
+  },
+  "map": {
+    "size": [
+      1350,
+      740
+    ],
+    "zones": [
+      {
+        "id": "internet",
+        "label": "Internet",
+        "x": 10,
+        "y": 10,
+        "w": 370,
+        "h": 720,
+        "tone": "internet"
+      },
+      {
+        "id": "dmz",
+        "label": "Public zone",
+        "x": 610,
+        "y": 10,
+        "w": 240,
+        "h": 222,
+        "tone": "office"
+      },
+      {
+        "id": "server",
+        "label": "Server zone",
+        "x": 865,
+        "y": 10,
+        "w": 475,
+        "h": 222,
+        "tone": "office"
+      },
+      {
+        "id": "staff",
+        "label": "Staff network",
+        "x": 610,
+        "y": 246,
+        "w": 240,
+        "h": 218,
+        "tone": "office"
+      },
+      {
+        "id": "admin",
+        "label": "Admin",
+        "x": 865,
+        "y": 246,
+        "w": 245,
+        "h": 218,
+        "tone": "office"
+      },
+      {
+        "id": "devices",
+        "label": "Devices",
+        "x": 1125,
+        "y": 246,
+        "w": 215,
+        "h": 218,
+        "tone": "office"
+      },
+      {
+        "id": "guest",
+        "label": "Guest Wi-Fi",
+        "x": 610,
+        "y": 478,
+        "w": 240,
+        "h": 250,
+        "tone": "home"
+      },
+      {
+        "id": "vpnzone",
+        "label": "Remote access (VPN)",
+        "x": 865,
+        "y": 478,
+        "w": 475,
+        "h": 250,
+        "tone": "office"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "attacker",
+        "label": "Attacker",
+        "icon": "skull",
+        "x": 115,
+        "y": 110,
+        "role": "attacker"
+      },
+      {
+        "id": "citizen",
+        "label": "Citizen",
+        "sub": "at home",
+        "icon": "smartphone",
+        "x": 290,
+        "y": 110,
+        "role": "person"
+      },
+      {
+        "id": "snooper",
+        "label": "Café Wi-Fi",
+        "sub": "listening",
+        "icon": "radar",
+        "x": 115,
+        "y": 345,
+        "role": "attacker"
+      },
+      {
+        "id": "net",
+        "label": "Internet",
+        "icon": "globe",
+        "x": 290,
+        "y": 345,
+        "role": "net"
+      },
+      {
+        "id": "unknown",
+        "label": "Unknown",
+        "sub": "site abroad",
+        "icon": "flag",
+        "x": 115,
+        "y": 590,
+        "role": "cloud"
+      },
+      {
+        "id": "remote",
+        "label": "Sol, at home",
+        "icon": "laptop",
+        "x": 290,
+        "y": 590,
+        "role": "person"
+      },
+      {
+        "id": "firewall",
+        "label": "Firewall",
+        "sub": "every zone",
+        "icon": "shield",
+        "x": 495,
+        "y": 345,
+        "role": "net"
+      },
+      {
+        "id": "portal",
+        "label": "Portal",
+        "sub": "web server",
+        "icon": "app-window",
+        "x": 730,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "db",
+        "label": "Database",
+        "sub": "48,000 records",
+        "icon": "database",
+        "x": 960,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "files",
+        "label": "File server",
+        "icon": "folder-open",
+        "x": 1120,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "backup",
+        "label": "Backup",
+        "icon": "hard-drive",
+        "x": 1250,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "staffpc",
+        "label": "Staff PCs",
+        "sub": "Ben, Dan, Sol",
+        "icon": "monitor",
+        "x": 730,
+        "y": 345,
+        "role": "device"
+      },
+      {
+        "id": "ana",
+        "label": "Ana's PC",
+        "sub": "admin pages",
+        "icon": "user-cog",
+        "x": 987,
+        "y": 345,
+        "role": "device"
+      },
+      {
+        "id": "cctv",
+        "label": "CCTV",
+        "sub": "and printers",
+        "icon": "cctv",
+        "x": 1232,
+        "y": 345,
+        "role": "device"
+      },
+      {
+        "id": "visitor",
+        "label": "Visitor's phone",
+        "icon": "smartphone",
+        "x": 730,
+        "y": 590,
+        "role": "person"
+      },
+      {
+        "id": "vpn",
+        "label": "VPN gateway",
+        "sub": "MFA on every account",
+        "icon": "lock-keyhole",
+        "x": 1100,
+        "y": 590,
+        "role": "net"
+      }
+    ],
+    "links": [
+      {
+        "from": "attacker",
+        "to": "net"
+      },
+      {
+        "from": "citizen",
+        "to": "net"
+      },
+      {
+        "from": "snooper",
+        "to": "net"
+      },
+      {
+        "from": "unknown",
+        "to": "net"
+      },
+      {
+        "from": "remote",
+        "to": "net"
+      },
+      {
+        "from": "net",
+        "to": "firewall"
+      },
+      {
+        "from": "firewall",
+        "to": "portal"
+      },
+      {
+        "from": "firewall",
+        "to": "db"
+      },
+      {
+        "from": "firewall",
+        "to": "files"
+      },
+      {
+        "from": "firewall",
+        "to": "backup"
+      },
+      {
+        "from": "firewall",
+        "to": "staffpc"
+      },
+      {
+        "from": "firewall",
+        "to": "ana"
+      },
+      {
+        "from": "firewall",
+        "to": "cctv"
+      },
+      {
+        "from": "firewall",
+        "to": "vpn"
+      },
+      {
+        "from": "firewall",
+        "to": "visitor"
+      }
+    ]
+  },
+  "config": {
+    "preparePicks": 4,
+    "briefSec": 60,
+    "prepareSec": 120,
+    "roundSeconds": [
+      240,
+      240,
+      240
+    ],
+    "attackBudget": [
+      3,
+      3,
+      3
+    ],
+    "defendBudget": [
+      4,
+      4,
+      4
+    ],
+    "clock": {
+      "startFict": 480,
+      "compression": 5,
+      "deadlineHours": 72
+    }
+  },
+  "attacks": [
+    {
+      "id": "recon",
+      "label": "Study the office's public pages",
+      "group": "Reconnaissance",
+      "attack": {
+        "id": "T1594",
+        "name": "Search Victim-Owned Websites"
+      },
+      "rounds": [
+        0,
+        1
+      ],
+      "cost": 1,
+      "durationSec": 6,
+      "onStart": {
+        "signs": [
+          "s-probe"
+        ]
+      },
+      "onSuccess": {
+        "set": {
+          "atk.recon": 1
+        },
+        "result": "You map the office from the outside: the portal, a public lookup page, an admin login, a VPN. Nothing stops you looking."
+      },
+      "anim": {
+        "route": [
+          "attacker",
+          "net",
+          "firewall",
+          "portal"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "phish",
+      "label": "Door 1: a fake 'payroll update' email to staff",
+      "group": "Delivery",
+      "attack": {
+        "id": "T1566",
+        "name": "Phishing"
+      },
+      "rounds": [
+        1
+      ],
+      "cost": 1,
+      "durationSec": 20,
+      "onStart": {
+        "signs": [
+          "s-phish"
+        ]
+      },
+      "blockedBy": [
+        {
+          "control": "filter",
+          "reason": "The email filter caught it and a staff member reported it. It never reached an inbox.",
+          "link": "Module 2: email filtering and a report button"
+        },
+        {
+          "control": "mfa",
+          "reason": "A password came back, but the account also asks for a second factor, so it is useless to you.",
+          "link": "Module 3: MFA"
+        }
+      ],
+      "onBlocked": {
+        "result": "Door 1 is shut.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 5,
+            "reason": "Phishing stopped at Delivery",
+            "link": "Module 2: break the chain early"
+          }
+        ]
+      },
+      "onSuccess": {
+        "set": {
+          "atk.foothold": 1
+        },
+        "result": "A staff member types their password into your page, and it works. You are inside the staff network.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 6,
+            "reason": "Got in through Door 1"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "attacker",
+          "net",
+          "firewall",
+          "staffpc"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "exploit_patch",
+      "label": "Door 2: the overdue update, left uninstalled",
+      "group": "Exploitation",
+      "attack": {
+        "id": "T1190",
+        "name": "Exploit Public-Facing Application"
+      },
+      "rounds": [
+        1
+      ],
+      "cost": 1,
+      "durationSec": 18,
+      "onStart": {
+        "signs": [
+          "s-portal-odd"
+        ]
+      },
+      "blockedBy": [
+        {
+          "control": "patch",
+          "reason": "The weakness you counted on was patched. The way in is closed.",
+          "link": "Module 4 finding f4: patch known weaknesses"
+        }
+      ],
+      "onBlocked": {
+        "result": "Door 2 is shut.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 5,
+            "reason": "Known weakness was patched",
+            "link": "Module 4 f4"
+          }
+        ]
+      },
+      "onSuccess": {
+        "set": {
+          "atk.foothold": 1
+        },
+        "result": "The unpatched portal lets you run your own commands. You are inside the server zone.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 6,
+            "reason": "Got in through Door 2"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "attacker",
+          "net",
+          "firewall",
+          "portal"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "exploit_admin_open",
+      "label": "Door 3: admin pages open to the internet",
+      "group": "Exploitation",
+      "attack": {
+        "id": "T1133",
+        "name": "External Remote Services"
+      },
+      "rounds": [
+        1
+      ],
+      "cost": 1,
+      "durationSec": 15,
+      "onStart": {
+        "signs": [
+          "s-admin-hit"
+        ]
+      },
+      "blockedBy": [
+        {
+          "control": "close_rule",
+          "reason": "The admin pages are no longer reachable from outside. The temporary rule was closed.",
+          "link": "Module 4 finding f11: no temporary internet rules"
+        }
+      ],
+      "onBlocked": {
+        "result": "Door 3 (admin) is shut.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 5,
+            "reason": "Admin pages closed to the internet",
+            "link": "Module 4 f11"
+          }
+        ]
+      },
+      "onSuccess": {
+        "set": {
+          "atk.foothold": 1,
+          "atk.adminEasy": 1
+        },
+        "result": "The admin login is open to the whole internet. You reach it directly.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 6,
+            "reason": "Got in through the open admin page"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "attacker",
+          "net",
+          "firewall",
+          "ana"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "peek_page",
+      "label": "Door 3: read applicant details from the public page",
+      "group": "Exploitation",
+      "attack": {
+        "id": "T1190",
+        "name": "Exploit Public-Facing Application"
+      },
+      "rounds": [
+        1,
+        2
+      ],
+      "cost": 1,
+      "durationSec": 10,
+      "onStart": {
+        "signs": [
+          "s-page-access"
+        ]
+      },
+      "blockedBy": [
+        {
+          "control": "fix_page",
+          "reason": "The public page no longer shows applicant details by number. Nothing to harvest.",
+          "link": "Module 4 finding f10: do not expose personal data"
+        }
+      ],
+      "onBlocked": {
+        "result": "The public page is fixed.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 4,
+            "reason": "Public page no longer leaks applicant data",
+            "link": "Module 4 f10"
+          }
+        ]
+      },
+      "onSuccess": {
+        "set": {
+          "atk.peeked": 1
+        },
+        "result": "The public lookup page shows any applicant's name, address and amount by number. You scrape a batch.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 3,
+            "reason": "Harvested applicant details from the public page"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "attacker",
+          "net",
+          "firewall",
+          "portal"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "escalate",
+      "label": "Gain admin rights and a hidden way back in",
+      "group": "Installation",
+      "attack": {
+        "id": "T1136",
+        "name": "Create Account"
+      },
+      "rounds": [
+        2
+      ],
+      "cost": 1,
+      "durationSec": 20,
+      "requires": [
+        "atk.foothold"
+      ],
+      "requiresNote": "You need a foothold first.",
+      "interruptedBy": [
+        [
+          "def.accountDisabled"
+        ],
+        [
+          "def.isolatedServer"
+        ]
+      ],
+      "blockedBy": [
+        {
+          "control": "mfa",
+          "reason": "Every admin account asks for a second factor. You cannot promote yourself.",
+          "link": "Module 4 finding f6: MFA on every account"
+        }
+      ],
+      "onStart": {
+        "signs": [
+          "s-new-admin"
+        ]
+      },
+      "onBlocked": {
+        "result": "You cannot gain admin rights.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 6,
+            "reason": "MFA stopped the attacker gaining admin",
+            "link": "Module 4 f6"
+          }
+        ]
+      },
+      "onInterrupt": {
+        "result": "Your foothold was cut before you could dig in."
+      },
+      "onSuccess": {
+        "set": {
+          "atk.admin": 1,
+          "atk.backdoor": 1
+        },
+        "result": "You create an administrator account and a quiet way back in.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 6,
+            "reason": "Gained admin and a way back in"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "portal",
+          "ana"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "exfil",
+      "label": "Copy applicant records out",
+      "group": "Actions on objectives",
+      "attack": {
+        "id": "T1048",
+        "name": "Exfiltration Over Alternative Protocol"
+      },
+      "rounds": [
+        2,
+        3
+      ],
+      "cost": 1,
+      "durationSec": 40,
+      "requires": [
+        "atk.foothold"
+      ],
+      "requiresNote": "You need a foothold first.",
+      "interruptedBy": [
+        [
+          "def.isolatedServer"
+        ],
+        [
+          "def.addressBlocked"
+        ]
+      ],
+      "onStart": {
+        "signs": [
+          "s-exfil"
+        ]
+      },
+      "onInterrupt": {
+        "result": "The transfer was cut before it finished.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 8,
+            "reason": "Contained the transfer before records left",
+            "link": "Module 5: contain to stop the spread"
+          }
+        ]
+      },
+      "onSuccess": {
+        "set": {
+          "atk.exfilDone": 1
+        },
+        "result": "Over several minutes you copy the applicant database to a site abroad.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 15,
+            "reason": "Copied 48,000 applicant records out"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "db",
+          "firewall",
+          "net",
+          "unknown"
+        ],
+        "kind": "leak"
+      }
+    },
+    {
+      "id": "deface",
+      "label": "Change the portal's front page",
+      "group": "Actions on objectives",
+      "attack": {
+        "id": "T1491.002",
+        "name": "External Defacement"
+      },
+      "rounds": [
+        2,
+        3
+      ],
+      "cost": 1,
+      "durationSec": 15,
+      "requires": [
+        "atk.foothold"
+      ],
+      "requiresNote": "You need a foothold first.",
+      "interruptedBy": [
+        [
+          "def.portalOffline"
+        ],
+        [
+          "def.isolatedServer"
+        ]
+      ],
+      "onStart": {
+        "signs": []
+      },
+      "onInterrupt": {
+        "result": "The portal went offline before your change showed."
+      },
+      "onSuccess": {
+        "set": {
+          "atk.defaced": 1
+        },
+        "result": "You replace the portal's home page with your own message.",
+        "signs": [
+          "s-deface"
+        ],
+        "score": [
+          {
+            "who": "attack",
+            "pts": 8,
+            "reason": "Changed the portal's public page"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "attacker",
+          "net",
+          "firewall",
+          "portal"
+        ],
+        "kind": "attack"
+      }
+    },
+    {
+      "id": "erase_logs",
+      "label": "Erase the activity records",
+      "group": "Actions on objectives",
+      "attack": {
+        "id": "T1070",
+        "name": "Indicator Removal"
+      },
+      "rounds": [
+        3
+      ],
+      "cost": 1,
+      "durationSec": 12,
+      "requires": [
+        "atk.admin"
+      ],
+      "requiresNote": "You need admin rights first.",
+      "interruptedBy": [
+        [
+          "def.isolatedServer"
+        ]
+      ],
+      "blockedBy": [
+        {
+          "control": "protect_logs",
+          "reason": "The logs were copied somewhere you cannot reach. Deleting the local copy changes nothing.",
+          "link": "Module 4 finding f2: protect the logs"
+        }
+      ],
+      "onBlocked": {
+        "result": "The real logs are out of your reach.",
+        "score": [
+          {
+            "who": "defend",
+            "pts": 5,
+            "reason": "Logs were protected from deletion",
+            "link": "Module 4 f2"
+          }
+        ]
+      },
+      "onInterrupt": {
+        "result": "You lost access before you could erase the records."
+      },
+      "onSuccess": {
+        "set": {
+          "atk.logsErased": 1
+        },
+        "result": "You delete the activity records that would have shown what you did.",
+        "score": [
+          {
+            "who": "attack",
+            "pts": 6,
+            "reason": "Erased the activity records"
+          }
+        ]
+      },
+      "anim": {
+        "route": [
+          "portal",
+          "files"
+        ],
+        "kind": "attack"
+      }
+    }
+  ],
+  "defends": [
+    {
+      "id": "mfa",
+      "label": "Turn on MFA for every account",
+      "group": "Prepare",
+      "owner": "Ana",
+      "finding": "f6",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.mfa": 1
+      },
+      "result": "Every account now needs a second factor."
+    },
+    {
+      "id": "patch",
+      "label": "Install the overdue update",
+      "group": "Prepare",
+      "owner": "Ana",
+      "finding": "f4",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.patch": 1
+      },
+      "result": "The known weakness is patched."
+    },
+    {
+      "id": "close_rule",
+      "label": "Close the temporary firewall rule",
+      "group": "Prepare",
+      "owner": "Ana",
+      "finding": "f11",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.close_rule": 1
+      },
+      "result": "The admin pages are no longer open to the internet."
+    },
+    {
+      "id": "fix_page",
+      "label": "Fix the public lookup page",
+      "group": "Prepare",
+      "owner": "Ana",
+      "finding": "f10",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.fix_page": 1
+      },
+      "result": "The public page no longer shows applicant details."
+    },
+    {
+      "id": "protect_logs",
+      "label": "Copy logs to a protected place",
+      "group": "Prepare",
+      "owner": "Ana",
+      "finding": "f2",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.protect_logs": 1
+      },
+      "result": "Logs now copy to a place admins cannot delete."
+    },
+    {
+      "id": "filter",
+      "label": "Email filtering and a report button",
+      "group": "Prepare",
+      "owner": "Comms lead",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.filter": 1
+      },
+      "result": "Suspicious email is filtered and staff can report in one click."
+    },
+    {
+      "id": "alerts",
+      "label": "Alerts on unusual traffic",
+      "group": "Prepare",
+      "owner": "Ana",
+      "phase": "prepare",
+      "rounds": [
+        0
+      ],
+      "cost": 1,
+      "set": {
+        "ctrl.alerts": 1
+      },
+      "result": "Unusual outbound traffic now raises an alert."
+    },
+    {
+      "id": "check_signins",
+      "label": "Check sign-in records",
+      "group": "Detect",
+      "owner": "Technical lead",
+      "phase": "detect",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "det.signins": 1
+      },
+      "result": "You review who signed in, from where."
+    },
+    {
+      "id": "check_traffic",
+      "label": "Check traffic records",
+      "group": "Detect",
+      "owner": "Technical lead",
+      "phase": "detect",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "det.traffic": 1
+      },
+      "result": "You review what left the network, and for where."
+    },
+    {
+      "id": "check_server",
+      "label": "Check the portal server",
+      "group": "Detect",
+      "owner": "Technical lead",
+      "phase": "detect",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "det.server": 1
+      },
+      "result": "You inspect the portal server for anything new."
+    },
+    {
+      "id": "ask_staff",
+      "label": "Ask staff what they saw",
+      "group": "Detect",
+      "owner": "Comms lead",
+      "phase": "detect",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "det.staff": 1
+      },
+      "result": "You ask staff to report anything odd."
+    },
+    {
+      "id": "isolate",
+      "label": "Isolate the server (disconnect, do not switch off)",
+      "group": "Contain",
+      "owner": "Technical lead",
+      "phase": "contain",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.isolatedServer": 1
+      },
+      "nodeState": {
+        "portal": "off",
+        "db": "off",
+        "files": "off"
+      },
+      "score": [
+        {
+          "who": "defend",
+          "pts": 3,
+          "reason": "Isolated rather than switched off: the evidence in memory is kept",
+          "link": "Module 5: isolate first, power off last"
+        }
+      ],
+      "result": "The server zone is disconnected from the network. It stays powered on."
+    },
+    {
+      "id": "disable_account",
+      "label": "Disable the account that was used",
+      "group": "Contain",
+      "owner": "Technical lead",
+      "phase": "contain",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.accountDisabled": 1
+      },
+      "result": "The suspicious account is disabled."
+    },
+    {
+      "id": "block_address",
+      "label": "Block the unknown address",
+      "group": "Contain",
+      "owner": "Technical lead",
+      "phase": "contain",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.addressBlocked": 1
+      },
+      "nodeState": {
+        "unknown": "off"
+      },
+      "result": "Traffic to the unknown address is blocked."
+    },
+    {
+      "id": "portal_offline",
+      "label": "Take the portal offline",
+      "group": "Contain",
+      "owner": "Technical lead",
+      "phase": "contain",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.portalOffline": 1
+      },
+      "nodeState": {
+        "portal": "off"
+      },
+      "result": "The portal shows a maintenance notice."
+    },
+    {
+      "id": "power_off",
+      "label": "Power off the server",
+      "group": "Contain",
+      "owner": "Technical lead",
+      "phase": "contain",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.poweredOff": 1,
+        "def.isolatedServer": 1,
+        "def.evidenceLost": 1
+      },
+      "nodeState": {
+        "portal": "off",
+        "db": "off",
+        "files": "off"
+      },
+      "score": [
+        {
+          "who": "defend",
+          "pts": -4,
+          "reason": "Powered off: the evidence held in memory is lost",
+          "link": "Module 5: isolate first, power off last"
+        }
+      ],
+      "result": "The server is switched off. It stops the spread, but memory evidence is gone."
+    },
+    {
+      "id": "preserve",
+      "label": "Copy logs and take images (preserve evidence)",
+      "group": "Preserve",
+      "owner": "Technical lead",
+      "phase": "preserve",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.preserved": 1
+      },
+      "score": [
+        {
+          "who": "defend",
+          "pts": 5,
+          "reason": "Evidence preserved before any clean-up",
+          "link": "Module 5: preserve before you wipe"
+        }
+      ],
+      "result": "Logs and system images are saved, with a chain of custody."
+    },
+    {
+      "id": "late_patch",
+      "label": "Install the update now",
+      "group": "Eradicate",
+      "owner": "Technical lead",
+      "phase": "eradicate",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "requires": [
+        "!ctrl.patch"
+      ],
+      "requiresNote": "Already patched.",
+      "set": {
+        "ctrl.patch": 1
+      },
+      "result": "The weakness is patched, late but done."
+    },
+    {
+      "id": "late_mfa",
+      "label": "Turn on MFA now",
+      "group": "Eradicate",
+      "owner": "Technical lead",
+      "phase": "eradicate",
+      "rounds": [
+        1,
+        2,
+        3
+      ],
+      "cost": 1,
+      "requires": [
+        "!ctrl.mfa"
+      ],
+      "requiresNote": "MFA already on.",
+      "set": {
+        "ctrl.mfa": 1
+      },
+      "result": "MFA is turned on for every account."
+    },
+    {
+      "id": "remove_backdoor",
+      "label": "Remove the hidden way back in",
+      "group": "Eradicate",
+      "owner": "Technical lead",
+      "phase": "eradicate",
+      "rounds": [
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.backdoorRemoved": 1
+      },
+      "result": "The attacker's extra account and access are removed."
+    },
+    {
+      "id": "reset_passwords",
+      "label": "Reset passwords from a clean device",
+      "group": "Eradicate",
+      "owner": "Technical lead",
+      "phase": "eradicate",
+      "rounds": [
+        2,
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.passwordsReset": 1
+      },
+      "result": "Passwords are reset from a device known to be clean."
+    },
+    {
+      "id": "restore",
+      "label": "Restore from a backup verified clean",
+      "group": "Recover",
+      "owner": "Technical lead",
+      "phase": "recover",
+      "rounds": [
+        3
+      ],
+      "cost": 1,
+      "set": {
+        "def.restored": 1
+      },
+      "result": "Service is restored from a backup checked clean."
+    },
+    {
+      "id": "reopen_portal",
+      "label": "Reopen the portal (Director Eva approves)",
+      "group": "Recover",
+      "owner": "Incident commander",
+      "phase": "recover",
+      "rounds": [
+        3
+      ],
+      "cost": 1,
+      "requires": [
+        "def.restored"
+      ],
+      "requiresNote": "Restore a clean backup first.",
+      "set": {
+        "def.reopened": 1
+      },
+      "nodeState": {
+        "portal": "ok"
+      },
+      "result": "The portal reopens with manual checks."
+    }
+  ],
+  "signs": [
+    {
+      "id": "s-probe",
+      "text": "Several odd lookups hit the portal from outside.",
+      "node": "net",
+      "band": "info",
+      "real": true,
+      "reveal": "onCheckSignins",
+      "category": "recon"
+    },
+    {
+      "id": "s-phish",
+      "text": "Ben reports a suspicious 'payroll update' email.",
+      "node": "staffpc",
+      "band": "warn",
+      "real": true,
+      "reveal": "auto",
+      "category": "intrusion",
+      "triage": true,
+      "points": {
+        "fastSec": 40,
+        "fast": 4,
+        "slow": 2
+      }
+    },
+    {
+      "id": "s-portal-odd",
+      "text": "The portal server is running an unexpected new process.",
+      "node": "portal",
+      "band": "warn",
+      "real": true,
+      "reveal": "onCheckServer",
+      "category": "intrusion",
+      "points": {
+        "fastSec": 60,
+        "fast": 6,
+        "slow": 3
+      }
+    },
+    {
+      "id": "s-admin-hit",
+      "text": "The admin login was reached from an unusual address.",
+      "node": "ana",
+      "band": "warn",
+      "real": true,
+      "reveal": "onCheckSignins",
+      "category": "intrusion",
+      "points": {
+        "fastSec": 60,
+        "fast": 6,
+        "slow": 3
+      }
+    },
+    {
+      "id": "s-page-access",
+      "text": "The public lookup page is being read in bulk.",
+      "node": "portal",
+      "band": "info",
+      "real": true,
+      "reveal": "onCheckTraffic",
+      "category": "recon"
+    },
+    {
+      "id": "s-new-admin",
+      "text": "A new administrator account appeared overnight.",
+      "node": "ana",
+      "band": "alert",
+      "real": true,
+      "reveal": "onCheckServer",
+      "category": "intrusion",
+      "points": {
+        "fastSec": 50,
+        "fast": 8,
+        "slow": 4
+      }
+    },
+    {
+      "id": "s-exfil",
+      "text": "A large transfer is leaving the server zone for an unknown address abroad.",
+      "node": "unknown",
+      "band": "alert",
+      "real": true,
+      "reveal": "onAlerts",
+      "category": "exfil",
+      "points": {
+        "fastSec": 15,
+        "fast": 12,
+        "slow": 4
+      }
+    },
+    {
+      "id": "s-deface",
+      "text": "Citizens report the portal home page looks wrong.",
+      "node": "portal",
+      "band": "alert",
+      "real": true,
+      "reveal": "auto",
+      "category": "deface",
+      "points": {
+        "fastSec": 30,
+        "fast": 6,
+        "slow": 3
+      }
+    }
+  ],
+  "normals": [
+    {
+      "id": "ev-vpn",
+      "text": "Sol signs in from home over the VPN.",
+      "node": "vpn",
+      "atSec": 25
+    },
+    {
+      "id": "ev-printer",
+      "text": "A printer in Devices goes offline for a firmware update.",
+      "node": "cctv",
+      "atSec": 60
+    },
+    {
+      "id": "ev-update",
+      "text": "Scheduled updates run on the staff PCs overnight.",
+      "node": "staffpc",
+      "atSec": 100
+    },
+    {
+      "id": "ev-visitor",
+      "text": "A visitor's phone joins the Guest Wi-Fi.",
+      "node": "visitor",
+      "atSec": 150
+    }
+  ],
+  "duties": [
+    {
+      "id": "declare",
+      "label": "Declare the incident and its severity",
+      "needsReason": true,
+      "reasonCategory": "intrusion,exfil,deface",
+      "score": [
+        {
+          "who": "defend",
+          "pts": 6,
+          "reason": "Incident declared, with a reason",
+          "link": "Module 5: a decision needs a reason"
+        }
+      ]
+    },
+    {
+      "id": "tell_dpo",
+      "label": "Tell the DPO",
+      "needsReason": false,
+      "score": [
+        {
+          "who": "defend",
+          "pts": 4,
+          "reason": "The DPO was told early",
+          "link": "Module 5: who does what"
+        }
+      ]
+    },
+    {
+      "id": "start_clock",
+      "label": "Start the 72-hour clock",
+      "needsReason": true,
+      "reasonCategory": "intrusion,exfil",
+      "timing": {
+        "basis": "firstRealSign",
+        "windows": [
+          {
+            "withinSec": 60,
+            "pts": 10,
+            "reason": "Clock started promptly after the first sign"
+          },
+          {
+            "withinSec": 150,
+            "pts": 7,
+            "reason": "Clock started, a little late"
+          }
+        ],
+        "late": {
+          "pts": 3,
+          "reason": "Clock started late: smoke, not ashes"
+        }
+      }
+    },
+    {
+      "id": "decide_3s",
+      "label": "Apply the 3S test (notify or not)",
+      "needsReason": true,
+      "reasonCategory": "intrusion,exfil",
+      "score": [
+        {
+          "who": "defend",
+          "pts": 4,
+          "reason": "The 3S test was applied and recorded",
+          "link": "Module 1 and 5: the 3S test"
+        }
+      ]
+    },
+    {
+      "id": "notify_npc",
+      "label": "Notify the NPC (through the DBNMS)",
+      "needsReason": false,
+      "deadlineSensitive": true,
+      "score": [
+        {
+          "who": "defend",
+          "pts": 8,
+          "reason": "The NPC was notified within 72 hours",
+          "link": "NPC Circular 16-03, Sec 17"
+        }
+      ]
+    },
+    {
+      "id": "notify_people",
+      "label": "Notify the people affected",
+      "needsReason": false,
+      "deadlineSensitive": true,
+      "score": [
+        {
+          "who": "defend",
+          "pts": 8,
+          "reason": "The affected people were notified within 72 hours",
+          "link": "NPC Circular 16-03, Sec 18"
+        }
+      ]
+    },
+    {
+      "id": "report_dict",
+      "label": "Report to DICT and law enforcement",
+      "needsReason": false,
+      "score": [
+        {
+          "who": "defend",
+          "pts": 4,
+          "reason": "DICT and law enforcement were told",
+          "link": "DICT DC 005; RA 10175"
+        }
+      ]
+    },
+    {
+      "id": "holding_statement",
+      "label": "Issue a holding statement (one voice)",
+      "needsReason": false,
+      "score": [
+        {
+          "who": "defend",
+          "pts": 2,
+          "reason": "One voice, a holding statement, no guessing",
+          "link": "Module 5: one channel, one log, one voice"
+        }
+      ]
+    }
+  ],
+  "injects": [
+    {
+      "id": "inj-citizen",
+      "label": "Citizen screenshot",
+      "text": "A citizen posts a screenshot: 'Why does the RSSO portal look like this?'",
+      "band": "warn"
+    },
+    {
+      "id": "inj-central",
+      "label": "Central office asks",
+      "text": "The central office asks for an update within the hour.",
+      "band": "info"
+    },
+    {
+      "id": "inj-reporter",
+      "label": "Reporter calls",
+      "text": "A reporter calls the hotline: 'Were applicants' records stolen? Did you pay?'",
+      "band": "warn"
+    }
+  ]
+}

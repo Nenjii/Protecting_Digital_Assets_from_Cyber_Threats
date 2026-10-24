@@ -1,0 +1,25 @@
+{
+  "_status": "Module 4, Lesson 4.1 'When a device is lost' (learner guide of 21 October 2026): the 3S test from Module 1 (NPC Circular 16-03, Section 11) applied to a lost device; encryption turns 'we lost the data' into 'we lost a device'. Fictional cases.",
+  "scenarios": [
+    {
+      "id": "l1",
+      "text": "Sol's field laptop is stolen from a car. It holds 300 applicants' case notes and scanned IDs, and the disk is not encrypted.",
+      "sensitive": "yes",
+      "stolen": "yes",
+      "serious": "likely",
+      "decision": "Notify: report it at once",
+      "notify": true,
+      "why": "Sensitive data, reason to believe someone unauthorized has it, and a real risk of serious harm: it can be notifiable, and the 72-hour clock may already be running. Report at once, so IT can try to lock or wipe it."
+    },
+    {
+      "id": "l2",
+      "text": "The same laptop is stolen, but full-disk encryption is on, and its password was never written down or kept with it.",
+      "sensitive": "yes",
+      "stolen": "yes",
+      "serious": "unlikely",
+      "decision": "Usually not notifiable",
+      "notify": false,
+      "why": "The thief has scrambled bytes: encryption turned \"we lost the data\" into \"we lost a device\". Still report it at once and record it as an incident; the DPO decides."
+    }
+  ]
+}

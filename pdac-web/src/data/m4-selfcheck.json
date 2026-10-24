@@ -1,0 +1,52 @@
+{
+  "_status": "Module 4, Self-check 4.1 'Your device in three minutes' (learner guide of 21 October 2026), word for word. Individual and not collected: nothing is saved.",
+  "source": "Module 4 learner guide, Self-check 4.1 · individual, not collected",
+  "items": [
+    {
+      "id": "c1",
+      "text": "Security updates installed in the last month"
+    },
+    {
+      "id": "c2",
+      "text": "The screen locks by itself after a few idle minutes"
+    },
+    {
+      "id": "c3",
+      "text": "Full-disk encryption is on"
+    },
+    {
+      "id": "c4",
+      "text": "Antivirus or endpoint protection is running and current"
+    },
+    {
+      "id": "c5",
+      "text": "You work as a standard user, not as an administrator"
+    },
+    {
+      "id": "c6",
+      "text": "MFA is on for your office email"
+    },
+    {
+      "id": "c7",
+      "text": "No work files sit in personal cloud drives or messaging apps"
+    },
+    {
+      "id": "c8",
+      "text": "You know whom to call if the device is lost"
+    },
+    {
+      "id": "c9",
+      "text": "Your work files are backed up to approved storage"
+    },
+    {
+      "id": "c10",
+      "text": "At home, your router's default password has been changed"
+    }
+  ],
+  "bands": [
+    {
+      "min": 0,
+      "label": "Each unticked box is a candidate for your 30-day action in Lesson 4.3."
+    }
+  ]
+}

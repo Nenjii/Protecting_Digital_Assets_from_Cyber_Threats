@@ -1,0 +1,429 @@
+{
+  "_status": "Module 3, Try it 3.1 'Which control stops this?' and its model answers (learner guide of 21 October 2026, pages 5 and 13). Each threat: the room predicts, the clicker reveals the guide's answer, the next press plays the control on the map. Fictional office.",
+  "title": "Try it 3.1: which control stops this?",
+  "map": "m3-net.json",
+  "tracks": [
+    {
+      "id": "t1",
+      "tab": "1 Admin page",
+      "label": "Threat 1 of 6",
+      "steps": [
+        {
+          "title": "An internet scan finds the portal's admin page",
+          "text": "",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Scan: admin page"
+            }
+          ],
+          "set": {
+            "portal": "bad|✗ Answers"
+          },
+          "ask": {
+            "q": "Which control stops or detects it?",
+            "options": [
+              "Default deny + admin network",
+              "Segmentation",
+              "Web application firewall",
+              "MFA on the VPN",
+              "Segmentation + an IPS",
+              "IDS alert on outbound traffic"
+            ],
+            "answer": 0,
+            "why": "Firewall default deny and an admin network: the admin page answers only on the admin network."
+          }
+        },
+        {
+          "title": "Default deny, and an admin network",
+          "text": "From the internet, only the public pages answer. Ana reaches the admin pages from the admin network.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Admin page?",
+              "blockAt": "firewall"
+            },
+            {
+              "route": [
+                "ana",
+                "firewall",
+                "portal"
+              ],
+              "label": "Ana: admin",
+              "with": true
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ Denied",
+            "portal": "ok|Admin only"
+          },
+          "close": true
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "tab": "2 Guest Wi-Fi",
+      "label": "Threat 2 of 6",
+      "steps": [
+        {
+          "title": "A visitor on guest Wi-Fi tries to open the file server",
+          "text": "",
+          "send": [
+            {
+              "route": [
+                "visitor",
+                "firewall",
+                "files"
+              ],
+              "kind": "attack",
+              "label": "File server"
+            }
+          ],
+          "set": {
+            "files": "bad|✗ Opened"
+          },
+          "ask": {
+            "q": "Which control stops or detects it?",
+            "options": [
+              "Default deny + admin network",
+              "Segmentation",
+              "Web application firewall",
+              "MFA on the VPN",
+              "Segmentation + an IPS",
+              "IDS alert on outbound traffic"
+            ],
+            "answer": 1,
+            "why": "Segmentation: guest Wi-Fi reaches only the internet."
+          }
+        },
+        {
+          "title": "Segmentation",
+          "text": "Guest Wi-Fi is its own zone, and it reaches the internet only.",
+          "send": [
+            {
+              "route": [
+                "visitor",
+                "firewall",
+                "files"
+              ],
+              "kind": "attack",
+              "label": "File server?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "visitor": "ok|Internet only",
+            "firewall": "ok|✓ Blocked"
+          },
+          "close": true
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "tab": "3 Login form",
+      "label": "Threat 3 of 6",
+      "steps": [
+        {
+          "title": "The portal's login form receives database commands instead of a name",
+          "text": "",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "' OR 1=1 --"
+            },
+            {
+              "route": [
+                "portal",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Commands"
+            }
+          ],
+          "set": {
+            "db": "bad|✗ Breached"
+          },
+          "ask": {
+            "q": "Which control stops or detects it?",
+            "options": [
+              "Default deny + admin network",
+              "Segmentation",
+              "Web application firewall",
+              "MFA on the VPN",
+              "Segmentation + an IPS",
+              "IDS alert on outbound traffic"
+            ],
+            "answer": 2,
+            "why": "A web application firewall, while the vendor fixes the form itself. Module 4 adds the buying habit of asking for proof of security testing."
+          }
+        },
+        {
+          "title": "A web application firewall",
+          "text": "A WAF reads the content of web requests to the portal and blocks a login form stuffed with database commands. The real fix is still the vendor's: correct the form.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "' OR 1=1 --",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ WAF blocked",
+            "portal": "warn|Fix the form"
+          },
+          "close": true
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "tab": "4 VPN password",
+      "label": "Threat 4 of 6",
+      "steps": [
+        {
+          "title": "A departed contractor's stolen VPN password is used at night",
+          "text": "",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "vpn"
+              ],
+              "kind": "attack",
+              "label": "Old password"
+            }
+          ],
+          "set": {
+            "vpn": "bad|✗ Tunnel opened"
+          },
+          "ask": {
+            "q": "Which control stops or detects it?",
+            "options": [
+              "Default deny + admin network",
+              "Segmentation",
+              "Web application firewall",
+              "MFA on the VPN",
+              "Segmentation + an IPS",
+              "IDS alert on outbound traffic"
+            ],
+            "answer": 3,
+            "why": "MFA on the VPN, and accounts closed on the last day."
+          }
+        },
+        {
+          "title": "MFA on the VPN",
+          "text": "The password alone no longer opens the tunnel, and leavers' accounts are closed on their last day.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "vpn"
+              ],
+              "kind": "attack",
+              "label": "Old password",
+              "blockAt": "vpn"
+            }
+          ],
+          "set": {
+            "vpn": "ok|✓ MFA refused"
+          },
+          "close": true
+        }
+      ]
+    },
+    {
+      "id": "t5",
+      "tab": "5 Malware",
+      "label": "Threat 5 of 6",
+      "steps": [
+        {
+          "title": "Malware on one staff computer tries to reach the applicant database",
+          "text": "",
+          "pre": {
+            "staffpc": "bad|✗ Malware"
+          },
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database"
+            }
+          ],
+          "set": {
+            "db": "bad|✗ Reached"
+          },
+          "ask": {
+            "q": "Which control stops or detects it?",
+            "options": [
+              "Default deny + admin network",
+              "Segmentation",
+              "Web application firewall",
+              "MFA on the VPN",
+              "Segmentation + an IPS",
+              "IDS alert on outbound traffic"
+            ],
+            "answer": 4,
+            "why": "Segmentation plus an IPS: staff computers cannot reach the database directly, and the IPS blocks the attempt."
+          }
+        },
+        {
+          "title": "Segmentation plus an IPS",
+          "text": "The staff network does not reach the database directly, and the IPS blocks the attempt and raises the alarm.",
+          "pre": {
+            "staffpc": "bad|✗ Malware"
+          },
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "staffpc": "warn|Contained",
+            "firewall": "ok|✓ IPS blocked",
+            "ana": "focus|🔔 Alert"
+          },
+          "close": true
+        }
+      ]
+    },
+    {
+      "id": "t6",
+      "tab": "6 Data leaving",
+      "label": "Threat 6 of 6",
+      "steps": [
+        {
+          "title": "A large amount of data leaves the server for an unknown address over two nights",
+          "text": "",
+          "send": [
+            {
+              "route": [
+                "backup",
+                "firewall",
+                "net",
+                "unknown"
+              ],
+              "kind": "leak",
+              "label": "4.2 GB, 2:00 AM"
+            }
+          ],
+          "set": {
+            "unknown": "bad|✗ Data received"
+          },
+          "ask": {
+            "q": "Which control stops or detects it?",
+            "options": [
+              "Default deny + admin network",
+              "Segmentation",
+              "Web application firewall",
+              "MFA on the VPN",
+              "Segmentation + an IPS",
+              "IDS alert on outbound traffic"
+            ],
+            "answer": 5,
+            "why": "An IDS alert on outbound traffic, with outbound filtering that allows only approved destinations."
+          }
+        },
+        {
+          "title": "An IDS alert on outbound traffic",
+          "text": "Outbound filtering allows approved destinations only, and the alert reaches Ana the first night.",
+          "send": [
+            {
+              "route": [
+                "backup",
+                "firewall",
+                "net",
+                "unknown"
+              ],
+              "kind": "leak",
+              "label": "4.2 GB?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ Blocked",
+            "ana": "focus|🔔 Night 1"
+          },
+          "close": true,
+          "verdict": {
+            "tone": "ok",
+            "text": "Six threats from Module 2, six controls. Layers, not walls."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "Threat",
+      "Control that stops or detects it"
+    ],
+    "rows": [
+      [
+        "1. An internet scan finds the portal's admin page",
+        "Firewall default deny and an admin network: the admin page answers only on the admin network"
+      ],
+      [
+        "2. A visitor on guest Wi-Fi tries to open the file server",
+        "Segmentation: guest Wi-Fi reaches only the internet"
+      ],
+      [
+        "3. The login form receives database commands",
+        "A web application firewall, while the vendor fixes the form itself"
+      ],
+      [
+        "4. A departed contractor's stolen VPN password is used",
+        "MFA on the VPN, and accounts closed on the last day"
+      ],
+      [
+        "5. Malware on a staff PC tries the database",
+        "Segmentation plus an IPS"
+      ],
+      [
+        "6. Data leaves for an unknown address over two nights",
+        "An IDS alert on outbound traffic, with outbound filtering"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "_status": "Module 3, Lesson 3.1, 'IDS and IPS: the alarm and the guard' and 'Filter outbound traffic too' (learner guide of 21 October 2026). Fictional office; 198.51.100.x and 203.0.113.x are documentation address ranges.",
+  "title": "IDS tells, IPS stops",
+  "map": "m3-net.json",
+  "tracks": [
+    {
+      "id": "ids",
+      "tab": "IDS: the alarm",
+      "label": "Intrusion detection system",
+      "steps": [
+        {
+          "title": "A known attack arrives",
+          "text": "A request to the portal carries a known attack pattern. A **signature-based** system recognizes it, the way antivirus recognizes a known virus.",
+          "ask": {
+            "q": "With an IDS only, what happens to the request?",
+            "options": [
+              "It is blocked",
+              "It gets through, and an alert is raised",
+              "Nothing: an IDS only works at night"
+            ],
+            "answer": 1,
+            "why": "An IDS watches and raises an alert. It does not block: someone must act on the alert."
+          }
+        },
+        {
+          "title": "IDS tells",
+          "text": "The request reaches the portal, and Ana's screen shows the alert. An IDS is only as good as the person who reads its alerts.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Known attack"
+            }
+          ],
+          "set": {
+            "portal": "warn|Reached",
+            "ana": "warn|🔔 IDS alert"
+          },
+          "screen": {
+            "title": "IDS alert · 10:42",
+            "lines": [
+              "Known attack pattern → portal (signature match)",
+              "Source 203.0.113.77 · action: ALERT ONLY"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ips",
+      "tab": "IPS: the guard",
+      "label": "Intrusion prevention system",
+      "steps": [
+        {
+          "title": "IPS stops",
+          "text": "An intrusion prevention system sits in the path of the traffic. When it finds the same pattern, it **blocks** the request as well as raising the alert.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Known attack",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ IPS blocked",
+            "ana": "focus|🔔 Logged"
+          },
+          "screen": {
+            "title": "IPS · 10:42",
+            "lines": [
+              "Known attack pattern → portal (signature match)",
+              "Source 203.0.113.77 · action: BLOCK, logged"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "anomaly",
+      "tab": "Unusual at 2:00 AM",
+      "label": "Anomaly-based detection and outbound filtering",
+      "steps": [
+        {
+          "title": "Nothing known, but something unusual",
+          "text": "At 2:00 AM the backup server starts sending a large amount of data to an address abroad, two nights in a row. No known attack pattern: it is the **behaviour** that is wrong.",
+          "ask": {
+            "q": "Which control was built to catch this?",
+            "options": [
+              "Guest Wi-Fi",
+              "An IDS alert on outbound traffic, and outbound filtering",
+              "A longer password for visitors"
+            ],
+            "answer": 1,
+            "why": "Anomaly-based detection looks for unusual behaviour, and outbound filtering lets servers reach approved destinations only."
+          }
+        },
+        {
+          "title": "Without outbound filtering, it leaves",
+          "text": "If the firewall only watches traffic coming in, the data walks out. The anomaly-based IDS still raises the alarm.",
+          "send": [
+            {
+              "route": [
+                "backup",
+                "firewall",
+                "net",
+                "unknown"
+              ],
+              "kind": "leak",
+              "label": "4.2 GB at 2:00 AM"
+            }
+          ],
+          "set": {
+            "unknown": "bad|✗ Data received",
+            "ana": "warn|🔔 Unusual"
+          },
+          "screen": {
+            "title": "Anomaly alert · 02:00",
+            "lines": [
+              "backup → 198.51.100.20 · 4.2 GB in 40 minutes",
+              "Never seen before at this hour"
+            ]
+          }
+        },
+        {
+          "title": "Filter outbound traffic too",
+          "text": "The server zone may reach approved update sites only, nothing else on the internet. The same transfer is blocked, logged, and reported.",
+          "send": [
+            {
+              "route": [
+                "backup",
+                "firewall",
+                "net",
+                "unknown"
+              ],
+              "kind": "leak",
+              "label": "4.2 GB?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ Blocked",
+            "ana": "focus|🔔 Logged"
+          },
+          "close": true,
+          "verdict": {
+            "tone": "ok",
+            "text": "A server that suddenly sends data to an unknown address is a warning sign."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tune",
+      "tab": "False alarms",
+      "label": "Both raise false alarms",
+      "desk": "Report security alerts and odd behaviour on your computer at once.",
+      "it": "Tune the IDS and IPS, review the logs on a schedule, and keep them: they feed monitoring and, after an incident, the incident report.",
+      "steps": [
+        {
+          "title": "IT tunes them",
+          "text": "A large, legitimate upload at month-end also looks unusual. IT tunes the rules so real alarms stand out, and keeps the logs.",
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "files"
+              ],
+              "label": "Month-end reports"
+            }
+          ],
+          "set": {
+            "ana": "focus|Reviewed"
+          },
+          "screen": {
+            "title": "Alert review · 17:05",
+            "lines": [
+              "staff PC → file server · 900 MB",
+              "Expected: month-end reports. Rule tuned."
+            ]
+          },
+          "close": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "",
+      "What it does",
+      "Kinds"
+    ],
+    "rows": [
+      [
+        "IDS: the alarm",
+        "Watches traffic or a computer and raises an alert",
+        "**Network-based** systems watch traffic; **host-based** ones watch a single computer or server"
+      ],
+      [
+        "IPS: the guard",
+        "Can also block what it finds",
+        "**Signature-based** looks for known attacks; **anomaly-based** looks for unusual behaviour, such as a large transfer at 2:00 AM"
+      ],
+      [
+        "Both",
+        "Raise false alarms, so IT tunes them",
+        "Their logs feed monitoring and, after an incident, the incident report"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "_status": "Module 4, Try it 4.2A 'Safe or suspicious?' and its model answers (learner guide of 21 October 2026, pages 7, 16 and 17): six screens, the clue, and what to do. Fictional office; .example names are reserved for documentation.",
+  "unit": "Screen",
+  "options": [
+    { "id": "legit", "label": "Safe" },
+    { "id": "phish", "label": "Suspicious" }
+  ],
+  "messages": [
+    {
+      "id": "s1",
+      "channel": "browser",
+      "answer": "phish",
+      "verdict": "Suspicious: a certificate warning",
+      "browser": { "url": "https://leave.rsso-q.example", "padlock": false, "kind": "warning", "title": "[[c1|Your connection is not private]]", "via": "Dan opens the office's leave portal, as every month" },
+      "body": "Attackers might be trying to steal your information from leave.rsso-q.example (for example, passwords, messages or credit cards). [[c2|NET::ERR_CERT_DATE_INVALID]]",
+      "cues": [
+        { "id": "c1", "text": "A full-page warning means the browser **could not confirm the site's identity**." },
+        { "id": "c2", "text": "The usual cause on an office system is an expired or wrongly set-up certificate, which IT must fix." }
+      ],
+      "why": "Do not click past it or sign in; tell IT, who will usually find an expired or wrongly set-up certificate. Staff should never learn to ignore the warning."
+    },
+    {
+      "id": "s2",
+      "channel": "browser",
+      "answer": "phish",
+      "verdict": "Suspicious: a look-alike address",
+      "browser": { "url": "https://assist.[[c1|rss0-q]].example/login", "padlock": true, "kind": "login", "title": "RSSO Assistance Portal: payout problem", "via": "[[c2|Opened from a link in a text message about a payout problem]]", "button": "Sign in to fix your payout" },
+      "body": "Your payout is on hold. Sign in within 24 hours to keep your assistance.",
+      "cues": [
+        { "id": "c1", "text": "**A zero in place of the letter o:** the owner is rss0-q.example, not rsso-q.example." },
+        { "id": "c2", "text": "It arrived by SMS link, with a deadline. **The padlock proves nothing:** it means private, not honest." }
+      ],
+      "why": "Do not sign in; report the text. If you already entered a password, change it at once from the real address and tell IT."
+    },
+    {
+      "id": "s3",
+      "channel": "browser",
+      "answer": "phish",
+      "verdict": "Suspicious: shadow IT",
+      "browser": { "url": "https://freepdf-merge.example", "padlock": true, "kind": "tool", "title": "Merge PDFs free! No sign-up", "via": "A colleague, needing to merge two beneficiary masterlists before noon", "files": ["[[c1|Beneficiary masterlist, District 1.pdf]]", "[[c1|Beneficiary masterlist, District 2.pdf]]"], "button": "Upload and merge" },
+      "body": "Drop your files here. [[c2|We may keep uploaded files to improve our service.]]",
+      "cues": [
+        { "id": "c1", "text": "**Sensitive personal data** going to an outside service." },
+        { "id": "c2", "text": "**No agreement** with the RSSO: the office cannot control, see or recall the files." }
+      ],
+      "why": "Stop; use an approved tool or ask IT. The office stays responsible for that data (RA 10173, Secs 14 and 21(a))."
+    },
+    {
+      "id": "s4",
+      "channel": "browser",
+      "answer": "phish",
+      "verdict": "Suspicious: a fake update",
+      "browser": { "url": "https://news-today.example/local", "padlock": true, "kind": "popup", "title": "[[c1|Your browser is out of date]]", "via": "Reading the news at lunch", "button": "Download the update now" },
+      "body": "[[c2|Download the update now]] to keep browsing safely.",
+      "cues": [
+        { "id": "c1", "text": "**Updates do not arrive through pop-ups on other websites.**" },
+        { "id": "c2", "text": "An unexpected download: do not open it." }
+      ],
+      "why": "Close the tab; update through the browser itself or ask IT. If a pop-up says your computer is infected and gives a number to call, never call it: close the browser and tell IT."
+    },
+    {
+      "id": "s5",
+      "channel": "browser",
+      "answer": "legit",
+      "verdict": "Safe: the real portal",
+      "browser": { "url": "https://assist.[[c1|rsso-q.example]]/staff", "padlock": true, "kind": "page", "title": "RSSO Assistance Portal · Staff sign-in", "via": "[[c2|Ben opens it from his own bookmark]]" },
+      "body": "Welcome back, Ben. Sign in with your security key.",
+      "cues": [
+        { "id": "c1", "kind": "ok", "text": "The owner part is **rsso-q.example**: the real address." },
+        { "id": "c2", "kind": "ok", "text": "Typed from his own bookmark, not a link in a message." }
+      ],
+      "why": "Carry on. Bookmarks and typed addresses you know are the safest habit; a password manager also helps, because it offers your password only on the address where you saved it."
+    },
+    {
+      "id": "s6",
+      "channel": "chat",
+      "answer": "phish",
+      "verdict": "Suspicious: IDs in a chat group",
+      "chat": {
+        "group": "[[c1|Field Team District 3 (personal chat app)]]",
+        "posts": [
+          { "who": "Field staff 1", "text": "Pa-check naman, tama ba 'tong ID?", "image": "[[c2|Photo of an applicant's ID card]]" },
+          { "who": "Field staff 2", "image": "[[c2|Photo of a medical certificate]]" },
+          { "who": "Field staff 3", "text": "Ok na yung una 👍" }
+        ]
+      },
+      "body": "",
+      "cues": [
+        { "id": "c1", "text": "**An unapproved messaging group:** outside the office's control and records." },
+        { "id": "c2", "text": "**ID images of applicants** and health information." }
+      ],
+      "why": "Stop posting; move checks into the portal or an approved tool; tell the DPO, who decides whether this is a breach."
+    }
+  ]
+}

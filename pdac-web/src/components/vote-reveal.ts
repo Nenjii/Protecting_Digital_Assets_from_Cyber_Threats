@@ -3,8 +3,8 @@ import { PdacBase, esc, md, parseOptions, verdict } from './base';
 
 interface Option { id: string; label: string }
 interface Fact { k: string; v: string }
-interface Vignette { id: string; text: string; answer: string | string[]; reason?: string; who?: string; facts?: Fact[] }
-type VoteData = Vignette[] | { options?: Option[]; items: Vignette[] };
+interface Vignette { id: string; text: string; answer?: string | string[]; reason?: string; who?: string; facts?: Fact[] }
+type VoteData = Vignette[] | { options?: Option[]; items: Vignette[]; unit?: string };
 
 /**
  * <pdac-vote-reveal data-src="m1-vignettes.json" data-options="compliant:Compliant|not-compliant:Not compliant|depends:It depends">
@@ -12,6 +12,9 @@ type VoteData = Vignette[] | { options?: Option[]; items: Vignette[] };
  * answer and the plain reason. The clicker steps: reveal → next case → … → next slide.
  * "answer" may list two options ("People and process"); "facts" adds labelled lines
  * to the reveal, for example the learner guide's weakness, data at risk and fix.
+ * data-no-vote: no options to vote on; each case's reveal is its model answer
+ * (the facts), for activities where teams write their own answer first.
+ * "unit" in the data names the cases ("Data set 1 of 8"); the default is "Case".
  */
 export class PdacVoteReveal extends PdacBase {
   private items: Vignette[] = [];
@@ -20,13 +23,18 @@ export class PdacVoteReveal extends PdacBase {
   private tallies: number[][] = [];
   private history: number[][] = [];
   private revealed: boolean[] = [];
+  private noVote = false;
+  private unit = 'Case';
 
   protected setup(): void {
     const data = this.json<VoteData>();
     this.items = Array.isArray(data) ? data : data.items;
     const fromData = Array.isArray(data) ? [] : data.options ?? [];
+    if (!Array.isArray(data) && data.unit) this.unit = data.unit;
+    this.noVote = this.hasAttribute('data-no-vote');
     this.options = parseOptions(this.dataset.options).length ? parseOptions(this.dataset.options) : fromData;
-    if (!this.options.length) throw new Error('No vote options: add data-options or "options" in the data file');
+    if (!this.options.length && !this.noVote) throw new Error('No vote options: add data-options or "options" in the data file');
+    this.classList.toggle('is-no-vote', this.noVote);
     const [from, to] = (this.dataset.range ?? '').split('-').map(Number);
     if (from) this.items = this.items.slice(from - 1, to || from);
     this.resetState();
@@ -39,13 +47,13 @@ export class PdacVoteReveal extends PdacBase {
         </div>
       </div>
       <blockquote class="vr-case"></blockquote>
-      <div class="vr-options" role="group" aria-label="Room's tally"></div>
+      ${this.noVote ? '' : '<div class="vr-options" role="group" aria-label="Room\'s tally"></div>'}
       <div class="pdac-bar">
         <div class="pdac-bar__left">
-          <button type="button" class="pdac-btn pdac-btn--primary" data-act="reveal">${icon('eye')} Reveal answer <span class="pdac-key">A</span></button>
-          <button type="button" class="pdac-btn pdac-btn--quiet" data-act="undo">${icon('rotate-ccw')} Undo last vote</button>
+          <button type="button" class="pdac-btn pdac-btn--primary" data-act="reveal">${icon('eye')} ${this.noVote ? 'Show the model answer' : 'Reveal answer'} <span class="pdac-key">A</span></button>
+          ${this.noVote ? '' : `<button type="button" class="pdac-btn pdac-btn--quiet" data-act="undo">${icon('rotate-ccw')} Undo last vote</button>`}
         </div>
-        <p class="pdac-bar__status">Tap an option for each vote, or press 1 to ${this.options.length}</p>
+        <p class="pdac-bar__status">${this.noVote ? 'Teams answer first; → shows the model answer, then the next' : `Tap an option for each vote, or press 1 to ${this.options.length}`}</p>
       </div>
       <div class="vr-reveal" aria-live="polite"></div>`;
     this.addEventListener('click', (e) => this.onClick(e));
@@ -76,7 +84,7 @@ export class PdacVoteReveal extends PdacBase {
 
   vote(option: number): void {
     const i = option - 1;
-    if (i < 0 || i >= this.options.length || this.revealed[this.index]) return;
+    if (this.noVote || i < 0 || i >= this.options.length || this.revealed[this.index]) return;
     this.tallies[this.index][i] += 1;
     this.history[this.index].push(i);
     this.render();
@@ -106,12 +114,12 @@ export class PdacVoteReveal extends PdacBase {
     const max = Math.max(...tally);
     const revealed = this.revealed[this.index];
     const answers = answersOf(item);
-    this.$('.vr-count').textContent = `Case ${this.index + 1} of ${this.items.length}`;
+    this.$('.vr-count').textContent = `${this.unit} ${this.index + 1} of ${this.items.length}`;
     this.$('.vr-case').innerHTML = `${item.who ? `<span class="vr-who">${esc(item.who)}</span>` : ''}${md(item.text)}`;
     (this.querySelector('[data-act="prev"]') as HTMLButtonElement).disabled = this.index === 0;
     (this.querySelector('[data-act="next"]') as HTMLButtonElement).disabled = this.index === this.items.length - 1;
 
-    this.$('.vr-options').innerHTML = this.options.map((o, i) => {
+    if (!this.noVote) this.$('.vr-options').innerHTML = this.options.map((o, i) => {
       const isAnswer = revealed && answers.includes(o.id);
       const isTop = total > 0 && tally[i] === max;
       const pct = total ? Math.round((tally[i] / total) * 100) : 0;
@@ -144,7 +152,8 @@ export class PdacVoteReveal extends PdacBase {
       ? `<dl class="vr-facts">${item.facts.map((f) => `<dt>${esc(f.k)}</dt><dd>${md(f.v)}</dd>`).join('')}</dl>`
       : '';
     const why = item.reason ? `<p class="vr-why"><span class="vr-why__k">Why:</span> ${md(item.reason)}</p>` : '';
-    box.innerHTML = `<p class="vr-answer"><span class="vr-answer__k">Answer</span> ${esc(answer)}</p>${facts}${why}${roomLine}`;
+    const answerLine = answers.length ? `<p class="vr-answer"><span class="vr-answer__k">Answer</span> ${esc(answer)}</p>` : '';
+    box.innerHTML = `${answerLine}${facts}${why}${this.noVote ? '' : roomLine}`;
     box.classList.add('is-on');
   }
 
@@ -160,5 +169,6 @@ export class PdacVoteReveal extends PdacBase {
 }
 
 function answersOf(item: Vignette): string[] {
+  if (item.answer === undefined) return [];
   return Array.isArray(item.answer) ? item.answer : [item.answer];
 }

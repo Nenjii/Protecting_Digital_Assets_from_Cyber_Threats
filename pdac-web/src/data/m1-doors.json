@@ -264,7 +264,7 @@
           "text": "She sends it to the team's group chat. The chat company's servers are outside the office, and anyone in the group can forward it on.",
           "pre": { "phone": "warn|List on a personal phone" },
           "send": [{"route": ["phone", "net", "chat"], "kind": "leak", "label": "Sent to group"}],
-          "set": { "chat": "bad|✗ Forwarded on" },
+          "set": { "chat": "bad|✗ Forwarded" },
           "verdict": { "tone": "bad", "text": "Door open: Secret is gone and cannot be recalled" }
         },
         {

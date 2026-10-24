@@ -62,5 +62,71 @@
       "name": "Impact"
     }
   ],
-  "techniques": {}
+  "techniques": {
+    "T1048": {
+      "name": "Exfiltration Over Alternative Protocol",
+      "tactics": [
+        "Exfiltration"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1048",
+      "summary": "Adversaries may steal data by exfiltrating it over a different protocol than that of the existing command and control channel."
+    },
+    "T1070": {
+      "name": "Indicator Removal",
+      "tactics": [
+        "Defense Evasion"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1070",
+      "summary": "Adversaries may delete or modify artifacts generated within systems to remove evidence of their presence or hinder defenses."
+    },
+    "T1133": {
+      "name": "External Remote Services",
+      "tactics": [
+        "Persistence",
+        "Initial Access"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1133",
+      "summary": "Adversaries may leverage external-facing remote services to initially access and/or persist within a network."
+    },
+    "T1136": {
+      "name": "Create Account",
+      "tactics": [
+        "Persistence"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1136",
+      "summary": "Adversaries may create an account to maintain access to victim systems."
+    },
+    "T1190": {
+      "name": "Exploit Public-Facing Application",
+      "tactics": [
+        "Initial Access"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1190",
+      "summary": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network."
+    },
+    "T1491.002": {
+      "name": "Defacement: External Defacement",
+      "tactics": [
+        "Impact"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1491/002",
+      "summary": "An adversary may deface systems external to an organization in an attempt to deliver messaging, intimidate, or otherwise mislead an organization or users."
+    },
+    "T1566": {
+      "name": "Phishing",
+      "tactics": [
+        "Initial Access"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1566",
+      "summary": "Adversaries may send phishing messages to gain access to victim systems."
+    },
+    "T1594": {
+      "name": "Search Victim-Owned Websites",
+      "tactics": [
+        "Reconnaissance"
+      ],
+      "url": "https://attack.mitre.org/techniques/T1594",
+      "summary": "Adversaries may search websites owned by the victim for information that can be used during targeting."
+    }
+  }
 }

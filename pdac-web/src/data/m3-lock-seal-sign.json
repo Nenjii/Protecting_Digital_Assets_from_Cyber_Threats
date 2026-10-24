@@ -1,0 +1,81 @@
+{
+  "_status": "Module 3, Lesson 3.2 'Three tools, three jobs' (learner guide of 21 October 2026): encryption, hashing, digital signature, with the guide's pictures and RSSO examples. Computed live with Web Crypto (AES-GCM 256, SHA-256, ECDSA P-256). Every record and amount is fictional.",
+  "lock": {
+    "title": "Lock: encryption",
+    "picture": "A locked box: only someone with the key opens it",
+    "protects": "Secret (confidentiality)",
+    "example": "A stolen backup drive cannot be read.",
+    "record": "Backup · A-20931 · Juana Dela Paz · ID 0000-1111-2222 · medical certificate (fictional)"
+  },
+  "seal": {
+    "title": "Seal: hashing",
+    "picture": "A tamper seal: any change breaks it",
+    "protects": "Correct (integrity), and safe password storage",
+    "example": "The portal stores a hash of each password, never the password itself.",
+    "file": "Payout batch 22 Oct\nA-20931 · EW-0417 · PHP 3,000",
+    "changed": "Payout batch 22 Oct\nA-20931 · EW-0417 · PHP 8,000",
+    "password": "Mango-Season-Jeepney-44"
+  },
+  "sign": {
+    "title": "Sign: digital signature",
+    "picture": "A signature checked against the signer's public key",
+    "protects": "Who sent it, and that it was not changed",
+    "example": "A signed payout file shows it came from the RSSO unchanged.",
+    "file": "To the e-wallet provider, 22 Oct\nA-20931 → EW-0417 · PHP 3,000",
+    "changed": "To the e-wallet provider, 22 Oct\nA-20931 → EW-9911 · PHP 3,000",
+    "impostorFile": "To the e-wallet provider, 22 Oct\nA-20931 → EW-9911 · PHP 3,000"
+  },
+  "scenes": [
+    {
+      "act": "lock-encrypt",
+      "title": "Lock: the backup is encrypted",
+      "text": "A fresh 256-bit key scrambles the record. What sits on the backup drive is meaningless without the key."
+    },
+    {
+      "act": "lock-thief",
+      "title": "A thief takes the drive, but not the key",
+      "text": "Any other key fails. The stolen drive gives away nothing: **encryption protects Secret**."
+    },
+    {
+      "act": "lock-owner",
+      "title": "The key custodian opens it",
+      "text": "Ana, the named key custodian, holds the key apart from the drive. With it, the record comes back exactly."
+    },
+    {
+      "act": "seal-approve",
+      "title": "Seal: a fingerprint of the payout file",
+      "text": "When Director Eva approves the batch, its SHA-256 fingerprint is recorded. Any copy can be checked against it later."
+    },
+    {
+      "act": "seal-tamper",
+      "title": "One digit changes: 3,000 becomes 8,000",
+      "text": "The fingerprint changes completely. Nobody can change the file without it showing: **hashing protects Correct**."
+    },
+    {
+      "act": "seal-password",
+      "title": "Passwords are stored as hashes",
+      "text": "The portal keeps the fingerprint of each password, never the password itself. At sign-in it hashes what you type and compares."
+    },
+    {
+      "act": "sign-sign",
+      "title": "Sign: the RSSO signs the payout list",
+      "text": "The RSSO signs the list with its **private key**, which never leaves the office. The e-wallet provider holds the RSSO's **public key**."
+    },
+    {
+      "act": "sign-verify",
+      "title": "The provider checks the signature",
+      "text": "The signature matches the RSSO's public key and the file: it came from the RSSO, and nothing was changed on the way."
+    },
+    {
+      "act": "sign-changed",
+      "title": "Someone swaps the wallet number on the way",
+      "text": "EW-0417 becomes EW-9911. The signature no longer matches the file, so the provider rejects it."
+    },
+    {
+      "act": "sign-impostor",
+      "title": "An impostor sends their own list",
+      "text": "It claims to come from the RSSO, but it was signed with someone else's key. Checked against the RSSO's public key, it fails: **a signature proves who sent it**."
+    }
+  ],
+  "closing": "Lock, seal, sign. And **encryption without key management is false comfort**: keep keys apart from the data, with a named custodian."
+}

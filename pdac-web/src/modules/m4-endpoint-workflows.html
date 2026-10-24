@@ -1,0 +1,806 @@
+<!--
+  Module 4 · Endpoint Security and Safe Digital Workflows · Day 2, 1:00 to 5:00 PM
+  40 slides. Built 21 October 2026 from the Module 4 learner guide
+  (../source/Module 4 Learner Guide Endpoint Security and Safe Digital Workflows.pdf);
+  there is no Slides deck for this module yet, so the guide is the source of truth
+  for wording, activities, the audit and its rubric. The Audit File the audit uses is
+  ../source/worksheets/Module 4 Audit File.docx; its key is the facilitator-only
+  "Answer Key, Modules 3 and 4". Slide IDs and minutes: tools/slide-map.json.
+
+  As in Module 3, every lesson idea is a simulation or a room decision with a
+  prediction first: PREDICT, VOTE (keys 1 to 9), TURN AND TALK, PLAIN WORDS.
+  Never show the debrief slides (audit-debrief, top-five) before 4:30 PM.
+  The last three slides (news-php2shell-1 to 3, added 22 October 2026) are the
+  Day 2 outro on the PHP2Shell flaws; their minutes came from audit-debrief (12 to 9)
+  and m4-recap (4 to 1), so the module still totals 240 minutes.
+-->
+
+<!-- 1 -->
+<section id="m4-cover" class="l-cover" data-min="1" data-footer="none">
+  <div class="cover-art"><i data-lucide="monitor-smartphone"></i></div>
+  <p class="kicker">Protecting Digital Assets from Cyber Threats · Module 4 of 5</p>
+  <h1>Endpoint Security and Safe Digital Workflows</h1>
+  <p class="subtitle">Secure the devices and habits at every desk, then audit the RSSO portal's controls from its records</p>
+  <div class="meta"><span>Nino Filipen Duque · DICT Region 2 · ICT Academy: Digital Workforce</span><span>Day 2 afternoon · Face-to-face 22 October 2026 · Online 27 October 2026</span></div>
+  <div class="exit-card materials-card cover-materials">
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="clipboard-list"></i> Your worksheet</p>
+      <pdac-qr-panel data-link="worksheet-m4"></pdac-qr-panel>
+    </div>
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="book-open"></i> Learner guide</p>
+      <pdac-qr-panel data-link="guide-m4"></pdac-qr-panel>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two QR codes — the Module 4 worksheet (a Google Form) and the learner guide PDF. Online: paste both links in the chat.</p>
+    <p><b>SAY:</b> Welcome back. This morning we set up the controls in the server room. This afternoon we secure what sits on every desk: laptops, phones, browsers and habits. Then, from 3:00, you audit the RSSO portal's controls on your own, from its records. That audit is 20 percent of your grade, and everything before it is a tool for it.</p>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section id="m4-recall" class="l-interactive" data-min="4" data-code="3.1, 3.2, 3.3" data-eyebrow="Recall · no notes" data-level="Remember" data-source="Module 3">
+  <h2>Four questions from this morning</h2>
+  <div class="stage"><pdac-recall data-src="recall.json" data-module="4"></pdac-recall></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>RETRIEVAL:</b> teams agree each answer in 20 seconds; take answers from teams that were quiet this morning.</p>
+    <p><b>ANSWERS:</b> 1. From the top: the first rule that matches decides; everything else falls to the default deny. 2. Sign: a digital signature. 3. It checks the real site's address and will not sign in to a fake page. 4. Whoever edits an e-wallet number cannot release the payout.</p>
+    <p><b>UNCLEAR FROM THE EXIT CHECK:</b> open with the two most common "still unclear" answers from the Module 3 exit check (showExitCheckResults over lunch), one sentence each.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next answer; A reveals all.</p>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section id="m4-flow" data-min="2" data-eyebrow="This afternoon · Day 2" data-source="Module 4 learner guide, The afternoon">
+  <h2>Three short lessons, then your audit</h2>
+  <div class="body grid-2 flow-grid">
+    <table class="t compact">
+      <thead><tr><th>Time</th><th>Segment</th></tr></thead>
+      <tbody>
+        <tr data-start="13:00" data-end="13:15"><td>1:00 to 1:15</td><td>Recall, the audit explained, audit rules acknowledged <span class="now-tag">Now</span></td></tr>
+        <tr data-start="13:15" data-end="13:50"><td>1:15 to 1:50</td><td>4.1 Laptops, phones and remote work <span class="now-tag">Now</span></td></tr>
+        <tr data-start="13:50" data-end="14:20"><td>1:50 to 2:20</td><td>4.2 Unsafe websites and shadow IT <span class="now-tag">Now</span></td></tr>
+        <tr data-start="14:30" data-end="14:50"><td>2:30 to 2:50</td><td>4.3 Threat intelligence and departmental awareness <span class="now-tag">Now</span></td></tr>
+        <tr data-start="14:50" data-end="15:00"><td>2:50 to 3:00</td><td>Audit briefing and a walk through the audit file <span class="now-tag">Now</span></td></tr>
+        <tr data-start="15:00" data-end="16:00"><td>3:00 to 4:00</td><td>Controls audit: Part A findings, Part B access control <span class="now-tag">Now</span></td></tr>
+        <tr data-start="16:10" data-end="16:30"><td>4:10 to 4:30</td><td>Write-up and submission <span class="now-tag">Now</span></td></tr>
+        <tr data-start="16:30" data-end="16:47"><td>4:30 to 4:47</td><td>Debrief: the main findings and the top five fixes <span class="now-tag">Now</span></td></tr>
+        <tr data-start="16:47" data-end="16:54"><td>4:47 to 4:54</td><td>Day 2 close and Day 3 preview <span class="now-tag">Now</span></td></tr>
+        <tr data-start="16:54" data-end="17:00"><td>4:54 to 5:00</td><td>In the news: PHP2Shell <span class="now-tag">Now</span></td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <p class="flow-breaks"><i data-lucide="coffee"></i> Breaks 2:20 to 2:30 and 4:00 to 4:10</p>
+      <div class="card"><span class="k">Graded · 20%</span><h4>Individual controls audit</h4><p>A findings register and an access-control review, from the Audit File's records.</p></div>
+      <div class="card"><span class="k">Bring</span><h4>Your team's Module 3 role matrix</h4><p>You compare the portal's role table with it in Part B.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> Three short lessons, each with something to try, then the audit. You work alone, on paper, from fictional records. Nobody signs in to anything.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the highlighted row follows the clock.</p>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section id="m4-objectives" data-min="2" data-eyebrow="From remembering to doing" data-source="Module 4 learner guide, What you will be able to do · Syllabus 4.1, 4.2, 4.3">
+  <h2>By 5:00 PM, you will be able to</h2>
+  <ol class="levels body">
+    <li class="fragment"><span class="lv">Remember</span> The Module 4 memory phrases and the four TLP labels</li>
+    <li class="fragment"><span class="lv">Understand</span> Why a padlock does not make a website honest, and why shadow IT is a data risk</li>
+    <li class="fragment"><span class="lv">Apply</span> Check your own work device against a ten-point baseline</li>
+    <li class="fragment"><span class="lv">Analyze</span> Tell safe from suspicious websites and tools, and find control gaps in a system's records</li>
+    <li class="fragment"><span class="lv">Evaluate</span> Rate each finding's severity and decide what to fix first</li>
+    <li class="fragment"><span class="lv">Create</span> A corrected access-control table, and one 30-day action for your office</li>
+  </ol>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> the last three lines are the audit: find gaps in records, rate them, and correct who can do what. The 30-day action is yours to take home.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next level.</p>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section id="audit-rules" class="l-interactive" data-min="6" data-eyebrow="Audit rules · read and acknowledge" data-level="Apply" data-source="Module 4 learner guide, Audit rules · RA 10175 Sec. 4(a)(1)">
+  <h2>Scope is a legal line, not a courtesy</h2>
+  <div class="stage rules-stage">
+    <ol class="rules-list">
+      <li>Work only from the Audit File: everything in it is fictional</li>
+      <li>Do not scan, probe or sign in to any real system, including your own office's</li>
+      <li>Never add real names, accounts or data to your findings</li>
+      <li>Work on your own: ask about the rules or the records, not for answers</li>
+      <li>Submit through the submission link by 4:30 PM</li>
+    </ol>
+    <pdac-vote-reveal class="vr-tight" data-src="m4-rules.json"></pdac-vote-reveal>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes (2 to read the rules, 3 for the five cases, 1 to sign).</p>
+    <p><b>SAY:</b> an audit compares what a system should do with what its records show it does, and writes down the gaps with evidence. You do it on paper, from the Audit File; nothing is tested live. Accessing a computer system without right is illegal access under the Cybercrime Prevention Act, RA 10175, Section 4(a)(1), so scope is a legal line, not a courtesy. The same habit protects your office: only people with written authority test a system, and only within the scope they were given.</p>
+    <p><b>VOTE:</b> five cases, allowed (1) or not (2). Then reveal the rule each one tests.</p>
+    <p><b>ACKNOWLEDGE:</b> face-to-face, everyone signs the rules on the first page of the Audit File now; online, they tick it in the submission form.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the five rules on the left; press 1 or 2 per vote; → reveals; → next case.</p>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section id="baseline" class="l-interactive" data-min="9" data-code="4.1" data-eyebrow="Laptops, phones and remote work · Key idea" data-source="Module 4 learner guide, Lesson 4.1 · ISO/IEC 27001 A.8.1, 8.7, 7.9, 6.7" data-terms="endpoint,endpoint-protection,full-disk-encryption,standard-user">
+  <h2>Every device that touches office data is a door</h2>
+  <div class="stage"><pdac-layers-sim data-src="m4-endpoint.json"></pdac-layers-sim></div>
+  <div class="it-depth">
+    <h3>The baseline, control by control</h3>
+    <ul>
+      <li><b>Updates:</b> security updates installed promptly, automatically where possible (Ben's laptop updates overnight).</li>
+      <li><b>Endpoint protection:</b> antivirus or endpoint protection running and current; licences renewed before they lapse.</li>
+      <li><b>Full-disk encryption:</b> a lost device does not mean lost data (Sol's field laptop is encrypted).</li>
+      <li><b>Screen lock:</b> locks after a few idle minutes; a PIN or password reopens it.</li>
+      <li><b>Standard user account:</b> daily work without administrator rights; only IT installs software.</li>
+      <li><b>Host firewall:</b> the device's own firewall is on; it matters most on public Wi-Fi.</li>
+      <li><b>Removable media control:</b> only approved, encrypted USB drives; unknown USB drives are blocked.</li>
+      <li><b>Secure configuration:</b> unused features and accounts are turned off; IT's baseline for every new laptop.</li>
+    </ul>
+    <p>ISO/IEC 27001:2022 Annex A 8.1 (user endpoint devices), 8.7 (protection against malware), 7.9 (security of assets off-premises) and 6.7 (remote working).</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 9 minutes.</p>
+    <p><b>SAY:</b> every device that touches office data is a door. Keep each one updated, protected, encrypted and locked. The guide's baseline has eight controls; the memory phrase groups them: update, protect, encrypt, lock.</p>
+    <p><b>PREDICT (before each press):</b> "Which of these ten will this layer catch?" Let the room guess the count, then press. Start with no layers: all ten land.</p>
+    <p><b>KEY POINTS:</b> Update closes old weaknesses and turns unused features off. Protect is four controls: endpoint protection, the host firewall, a standard user account, and USB control. Encrypt is what turns "we lost the data" into "we lost a device". Lock stops the person at your desk when you stand up.</p>
+    <p><b>PLAIN WORDS:</b> an endpoint is any device that connects to office systems: laptop, desktop, phone or tablet. A standard user account is a daily account without administrator rights: malware opened by mistake gets only your limited rights.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press adds the next layer (Update, Protect, Encrypt, Lock) and sends the same ten attacks; the trays show what each layer caught. Click a layer to switch it yourself. A switches all on; I lists the eight controls with ISO references.</p>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section id="phones" class="l-interactive" data-min="5" data-code="4.1" data-eyebrow="Phones and tablets · office or personal?" data-level="Apply" data-source="Module 4 learner guide, Lesson 4.1 · NPC Circular 2023-06" data-terms="mdm-mam">
+  <h2>Lost, rooted or unknown: what happens?</h2>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m4-devices.json"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> phones and tablets: install updates, remove apps you do not need, and check app permissions such as location, contacts and camera. Device management, MDM, lets IT enforce a screen lock and wipe a lost device; app management, MAM, protects only the work apps on a personal phone. Never root or jailbreak a device used for work. Report a lost or stolen device at once. NPC Circular 2023-06 allows only known devices, properly configured to the office's security standards, to access personal data.</p>
+    <p><b>VOTE:</b> four cases, three options. Then reveal.</p>
+    <p><b>ANSWERS:</b> 1. IT locks and wipes it (office-issued). 2. IT wipes the work profile only (personal, where allowed). 3. Not allowed for work: rooting removes the phone's own protections. 4. Not allowed: only known, properly configured devices may access personal data.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press 1 to 3 per vote; → reveals; → next case.</p>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section id="remote" class="l-cards-3" data-min="4" data-code="4.1" data-eyebrow="Working from home and in the field" data-source="Module 4 learner guide, Lesson 4.1">
+  <h2>Six habits away from the office</h2>
+  <div class="cards body remote-cards">
+    <div class="card fragment"><span class="icon"><i data-lucide="lock-keyhole"></i></span><h4>The VPN</h4><p>For office systems, every time.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="router"></i></span><h4>Your home router</h4><p>Change its default admin password and install its updates.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="wifi"></i></span><h4>Public Wi-Fi</h4><p>No office systems without the VPN; a phone hotspot is safer.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="eye-off"></i></span><h4>Screen privacy</h4><p>Sit where others cannot read your screen; lock it when you step away.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="ticket-check"></i></span><h4>Approved tools only</h4><p>No personal email or messaging apps for official files.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="printer"></i></span><h4>Print less, lock it away</h4><p>Print only what you need, collect it at once, and lock papers away.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>RUN IT:</b> before each card, ask: "What is the risk when you work from a café, a jeepney or your kitchen?" Reveal the card the room names, then the rest.</p>
+    <p><b>ASK:</b> who has changed the default password on their home router? (Usually few hands. That is a 30-day action.)</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next habit.</p>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section id="lost-device" class="l-interactive" data-min="5" data-code="4.1, 1.2" data-eyebrow="When a device is lost" data-level="Evaluate" data-source="Module 4 learner guide, Lesson 4.1 · NPC Circular 16-03 Sec. 11 (the 3S test)" data-terms="full-disk-encryption">
+  <h2>A lost laptop: is it a breach?</h2>
+  <div class="stage"><pdac-three-s-check data-src="m4-lost.json"></pdac-three-s-check></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> a lost, unencrypted laptop holding sensitive personal information can be a notifiable breach under Day 1's 3S test: sensitive data, reason to believe an unauthorized person has it, and a real risk of serious harm (NPC Circular 16-03, Section 11). Report a lost device at once, because the 72-hour clock may already be running.</p>
+    <p><b>VOTE:</b> for each case, set the room's answer to the three S questions, then reveal. The only difference between the two cases is encryption.</p>
+    <p><b>KEY POINT:</b> encryption turns "we lost the data" into "we lost a device". Report it at once either way: encryption changes the decision; it does not remove the duty to report the loss inside the office.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> set Sensitive, Stolen, Serious as the room says; reveal shows the model answer and why. Two cases.</p>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section id="sides-4-1" class="l-interactive" data-min="2" data-code="4.1" data-eyebrow="At your desk, in the server room" data-level="Understand" data-source="Module 4 learner guide, Lesson 4.1, At your desk, in the server room">
+  <h2>Whose side is it on?</h2>
+  <div class="stage"><pdac-match-board data-src="m4-sides-41.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes, quickly. The room calls each card.</p>
+    <p><b>DESK SIDE:</b> install updates when asked and lock your screen; use approved, encrypted storage and USB drives; report a lost device at once.</p>
+  </aside>
+</section>
+
+<!-- 11 -->
+<section id="self-check" class="l-interactive" data-min="7" data-code="4.1" data-eyebrow="Self-check 4.1 · individual · not collected" data-level="Apply" data-source="Module 4 learner guide, Self-check 4.1">
+  <h2>Your device in three minutes</h2>
+  <div class="stage"><pdac-checklist data-src="m4-selfcheck.json"></pdac-checklist></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes: 3 for everyone to tick in the guide, 4 for a show of hands.</p>
+    <p><b>RUN IT:</b> everyone ticks privately in the learner guide; nothing is collected. Then read each line and ask for a show of hands for "yes"; press Yes or No by the room's majority. The count at the end is the room's, not anyone's.</p>
+    <p><b>SAY:</b> each unticked box is a candidate for your 30-day action in Lesson 4.3.</p>
+    <p><b>WATCH FOR:</b> "I do not know" on encryption or updates. That is an answer too: ask IT this week.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the clicker moves down the ten lines; Yes or No per line; the count appears at the end (or A).</p>
+  </aside>
+</section>
+
+<!-- 12 -->
+<section id="check-4-1" data-min="3" data-code="4.1" data-eyebrow="Check yourself 4.1 · answer from memory" data-source="Module 4 learner guide, Check yourself 4.1">
+  <h2>Four quick ones</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>Name four parts of the endpoint baseline.</b><span class="answer"><span class="answer-label">Answer:</span> Any four of: updates, endpoint protection, full-disk encryption, screen lock, standard user account, host firewall, removable media control, secure configuration.</span></li>
+    <li><b>Why should daily work happen on a standard user account?</b><span class="answer"><span class="answer-label">Answer:</span> Anything that runs while you work, including malware opened by mistake, gets only your limited rights, so it can do less damage.</span></li>
+    <li><b>What does NPC Circular 2023-06 say about devices that access personal data?</b><span class="answer"><span class="answer-label">Answer:</span> Only known devices, properly configured to the office's security standards, may access personal data. It also covers remote disconnection or deletion for mobile devices.</span></li>
+    <li><b>A field laptop with unencrypted applicant records is stolen. Why report it at once?</b><span class="answer"><span class="answer-label">Answer:</span> It may be a notifiable breach under the 3S test; the 72-hour clock runs from knowledge or reasonable belief, and IT may still be able to lock or wipe the device.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes. Ask each question, wait for answers from different teams, then reveal it.</p>
+    <p><b>ANSWERS:</b> 1. Any four of: updates, endpoint protection, full-disk encryption, screen lock, standard user account, host firewall, removable media control, secure configuration. 2. Malware opened by mistake gets only your limited rights. 3. Only known, properly configured devices may access personal data; it also covers remote disconnection or deletion. 4. It may be notifiable under the 3S test; the 72-hour clock runs from reasonable belief; IT may still lock or wipe it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it again), a click on a question shows its own answer, A shows all, R hides all.</p>
+  </aside>
+</section>
+
+<!-- 13 -->
+<section id="padlock" data-proofs="fbi-padlock,fbi-banking" class="l-two-col" data-min="4" data-code="4.2" data-eyebrow="Safe websites and approved tools · Key idea" data-source="Module 4 learner guide, Lesson 4.2 · FBI IC3 alert, 10 June 2019" data-terms="certificate,certificate-warning,tls">
+  <h2>The padlock means private, not honest</h2>
+  <div class="two-col padlock-cols">
+    <div class="col">
+      <p class="col-head"><i data-lucide="lock"></i> The padlock (HTTPS) proves</p>
+      <ul><li>The connection between your browser and that address is encrypted</li><li>The site holds a certificate issued for that address</li></ul>
+      <p class="col-head no-head"><i data-lucide="eye-off"></i> It does not prove</p>
+      <ul><li>Who runs the site, or that they are honest</li><li>That the address is the one you meant to visit</li></ul>
+    </div>
+    <div class="warn-mock" aria-label="A certificate warning page">
+      <i data-lucide="shield-alert"></i>
+      <p class="warn-mock__t">Your connection is not private</p>
+      <p>The browser could not confirm the site's identity.</p>
+      <p class="warn-mock__do"><b>Do not click past it, and do not sign in.</b> On an office system, tell IT: the usual cause is an expired or wrongly set-up certificate, which IT must fix.</p>
+    </div>
+  </div>
+  <p class="callout">Criminals can get a certificate for an address they control. In June 2019 the FBI's Internet Crime Complaint Center warned that phishing sites use HTTPS and the padlock to look safe.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>ASK FIRST:</b> "Hands up if you were taught that the padlock means a site is safe." Most hands go up. That is what this slide corrects.</p>
+    <p><b>SAY:</b> the padlock means private, not honest. It proves the connection to that address is encrypted, and that the site holds a certificate issued for that address. It does not prove who runs the site, that they are honest, or that the address is the one you meant. Criminals can get a certificate for an address they control; in June 2019 the FBI's Internet Crime Complaint Center warned that HTTPS and the padlock do not prove a site is legitimate, and that phishing sites were using them to look safe.</p>
+    <p><b>CERTIFICATE WARNINGS:</b> a full-page warning such as "Your connection is not private" means the browser could not confirm the site's identity. Do not click past it and do not sign in. If it appears on an office system, tell IT: the usual cause is an expired or wrongly set-up certificate, which IT must fix rather than staff learning to ignore.</p>
+    <p><b>LINK:</b> this morning, the same padlock meant TLS: private. Now we add: not honest.</p>
+  </aside>
+</section>
+
+<!-- 14 -->
+<section id="lookalikes" class="l-interactive" data-min="5" data-code="4.2" data-eyebrow="Look-alike addresses · all fictional" data-level="Analyze" data-source="Module 4 learner guide, Lesson 4.2 · DOST-ASTI (.gov.ph), Feb 2020" data-terms="look-alike">
+  <h2>Who really owns this link? Read it right to left</h2>
+  <div class="stage"><pdac-url-anatomy data-src="m4-urls.json"></pdac-url-anatomy></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>HOW TO READ AN ADDRESS:</b> find the first single slash after https://, then read the words just before it from right to left. The last part names the owner.</p>
+    <p><b>PREDICT (each link):</b> "Real or look-alike?" Hands, then press. Link 4 fools most rooms: the real name sits at the front, but the owner is verify-account.example.</p>
+    <p><b>SAY:</b> addresses ending in .gov.ph are registered through DICT, which has maintained the .gov.ph domain since February 2020 under the Philippine Government Domain Names Policy. Even so, the safest habit is to type an address you know, or use a bookmark, rather than follow a link in a message. A password manager also helps: it offers your password only on the address where you saved it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the owner, then moves to the next link. Every address ends in .example, a name reserved for examples: none can be a real site.</p>
+  </aside>
+</section>
+
+<!-- 15 -->
+<section id="popups" class="l-cards-3" data-min="2" data-code="4.2" data-eyebrow="Downloads and pop-ups" data-source="Module 4 learner guide, Lesson 4.2">
+  <h2>Updates never come from a pop-up</h2>
+  <div class="cards body">
+    <div class="card"><span class="icon"><i data-lucide="download"></i></span><h4>"Your browser is out of date"</h4><p>A page offers a download: close the tab. Updates come from the browser or the operating system itself, or from IT.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="phone-call"></i></span><h4>"Your computer is infected: call this number"</h4><p>Never call it. Close the browser and tell IT.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="file-x"></i></span><h4>An unexpected download</h4><p>Do not open it. Report it.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> three rules. A page that says your browser is out of date and offers a download: close the tab. A pop-up that says your computer is infected and gives a number to call: never call it; close the browser and tell IT. An unexpected download: do not open it; report it.</p>
+  </aside>
+</section>
+
+<!-- 16 -->
+<section id="shadow-it" class="l-interactive" data-min="5" data-code="4.2" data-eyebrow="Shadow IT: the tool nobody approved" data-source="Module 4 learner guide, Lesson 4.2 · RA 10173 Secs 14, 21(a)" data-terms="shadow-it,dlp,web-filtering">
+  <h2>Where does the masterlist go?</h2>
+  <div class="stage"><pdac-net-sim data-src="m4-shadow.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> shadow IT is any app, website, account or device used for office work without approval: a free file converter, a personal cloud drive, a personal messaging group, a browser extension, a public AI chatbot.</p>
+    <p><b>VOTE (first step):</b> "Nothing leaks, and the file is deleted afterwards. Is there still a problem?" Many say no. Then play it: the office stays responsible (RA 10173, Sections 14 and 21(a)); no controls and no record; and no way back.</p>
+    <p><b>SECOND TAB:</b> what IT can add (data leakage prevention, web filtering), and the approved-tools route: ask first; request it; IT checks security and the DPO checks privacy, with a privacy impact assessment where personal data is involved; agree terms in writing; list it. A fast route is itself a control: people take workarounds when the official way is slow.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two tabs. The question: vote, → reveals, → plays the upload. A opens the five steps of the approved-tools route.</p>
+  </aside>
+</section>
+
+<!-- 17 -->
+<section id="it-adds" class="l-cards-4" data-min="2" data-code="4.2" data-eyebrow="What IT can add" data-source="Module 4 learner guide, Lesson 4.2 · ISO/IEC 27001 · OWASP Top 10" data-terms="web-filtering,dlp">
+  <h2>Four controls behind the approved-tools route</h2>
+  <div class="cards body">
+    <div class="card"><span class="k">8.23</span><h4>Web filtering</h4><p>Blocks known malicious and look-alike sites.</p></div>
+    <div class="card"><span class="k">8.12</span><h4>Data leakage prevention</h4><p>Warns or blocks when sensitive data leaves by email, upload or USB.</p></div>
+    <div class="card"><span class="k">5.19 to 5.23</span><h4>Supplier controls</h4><p>Security duties in contracts; cloud services checked before use.</p></div>
+    <div class="card"><span class="k">Buying a web system</span><h4>Proof of testing</h4><p>Ask the vendor for proof it was security-tested before go-live, for example against the OWASP Top 10, and who fixes problems found later.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> four things IT can add. Web filtering blocks known malicious and look-alike sites. Data leakage prevention warns or blocks when sensitive data leaves. Supplier controls put security duties into contracts. And when the office buys a new web system: ask for proof it was security-tested before go-live, for example against the OWASP Top 10, and who will fix problems found later.</p>
+    <p><b>LINK:</b> this morning's Try it 3.1, threat 3: the login form that took database commands. This is the buying habit that prevents it.</p>
+  </aside>
+</section>
+
+<!-- 18 -->
+<section id="try-4-2a" class="l-interactive" data-min="6" data-timer="5" data-timer-label="Try it 4.2A" data-code="4.2" data-eyebrow="Try it 4.2A · pairs · all screens fictional" data-level="Analyze" data-source="Module 4 learner guide, Try it 4.2A and model answers">
+  <h2>Safe or suspicious? Six screens</h2>
+  <div class="stage"><pdac-phish-or-legit data-src="m4-screens.json"></pdac-phish-or-legit></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes (the guide gives 8: keep it brisk, two screens per minute). Pairs decide each screen, its clue, and what to do.</p>
+    <p><b>ANSWERS:</b> 1. Suspicious: the browser cannot confirm the site's identity; do not click past it or sign in; tell IT. 2. Suspicious: a zero for the letter o, an SMS link, and a padlock that proves nothing; do not sign in, report the text; if you already entered a password, change it from the real address and tell IT. 3. Suspicious: sensitive personal data going to an outside service with no agreement; stop and use an approved tool. 4. Suspicious: updates do not arrive through pop-ups; close the tab. 5. Safe: his own bookmark, and the owner part is rsso-q.example. 6. Suspicious: applicants' IDs in an unapproved group; stop posting, move checks to the portal, tell the DPO.</p>
+    <p><b>KEY POINT:</b> screen 5 is the only safe one, and it has the same padlock as screen 2. The address and how you got there decide, not the padlock.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press 1 (safe) or 2 (suspicious) per vote; → reveals the clues on the screen itself; → next screen.</p>
+  </aside>
+</section>
+
+<!-- 19 -->
+<section id="try-4-2b" data-proofs="hibp-kanon" class="l-interactive" data-min="4" data-timer="3" data-timer-label="Try it 4.2B" data-code="4.2" data-eyebrow="Try it 4.2B · one card per team" data-level="Evaluate" data-source="Module 4 learner guide, Try it 4.2B and model answers">
+  <h2>Vet the tool: five questions before anyone uses it</h2>
+  <p class="brief-strip"><b>Who runs it? Where does my input go? Can a result be wrong? Is it official or approved? What must never go into it?</b></p>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m4-vet.json" data-no-vote></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes (the guide gives 6): 3 for teams (T starts the timer), then each card's model answer. Give each team one card: ScamCheck.ph, Content Credentials Verify or Pwned Passwords.</p>
+    <p><b>RUN IT:</b> one team per card reports its five answers, then press → for the model answer.</p>
+    <p><b>KEY POINTS:</b> ScamCheck.ph is not official and its AI can be wrong; never paste applicants' details. Content Credentials Verify: a file without credentials is not proven fake. Pwned Passwords: "not found" does not mean strong.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press shows the next card's model answers to the five questions.</p>
+  </aside>
+</section>
+
+<!-- 20 -->
+<section id="check-4-2" data-min="2" data-code="4.2" data-eyebrow="Check yourself 4.2 · answer from memory" data-break-after="10" data-source="Module 4 learner guide, Check yourself 4.2">
+  <h2>Before the break</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>What does the padlock prove, and what does it not prove?</b><span class="answer"><span class="answer-label">Answer:</span> The connection is encrypted and the certificate was issued for that address. Not who runs the site, that they are honest, or that it is the address you meant.</span></li>
+    <li><b>A certificate warning appears on an office system. What do you do?</b><span class="answer"><span class="answer-label">Answer:</span> Do not click past it or sign in; tell IT.</span></li>
+    <li><b>Why is uploading a masterlist to a free converter a privacy problem, even if nothing leaks?</b><span class="answer"><span class="answer-label">Answer:</span> The office stays responsible for personal data it hands to others and must protect it by contract (RA 10173, Secs 14 and 21(a)). A free site has no agreement, and the data cannot be recalled.</span></li>
+    <li><b>Who checks a new tool before the office uses it with personal data?</b><span class="answer"><span class="answer-label">Answer:</span> IT checks security and the DPO checks privacy, with a privacy impact assessment; a written agreement comes first if the vendor will process personal data.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask each question, wait for answers, then reveal it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it again), a click on a question shows its own answer, A shows all, R hides all. Break next (10 minutes): press K.</p>
+  </aside>
+</section>
+
+<!-- 21 -->
+<section id="intel" class="l-interactive" data-min="4" data-code="4.3" data-eyebrow="Threat intelligence and department awareness · Key idea" data-level="Analyze" data-source="Module 4 learner guide, Lesson 4.3 · ISO/IEC 27001 A.5.7" data-terms="threat-intelligence">
+  <h2>Collect only what changes a decision</h2>
+  <div class="stage"><pdac-match-board data-src="m4-intel.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> threat intelligence is information about threats, collected and analysed so that an office can act on it. ISO/IEC 27001:2022 makes it a control, Annex A 5.7. Three layers: strategic, the big picture, for Director Eva and Carla; tactical, attackers' methods and tools, for Ana and supervisors; operational, details of specific attacks, for Ana. Good intelligence is relevant, insightful, contextual and actionable. Most of what reaches an inbox is none of these.</p>
+    <p><b>THE TEST:</b> does it change a decision this week? If yes, act and tell the people who must act. If no, file it for the monthly bulletin or let it go. Forwarding everything trains people to ignore warnings.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> six items into three layers; Check; A places all with who uses each.</p>
+  </aside>
+</section>
+
+<!-- 22 -->
+<section id="tlp" data-proofs="tlp-v2,tlp-red,tlp-amber,tlp-green,tlp-clear" class="l-interactive" data-min="4" data-code="4.3" data-eyebrow="Sharing safely: the Traffic Light Protocol" data-level="Apply" data-source="Module 4 learner guide, Lesson 4.3 · FIRST, TLP 2.0 (August 2022)" data-terms="tlp">
+  <h2>RED, AMBER, GREEN, CLEAR: how far may it travel?</h2>
+  <p class="tlp-strip"><span class="tlp red">RED</span> named recipients only <span class="tlp amber">AMBER+STRICT</span> your organization only <span class="tlp amber">AMBER</span> your organization and its clients, need-to-know <span class="tlp green">GREEN</span> your community, not the public <span class="tlp clear">CLEAR</span> anyone</p>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m4-tlp.json"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> shared security reports often carry a TLP label that says how far you may pass them on. TLP version 2.0 has applied since August 2022. RED, AMBER, GREEN, CLEAR: from tightest to open. When in doubt, ask the sender before sharing further.</p>
+    <p><b>VOTE:</b> five cases: share (1), no (2), ask the sender (3).</p>
+    <p><b>ANSWERS:</b> 1. No: AMBER is need-to-know, not the all-staff chat. 2. No: GREEN is your community, not the public; ask permission or write your own warning without the list. 3. Yes: CLEAR. 4. Ask the sender: RED is the named recipients only. 5. Ask the sender.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the strip shows the labels; press 1 to 3 per vote; → reveals.</p>
+  </aside>
+</section>
+
+<!-- 23 -->
+<section id="plug-in" class="l-table" data-min="3" data-code="4.3" data-eyebrow="Where to plug in" data-source="Module 4 learner guide, Lesson 4.3, Where to plug in" data-terms="kev">
+  <h2>One named focal person who receives advisories, and knows whom to tell</h2>
+  <div class="body grid-2 plug-grid">
+    <table class="t compact">
+      <thead><tr><th>Source</th><th>What it gives you</th><th>Who</th></tr></thead>
+      <tbody>
+        <tr><td>National CERT, with DICT</td><td>Advisories; it monitors government domains against Have I Been Pwned data</td><td>Ana</td></tr>
+        <tr><td>DICT and CICC advisories</td><td>On 8 Sep 2026: a one-page readiness assessment to the head within 24 hours</td><td>Director Eva, Ana</td></tr>
+        <tr><td>Hotline 1326, CICC ScamSafe</td><td>Scam reporting and public warnings</td><td>Everyone; Sol</td></tr>
+        <tr><td>Vendor advisories</td><td>Updates for the products the office runs</td><td>Ana</td></tr>
+        <tr><td>MITRE ATT&amp;CK</td><td>Common names for attacker behaviour (Module 2)</td><td>Ana</td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <pdac-kev-card data-proof="kev-count"></pdac-kev-card>
+      <p class="callout">In 2023, DICT said the National CERT could not handle every agency: agencies need their own cybersecurity teams.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> walk the sources. The Philippines' National CERT, working with DICT, sends advisories and monitors official government domains against Have I Been Pwned breach data. DICT and CICC advisories: on 8 September 2026 they told national agencies, GOCCs, LGUs and critical infrastructure to raise their vigilance and give their head a one-page readiness assessment within 24 hours. Hotline 1326 and CICC ScamSafe. Vendor advisories. CISA's Known Exploited Vulnerabilities catalog: weaknesses attackers are known to be using, fixed first. MITRE ATT&amp;CK from Module 2.</p>
+    <p><b>KEY POINT:</b> one office cannot rely on the national team alone. In 2023, DICT Undersecretary Jeffrey Ian Dy said the National CERT could not handle every agency, and that agencies need their own cybersecurity teams. For a regional office, that starts with a named focal person.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the dark card is CISA's KEV catalog snapshot (npm run kev); E shows its header.</p>
+  </aside>
+</section>
+
+<!-- 24 -->
+<section id="awareness" class="l-cards-3" data-min="2" data-code="4.3" data-eyebrow="Department awareness that lasts" data-source="Module 4 learner guide, Lesson 4.3 · ISO/IEC 27001 A.6.3 · NPC 16-03" data-terms="report-rate">
+  <h2>Short, frequent, local: and measure the report rate</h2>
+  <div class="cards body aware-cards">
+    <div class="card"><h4>A one-page monthly bulletin</h4><p>One threat, one habit, one contact.</p></div>
+    <div class="card"><h4>Onboarding</h4><p>A security and privacy briefing before anyone receives system access.</p></div>
+    <div class="card"><h4>Focal persons</h4><p>One per unit, who passes warnings on and collects questions.</p></div>
+    <div class="card"><h4>Easy reporting</h4><p>One email address or number for anything suspicious, and thanks for every report.</p></div>
+    <div class="card"><h4>Practice</h4><p>Short phishing simulations, approved by management in advance, followed by teaching, never shaming.</p></div>
+    <div class="card is-key"><h4>Measure what matters</h4><p>The report rate should rise; the click rate should fall.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> ISO/IEC 27001 Annex A 6.3 and NPC Circular 16-03, Section 6, both call for training. Habits last when they are short, frequent and local. Read the last card: the report rate should rise, and the click rate should fall. A rising report rate means people trust the channel.</p>
+  </aside>
+</section>
+
+<!-- 25 -->
+<section id="try-4-3" class="l-interactive" data-min="5" data-timer="3" data-timer-label="Try it 4.3" data-code="4.3" data-eyebrow="Try it 4.3 · pairs" data-level="Evaluate" data-source="Module 4 learner guide, Try it 4.3 and model answers">
+  <h2>Triage the inbox: does it change a decision this week?</h2>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m4-triage.json"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes: 3 in pairs (T), 2 to reveal. Pairs decide for each item: act this week or file it; who acts; how far to share.</p>
+    <p><b>ANSWERS:</b> 1. Act: attackers already use the weakness; Ana updates, Director Eva approves downtime; share freely. 2. File: big-picture reading for the monthly bulletin. 3. Act: reset both passwords, check MFA and sign-in history; AMBER, need-to-know. 4. Act: warn Sol and the frontline staff; GREEN, not the public. 5. File it, and do not forward it: no source. 6. Act: 24-hour deadline; Ana prepares, Director Eva decides.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press 1 (act) or 2 (file) per vote; → reveals who acts and how far to share; → next item.</p>
+  </aside>
+</section>
+
+<!-- 26 -->
+<section id="check-4-3" data-min="2" data-code="4.3" data-eyebrow="Check yourself 4.3 · and your 30-day action" data-source="Module 4 learner guide, Check yourself 4.3 and Your 30-day action">
+  <h2>Four quick ones, and one promise</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>Name the three layers of threat intelligence.</b><span class="answer"><span class="answer-label">Answer:</span> Strategic, tactical and operational.</span></li>
+    <li><b>What single question decides whether to act on an item?</b><span class="answer"><span class="answer-label">Answer:</span> Does it change a decision this week?</span></li>
+    <li><b>A report is marked TLP:AMBER. Who may you share it with?</b><span class="answer"><span class="answer-label">Answer:</span> People in your organization, and its clients, who need to know.</span></li>
+    <li><b>Which awareness measure should go up over time?</b><span class="answer"><span class="answer-label">Answer:</span> The report rate.</span></li>
+  </ol></pdac-checks>
+  <p class="callout"><b>Your 30-day action:</b> one action from your self-check or this afternoon's audit: what you will do, by when, and how you will know it is done. "By 20 November, MFA is on for every account in our unit; I will check the list with Ana."</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask the four, then ask everyone to write the 30-day action in the worksheet before the audit; they finish it after the debrief.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it again), a click on a question shows its own answer, A shows all, R hides all.</p>
+  </aside>
+</section>
+
+<!-- 27 -->
+<section id="audit-brief" data-min="3" data-eyebrow="Graded controls audit · 20% · individual" data-source="Module 4 learner guide, Graded controls audit · Module 4 Audit File">
+  <h2>You are the RSSO's internal reviewer</h2>
+  <div class="body grid-2 audit-grid">
+    <table class="t compact">
+      <tbody>
+        <tr><td>Time</td><td>3:00 to 4:00 audit (Part A about 40 minutes, Part B about 20); 4:10 to 4:30 write-up and submission</td></tr>
+        <tr><td>Work</td><td>Individual. Talk ideas through with the person beside you, but every word you submit is your own</td></tr>
+        <tr><td>You need</td><td>The Audit File (Exhibits A to G); your team's Module 3 role matrix; the 5 by 5 matrix from Module 2</td></tr>
+        <tr><td>Submit</td><td>Your answers in the audit form, one per person, by 4:30 PM; grace period to 8:00 AM if connectivity fails</td></tr>
+      </tbody>
+    </table>
+    <ol class="exhibits">
+      <li><b>A</b> System profile: what the portal does, what data it holds, who owns it</li>
+      <li><b>B</b> User accounts: every account, its roles, MFA and last sign-in</li>
+      <li><b>C</b> Roles and permissions: what each role can do today</li>
+      <li><b>D</b> Security settings and records</li>
+      <li><b>E</b> Vendors and agreements</li>
+      <li><b>F</b> Screens and reports: what each role sees</li>
+      <li><b>G</b> Change and activity log: who changed what, and when</li>
+    </ol>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> you are the RSSO's internal reviewer. Using only the Audit File, a set of fictional records about the portal, you find where its controls fall short, rate each finding, and correct who can do what. Nobody tests or signs in to any system: the evidence is all on paper.</p>
+    <p><b>WALK THE FILE:</b> hold up the Audit File and point to each exhibit as you name it. Face-to-face: one printed copy per person. Online: the same records are on page 2 of the audit form. Everyone answers in the audit form: its QR code is on the next slide.</p>
+  </aside>
+</section>
+
+<!-- 28 -->
+<section id="audit-method" data-min="3" data-eyebrow="How to work: evidence, control, fix" data-source="Module 4 learner guide, How to work · the course's 5 by 5 bands" data-terms="access-review">
+  <h2>Evidence, control, fix</h2>
+  <div class="body method-grid">
+  <ol class="milestones audit-steps">
+    <li><span class="t">1</span> Read Exhibit A first (5 minutes): know what is at stake</li>
+    <li><span class="t">A</span> At least 8 findings: what is wrong · exhibit and row · the control it fails · likelihood × impact and band · fix, owner, date</li>
+    <li><span class="t">B</span> Every account: keep, change role, disable, or require MFA (one may need two) · correct the role table · list the conflicts removed</li>
+    <li><span class="t">✎</span> Rank your top three; three sentences to Director Eva</li>
+  </ol>
+    <div class="method-qr">
+      <p class="exit-card__k"><i data-lucide="clipboard-list"></i> Answer in the audit form</p>
+      <pdac-qr-panel data-link="audit-submit"></pdac-qr-panel>
+    </div>
+  </div>
+  <p class="callout"><b>If a record suggests something harmful may already have happened,</b> say so in your finding and name who must be told today. Spotting that is part of the audit.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>DO:</b> everyone scans the QR code now and opens the audit form (signed in to Google). Page 2 has the records; then one page per finding, in the same columns as the paper register. Online: paste the link in the chat.</p>
+    <p><b>SAY:</b> evidence, control, fix. Every finding needs its exhibit and row, such as D4; the control it fails, from the list in your guide and the back of the Audit File; likelihood and impact from 1 to 5, the score and its band (Low 1 to 4, Medium 5 to 9, High 10 to 16, Critical 20 to 25); and a fix with an owner from the RSSO cast and a date.</p>
+    <p><b>STRESS:</b> read the dark line twice. Some records may show that harm has already happened. Saying so, and naming who must be told today, is part of the audit (and links to Day 1's 72-hour clock).</p>
+    <p><b>RUBRIC:</b> Findings 40 (at least 8 valid, with evidence, nothing invented); Analysis 25; Access-control management 20; Remediation and clarity 15.</p>
+  </aside>
+</section>
+
+<!-- 29 -->
+<section id="audit-example" data-min="4" data-eyebrow="Worked example · not from your file" data-source="Module 4 learner guide, Worked example">
+  <h2>One finding, field by field</h2>
+  <p class="lead example-lead">A sharing-settings screen for the RSSO's staff leave spreadsheet shows <b>"Anyone with the link can view"</b>.</p>
+  <table class="t body compact example-table">
+    <tbody>
+      <tr class="fragment"><td>Finding</td><td>The staff leave spreadsheet is open to anyone who has the link</td></tr>
+      <tr class="fragment"><td>Evidence</td><td>Sharing settings screen, row 3</td></tr>
+      <tr class="fragment"><td>Control</td><td>ISO/IEC 27001:2022 Annex A 5.15, Access control; NPC Circular 2023-06, access control policy</td></tr>
+      <tr class="fragment"><td>Likelihood and impact</td><td>3, possible: links get forwarded. 3, serious: names, mobile numbers and leave dates of 60 staff</td></tr>
+      <tr class="fragment"><td>Score and band</td><td>9, Medium</td></tr>
+      <tr class="fragment"><td>Fix</td><td>Share with named accounts only and turn off link sharing</td></tr>
+      <tr class="fragment"><td>Owner and date</td><td>Ana, with the HR officer, by 30 October</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>BUILD IT WITH THE ROOM:</b> before each press, ask the room for that field. "What is wrong, in one plain sentence?" "Where is the evidence?" "Which control?" "Likelihood? Impact? Why?" Then reveal the guide's answer.</p>
+    <p><b>KEY POINT:</b> one plain sentence, a precise row, a control that fits, ratings with a reason, a fix someone can do, a named person and a date. That is a finding Director Eva can act on.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next field.</p>
+  </aside>
+</section>
+
+<!-- 30 -->
+<section id="audit-part-a" data-min="40" data-timer="40" data-timer-label="Audit, Part A" data-checkpoints="5:Exhibit A read|20:4 findings recorded|35:8 findings recorded|40:Each finding rated, with a fix, owner and date" data-eyebrow="Controls audit · Part A, findings · 40 minutes" data-level="Analyze and Evaluate" data-source="Module 4 learner guide, How to work · Module 4 Audit File">
+  <h2>Part A: at least 8 findings</h2>
+  <div class="body grid-2 audit-grid">
+    <ol class="milestones">
+      <li><span class="t">3:05</span> Exhibit A read</li>
+      <li><span class="t">3:20</span> 4 findings recorded</li>
+      <li><span class="t">3:35</span> 8 findings recorded</li>
+      <li><span class="t">3:40</span> Each rated, with a fix, owner and date</li>
+    </ol>
+    <div class="note-box bands-box">
+      <h4>The bands (5 by 5)</h4>
+      <p><span class="band b-low">Low 1 to 4</span> <span class="band b-med">Medium 5 to 9</span> <span class="band b-high">High 10 to 16</span> <span class="band b-crit">Critical 20 to 25</span></p>
+      <p class="muted">Controls you will likely cite are on the back of the Audit File and on the form's Finding 1 page. Ask about the rules or the records, not for answers.</p>
+    </div>
+  </div>
+  <div class="it-depth">
+    <h3>Controls you will likely cite</h3>
+    <ul>
+      <li><b>ISO 5.3</b> Segregation of duties</li>
+      <li><b>ISO 5.15 to 5.18</b> Access control, identity management, authentication information, access rights</li>
+      <li><b>ISO 5.19 and 5.20</b> Supplier relationships, and security in supplier agreements</li>
+      <li><b>ISO 6.5</b> Responsibilities after termination or change of employment</li>
+      <li><b>ISO 8.2 and 8.5</b> Privileged access rights; secure authentication</li>
+      <li><b>ISO 8.7, 8.8</b> Protection against malware; management of technical vulnerabilities</li>
+      <li><b>ISO 8.11</b> Data masking · <b>8.13</b> Information backup · <b>8.15</b> Logging · <b>8.24</b> Use of cryptography · <b>8.32</b> Change management</li>
+      <li><b>NPC Circular 2023-06</b> Access control policy; known, properly configured devices; password policy; MFA for online access to sensitive personal information; security logs kept; encrypted removable media; business continuity with testing</li>
+      <li><b>RA 10173</b> Sec 11 (d) not excessive, (e) kept only as long as necessary; Secs 14, 21(a) responsible for data processed by others; Sec 16(b) notice before processing</li>
+    </ul>
+  </div>
+  <div class="note-box example-card">
+    <p class="ex-k"><i data-lucide="lightbulb"></i> Example finding · not from your file</p>
+    <table class="t compact">
+      <thead><tr><th>Finding</th><th>Evidence</th><th>Control</th><th>L × I</th><th>Fix</th><th>Owner, date</th></tr></thead>
+      <tbody><tr><td>The staff leave spreadsheet is open to anyone who has the link</td><td>Sharing settings, row 3</td><td>ISO 5.15; NPC Circular 2023-06</td><td>3 × 3 = 9 Medium</td><td>Named accounts only; link sharing off</td><td>Ana with HR, 30 Oct</td></tr></tbody>
+    </table>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 40 minutes (3:00 to 3:40). Press T; chimes at 5, 20, 35 and 40 minutes.</p>
+    <p><b>WHILE THEY WORK:</b> circulate; answer questions about the rules and the records only. Good prompts if someone is stuck: "Read Exhibit B's notes column." "Compare D11 with G4." "What happened on 14 October between 2:14 and 2:31 AM?" "Who changed the wallet number for A-21507, and who paid it?"</p>
+    <p><b>DO NOT</b> show the debrief slides or the answer key during the audit.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> leave this slide up; I shows the controls list if someone asks.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the example finding at the bottom is the worked example (not from the Audit File), so people can copy its shape without being given an answer.</p>
+  </aside>
+</section>
+
+<!-- 31 -->
+<section id="audit-part-b" data-min="20" data-timer="20" data-timer-label="Audit, Part B" data-checkpoints="12:Every account decided|20:Role table corrected, conflicts listed" data-break-after="10" data-eyebrow="Controls audit · Part B, access review · 20 minutes" data-level="Create" data-source="Module 4 learner guide, How to work, Part B · Module 3 role matrix">
+  <h2>Part B: every account, and a corrected role table</h2>
+  <div class="cards c3 body">
+    <div class="card"><span class="k">Exhibit B · 14 accounts</span><h4>Decide each one</h4><p>Keep, change role, disable, or require MFA, with a one-line reason. One account may need two decisions.</p></div>
+    <div class="card"><span class="k">Exhibit C</span><h4>Correct the role table</h4><p>Make it match your team's Module 3 role matrix.</p></div>
+    <div class="card"><span class="k">Separation of duties</span><h4>List the conflicts removed</h4><p>Function + function, which role, which row.</p></div>
+  </div>
+  <div class="note-box example-card">
+    <p class="ex-k"><i data-lucide="lightbulb"></i> Examples · not from your file</p>
+    <p><b>Account:</b> "old.intern" · Records clerk · MFA off · last sign-in 30 May, left in May → <b>Disable</b>: the leaver step was never done.</p>
+    <p><b>Conflict removed:</b> one role could both create a purchase request and approve it → approve moved to another role (two hands on money).</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 20 minutes (3:40 to 4:00). Press T; chimes at 12 and 20 minutes.</p>
+    <p><b>REMIND:</b> joiners, movers and leavers from this morning; shared and generic accounts; MFA; separate admin accounts.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> break next (4:00 to 4:10): press K. Write-up starts at 4:10.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> both examples are invented and not in the Audit File: they show the shape of a decision and of a conflict, not an answer.</p>
+  </aside>
+</section>
+
+<!-- 32 -->
+<section id="audit-writeup" data-min="15" data-timer="15" data-timer-label="Write-up" data-checkpoints="5:Top three ranked|12:Three sentences to Director Eva|15:Check your answers, then submit the form" data-eyebrow="Write-up · 4:10 to 4:25" data-level="Create" data-source="Module 4 learner guide, How to work, Write-up">
+  <h2>Three sentences to Director Eva</h2>
+  <div class="body center-v"><pdac-fill-template data-template="Most urgent: {{the staff leave spreadsheet is open to anyone who has the link}}. It could cost the office {{the privacy of 60 staff, and a complaint to the NPC}}. I ask you to approve {{turning off link sharing today, and a monthly check of what is shared}}."></pdac-fill-template></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 15 minutes (4:10 to 4:25). Press T.</p>
+    <p><b>SAY:</b> rank your top three findings. Then three sentences to Director Eva: what is most urgent, what it could cost the office, and what you ask her to approve. A head of office reads three sentences; she will not read three pages.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the template, empty. A fills in an example built on the worked example (the leave spreadsheet), so it gives nothing away: show it to anyone who is stuck. Leave the slide up while people write.</p>
+  </aside>
+</section>
+
+<!-- 33 -->
+<section id="audit-submit" data-min="5" data-eyebrow="Submit · by 4:30 PM" data-source="Module 4 learner guide, Graded controls audit">
+  <h2>Submit the audit form by 4:30 PM</h2>
+  <p class="quiz-rules">Everything goes in the form: your findings, the access review, the role table and the write-up. Submit when it is complete; you can still edit it from the same link.</p>
+  <div class="body center-v"><pdac-qr-panel data-link="audit-submit"></pdac-qr-panel></div>
+  <p class="muted">Connectivity problem? The grace period runs until 8:00 AM tomorrow: tell me before you leave.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes (4:25 to 4:30).</p>
+    <p><b>BEFORE THE SESSION:</b> run createAuditForms in the Apps Script project (Audit.gs; see source/quiz-forms/README.md, "Module 4 audit form") and put this run's line under audit-submit in links.json, then npm run qr && npm run build. The same QR shows on the "Evidence, control, fix" slide.</p>
+    <p><b>CHECK:</b> before the debrief, run showAuditSubmissions in the Apps Script project: it lists who has submitted, when, and who has fewer than 8 findings.</p>
+  </aside>
+</section>
+
+<!-- 34 -->
+<section id="audit-debrief" class="l-interactive" data-min="9" data-eyebrow="Debrief · after 4:30 only" data-source="Module 4 Audit File · facilitator answer key">
+  <h2>What did the records show? Call out a finding</h2>
+  <div class="stage"><pdac-reveal-grid data-src="m4-findings.json"></pdac-reveal-grid></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 9 minutes (three went to the PHP2Shell news at the end). Only after every file is in.</p>
+    <p><b>RUN IT:</b> ask the room to call out findings, one at a time, with the exhibit and row. When a call matches a tile, click it: it turns over with its evidence, control, rating and fix. Ask: "Who else found this? Who rated it differently, and why?" Aim to have the room turn over about eight of the twelve before you press A.</p>
+    <p><b>THE TWO URGENT TILES:</b> the 2:19 AM export by the ended vendor account, with logs deleted 12 minutes later; and the payout redirected by one person with no call-back. Ask: "Who must be told today?" (Carla, the DPO, and Director Eva: the 72-hour clock may already be running from reasonable belief.)</p>
+    <p><b>KEY:</b> the full list of 28 planted findings, the access decisions and the corrected role table are in the facilitator answer key.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> twelve face-down tiles labelled by exhibit and row. Click a tile to turn it over and see its details; → turns the next; A turns all; R turns them back.</p>
+  </aside>
+</section>
+
+<!-- 35 -->
+<section id="top-five" data-min="8" data-eyebrow="Debrief · the top five fixes" data-source="Module 4 Audit File · facilitator answer key">
+  <h2>If Director Eva approves only five things</h2>
+  <ol class="milestones body top-five">
+    <li class="fragment"><span class="t">Today</span> Disable the ended vendor account and the generic admin account; keep the logs; tell Carla and Director Eva: a possible breach</li>
+    <li class="fragment"><span class="t">This week</span> Install the update for the known-exploited weakness</li>
+    <li class="fragment"><span class="t">2 weeks</span> MFA on every account, the VPN first; security keys for admins</li>
+    <li class="fragment"><span class="t">This month</span> Fix the role table, and clean up joiners, movers and leavers</li>
+    <li class="fragment"><span class="t">This month</span> Logs admins cannot delete, read every week; encrypted backups, tested, one copy offline</li>
+  </ol>
+  <div class="ws-foot">
+  <p class="callout">And check the PHP 15,000 payout with the applicant, on a number already on file.</p>
+  <pdac-reveal-panel data-label="Show the Part B model answers" data-title="Part B · the model access review, all 14 accounts">
+    <table class="t compact">
+      <thead><tr><th>Row</th><th>Account</th><th>Decision</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>B1</td><td>ana</td><td>Change role; require MFA (security key)</td><td>Admin work from a separate admin account only; SMS codes are not phishing-resistant</td></tr>
+        <tr><td>B2</td><td>ben</td><td>Require MFA</td><td>The role fits the job; MFA is off</td></tr>
+        <tr><td>B3</td><td>luz</td><td>Change role; require MFA</td><td>Remove the clerk role (mover step): she encoded and approved A-21733</td></tr>
+        <tr><td>B4</td><td>dan</td><td>Keep</td><td>Role and MFA fit; the role table must stop cashiers editing e-wallet numbers</td></tr>
+        <tr><td>B5</td><td>sol</td><td>Require MFA</td><td>Signs in from home through the VPN with a password only</td></tr>
+        <tr><td>B6</td><td>carla</td><td>Keep</td><td>Read-only logs with MFA is what the DPO needs</td></tr>
+        <tr><td>B7</td><td>eva</td><td>Change role; require MFA</td><td>A head of office needs reports, not admin rights; dormant since March</td></tr>
+        <tr><td>B8</td><td>frontdesk</td><td>Disable</td><td>Shared account: nobody is accountable; named accounts instead</td></tr>
+        <tr><td>B9</td><td>admin</td><td>Disable</td><td>Generic admin the vendor knows; used at 2:31 AM to delete logs</td></tr>
+        <tr><td>B10</td><td>bayani.support</td><td>Disable today</td><td>Contract ended 31 August; exported 48,112 records at 2:19 AM</td></tr>
+        <tr><td>B11</td><td>rex</td><td>Disable</td><td>Left on 30 June: the leaver step was not done</td></tr>
+        <tr><td>B12</td><td>mara</td><td>Require MFA</td><td>File her security clearance with the DPO before access continues</td></tr>
+        <tr><td>B13</td><td>test1</td><td>Disable</td><td>Test account, never used, first password</td></tr>
+        <tr><td>B14</td><td>sms-link</td><td>Change role</td><td>Name, mobile number and status only, as the agreement says</td></tr>
+      </tbody>
+    </table>
+    <p class="rp-note"><b>Corrected role table:</b> Try it 3.3's answer. <b>Conflicts removed:</b> clerk encode + approve; cashier e-wallet edit + release; supervisor approve + release; administrator accounts + approve or pay, and deleting logs.</p>
+  </pdac-reveal-panel>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 8 minutes.</p>
+    <p><b>VOTE FIRST:</b> before revealing, ask each table for its number one fix. Then reveal the five, one by one.</p>
+    <p><b>KEY POINT:</b> four of the five cost nothing but a decision. The first one is about a breach that may already be underway: that is why "who must be told today" mattered.</p>
+    <p><b>BRING IT HOME:</b> which of these five is true in your own office? Write it as your 30-day action (worksheet, last section).</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next fix.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> "Show the Part B model answers" (or A) opens all 14 access decisions and the conflicts removed, for the debrief. R or ← closes it.</p>
+  </aside>
+</section>
+
+<!-- 36 -->
+<section id="m4-recap" class="l-statement" data-min="1" data-blackout-first data-footer="none">
+  <p class="eyebrow">Recap · your desk card additions</p>
+  <h2>Six phrases to carry into Day 3</h2>
+  <pdac-phrases data-keys="upel,padlock,approved,decision,tlp,ecf" data-cols="3" data-recap></pdac-phrases>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute (three went to the PHP2Shell news at the end).</p>
+    <p><b>RETRIEVAL FIRST:</b> opens blacked out; ask the room for two or three of this afternoon's phrases, then press B and read the six.</p>
+    <p><b>PHRASES:</b> Update, protect, encrypt, lock. Padlock means private, not honest. Approved tools only. Does it change a decision? RED, AMBER, GREEN, CLEAR. Evidence, control, fix.</p>
+  </aside>
+</section>
+
+<!-- 37 -->
+<section id="day2-close" class="l-two-col" data-min="6" data-eyebrow="Day 2 close · see you tomorrow" data-source="Course syllabus · Module 4 learner guide">
+  <h2>Day 3: when something goes wrong</h2>
+  <div class="two-col close-cols">
+    <div class="col">
+      <p class="col-head"><i data-lucide="siren"></i> Morning · 8:00 AM</p>
+      <h3>Module 5: Incident Response and Integrated Capstone</h3>
+      <p>The first steps when an incident happens, who to tell and how fast, then a team tabletop from start to finish.</p>
+      <p class="muted">Face-to-face: Friday 23 October · Online: Wednesday 28 October</p>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="calendar-clock"></i> Tonight</p>
+      <p>Write your 30-day action: what, by when, and how you will know it is done.</p>
+      <p class="muted">Audit grace period: until 8:00 AM, for connectivity problems only.</p>
+    </div>
+  </div>
+  <div class="exit-card materials-card close-materials">
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="clipboard-check"></i> Exit check · 5 min</p>
+      <pdac-qr-panel data-link="exit-m4"></pdac-qr-panel>
+    </div>
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="list-checks"></i> Practice quiz · not graded</p>
+      <pdac-qr-panel data-link="quiz4"></pdac-qr-panel>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> today we fixed things: this morning the controls in the server room, this afternoon the devices and habits at every desk, and you audited a whole system on your own. Tomorrow, Module 5: when something goes wrong anyway, what happens in the first hours, who must be told and how fast, and a team tabletop that uses all five modules.</p>
+    <p><b>BEFORE YOU GO:</b> the exit check (anonymous, about 5 minutes) and the practice quiz (10 items, not graded, answers shown on submitting).</p>
+    <p class="notes-web"><b>ON SCREEN:</b> QR codes for the Module 4 exit check and practice Quiz 4. Online: paste both links in the chat. Tonight, run showExitCheckResults and open Day 3 with what is still unclear.</p>
+  </aside>
+</section>
+
+<!--
+  Day 2 outro: In the news, PHP2Shell (22 October 2026, from the facilitator's spec).
+  Facts checked on 22 October 2026 against php.net's advisory of 21 October and the
+  three news pages in the footers; quotes in src/data/sources.json (E key).
+  Recheck php.net and CISA's KEV catalog before each run: versions and
+  exploitation status change fast. No live site is opened.
+-->
+
+<!-- 38 -->
+<section id="news-php2shell-1" class="l-cards-3" data-min="2" data-eyebrow="In the news · October 2026" data-proofs="php-fixed,php-old,wt-unauth,wt-in-the-wild,sw-cvss,sw-leak,hns-first-attempt" data-source="php.net, 21 Oct 2026 · Help Net Security · SecurityWeek · watchTowr" data-terms="vulnerability,cvss,patch">
+  <h2>PHP2Shell: two flaws, every PHP website</h2>
+  <div class="cards body news-cards">
+    <div class="card"><span class="icon"><i data-lucide="globe"></i></span><h4>What PHP is</h4><p>The programming language behind many websites and portals, including WordPress sites and many systems built by local developers.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="bug"></i></span><h4>What went wrong</h4><p>Two critical flaws, <span class="nowrap">CVE-2026-109618</span> and <span class="nowrap">CVE-2026-109619</span> (CVSS 9.2), let an attacker take over the web server <b>without signing in</b>.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="siren"></i></span><h4>Why it is urgent</h4><p>Details leaked before the fix came out on 21 October 2026. The first attack attempt was seen on 17 October, four days earlier.</p></div>
+  </div>
+  <p class="callout news-strip">Fixed in PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35. PHP 8.1 and older get no fixes from the PHP project: upgrade, or get a backported fix from your vendor.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>BEFORE EACH RUN:</b> check php.net and CISA's Known Exploited Vulnerabilities catalog; versions and exploitation status change fast. On 22 October 2026 neither CVE was in the KEV catalog yet.</p>
+    <p><b>READ</b> the heading and the three cards.</p>
+    <p><b>ASK:</b> Does your office run a website or a portal? Who built it, and who keeps it updated?</p>
+    <p><b>POINT TO</b> the strip: if a system runs PHP 8.1 or older, the normal update does not exist. It needs an upgrade, or a backported fix from its vendor.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> E shows the quotes behind every fact (php.net, watchTowr, SecurityWeek, Help Net Security), each with a QR code.</p>
+  </aside>
+</section>
+
+<!-- 39 -->
+<section id="news-php2shell-2" class="l-two-col" data-min="3" data-level="Evaluate" data-eyebrow="In the news · What an office does this week" data-proofs="php-fixed,php-no-safe-workaround,hns-ncsc-offline" data-source="php.net · UK NCSC via Help Net Security · Module 1: 3S, 72-5 · Lesson 4.3" data-terms="patch,waf">
+  <h2>Does it change a decision this week? <span class="fragment" data-fragment-index="0">Yes: act today.</span></h2>
+  <div class="two-col news-act fragment" data-fragment-index="0">
+    <div class="col">
+      <ol class="news-steps">
+        <li><b>Know</b><span>List every system that runs PHP, including those a vendor or hosting provider runs for you.</span></li>
+        <li><b>Patch</b><span>Install the fixed version, then restart the service so the fix takes effect.</span></li>
+        <li><b>Can't patch?</b><span>Take the system off the internet until it is patched or upgraded. A web application firewall rule only buys time.</span></li>
+        <li><b>Vendor-run?</b><span>Ask in writing: which PHP version, and patched by what date?</span></li>
+        <li><b>Check</b><span>Look for new admin accounts, unfamiliar files in web folders and unusual outbound traffic. If personal data may have been accessed: the 3S test and the 72-hour clock.</span></li>
+      </ol>
+    </div>
+    <div class="col news-who">
+      <p class="col-head"><i data-lucide="users"></i> Who does what</p>
+      <ul>
+        <li>IT patches and checks.</li>
+        <li>The head approves any downtime.</li>
+        <li>The DPO and the breach response team decide on notification if personal data is involved.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>ASK</b> the heading as a question first; let the room answer before you reveal "Yes: act today."</p>
+    <p><b>READ</b> the five steps, pointing to the side box for who does each.</p>
+    <p><b>LINK</b> step 5 to Module 1's desk card: 3S, then 72-5.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the question alone; → reveals the answer, the five steps and who does what. E quotes php.net ("only an update is a complete solution") and the UK NCSC's advice to consider taking unfixable systems offline.</p>
+  </aside>
+</section>
+
+<!-- 40 -->
+<section id="news-php2shell-3" class="l-statement" data-min="1" data-level="Apply" data-eyebrow="Before you leave today" data-proofs="php-fixed" data-source="php.net and CISA KEV for updates · share alerts with a TLP label" data-terms="kev,tlp">
+  <h2>Three questions to ask your IT head tomorrow</h2>
+  <ol class="news-qs">
+    <li>Do we run PHP anywhere?</li>
+    <li>Is it patched to a fixed version?</li>
+    <li>If a vendor runs it, have they confirmed it in writing?</li>
+  </ol>
+  <p class="news-caution"><i data-lucide="triangle-alert"></i><span>Never test or scan a website you do not own or have written authority to test, including other offices' sites. That is illegal access under RA 10175, Section 4(a)(1).</span></p>
+  <p class="support news-close"><b>See you at 8:00 AM tomorrow</b> for Module 5: Incident Response.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>READ</b> the three questions; ask each participant to write one on their desk card.</p>
+    <p><b>READ</b> the caution bar.</p>
+    <p><b>CLOSE</b> Day 2 with the closing line. Online: post the three questions in the chat.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the exit check and practice quiz QR codes are on the Day 2 close slide, three slides back, if anyone still needs them.</p>
+  </aside>
+</section>

@@ -11,13 +11,15 @@ The web presentation for the DICT ILCDB course (20 hours), built from `WEB_PRESE
 | Engine, layouts, presenter keys, speaker-view relay | Done and tested (`npm test`) |
 | Live simulations on 9 slides | Done and tested: see [Simulations](#simulations). Same slide IDs, order and minutes as the deck |
 | Proof for the numbers and facts (E key) | Done: every number on `numbers`, `vuln-numbers` and `human-key`, and the key facts on six Module 2 slides (four questions, STRIDE, kill chain, SPF/DKIM/DMARC, the deepfake case, ScamSafe and RA 12010), have their exact quote, publisher, date and a QR code to the page (`src/data/sources.json`, quotes checked 20 October 2026) |
-| Exit checks | Done: the last slide of each module shows the QR code of an anonymous exit check (`exit-m1`, `exit-m2` in `links.json`), built by `../source/quiz-forms/ExitChecks.gs` |
+| Exit checks | Done: the last slide of each module shows the QR code of an anonymous exit check (`exit-m1` to `exit-m4` in `links.json`), built by `../source/quiz-forms/ExitChecks.gs`; Modules 3 and 4 also show their practice quiz (`quiz3`, `quiz4`, not graded) |
 | Module 1 (41 slides) | **Synced with the Module 1 deck and learner guide** (20 October 2026): the deck's wording on every slide, its speaker notes, and the guide's activities and model answers (Try it 1.1A to 1.2.2B, the readiness mini-check) |
 | Module 2 (42 slides) | **Synced with the Module 2 deck** (20 October 2026): the deck's wording and speaker notes on every slide; activities, worked example and the risk assessment brief follow the Module 2 learner guide |
-| Modules 3 to 5 | Components built and staged in the **component gallery** (`?m=gallery`). Slides come after their learner guides and decks exist |
-| Lab app | Not started; separate repo. Planned stack: FastAPI + PostgreSQL in Docker Compose |
+| Module 3 (40 slides) | **Built from the Module 3 learner guide** (21 October 2026; no deck yet): Lessons 3.1 to 3.3 as live simulations and room decisions, Try it 3.1 to 3.3 with the guide's model answers, and the 60-minute configuration workshop. Team workbook: `../source/worksheets/Module 3 Workbook.docx` |
+| Module 4 (40 slides) | **Built from the Module 4 learner guide** (21 October 2026; no deck yet): Lessons 4.1 to 4.3, Try it 4.2A to 4.3, and the graded controls audit (20%) on paper from `../source/worksheets/Module 4 Audit File.docx`, with a findings-board debrief, then a 6-minute news outro on the PHP2Shell flaws (22 October 2026; recheck php.net and CISA KEV before each run). Key: the facilitator-only answer key next to it |
+| Module 5 | Components staged in the **component gallery** (`?m=gallery`). Slides come after its learner guide exists |
+| Lab app | Not needed for Module 4: its guide replaced the hands-on lab with a paper audit ("nothing is tested live") |
 
-`npm run check` reports how many draft items are still marked `data-verify` in each module (0 in both) and how many slides lack deck notes (0 in both).
+`npm run check` reports how many draft items are still marked `data-verify` in each module (0 in all four) and how many slides lack speaker notes (0 in all four). Modules 3 and 4 have no deck yet: when their decks arrive, sync them as in [Sync with the deck](#sync-with-the-deck), and update `tools/slide-map.json` if the deck's order differs.
 
 ## Run it
 
@@ -69,7 +71,8 @@ Open `http://localhost:4173` for the start page, or go straight to a module:
 
 ## Before each run
 
-1. Paste this run's form links into `src/data/links.json`, then `npm run qr` (makes `public/qr/*.svg` locally). The quiz forms, the exit checks and their `links.json` lines come from the Apps Script in `../source/quiz-forms/` (run `showQuizLinks` and `showExitCheckLinks`).
+1. Paste this run's form links into `src/data/links.json`, then `npm run qr` (makes `public/qr/*.svg` locally). The quiz forms (Quizzes 1 and 2 graded; 3 and 4 practice), the worksheets, the exit checks and their `links.json` lines come from the Apps Script in `../source/quiz-forms/` (run `showQuizLinks`, `showWorksheetLinks` and `showExitCheckLinks`). Day 2 also needs `audit-submit`: a hand-made Google Form with a file upload (see `../source/quiz-forms/README.md`).
+   - **Day 2 printing:** one `Module 3 Workbook.docx` per team and one `Module 4 Audit File.docx` per participant (`../source/worksheets/`); online, one editable copy each. Keep the Module 3 and 4 answer key away from participants.
 2. Refresh CISA's known-exploited snapshot: `npm run kev` (needs internet; updates the card on `manage-vulns` and its quote for E).
 3. Optional live poll: create the run's Slido or Mentimeter event from `../source/live-poll/questions.md` (`npm run poll-pack` rebuilds it), and put its link under `live-poll` in `links.json`.
 4. Install OWASP Threat Dragon 2.6.2 on the presenting laptop if you will open the models (see [Security tools](#security-tools)).
@@ -130,24 +133,32 @@ Layouts: `l-cover`, `l-statement`, `l-cards-3`, `l-cards-4`, `l-tiles`, `l-table
 | Element | Data | Notes |
 |---|---|---|
 | `<pdac-match-board>` | `categories`, `items` | Click an item, then a category; Check; A places all with reasons |
-| `<pdac-vote-reveal>` | `items` (+ `data-options`) | Tally with clicks or 1 to 9; clicker reveals, then next case. `answer` may list two options; `facts` adds labelled lines (weakness, data at risk, fix) |
+| `<pdac-vote-reveal>` | `items` (+ `data-options`) | Tally with clicks or 1 to 9; clicker reveals, then next case. `answer` may list two options; `facts` adds labelled lines (weakness, data at risk, fix). `data-no-vote` shows each case's model answer only (Try it 3.2, 4.2B); `unit` names the cases; `class="vr-tight"` for long cases |
 | `<pdac-three-s-check>` | `questions`, `scenarios` | Team answers per S and a decision; model answer on A |
 | `<pdac-breach-flow>` | 3S steps, "when unsure", 72-5 clock | `data-part="3s"`, `"clock"` or `"full"` |
 | `<pdac-recall>` | sets per module | `data-module="2"` |
 | `<pdac-checklist>` | `items`, `bands` | Count of yes answers at the end. The Module 1 readiness mini-check (the guide's nine questions) is in the gallery, `?m=gallery#/g-readiness`; the deck's last slide lists it as one of three Bring it home tasks |
 | `<pdac-fill-template>` | `data-template="… {{blank}} …"`, or `data-src` with `template` and `examples` | Typed live, nothing saved; A fills in the example (Module 1: the deck's good AI rule) |
-| `<pdac-phish-or-legit>` | `messages` with `[[cue|text]]` spans; channel `email`, `sms`, `qr` or `voice` (voicemail with transcript); optional `verdict` words | `data-range="1-4"` |
+| `<pdac-phish-or-legit>` | `messages` with `[[cue|text]]` spans; channel `email`, `sms`, `qr`, `voice` (voicemail with transcript), `browser` (address bar, padlock, and a warning, sign-in, pop-up, upload or plain page) or `chat` (a messaging group); optional `verdict` words, `options`, `unit` | `data-range="1-4"` |
 | `<pdac-dfd-stride>` | nodes, flows (optional `via` corners, `both` ends, `name`), boundaries (open or closed), threats | `data-view="threats"` for the table. Stores are two parallel lines, as in the learner guide |
 | `<pdac-risk-matrix>` | bands, risks | `data-risks="w1,w2"` |
 | `<pdac-qr-panel>` | `links.json` key | `data-link="quiz1"`. Inside `<div class="exit-card is-corner">` or `is-wide` it shows a smaller QR code |
 | `<pdac-phrases>` | `phrases.json` keys | The memory phrases, same words and icons everywhere. `data-recap` shows the deck's desk-card wording (`recapPhrase`, `recap`) on the recap slides |
-| `<pdac-firewall-sim>`, `<pdac-crypto-visual>`, `<pdac-rbac-matrix>`, `<pdac-hash-prefix-demo>`, `<pdac-url-anatomy>`, `<pdac-inject-clock>`, `<pdac-password-lab>` | see the gallery | Modules 3 to 5 |
+| `<pdac-firewall-sim>` | `zones`, `rules`, `flows`, `start`/`answer` order, `startOff`/`answerOff` | First match wins over a default deny; move or switch rules off; every block is logged. A fixes the rules |
+| `<pdac-rbac-matrix>` | `roles`, `functions`, `start`, `recommended`, `conflicts`, `notes` | Click to grant; separation-of-duties conflicts in red; A shows the answer with its notes in the cells |
+| `<pdac-lock-seal-sign>` | `lock`, `seal`, `sign`, `scenes` | Module 3's three tools with live Web Crypto (AES-GCM, SHA-256, ECDSA): a thief's key fails, one digit breaks the seal, a changed or impostor file fails the signature |
+| `<pdac-reveal-grid>` | `tiles` (label, head, facts, band) | Face-down tiles the room calls out; click to turn one over; A turns all (the Module 4 debrief) |
+| `<pdac-checks>` | wraps `<ol class="checks">` | Check yourself with answers on demand (Modules 3 and 4): → reveals the next answer, ← hides it, a click shows one, A all, R hides |
+| `<pdac-reveal-panel>` | any slide HTML inside | An example or model answer over the slide (the workshop tasks, the audit debrief): its button or A opens it, R or ← closes it; → still moves on, so a timed task never jumps to the answer |
+| `<pdac-crypto-visual>`, `<pdac-hash-prefix-demo>`, `<pdac-url-anatomy>`, `<pdac-inject-clock>`, `<pdac-password-lab>` | see the gallery | Modules 3 to 5 |
 
 All data lives in `src/data/*.json` and is bundled at build time: nothing is fetched or sent at runtime, and no participant data is collected.
 
 ## Simulations
 
-Nine slides show a live demonstration instead of static text. Each keeps its deck ID, position and minutes, and works like every other interactive: the clicker plays the next step (a press during a step finishes it), **A** jumps to the end or the summary, **R** starts over. They are awareness-level stories about the fictional RSSO: what staff would see and what each control changes, not attack instructions.
+**Modules 3 and 4 (21 October 2026)** are built the same way, with more of them, after the Day 1 feedback that the interactive parts landed best. Network simulations on one RSSO zone map (`m3-net.json`) play the layers, the zones, IDS and IPS, the VPN and Try it 3.1; steps with an `ask` are predictions: the room votes (1 to 9), → reveals the answer and why, → plays it. Module 3 also has the firewall rules, Lock, seal, sign, the Zero Trust gate, the MFA phishing relay (SMS code, number matching, security key) and the role matrix; Module 4 the endpoint baseline (layers), shadow IT, look-alike addresses, six browser and chat screens, TLP, inbox triage and the audit's findings board.
+
+Nine slides in Modules 1 and 2 show a live demonstration instead of static text. Each keeps its deck ID, position and minutes, and works like every other interactive: the clicker plays the next step (a press during a step finishes it), **A** jumps to the end or the summary, **R** starts over. They are awareness-level stories about the fictional RSSO: what staff would see and what each control changes, not attack instructions.
 
 | Slide | Element and data | What the room sees |
 |---|---|---|

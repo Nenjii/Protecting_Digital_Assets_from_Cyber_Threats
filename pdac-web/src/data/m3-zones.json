@@ -1,0 +1,238 @@
+{
+  "_status": "Module 3, Lesson 3.1, 'Separate rooms: segmentation' (learner guide of 21 October 2026): the zone table and its rule that every connection between zones passes the firewall's rules. The flat network is the 'before'. Fictional office.",
+  "title": "Separate rooms: a flat network, then zones",
+  "map": "m3-net.json",
+  "tracks": [
+    {
+      "id": "flat",
+      "tab": "One flat network",
+      "label": "Before: no rooms",
+      "steps": [
+        {
+          "title": "Everything can reach everything",
+          "text": "In a flat network there are no internal walls. The firewall guards the internet edge only; inside, every device can talk to every other one.",
+          "pre": {
+            "firewall": "off|Edge only",
+            "db": "focus|48,000 records"
+          }
+        },
+        {
+          "title": "One infected staff PC",
+          "text": "Malware on one staff computer goes straight for the applicant database. Nothing inside stops it.",
+          "pre": {
+            "firewall": "off|Edge only",
+            "staffpc": "bad|✗ Malware"
+          },
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database"
+            }
+          ],
+          "set": {
+            "db": "bad|✗ Reached"
+          },
+          "verdict": {
+            "tone": "bad",
+            "text": "One click on one PC exposes every applicant."
+          }
+        },
+        {
+          "title": "A visitor's phone, a camera",
+          "text": "A visitor on the office Wi-Fi opens the file server. A camera with a default password, taken over from outside, reaches the database too.",
+          "pre": {
+            "firewall": "off|Edge only"
+          },
+          "send": [
+            {
+              "route": [
+                "visitor",
+                "firewall",
+                "files"
+              ],
+              "kind": "attack",
+              "label": "File server"
+            },
+            {
+              "route": [
+                "cctv",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database",
+              "with": true
+            }
+          ],
+          "set": {
+            "files": "bad|✗ Opened",
+            "db": "bad|✗ Reached"
+          }
+        }
+      ]
+    },
+    {
+      "id": "zones",
+      "tab": "Separate rooms",
+      "label": "After: zones that reach only what they need",
+      "desk": "Keep personal devices and visitors off the office network.",
+      "it": "Zones for guests, devices, staff and servers; every connection passes the firewall.",
+      "steps": [
+        {
+          "title": "Split the network into zones",
+          "text": "Each zone reaches only what it needs, and every connection between zones passes the firewall's rules. A problem in one zone cannot reach the others.",
+          "pre": {
+            "firewall": "focus|✓ Every zone"
+          }
+        },
+        {
+          "title": "The infected PC is contained",
+          "text": "The staff network may reach the portal and the file server, not the database directly.",
+          "pre": {
+            "staffpc": "bad|✗ Malware"
+          },
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "staffpc": "warn|Contained",
+            "firewall": "ok|✓ Blocked"
+          }
+        },
+        {
+          "title": "Guests and devices stay in their rooms",
+          "text": "Guest Wi-Fi reaches the internet only. Cameras and printers reach their own recorder or service only.",
+          "send": [
+            {
+              "route": [
+                "visitor",
+                "firewall",
+                "files"
+              ],
+              "kind": "attack",
+              "label": "File server?",
+              "blockAt": "firewall"
+            },
+            {
+              "route": [
+                "cctv",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database?",
+              "blockAt": "firewall",
+              "with": true
+            }
+          ],
+          "set": {
+            "visitor": "ok|Internet only",
+            "cctv": "ok|Own recorder",
+            "firewall": "ok|✓ Blocked"
+          }
+        },
+        {
+          "title": "The work still flows",
+          "text": "Citizens reach the portal; the portal reaches the database through **one approved connection**; staff reach the file server.",
+          "send": [
+            {
+              "route": [
+                "citizen",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "label": "Apply"
+            },
+            {
+              "route": [
+                "portal",
+                "firewall",
+                "db"
+              ],
+              "label": "Save",
+              "kind": "secure"
+            },
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "files"
+              ],
+              "label": "Open file",
+              "with": true
+            }
+          ],
+          "set": {
+            "citizen": "ok|✓",
+            "db": "ok|✓ Portal",
+            "files": "ok|✓ Staff"
+          },
+          "verdict": {
+            "tone": "ok",
+            "text": "Each zone reaches only what it needs."
+          },
+          "close": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "Zone",
+      "What sits there",
+      "May reach"
+    ],
+    "rows": [
+      [
+        "Public zone (DMZ)",
+        "The Assistance Portal's web server",
+        "The applicant database, through one approved connection only"
+      ],
+      [
+        "Server zone",
+        "Applicant database, file server, backup server",
+        "Approved update sites only; nothing else on the internet"
+      ],
+      [
+        "Staff network",
+        "Staff computers (Ben, Dan, Sol)",
+        "The portal and the file server, not the database directly"
+      ],
+      [
+        "Admin network",
+        "Ana's admin workstation",
+        "Admin pages and servers"
+      ],
+      [
+        "Guest Wi-Fi",
+        "Visitors' phones",
+        "The internet only"
+      ],
+      [
+        "Cameras and devices",
+        "CCTV, printers, smart devices",
+        "Their own recorder or service only"
+      ],
+      [
+        "Remote access (VPN)",
+        "Staff working from home, with MFA",
+        "Only what each person's role needs"
+      ]
+    ]
+  }
+}

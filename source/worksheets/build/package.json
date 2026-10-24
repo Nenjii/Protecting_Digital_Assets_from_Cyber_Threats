@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node make-docx.mjs .."
+    "build": "node make-docx.mjs ..",
+    "build:day2": "node make-docx.mjs .. \"Module 3 Workbook,Module 4 Audit File,Modules 3 and 4\"",
+    "build:audit-form": "node make-audit-gs.mjs"
   },
   "dependencies": {
     "docx": "9.13.0"

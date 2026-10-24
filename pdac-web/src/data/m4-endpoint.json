@@ -1,0 +1,168 @@
+{
+  "_status": "Module 4, Lesson 4.1 'The endpoint baseline' (learner guide of 21 October 2026): its eight controls grouped by the memory phrase Update, protect, encrypt, lock. Which control stops which everyday attack is a teaching simplification, not a measurement. Fictional office.",
+  "labels": {
+    "source": "Everyday attacks",
+    "land": "Lands on the device",
+    "fire": "Send the ten attacks"
+  },
+  "layers": [
+    {
+      "id": "update",
+      "label": "Updates, secure setup",
+      "layer": "Update",
+      "icon": "refresh-cw"
+    },
+    {
+      "id": "protect",
+      "label": "Antivirus, firewall, user rights, USB",
+      "layer": "Protect",
+      "icon": "shield-check"
+    },
+    {
+      "id": "encrypt",
+      "label": "Full-disk encryption",
+      "layer": "Encrypt",
+      "icon": "hard-drive"
+    },
+    {
+      "id": "lock",
+      "label": "Screen lock with a PIN",
+      "layer": "Lock",
+      "icon": "lock"
+    }
+  ],
+  "attacks": [
+    {
+      "id": "e1",
+      "label": "Old browser weakness used by a web page",
+      "short": "Old weakness",
+      "icon": "bug",
+      "stoppedBy": [
+        "update"
+      ]
+    },
+    {
+      "id": "e2",
+      "label": "Unused remote-access feature left on",
+      "short": "Unused feature",
+      "icon": "router",
+      "stoppedBy": [
+        "update"
+      ]
+    },
+    {
+      "id": "e3",
+      "label": "Fake 'invoice' file with malware",
+      "short": "Malware",
+      "icon": "paperclip",
+      "stoppedBy": [
+        "protect"
+      ]
+    },
+    {
+      "id": "e4",
+      "label": "Malware tries to install itself as administrator",
+      "short": "Admin rights",
+      "icon": "user-cog",
+      "stoppedBy": [
+        "protect"
+      ]
+    },
+    {
+      "id": "e5",
+      "label": "A device on the café Wi-Fi probes the laptop",
+      "short": "Public Wi-Fi",
+      "icon": "wifi",
+      "stoppedBy": [
+        "protect"
+      ]
+    },
+    {
+      "id": "e6",
+      "label": "An unknown USB stick from the car park",
+      "short": "USB stick",
+      "icon": "usb",
+      "stoppedBy": [
+        "protect"
+      ]
+    },
+    {
+      "id": "e7",
+      "label": "Field laptop stolen from a car",
+      "short": "Stolen laptop",
+      "icon": "laptop",
+      "stoppedBy": [
+        "encrypt"
+      ]
+    },
+    {
+      "id": "e8",
+      "label": "Old work phone sold without a wipe",
+      "short": "Sold phone",
+      "icon": "smartphone",
+      "stoppedBy": [
+        "encrypt"
+      ]
+    },
+    {
+      "id": "e9",
+      "label": "A visitor uses a PC left unlocked",
+      "short": "Unlocked PC",
+      "icon": "monitor",
+      "stoppedBy": [
+        "lock"
+      ]
+    },
+    {
+      "id": "e10",
+      "label": "A phone left on a jeepney seat",
+      "short": "Lost phone",
+      "icon": "smartphone",
+      "stoppedBy": [
+        "lock",
+        "encrypt"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "on": [],
+      "title": "No baseline",
+      "text": "Ten everyday things that happen to work devices. With no baseline, every one of them lands."
+    },
+    {
+      "on": [
+        "update"
+      ],
+      "title": "Update",
+      "text": "Security updates installed promptly, automatically where possible, and unused features and accounts turned off."
+    },
+    {
+      "on": [
+        "update",
+        "protect"
+      ],
+      "title": "Protect",
+      "text": "Endpoint protection running and current, the device's own firewall on, daily work as a standard user, and only approved, encrypted USB drives."
+    },
+    {
+      "on": [
+        "update",
+        "protect",
+        "encrypt"
+      ],
+      "title": "Encrypt",
+      "text": "Full-disk encryption: a lost or stolen device does not mean lost data."
+    },
+    {
+      "on": [
+        "update",
+        "protect",
+        "encrypt",
+        "lock"
+      ],
+      "title": "Lock",
+      "text": "The screen locks after a few idle minutes, and a PIN or password reopens it. Update, protect, encrypt, lock: nothing lands."
+    }
+  ]
+}

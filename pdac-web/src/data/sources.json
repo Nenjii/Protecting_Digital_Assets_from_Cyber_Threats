@@ -1,5 +1,5 @@
 {
-  "_readme": "Proof for the numbers and key facts on the slides. Every quote was copied word for word from the page on the date in 'checked' (tools/check-data.mjs keeps 'short' a part of 'quote'); text in [brackets] marks a table or list rebuilt in one line. A tile shows its proof with data-proof=\"<proof id>\" inside <pdac-stat-proof>; a slide lists more with data-proofs; the E key shows every proof on the current slide with a QR code to the page. Module 2's extra sources are the pages its learner guide links to.",
+  "_readme": "Proof for the numbers and key facts on the slides. Every quote was copied word for word from the page on the date in 'checked' (tools/check-data.mjs keeps 'short' a part of 'quote'); text in [brackets] marks a table or list rebuilt in one line. A tile shows its proof with data-proof=\"<proof id>\" inside <pdac-stat-proof>; a slide lists more with data-proofs; the E key shows every proof on the current slide with a QR code to the page. Module 2's extra sources are the pages its learner guide links to. Modules 3 and 4 (21 October 2026) quote the primary sources behind their guides' facts (RFC 8996, the FBI IC3 alert, FIRST TLP 2.0, NIST SP 800-207, CISA's MFA fact sheet, Have I Been Pwned's API page). Module 4's news outro (22 October 2026) quotes php.net's PHP2Shell advisory and three news pages; recheck them before each run.",
   "sources": [
     {
       "id": "ms-mddr-2025",
@@ -118,6 +118,90 @@
       "date": "16 October 2026",
       "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
       "checked": "20 October 2026"
+    },
+    {
+      "id": "rfc8996",
+      "publisher": "IETF (RFC Editor)",
+      "author": "K. Moriarty, S. Farrell",
+      "title": "RFC 8996: Deprecating TLS 1.0 and TLS 1.1",
+      "date": "March 2021",
+      "url": "https://www.rfc-editor.org/rfc/rfc8996",
+      "checked": "21 October 2026"
+    },
+    {
+      "id": "fbi-ic3-2019",
+      "publisher": "FBI Internet Crime Complaint Center (IC3)",
+      "title": "Cyber Actors Exploit 'Secure' Websites In Phishing Campaigns (Alert I-061019-PSA)",
+      "date": "10 June 2019",
+      "url": "https://www.ic3.gov/PSA/2019/PSA190610",
+      "checked": "21 October 2026"
+    },
+    {
+      "id": "first-tlp",
+      "publisher": "FIRST",
+      "title": "Traffic Light Protocol (TLP): FIRST Standards Definitions and Usage Guidance, Version 2.0",
+      "date": "August 2022",
+      "url": "https://www.first.org/tlp/",
+      "checked": "21 October 2026"
+    },
+    {
+      "id": "nist-800-207",
+      "publisher": "NIST",
+      "author": "S. Rose, O. Borchert, S. Mitchell, S. Connelly",
+      "title": "SP 800-207, Zero Trust Architecture",
+      "date": "August 2020",
+      "url": "https://csrc.nist.gov/pubs/sp/800/207/final",
+      "checked": "21 October 2026"
+    },
+    {
+      "id": "cisa-pr-mfa",
+      "publisher": "CISA",
+      "title": "Implementing Phishing-Resistant MFA (fact sheet)",
+      "date": "October 2022",
+      "url": "https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf",
+      "checked": "21 October 2026"
+    },
+    {
+      "id": "hibp-range",
+      "publisher": "Have I Been Pwned (Troy Hunt)",
+      "title": "API v3: Searching Pwned Passwords by range, using k-anonymity",
+      "date": "API documentation",
+      "url": "https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange",
+      "checked": "21 October 2026"
+    },
+    {
+      "id": "php-advisory-2026",
+      "publisher": "The PHP Group (php.net)",
+      "title": "Security advisory: Critical remote code execution vulnerabilities, update now",
+      "date": "21 October 2026",
+      "url": "https://www.php.net/archive/2026.php#2026-10-21-5",
+      "checked": "22 October 2026"
+    },
+    {
+      "id": "hns-php2shell",
+      "publisher": "Help Net Security",
+      "author": "Mirko Zorz",
+      "title": "PHP2Shell: Critical PHP vulnerabilities patched, update now!",
+      "date": "21 October 2026, updated 22 October 2026",
+      "url": "https://www.helpnetsecurity.com/2026/10/21/php2shell-php-vulnerabilities-patched-cve-2026-109618-cve-2026-109619/",
+      "checked": "22 October 2026"
+    },
+    {
+      "id": "sw-php2shell",
+      "publisher": "SecurityWeek",
+      "author": "Ionut Arghire",
+      "title": "PHP2Shell: Mass Exploitation Looms for Leaked Critical PHP Flaws",
+      "date": "21 October 2026",
+      "url": "https://www.securityweek.com/php2shell-mass-exploitation-looms-for-leaked-critical-php-flaws/",
+      "checked": "22 October 2026"
+    },
+    {
+      "id": "wt-php2shell",
+      "publisher": "watchTowr",
+      "title": "Frequently Asked Questions About PHP Remote Code Execution (PHP2Shell CVE-2026-109618 & CVE-2026-109619)",
+      "date": "20 October 2026, updated 22 October 2026",
+      "url": "https://watchtowr.com/intelligence/php-cve-2026-109618-faq/",
+      "checked": "22 October 2026"
     }
   ],
   "proofs": [
@@ -273,6 +357,120 @@
       "source": "cisa-kev",
       "quote": "\"title\": \"CISA Catalog of Known Exploited Vulnerabilities\", \"catalogVersion\": \"2026.10.16\", \"dateReleased\": \"2026-10-16T17:15:48.8752Z\", \"count\": 1748",
       "short": "\"count\": 1748"
+    },
+    {
+      "id": "tls-deprecated",
+      "source": "rfc8996",
+      "quote": "This document formally deprecates Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346)."
+    },
+    {
+      "id": "fbi-padlock",
+      "source": "fbi-ic3-2019",
+      "quote": "Do not trust a website just because it has a lock icon or \"https\" in the browser address bar."
+    },
+    {
+      "id": "fbi-banking",
+      "source": "fbi-ic3-2019",
+      "quote": "Unfortunately, cyber criminals are banking on the public’s trust of \"https\" and the lock icon."
+    },
+    {
+      "id": "tlp-v2",
+      "source": "first-tlp",
+      "quote": "TLP version 2.0 is the current version of TLP standardized by FIRST. It is authoritative from August 2022 onwards"
+    },
+    {
+      "id": "tlp-red",
+      "source": "first-tlp",
+      "quote": "TLP:RED = For the eyes and ears of individual recipients only, no further disclosure."
+    },
+    {
+      "id": "tlp-amber",
+      "source": "first-tlp",
+      "quote": "TLP:AMBER = Limited disclosure, recipients can only spread this on a need-to-know basis within their organization and its clients. Note that TLP:AMBER+STRICT restricts sharing to the organization only."
+    },
+    {
+      "id": "tlp-green",
+      "source": "first-tlp",
+      "quote": "TLP:GREEN = Limited disclosure, recipients can spread this within their community."
+    },
+    {
+      "id": "tlp-clear",
+      "source": "first-tlp",
+      "quote": "TLP:CLEAR = Recipients can spread this to the world, there is no limit on disclosure."
+    },
+    {
+      "id": "zt-no-implicit",
+      "source": "nist-800-207",
+      "quote": "Zero trust assumes there is no implicit trust granted to assets or user accounts based solely on their physical or network location (i.e., local area networks versus the internet) or based on asset ownership (enterprise or personally owned).",
+      "short": "Zero trust assumes there is no implicit trust granted to assets or user accounts based solely on their physical or network location"
+    },
+    {
+      "id": "cisa-urges",
+      "source": "cisa-pr-mfa",
+      "quote": "CISA strongly urges all organizations to implement phishing-resistant MFA as part of applying Zero Trust principles."
+    },
+    {
+      "id": "cisa-gold",
+      "source": "cisa-pr-mfa",
+      "quote": "Phishing-resistant MFA is the gold standard for MFA."
+    },
+    {
+      "id": "hibp-kanon",
+      "source": "hibp-range",
+      "quote": "In order to protect the value of the source password being searched for, Pwned Passwords also implements a k-anonymity model that allows a password to be searched for by partial hash."
+    },
+    {
+      "id": "hibp-800",
+      "source": "hibp-range",
+      "quote": "A range search typically returns approximately 800 hash suffixes, although this number will differ depending on the hash prefix being searched for and will increase as more passwords are added.",
+      "short": "A range search typically returns approximately 800 hash suffixes"
+    },
+    {
+      "id": "php-fixed",
+      "source": "php-advisory-2026",
+      "quote": "PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35 fix two critical vulnerabilities that can allow unauthenticated remote code execution. All PHP users are strongly encouraged to update immediately."
+    },
+    {
+      "id": "php-old",
+      "source": "php-advisory-2026",
+      "quote": "PHP 8.1 and older no longer receive updates from the PHP project. Some distributions and LTS vendors provide backported fixes, so contact your vendor for details, or upgrade to a supported version."
+    },
+    {
+      "id": "php-no-safe-workaround",
+      "source": "php-advisory-2026",
+      "quote": "If you cannot update immediately: while only an update is a complete solution, the following measures reduce exposure to specific attack paths but do not make an installation safe."
+    },
+    {
+      "id": "wt-unauth",
+      "source": "wt-php2shell",
+      "quote": "These vulnerabilities allow an unauthenticated attacker to execute their own code on a server running PHP, potentially taking control of it."
+    },
+    {
+      "id": "wt-in-the-wild",
+      "source": "wt-php2shell",
+      "quote": "Exploitation has been observed in the wild as of the 21st of October through watchTowr’s Attacker Eye global honeypot network."
+    },
+    {
+      "id": "sw-leak",
+      "source": "sw-php2shell",
+      "quote": "Details on two critical-severity PHP vulnerabilities named PHP2Shell have been leaked online ahead of scheduled coordinated disclosure and official patches."
+    },
+    {
+      "id": "sw-cvss",
+      "source": "sw-php2shell",
+      "quote": "On Tuesday, PHP warned that patches for the critical issues, both with a CVSS score of 9.2, are planned for Wednesday, 21 October 2026 at 14:00 UTC (10:00 am ET), urging defenders to prepare for immediate patching.",
+      "short": "both with a CVSS score of 9.2"
+    },
+    {
+      "id": "hns-first-attempt",
+      "source": "hns-php2shell",
+      "quote": "According to Amazon Threat Intelligence, its MadPot honeypot network recorded a PHP2Shell exploitation attempt on Oct. 17, 2026, four days before CVE-2026-109618 and CVE-2026-109619 were publicly disclosed.",
+      "short": "recorded a PHP2Shell exploitation attempt on Oct. 17, 2026, four days before CVE-2026-109618 and CVE-2026-109619 were publicly disclosed."
+    },
+    {
+      "id": "hns-ncsc-offline",
+      "source": "hns-php2shell",
+      "quote": "The UK’s National Cyber Security Centre (NCSC) is urging organizations to consider taking offline any system that can’t be fixed right away."
     }
   ]
 }

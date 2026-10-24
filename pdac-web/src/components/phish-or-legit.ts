@@ -2,9 +2,21 @@ import { icon } from '../core/icons';
 import { PdacBase, esc, md, verdict } from './base';
 
 interface Cue { id: string; slam?: 'S' | 'L' | 'A' | 'M'; kind?: 'flag' | 'ok'; text: string }
+/** A browser window: the address bar, then one kind of page. */
+interface BrowserScreen {
+  url: string;
+  padlock?: boolean;
+  kind: 'warning' | 'login' | 'popup' | 'tool' | 'page';
+  title?: string;
+  /** How the page was reached, e.g. "Opened from a link in a text message". */
+  via?: string;
+  button?: string;
+  files?: string[];
+}
+interface ChatScreen { group: string; posts: { who: string; text?: string; image?: string }[] }
 interface Message {
   id: string;
-  channel: 'email' | 'sms' | 'qr' | 'voice';
+  channel: 'email' | 'sms' | 'qr' | 'voice' | 'browser' | 'chat';
   answer: 'phish' | 'legit';
   /** The guide's verdict in words, e.g. "Phish (vishing)"; defaults to Phish or Legit. */
   verdict?: string;
@@ -14,18 +26,21 @@ interface Message {
   body: string;
   link?: string; linkText?: string; attachment?: string;
   poster?: { title: string; body: string; place?: string };
+  browser?: BrowserScreen;
+  chat?: ChatScreen;
   cues: Cue[];
   why: string;
 }
-interface MessagesData { options?: { id: string; label: string }[]; messages: Message[] }
+interface MessagesData { options?: { id: string; label: string }[]; messages: Message[]; unit?: string }
 
 const SLAM: Record<string, string> = { S: 'Sender', L: 'Links', A: 'Attachments', M: 'Message' };
 
 /**
  * <pdac-phish-or-legit data-src="m2-messages.json" data-range="1-4">
- * Fictional email, SMS, voicemail and QR cards. The room votes Phish or Legit; reveal
- * marks the red-flag cues on the message itself, each with its SLAM letter.
- * Cue spans are written in the data as [[cueId|text]].
+ * Fictional email, SMS, voicemail and QR cards, and (Module 4) browser windows and
+ * messaging groups. The room votes Phish or Legit (or the data's own options, such
+ * as Safe or Suspicious); reveal marks the red-flag cues on the message itself, each
+ * with its SLAM letter. Cue spans are written in the data as [[cueId|text]].
  */
 export class PdacPhishOrLegit extends PdacBase {
   private all: Message[] = [];
@@ -35,11 +50,13 @@ export class PdacPhishOrLegit extends PdacBase {
   private options = [{ id: 'phish', label: 'Phish' }, { id: 'legit', label: 'Legit' }];
   private tallies: number[][] = [];
   private revealed: boolean[] = [];
+  private unit = 'Message';
 
   protected setup(): void {
     const data = this.json<MessagesData>();
     this.all = data.messages;
     if (data.options?.length) this.options = data.options;
+    if (data.unit) this.unit = data.unit;
     const [from, to] = (this.dataset.range ?? '').split('-').map(Number);
     this.offset = from ? from - 1 : 0;
     this.items = from ? this.all.slice(from - 1, to || from) : this.all;
@@ -131,6 +148,17 @@ export class PdacPhishOrLegit extends PdacBase {
           ${m.time ? `<p class="pl-phone__time">${esc(m.time)}</p>` : ''}
         </div>`;
     }
+    if (m.channel === 'browser' && m.browser) return this.renderBrowser(m, m.browser);
+    if (m.channel === 'chat' && m.chat) {
+      return `<div class="pl-chat" aria-label="Messaging group">
+          <div class="pl-chat__top">${icon('users')} <span>${this.cues(m.chat.group, m)}</span></div>
+          <div class="pl-chat__posts">${m.chat.posts.map((post) => `
+            <div class="pl-post"><span class="pl-post__who">${esc(post.who)}</span>
+              ${post.text ? `<span class="pl-post__text">${this.cues(post.text, m)}</span>` : ''}
+              ${post.image ? `<span class="pl-post__img">${icon('id-card')}<span>${this.cues(post.image, m)}</span></span>` : ''}
+            </div>`).join('')}</div>
+        </div>`;
+    }
     if (m.channel === 'qr') {
       const p = m.poster ?? { title: '', body: '' };
       return `<div class="pl-poster" aria-label="Poster with a QR code">
@@ -154,14 +182,44 @@ export class PdacPhishOrLegit extends PdacBase {
       </div>`;
   }
 
+  private renderBrowser(m: Message, b: BrowserScreen): string {
+    const lock = b.padlock !== false;
+    const btn = (label: string, primary = false) => `<span class="pl-fakebtn ${primary ? 'is-primary' : ''}">${esc(label)}</span>`;
+    let page = '';
+    if (b.kind === 'warning') {
+      page = `<div class="pl-warnpage">${icon('shield-alert')}
+          <p class="pl-page__t">${this.cues(b.title, m)}</p><p class="pl-page__p">${this.cues(m.body, m)}</p>
+          <span class="pl-btnrow">${btn('Back to safety', true)}${btn('Advanced')}</span></div>`;
+    } else if (b.kind === 'login') {
+      page = `<div class="pl-login"><p class="pl-page__t">${this.cues(b.title, m)}</p><p class="pl-page__p">${this.cues(m.body, m)}</p>
+          <span class="pl-field">Username</span><span class="pl-field">Password</span>${btn(b.button ?? 'Sign in', true)}</div>`;
+    } else if (b.kind === 'popup') {
+      page = `<div class="pl-news"><span class="pl-news__lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="pl-popup">${icon('triangle-alert')}<p class="pl-page__t">${this.cues(b.title, m)}</p><p class="pl-page__p">${this.cues(m.body, m)}</p>${btn(b.button ?? 'Download now', true)}</div></div>`;
+    } else if (b.kind === 'tool') {
+      page = `<div class="pl-tool"><p class="pl-page__t">${this.cues(b.title, m)}</p>
+          <div class="pl-drop">${icon('cloud-upload')}<span>${this.cues(m.body, m)}</span></div>
+          ${b.files?.length ? `<ul class="pl-files">${b.files.map((f) => `<li>${icon('file-spreadsheet')} ${this.cues(f, m)}</li>`).join('')}</ul>` : ''}
+          ${btn(b.button ?? 'Merge files', true)}</div>`;
+    } else {
+      page = `<div class="pl-portal"><p class="pl-page__t">${this.cues(b.title, m)}</p><p class="pl-page__p">${this.cues(m.body, m)}</p></div>`;
+    }
+    return `<div class="pl-browser" aria-label="Browser window">
+        <div class="pl-browser__bar"><span class="pl-browser__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="pl-browser__url ${lock ? 'is-lock' : 'is-warn'}">${icon(lock ? 'lock' : 'triangle-alert')}<span>${this.cues(b.url, m)}</span></span></div>
+        ${b.via ? `<p class="pl-browser__via">${icon('info')} ${this.cues(b.via, m)}</p>` : ''}
+        <div class="pl-browser__page kind-${b.kind}">${page}</div>
+      </div>`;
+  }
+
   private render(): void {
     const m = this.items[this.index];
     const revealed = this.revealed[this.index];
     const tally = this.tallies[this.index];
     const total = tally.reduce((a, b) => a + b, 0);
     const max = Math.max(...tally);
-    const channel = { email: 'Email', sms: 'Text message', qr: 'QR poster', voice: 'Voicemail' }[m.channel];
-    this.$('.vr-count').textContent = `Message ${this.offset + this.index + 1} of ${this.all.length} · ${channel}`;
+    const channel = { email: 'Email', sms: 'Text message', qr: 'QR poster', voice: 'Voicemail', browser: 'Browser', chat: 'Messaging group' }[m.channel];
+    this.$('.vr-count').textContent = `${this.unit} ${this.offset + this.index + 1} of ${this.all.length} · ${channel}`;
     (this.querySelector('[data-act="prev"]') as HTMLButtonElement).disabled = this.index === 0;
     (this.querySelector('[data-act="next"]') as HTMLButtonElement).disabled = this.index === this.items.length - 1;
 

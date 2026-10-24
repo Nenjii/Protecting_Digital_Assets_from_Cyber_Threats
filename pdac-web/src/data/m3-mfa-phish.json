@@ -1,0 +1,407 @@
+{
+  "_status": "Module 3, Lesson 3.3 'MFA: know, have, are' strength table (learner guide of 21 October 2026): SMS codes can be stolen through fake login pages and SIM swaps; number matching blunts MFA fatigue (CISA: an interim step); a security key or passkey checks the real site's address. Look-alike address from the Module 4 guide. Fictional office; .example names are reserved for documentation.",
+  "title": "Why a security key resists phishing",
+  "map": {
+    "size": [
+      1140,
+      640
+    ],
+    "zones": [
+      {
+        "id": "home",
+        "label": "Ben",
+        "x": 10,
+        "y": 10,
+        "w": 290,
+        "h": 620,
+        "tone": "home"
+      },
+      {
+        "id": "internet",
+        "label": "Internet",
+        "x": 320,
+        "y": 10,
+        "w": 440,
+        "h": 620,
+        "tone": "internet"
+      },
+      {
+        "id": "office",
+        "label": "RSSO",
+        "x": 780,
+        "y": 10,
+        "w": 350,
+        "h": 620,
+        "tone": "office"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ben",
+        "label": "Ben's laptop",
+        "icon": "laptop",
+        "x": 150,
+        "y": 110,
+        "role": "person"
+      },
+      {
+        "id": "key",
+        "label": "Security key",
+        "sub": "passkey",
+        "icon": "key-round",
+        "x": 150,
+        "y": 270,
+        "role": "device"
+      },
+      {
+        "id": "phone",
+        "label": "Ben's phone",
+        "icon": "smartphone",
+        "x": 150,
+        "y": 480,
+        "role": "person"
+      },
+      {
+        "id": "fake",
+        "label": "Fake sign-in",
+        "sub": "assist.rss0-q.example",
+        "icon": "app-window",
+        "x": 470,
+        "y": 110,
+        "role": "attacker"
+      },
+      {
+        "id": "attacker",
+        "label": "Attacker",
+        "icon": "skull",
+        "x": 470,
+        "y": 480,
+        "role": "attacker"
+      },
+      {
+        "id": "net",
+        "label": "Internet",
+        "icon": "globe",
+        "x": 650,
+        "y": 320,
+        "role": "net"
+      },
+      {
+        "id": "portal",
+        "label": "Real portal",
+        "sub": "assist.rsso-q.example",
+        "icon": "app-window",
+        "x": 950,
+        "y": 320,
+        "role": "server"
+      }
+    ],
+    "links": [
+      {
+        "from": "ben",
+        "to": "fake"
+      },
+      {
+        "from": "ben",
+        "to": "key"
+      },
+      {
+        "from": "fake",
+        "to": "attacker"
+      },
+      {
+        "from": "attacker",
+        "to": "net"
+      },
+      {
+        "from": "net",
+        "to": "portal"
+      },
+      {
+        "from": "ben",
+        "to": "net",
+        "via": [
+          [
+            245,
+            110
+          ],
+          [
+            245,
+            320
+          ]
+        ]
+      },
+      {
+        "from": "portal",
+        "to": "phone",
+        "via": [
+          [
+            1110,
+            320
+          ],
+          [
+            1110,
+            600
+          ],
+          [
+            275,
+            600
+          ],
+          [
+            275,
+            480
+          ]
+        ]
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "sms",
+      "tab": "Code by SMS",
+      "label": "Better than a password alone",
+      "steps": [
+        {
+          "title": "A link to a page that looks exactly right",
+          "text": "Ben opens a link in a message. The page copies the portal's sign-in screen; its address has a zero in place of the letter o.",
+          "pre": {
+            "fake": "focus|Looks real"
+          }
+        },
+        {
+          "title": "Ben types his password",
+          "text": "The fake page passes it to the attacker, who signs in to the **real** portal as Ben. The portal asks for the SMS code.",
+          "send": [
+            {
+              "route": [
+                "ben",
+                "fake"
+              ],
+              "label": "Password"
+            },
+            {
+              "route": [
+                "fake",
+                "attacker"
+              ],
+              "kind": "attack",
+              "label": "Password"
+            },
+            {
+              "route": [
+                "attacker",
+                "net",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Sign in as Ben"
+            }
+          ],
+          "set": {
+            "portal": "warn|Asks for SMS code"
+          },
+          "ask": {
+            "q": "Ben uses MFA by SMS. Is he safe now?",
+            "options": [
+              "Yes: the attacker has no code",
+              "No: the fake page can ask for the code too"
+            ],
+            "answer": 1,
+            "why": "The code goes to Ben's phone, and the fake page simply asks Ben to type it in."
+          }
+        },
+        {
+          "title": "The code is typed into the fake page",
+          "text": "The portal texts Ben a code. Ben types it into the fake page, which passes it on within seconds.",
+          "send": [
+            {
+              "route": [
+                "portal",
+                "phone"
+              ],
+              "label": "Code 4829"
+            },
+            {
+              "route": [
+                "ben",
+                "fake"
+              ],
+              "label": "Code"
+            },
+            {
+              "route": [
+                "fake",
+                "attacker"
+              ],
+              "kind": "attack",
+              "label": "Code"
+            },
+            {
+              "route": [
+                "attacker",
+                "net",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Code 4829"
+            }
+          ],
+          "set": {
+            "portal": "bad|✗ Signed in as Ben",
+            "phone": "warn|Code used"
+          },
+          "verdict": {
+            "tone": "bad",
+            "text": "Codes can be stolen through fake login pages, and through SIM swaps."
+          }
+        }
+      ]
+    },
+    {
+      "id": "push",
+      "tab": "Push with number matching",
+      "label": "Stronger",
+      "steps": [
+        {
+          "title": "Prompts Ben did not start",
+          "text": "The attacker has Ben's password and signs in again and again, hoping Ben taps Approve to stop the prompts: MFA fatigue.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Sign in as Ben"
+            },
+            {
+              "route": [
+                "portal",
+                "phone"
+              ],
+              "label": "Approve?"
+            }
+          ],
+          "set": {
+            "phone": "warn|Asks a number"
+          }
+        },
+        {
+          "title": "Number matching blunts it",
+          "text": "To approve, Ben must type the number on the sign-in screen. He is not signing in, so there is no number to type: he **denies the prompt and reports it**. CISA calls number matching an interim step.",
+          "send": [
+            {
+              "route": [
+                "phone",
+                "portal"
+              ],
+              "kind": "secure",
+              "label": "Denied"
+            }
+          ],
+          "set": {
+            "phone": "ok|✓ Denied",
+            "portal": "ok|Sign-in refused"
+          },
+          "close": true
+        }
+      ]
+    },
+    {
+      "id": "key",
+      "tab": "Security key or passkey",
+      "label": "Strongest: resists phishing",
+      "desk": "Turn on MFA wherever it is offered; deny prompts you did not start.",
+      "it": "MFA first on email, VPN and admin accounts; security keys for admins.",
+      "steps": [
+        {
+          "title": "The same fake page, with a security key",
+          "text": "Ben clicks the same link. This time he signs in with his security key (a passkey works the same way).",
+          "pre": {
+            "fake": "focus|Looks real"
+          },
+          "ask": {
+            "q": "What does the key do on the fake page?",
+            "options": [
+              "Signs in, like a code",
+              "Refuses: it checks the site's address",
+              "Asks Ben to type a code"
+            ],
+            "answer": 1,
+            "why": "The key was registered for assist.rsso-q.example. On any other address it will not sign in."
+          }
+        },
+        {
+          "title": "A fake page cannot use it",
+          "text": "The key checks the real site's address. assist.rss0-q.example is not assist.rsso-q.example, so the key gives the fake page nothing to pass on.",
+          "send": [
+            {
+              "route": [
+                "key",
+                "ben",
+                "fake"
+              ],
+              "kind": "secure",
+              "label": "Which site?",
+              "blockAt": "fake"
+            }
+          ],
+          "set": {
+            "key": "ok|✓ Wrong site",
+            "fake": "bad|Gets nothing"
+          }
+        },
+        {
+          "title": "On the real portal, it just works",
+          "text": "From his bookmark, the address matches, and Ben is in with one touch: no code to type, and nothing for a fake page to steal.",
+          "send": [
+            {
+              "route": [
+                "key",
+                "ben",
+                "net",
+                "portal"
+              ],
+              "kind": "secure",
+              "label": "Signed in"
+            }
+          ],
+          "set": {
+            "portal": "ok|✓ Ben, with his key",
+            "key": "ok|✓ Right site"
+          },
+          "close": true,
+          "verdict": {
+            "tone": "ok",
+            "text": "CISA strongly urges phishing-resistant MFA, based on FIDO/WebAuthn or PKI."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "Method",
+      "Strength",
+      "Why"
+    ],
+    "rows": [
+      [
+        "Code by SMS or voice call",
+        "Better than a password alone",
+        "Codes can be stolen through SIM swaps and fake login pages"
+      ],
+      [
+        "Code in an authenticator app; push with number matching",
+        "Stronger",
+        "Number matching blunts MFA fatigue, but CISA calls it an interim step"
+      ],
+      [
+        "Security key or passkey (FIDO2)",
+        "Strongest: resists phishing",
+        "A fake page cannot use it, because the key checks the real site's address"
+      ]
+    ]
+  }
+}

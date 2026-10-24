@@ -5,7 +5,7 @@
 //   npm run attack                       # version 18.1, as in the learner guide
 //   npm run attack -- --version=20.0     # a newer release
 //   npm run attack -- --file=enterprise-attack-18.1.json   # a file you downloaded
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,11 +27,16 @@ if (args.file) {
   bundle = await res.json();
 }
 
-// Technique IDs the slides use, found in every data file except this tool's own output.
+// Technique IDs the slides and the Module 5 LAN game use, found in every data
+// file except this tool's own output.
 const dataDir = join(root, 'src/data');
+const scanDirs = [dataDir, join(root, 'range/scenario')];
 const wanted = new Set();
-for (const name of readdirSync(dataDir).filter((f) => f.endsWith('.json') && f !== 'attack.json')) {
-  for (const m of readFileSync(join(dataDir, name), 'utf8').matchAll(/"(T\d{4}(?:\.\d{3})?)"/g)) wanted.add(m[1]);
+for (const dir of scanDirs) {
+  if (!existsSync(dir)) continue;
+  for (const name of readdirSync(dir).filter((f) => f.endsWith('.json') && f !== 'attack.json')) {
+    for (const m of readFileSync(join(dir, name), 'utf8').matchAll(/"(T\d{4}(?:\.\d{3})?)"/g)) wanted.add(m[1]);
+  }
 }
 
 const live = bundle.objects.filter((o) => !o.revoked && !o.x_mitre_deprecated);

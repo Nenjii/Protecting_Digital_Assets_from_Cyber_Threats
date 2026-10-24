@@ -1,4 +1,4 @@
-import { esc } from '../components/base';
+import { esc } from '../core/esc';
 import { icon } from '../core/icons';
 import { linear, type Timeline } from './anim';
 
@@ -114,8 +114,22 @@ export class NetMap {
   /** A device's look (ok, bad, …) and an optional short label, shown under its name in place of the subtitle. */
   set(id: string, state: NodeState, note = ''): void {
     const g = this.nodeEl(id);
-    g.setAttribute('class', `nm-node role-${this.byId.get(id)!.role ?? 'device'} is-${state}${note ? ' has-note' : ''}`);
-    g.querySelector('.nm-node__note')!.innerHTML = note ? svgPill(note, state) : '';
+    const n = this.byId.get(id)!;
+    g.setAttribute('class', `nm-node role-${n.role ?? 'device'} is-${state}${note ? ' has-note' : ''}`);
+    const holder = g.querySelector<SVGGElement>('.nm-node__note')!;
+    holder.innerHTML = note ? svgPill(note, state) : '';
+    if (!note) return;
+    // Keep the pill inside the device's zone (or the map, when it is wider than
+    // the zone): shift it sideways at the edges, and put it above the device when
+    // there is no room below (widths estimated as svgPill does).
+    const [w, h] = this.spec.size;
+    const half = (note.length * 24 * 0.55 + 30) / 2;
+    const z = this.spec.zones?.find((q) => n.x >= q.x && n.x <= q.x + q.w && n.y >= q.y && n.y <= q.y + q.h);
+    const [lo, hi] = z && z.w - 16 >= half * 2 ? [z.x + 8, z.x + z.w - 8] : [6, w - 6];
+    const dx = Math.max(lo - (n.x - half), Math.min(0, hi - (n.x + half)));
+    const below = HALF + 66;
+    const dy = n.y + below + 24 > h ? -(HALF + 34) : below;
+    holder.setAttribute('transform', `translate(${Math.round(dx)} ${dy})`);
   }
 
   link(a: string, b: string, state: LinkState): void {

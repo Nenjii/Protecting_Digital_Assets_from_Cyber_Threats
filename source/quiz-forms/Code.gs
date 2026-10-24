@@ -1,19 +1,25 @@
 /**
  * PDAC quiz forms: builds Quiz 1 and Quiz 2 as auto-graded Google Forms from
  * QuizBank.gs, one form per run (face-to-face and online), so the online run
- * never sees the face-to-face form. Steps are in README.md.
+ * never sees the face-to-face form. Quizzes 3 and 4 are practice quizzes
+ * (practice: true in QuizBank.gs): not graded, anonymous, no sign-in, open from
+ * the start, and the right answer and why show on submitting. Steps are in README.md.
  *
  * Choose one of these in the toolbar, then click Run:
- *   checkQuizBank        Logs each quiz's item counts and answer key. Creates nothing.
- *   createAllQuizForms   Creates the four forms, closed to responses, and logs their
- *                        links. Safe to run again: forms that exist are skipped.
- *   showQuizLinks        Logs the links, status and response counts, and the lines
- *                        for pdac-web/src/data/links.json.
- *   openQuiz1FaceToFace  (and the three below it) Closes every other quiz form,
- *                        then opens this one.
- *   closeAllQuizzes      Stops every quiz form accepting responses.
- *   forgetQuizForms      Forgets the four forms, so createAllQuizForms makes new
- *                        ones. The old forms stay in Google Drive until you trash them.
+ *   checkQuizBank          Logs each quiz's item counts and answer key. Creates nothing.
+ *   createAllQuizForms     Creates the Quiz 3 and Quiz 4 forms (both runs, open) and logs
+ *                          their links. Quizzes 1 and 2 were made in the first project
+ *                          (MADE_IN_FIRST_PROJECT below), so it skips them. Safe to run
+ *                          again: forms that exist are skipped.
+ *   showQuizLinks          Logs the links, status and response counts, and the lines
+ *                          for pdac-web/src/data/links.json.
+ *   openQuiz1FaceToFace    (and the three below it) Closes every other graded quiz form,
+ *                          then opens this one. Practice quizzes are left alone.
+ *   closeAllQuizzes        Stops every graded quiz form accepting responses.
+ *   closePracticeQuizzes   Stops the practice quizzes accepting responses (course end).
+ *   reopenPracticeQuizzes  Opens them again.
+ *   forgetQuizForms        Forgets all eight forms, so createAllQuizForms makes new
+ *                          ones. The old forms stay in Google Drive until you trash them.
  */
 
 const RUNS = {
@@ -31,6 +37,12 @@ const SETTINGS = {
   shuffleQuestions: true,
 };
 
+// Made in the first Apps Script project on Day 1, for both runs. This project
+// never builds them again, so createAllQuizForms makes only Quizzes 3 and 4 and
+// createAllWorksheets only Worksheets 3 and 4. Open, close and see the Day 1
+// forms from the first project. Empty the list to build everything here.
+const MADE_IN_FIRST_PROJECT = ['quiz1', 'quiz2', 'worksheet-m1', 'worksheet-m2'];
+
 const STILL_TO_DO = [
   'Still to do by hand in each form (Apps Script cannot change these):',
   '1. Settings > Release grades: keep "Immediately after each submission", and under Respondent settings',
@@ -43,6 +55,14 @@ const STILL_TO_DO = [
   '3. Optional: Responses > Link to Sheets, for the grade sheet.',
 ].join('\n');
 
+const PRACTICE_STILL_TO_DO = [
+  'Still to do by hand in each PRACTICE quiz form (Quiz 3 and Quiz 4):',
+  '1. Settings > Release grades: "Immediately after each submission", with missed questions, correct',
+  '   answers and point values switched ON. That is the opposite of the graded quizzes: in a practice',
+  '   quiz, seeing the right answer and why straight away is the point.',
+  '2. Optional: Responses > Summary after the module, to open the next session with the most-missed items.',
+].join('\n');
+
 function checkQuizBank() {
   checkBank_();
   QUIZZES.forEach((quiz) => {
@@ -50,7 +70,7 @@ function checkQuizBank() {
     const choice = items.filter((item) => item.choices).length;
     const scenarios = items.filter((item) => item.scenario).length;
     console.log([
-      quiz.title,
+      `${quiz.title}${quiz.practice ? ' · practice, not graded' : ` · ${quiz.weight} of the grade`}`,
       `  ${items.length} items: ${choice} multiple choice (${scenarios} marked Scenario), ${items.length - choice} true or false`,
       `  Key: ${items.map((item, i) => `${i + 1}${keyLetter_(item)}`).join(' ')}`,
     ].join('\n'));
@@ -59,20 +79,25 @@ function checkQuizBank() {
 
 function createAllQuizForms() {
   checkBank_();
+  const toMake = QUIZZES.filter((quiz) => !madeInFirstProject_(quiz.key));
+  const skipped = QUIZZES.filter((quiz) => madeInFirstProject_(quiz.key));
+  if (skipped.length) console.log(`Skipped, made in the first project: ${skipped.map((quiz) => quiz.label).join(', ')}`);
   const made = [];
   Object.keys(RUNS).forEach((run) => {
-    QUIZZES.forEach((quiz) => {
+    toMake.forEach((quiz) => {
       if (storedForm_(run, quiz.key)) return;
       const form = buildForm_(quiz, run);
       remember_(run, quiz.key, form);
       made.push(form.getTitle());
     });
   });
+  const total = toMake.length * Object.keys(RUNS).length;
   console.log(made.length
     ? `Created ${made.length} form(s):\n  ${made.join('\n  ')}`
-    : 'All four forms already exist; nothing created.');
+    : `All ${total} quiz forms already exist; nothing created.`);
   showQuizLinks();
-  console.log(STILL_TO_DO);
+  if (toMake.some((quiz) => !quiz.practice)) console.log(STILL_TO_DO);
+  if (toMake.some((quiz) => quiz.practice)) console.log(PRACTICE_STILL_TO_DO);
 }
 
 function showQuizLinks() {
@@ -82,11 +107,15 @@ function showQuizLinks() {
     QUIZZES.forEach((quiz) => {
       const form = storedForm_(run, quiz.key);
       if (!form) {
-        lines.push(`  ${quiz.label}: not created yet (run createAllQuizForms)`);
+        lines.push(madeInFirstProject_(quiz.key)
+          ? `  ${quiz.label}: made in the first Apps Script project (its links are there)`
+          : `  ${quiz.label}: not created yet (run createAllQuizForms)`);
         return;
       }
       const url = stored_(run, quiz.key).url;
-      const state = form.isAcceptingResponses() ? 'OPEN' : 'closed';
+      const open = form.isAcceptingResponses();
+      // A graded quiz is normally closed (OPEN stands out); a practice quiz is normally open.
+      const state = quiz.practice ? (open ? 'open' : 'CLOSED') : (open ? 'OPEN' : 'closed');
       lines.push(
         `  ${quiz.label} · ${quiz.when[run]} · ${state} · ${form.getResponses().length} response(s)`,
         `    Participants: ${url}`,
@@ -108,14 +137,23 @@ function openQuiz2Online() { openQuiz_('online', 'quiz2'); }
 
 function closeAllQuizzes() {
   const closed = closeQuizzes_(null);
-  console.log(closed.length ? closed.join('\n') : 'No quiz form was open.');
+  console.log(closed.length ? closed.join('\n') : 'No graded quiz form was open.');
+}
+
+function closePracticeQuizzes() {
+  console.log(setPracticeAccepting_(false).join('\n') || 'No practice quiz was open.');
+}
+
+function reopenPracticeQuizzes() {
+  console.log(setPracticeAccepting_(true).join('\n') || 'Every practice quiz was already open.');
 }
 
 function forgetQuizForms() {
   const props = PropertiesService.getScriptProperties();
   Object.keys(RUNS).forEach((run) => QUIZZES.forEach((quiz) => props.deleteProperty(propKey_(run, quiz.key))));
-  console.log('Forgot the four quiz forms: createAllQuizForms now makes new ones, with new links.\n' +
-    'The old forms are still in Google Drive. Trash them there, and update links.json.');
+  console.log(`Forgot the ${QUIZZES.length * Object.keys(RUNS).length} quiz forms: createAllQuizForms now makes new ones, with new links.\n` +
+    'The old forms are still in Google Drive. Trash them there, and update links.json.\n' +
+    'To rebuild only some, delete their entries under Project Settings > Script properties instead (for example form:f2f:quiz3).');
 }
 
 function buildForm_(quiz, run) {
@@ -125,25 +163,35 @@ function buildForm_(quiz, run) {
     form.setDescription(description_(quiz, run, items.length));
     form.setIsQuiz(true);
     form.setShuffleQuestions(SETTINGS.shuffleQuestions);
-    form.setLimitOneResponsePerUser(SETTINGS.oneResponsePerPerson);
+    // A practice quiz is anonymous: no sign-in, no name, and people may try it again.
+    form.setLimitOneResponsePerUser(quiz.practice ? false : SETTINGS.oneResponsePerPerson);
     form.setCollectEmail(false);
     form.setAllowResponseEdits(false);
     form.setPublishingSummary(false);
-    form.setShowLinkToRespondAgain(false);
-    form.setConfirmationMessage('Thank you. Your answers are in. When time is up, we review together the items most people missed.');
-    form.setCustomClosedFormMessage('This quiz is not open right now. Your facilitator opens it at quiz time and closes it when time is up.');
+    form.setShowLinkToRespondAgain(Boolean(quiz.practice));
+    form.setConfirmationMessage(quiz.practice
+      ? 'Thank you. Tap "View score" to see the right answers and why. This practice quiz is not graded.'
+      : 'Thank you. Your answers are in. When time is up, we review together the items most people missed.');
+    form.setCustomClosedFormMessage(quiz.practice
+      ? 'This practice quiz is closed. Thank you for taking part.'
+      : 'This quiz is not open right now. Your facilitator opens it at quiz time and closes it when time is up.');
 
-    // Page 1 asks who is answering. Page 2 holds the items; Google shuffles
-    // questions within a page, so name and office never land among them.
-    form.addTextItem().setTitle('Your name').setHelpText('As on the attendance sheet.').setRequired(true);
-    form.addTextItem().setTitle('Your office').setHelpText('As on the attendance sheet.').setRequired(true);
-    form.addPageBreakItem().setTitle(quiz.title).setHelpText('Choose one answer for each item.');
+    // A practice quiz is one page of items: nothing asks who is answering (the
+    // description says how it works; a header item would be shuffled in among them).
+    if (!quiz.practice) {
+      // Page 1 asks who is answering. Page 2 holds the items; Google shuffles
+      // questions within a page, so name and office never land among them.
+      form.addTextItem().setTitle('Your name').setHelpText('As on the attendance sheet.').setRequired(true);
+      form.addTextItem().setTitle('Your office').setHelpText('As on the attendance sheet.').setRequired(true);
+      form.addPageBreakItem().setTitle(quiz.title).setHelpText('Choose one answer for each item.');
+    }
     const slots = answerSlots_(items);
     items.forEach((item, i) => addItem_(form, item, slots[i]));
 
-    // Closed until you open it at quiz time.
+    // A graded quiz stays closed until you open it at quiz time. A practice quiz
+    // is open at once: nobody has the link until the QR code is shown.
     ensurePublished_(form);
-    form.setAcceptingResponses(false);
+    form.setAcceptingResponses(Boolean(quiz.practice));
     return form;
   } catch (e) {
     throw new Error(`Stopped while building "${form.getTitle()}": ${e.message}\n` +
@@ -152,6 +200,12 @@ function buildForm_(quiz, run) {
 }
 
 function description_(quiz, run, count) {
+  if (quiz.practice) {
+    const rules = [`${count} items`, `about ${quiz.minutes} minutes`, 'practice: not graded', 'answer from memory first', 'see the right answers and why when you submit'];
+    const privacy = 'Anonymous: this practice quiz asks for no name, email or office, and needs no Google sign-in. ' +
+      'The resource person sees only which items were missed most, to open the next session with them.';
+    return [SETTINGS.course, `${RUNS[run]} run · ${quiz.when[run]}`, '', rules.join(' · '), '', privacy].join('\n');
+  }
   const rules = [`${count} items`, `${quiz.minutes} minutes`, '1 point each', 'one attempt', `${quiz.weight} of your grade`];
   if (quiz.closedBook) rules.push('closed book');
   const privacy = 'Privacy: this form collects only your name and office, the same as the attendance sheet. ' +
@@ -205,17 +259,20 @@ function ensurePublished_(form) {
 
 function openQuiz_(run, key) {
   const form = storedForm_(run, key);
-  if (!form) throw new Error(`There is no ${key} form for the ${RUNS[run].toLowerCase()} run yet. Run createAllQuizForms first.`);
+  if (!form) throw new Error(madeInFirstProject_(key)
+    ? `The ${key} forms were made in the first Apps Script project: open and close them from there.`
+    : `There is no ${key} form for the ${RUNS[run].toLowerCase()} run yet. Run createAllQuizForms first.`);
   const closed = closeQuizzes_(form.getId());
   ensurePublished_(form);
   form.setAcceptingResponses(true);
   console.log([...closed, `OPEN: ${form.getTitle()}`, `  ${stored_(run, key).url}`].join('\n'));
 }
 
+// Graded quizzes only: opening Quiz 2 must never close a practice quiz someone is taking.
 function closeQuizzes_(exceptId) {
   const closed = [];
   Object.keys(RUNS).forEach((run) => {
-    QUIZZES.forEach((quiz) => {
+    QUIZZES.filter((quiz) => !quiz.practice).forEach((quiz) => {
       const form = storedForm_(run, quiz.key);
       if (!form || form.getId() === exceptId || !form.isAcceptingResponses()) return;
       form.setAcceptingResponses(false);
@@ -223,6 +280,24 @@ function closeQuizzes_(exceptId) {
     });
   });
   return closed;
+}
+
+function setPracticeAccepting_(open) {
+  const changed = [];
+  Object.keys(RUNS).forEach((run) => {
+    QUIZZES.filter((quiz) => quiz.practice).forEach((quiz) => {
+      const form = storedForm_(run, quiz.key);
+      if (!form || form.isAcceptingResponses() === open) return;
+      if (open) ensurePublished_(form);
+      form.setAcceptingResponses(open);
+      changed.push(`${open ? 'Opened' : 'Closed'}: ${form.getTitle()} (${form.getResponses().length} response(s))`);
+    });
+  });
+  return changed;
+}
+
+function madeInFirstProject_(key) {
+  return MADE_IN_FIRST_PROJECT.includes(key);
 }
 
 function propKey_(run, key) {
@@ -262,7 +337,9 @@ function linksLine_(quiz, url) {
     label: quiz.label,
     url: url,
     short: url.replace(/^https?:\/\//, ''),
-    note: `${items_(quiz).length} items · ${quiz.minutes} minutes`,
+    note: quiz.practice
+      ? `${items_(quiz).length} items · about ${quiz.minutes} minutes · practice, not graded`
+      : `${items_(quiz).length} items · ${quiz.minutes} minutes`,
   };
   const fields = Object.keys(entry).map((name) => `"${name}": ${JSON.stringify(entry[name])}`);
   return `"${quiz.key}": { ${fields.join(', ')} },`;
@@ -270,7 +347,11 @@ function linksLine_(quiz, url) {
 
 function checkBank_() {
   const problems = [];
+  const keys = new Set();
   QUIZZES.forEach((quiz) => {
+    if (keys.has(quiz.key)) problems.push(`${quiz.key}: the key is used twice`);
+    keys.add(quiz.key);
+    if (!quiz.practice && !quiz.weight) problems.push(`${quiz.key}: a graded quiz needs a weight (or set practice: true)`);
     Object.keys(RUNS).forEach((run) => {
       if (!quiz.when[run]) problems.push(`${quiz.key}: no date for the ${RUNS[run].toLowerCase()} run`);
     });

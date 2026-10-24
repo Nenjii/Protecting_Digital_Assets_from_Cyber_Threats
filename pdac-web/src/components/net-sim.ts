@@ -6,6 +6,8 @@ import { NetMap, type LinkState, type MapSpec, type NodeState, type PacketKind }
 import { PdacBase, esc, md } from './base';
 
 interface SimSend { route: string[]; kind?: PacketKind; label?: string; blockAt?: string; with?: boolean }
+/** Predict, then play: the room votes on the question before the clicker reveals the answer. */
+interface SimAsk { q: string; options: string[]; answer: number | number[]; why?: string }
 interface SimStep {
   title: string;
   text: string;
@@ -18,6 +20,7 @@ interface SimStep {
   verdict?: { tone: 'bad' | 'ok'; text: string };
   widget?: 'password';
   proof?: string;
+  ask?: SimAsk;
 }
 interface SimTrack { id: string; tab: string; label: string; breaks?: string[]; desk?: string; it?: string; steps: SimStep[] }
 interface SimData { title: string; map: MapSpec | string; tracks: SimTrack[]; summary?: { head: string[]; rows: string[][] } }
@@ -40,7 +43,9 @@ export const goalChip = (id: string): string => {
  * Each track (a tab) is a short story; each step moves packets between devices
  * and changes how devices look. The clicker plays the next step (or finishes the
  * one playing); Back shows the previous step without animation. A opens the
- * summary table, R starts over.
+ * summary table, R starts over. A step with "ask" is a prediction: the room
+ * votes (1 to 9, or tap an option), the clicker reveals the answer and why,
+ * and the next press plays what happens.
  */
 export class PdacNetSim extends PdacBase {
   private data!: SimData;
@@ -50,6 +55,8 @@ export class PdacNetSim extends PdacBase {
   private playing = false;
   private summaryOn = false;
   private director = new Director();
+  private tallies = new Map<number, number[]>(); // step index → votes per option
+  private asked = new Set<number>();             // step indexes whose answer is revealed
 
   protected setup(): void {
     this.data = this.json<SimData>();
@@ -118,7 +125,10 @@ export class PdacNetSim extends PdacBase {
       this.goTo(first, true);
       return;
     }
+    const opt = t.closest<HTMLElement>('[data-opt]');
+    if (opt) { this.vote(Number(opt.dataset.opt) + 1); return; }
     const act = t.closest<HTMLElement>('[data-act]')?.dataset.act;
+    if (act === 'reveal') { this.revealAsk(); return; }
     if (act === 'next') this.step(1);
     if (act === 'prev') this.step(-1);
     if (act === 'replay') { this.summaryOn = false; this.goTo(this.index, true); }
@@ -203,6 +213,28 @@ export class PdacNetSim extends PdacBase {
     this.renderChrome();
   }
 
+  /** The current step's question, if it has one and its answer is not shown yet. */
+  private get openAsk(): SimAsk | null {
+    const ask = this.current.step.ask;
+    return ask && !this.asked.has(this.index) ? ask : null;
+  }
+
+  vote(option: number): void {
+    const ask = this.openAsk;
+    if (!ask || option < 1 || option > ask.options.length) return;
+    const tally = this.tallies.get(this.index) ?? ask.options.map(() => 0);
+    tally[option - 1]++;
+    this.tallies.set(this.index, tally);
+    this.renderPanel();
+  }
+
+  private revealAsk(): void {
+    if (!this.openAsk) return;
+    this.asked.add(this.index);
+    this.renderPanel();
+    this.renderChrome();
+  }
+
   step(dir: 1 | -1): boolean {
     if (this.summaryOn) {
       this.summaryOn = false;
@@ -212,6 +244,16 @@ export class PdacNetSim extends PdacBase {
     if (this.playing) {
       this.finishNow();
       if (dir === 1) return true;
+    }
+    if (dir === 1 && this.openAsk) {
+      this.revealAsk();
+      return true;
+    }
+    if (dir === -1 && this.current.step.ask && this.asked.has(this.index)) {
+      this.asked.delete(this.index);
+      this.renderPanel();
+      this.renderChrome();
+      return true;
     }
     if (dir === 1) {
       if (this.index >= this.seq.length - 1) return false;
@@ -243,10 +285,35 @@ export class PdacNetSim extends PdacBase {
     panel.innerHTML = `
       <p class="ns-k">${esc(track.label)}</p>
       <h3 class="ns-title">${md(step.title)}</h3>
-      <p class="ns-text">${md(step.text)}</p>
+      ${step.text ? `<p class="ns-text">${md(step.text)}</p>` : ''}
+      ${step.ask ? this.askHtml(step.ask) : ''}
       ${verdict}${breaks}${sides}${screen}${widget}${proof}`;
     panel.classList.toggle('is-close', Boolean(step.close));
     hydrateQr(panel);
+  }
+
+  private askHtml(ask: SimAsk): string {
+    const shown = this.asked.has(this.index);
+    const tally = this.tallies.get(this.index) ?? ask.options.map(() => 0);
+    const total = tally.reduce((a, b) => a + b, 0);
+    const max = Math.max(...tally);
+    const right = Array.isArray(ask.answer) ? ask.answer : [ask.answer];
+    const roomTop = total ? tally.map((n, i) => (n === max ? i : -1)).filter((i) => i >= 0) : [];
+    const roomRight = roomTop.length > 0 && roomTop.every((i) => right.includes(i));
+    return `<div class="ns-ask ${shown ? 'is-shown' : ''}">
+        <p class="ns-ask__q">${icon('circle-help')} ${md(ask.q)}</p>
+        <div class="ns-ask__opts" role="group" aria-label="Room's prediction">${ask.options.map((o, i) => {
+          const isAnswer = shown && right.includes(i);
+          const pct = total ? Math.round((tally[i] / total) * 100) : 0;
+          return `<button type="button" class="ns-opt ${isAnswer ? 'is-answer' : ''} ${shown && !isAnswer ? 'is-dim' : ''}" data-opt="${i}" ${shown ? 'aria-disabled="true"' : ''}>
+              <span class="ns-opt__key">${i + 1}</span><span class="ns-opt__label">${esc(o)}</span>
+              <span class="ns-opt__n">${tally[i] || ''}</span><span class="ns-opt__bar" style="width:${pct}%"></span>
+            </button>`;
+        }).join('')}</div>
+        ${shown
+          ? `${ask.why ? `<p class="ns-ask__why">${icon('check')} ${md(ask.why)}</p>` : ''}${total ? `<p class="ns-ask__room">${roomRight ? '✓ The room got it' : '✗ Not the room’s top pick'}</p>` : ''}`
+          : `<button type="button" class="pdac-btn ns-ask__reveal" data-act="reveal">${icon('eye')} Reveal <span class="pdac-key">→</span></button>`}
+      </div>`;
   }
 
   private renderChrome(): void {
@@ -260,13 +327,17 @@ export class PdacNetSim extends PdacBase {
     if (sum) sum.hidden = !this.summaryOn;
     this.querySelector('[data-act="summary"]')?.setAttribute('aria-pressed', String(this.summaryOn));
     const { track, s } = this.current;
+    const ask = this.openAsk;
     this.$('.ns-status').textContent = this.playing
       ? 'Playing… press → to finish the step'
-      : `${track.tab}: step ${s + 1} of ${track.steps.length} · ${this.index + 1} of ${this.seq.length} in all`;
+      : ask
+        ? `Vote: 1 to ${ask.options.length}, or tap · → reveals the answer`
+        : `${track.tab}: step ${s + 1} of ${track.steps.length} · ${this.index + 1} of ${this.seq.length} in all`;
   }
 
   showAnswer(): void {
     if (this.playing) this.finishNow();
+    if (this.openAsk) { this.revealAsk(); return; }
     if (!this.data.summary) return;
     this.summaryOn = true;
     this.renderChrome();
@@ -275,6 +346,8 @@ export class PdacNetSim extends PdacBase {
   reset(): void {
     this.director.stop();
     this.summaryOn = false;
+    this.tallies.clear();
+    this.asked.clear();
     this.goTo(0, false);
   }
 }

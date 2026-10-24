@@ -1,22 +1,438 @@
 [
-  { "key": "cia", "phrase": "Secret, Correct, Ready", "stands": "Confidentiality, integrity, availability (CIA triad)", "slide": "cia", "icons": ["lock", "circle-check", "power"], "recap": "what every record needs" },
-  { "key": "doors", "phrase": "Five doors", "stands": "Phishing and stolen passwords; old systems and lapsed licences; exposed websites; shared accounts; personal apps for official files", "slide": "paths", "icons": ["door-open"] },
-  { "key": "trust", "phrase": "Data held in trust", "stands": "Personal data belongs to the citizen; the office holds it for a purpose", "slide": "dpa-scope", "icons": ["hand-heart"] },
-  { "key": "tll", "phrase": "Tell, Legit, Little", "stands": "Transparency, legitimate purpose, proportionality (RA 10173 Sec. 11)", "slide": "dpa-principles", "icons": ["megaphone", "badge-check", "filter"], "recap": "the three privacy principles" },
-  { "key": "gov", "phrase": "Clearance, approval, 1,000, encrypt", "stands": "Government rules for access and off-site data (RA 10173 Sec. 23)", "slide": "gov-rules", "icons": ["user-check", "stamp", "users", "lock"], "recap": "data off-site" },
-  { "key": "3s", "phrase": "3S: Sensitive, Stolen, Serious", "stands": "The three notification conditions (NPC Circular 16-03 Sec. 11)", "slide": "breach-conditions", "icons": ["shield-alert"] },
-  { "key": "72-5", "phrase": "72-5", "stands": "72 hours to notify; full report within 5 days from discovery", "slide": "breach-duties", "icons": ["timer"] },
-  { "key": "3s-72-5", "phrase": "3S, then 72-5", "stands": "Sensitive, Stolen, Serious; then 72 hours to notify and 5 days for the full report", "slide": "breach-conditions", "icons": ["shield-alert", "timer"], "recap": "when and how fast to notify" },
-  { "key": "smoke", "phrase": "Smell smoke? Call. Don't wait for ashes.", "stands": "The clock starts at reasonable belief, not certainty", "slide": "breach-duties", "icons": ["alarm-smoke"] },
-  { "key": "rppt", "phrase": "Rules, People, Places, Tech", "stands": "ISO/IEC 27001:2022 Annex A themes: 37, 8, 14, 34 = 93", "slide": "iso-annex", "icons": ["scroll-text", "users", "building-2", "cpu"], "recap": "ISO's 93 controls" },
-  { "key": "asean", "phrase": "Trust it? Fair? Who answers?", "stands": "The seven ASEAN AI principles grouped into three questions", "slide": "asean", "icons": ["handshake", "scale", "message-circle-question"], "recap": "AI at work" },
-  { "key": "house", "phrase": "The house", "stands": "Asset, threat, vulnerability, likelihood, impact, risk, control", "slide": "house", "icons": ["house"], "recap": "asset, threat, vulnerability, likelihood, impact, risk, control" },
-  { "key": "no-weakness", "phrase": "No weakness, no risk", "stands": "Removing weaknesses is where an office has the most power", "slide": "risk-words", "icons": ["shield-check"] },
-  { "key": "ppt", "phrase": "People, Process, Technology", "stands": "Where weaknesses hide, and the three layers of defense", "slide": "weak-spots", "icons": ["users", "workflow", "cpu"], "recap": "where weaknesses hide" },
-  { "key": "four-q", "phrase": "Four questions", "stands": "What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job? (Threat Modeling Manifesto)", "slide": "tm-questions", "icons": ["circle-help"], "recap": "working on? go wrong? do about it? good enough?" },
-  { "key": "stride", "phrase": "STRIDE", "stands": "Spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege", "slide": "stride", "icons": ["crosshair"], "recap": "six threats to ask about at every trust boundary" },
-  { "key": "5x5", "phrase": "5 by 5", "stands": "Likelihood × impact; Low 1 to 4, Medium 5 to 9, High 10 to 16, Critical 20 to 25 (this course's bands)", "slide": "matrix", "icons": ["grid-3x3"], "recap": "likelihood × impact; treat Critical and High first" },
-  { "key": "tara", "phrase": "TARA", "stands": "Transfer, Avoid, Reduce, Accept (ISO/IEC 27005: sharing, avoidance, modification, retention)", "slide": "tara", "icons": ["share-2", "ban", "wrench", "handshake"], "recap": "Transfer, Avoid, Reduce, Accept" },
-  { "key": "slam", "phrase": "SLAM, then pause, verify, report", "stands": "Sender, Links, Attachments, Message", "slide": "slam", "icons": ["mail-search"], "recapPhrase": "SLAM", "recap": "Sender, Links, Attachments, Message" },
-  { "key": "1326", "phrase": "1326", "stands": "The government's 24/7 scam hotline (Inter-Agency Response Center)", "slide": "report", "icons": ["phone-call"], "recap": "the 24/7 scam hotline; work incidents go to IT or the DPO" }
+  {
+    "key": "cia",
+    "phrase": "Secret, Correct, Ready",
+    "stands": "Confidentiality, integrity, availability (CIA triad)",
+    "slide": "cia",
+    "icons": [
+      "lock",
+      "circle-check",
+      "power"
+    ],
+    "recap": "what every record needs"
+  },
+  {
+    "key": "doors",
+    "phrase": "Five doors",
+    "stands": "Phishing and stolen passwords; old systems and lapsed licences; exposed websites; shared accounts; personal apps for official files",
+    "slide": "paths",
+    "icons": [
+      "door-open"
+    ]
+  },
+  {
+    "key": "trust",
+    "phrase": "Data held in trust",
+    "stands": "Personal data belongs to the citizen; the office holds it for a purpose",
+    "slide": "dpa-scope",
+    "icons": [
+      "hand-heart"
+    ]
+  },
+  {
+    "key": "tll",
+    "phrase": "Tell, Legit, Little",
+    "stands": "Transparency, legitimate purpose, proportionality (RA 10173 Sec. 11)",
+    "slide": "dpa-principles",
+    "icons": [
+      "megaphone",
+      "badge-check",
+      "filter"
+    ],
+    "recap": "the three privacy principles"
+  },
+  {
+    "key": "gov",
+    "phrase": "Clearance, approval, 1,000, encrypt",
+    "stands": "Government rules for access and off-site data (RA 10173 Sec. 23)",
+    "slide": "gov-rules",
+    "icons": [
+      "user-check",
+      "stamp",
+      "users",
+      "lock"
+    ],
+    "recap": "data off-site"
+  },
+  {
+    "key": "3s",
+    "phrase": "3S: Sensitive, Stolen, Serious",
+    "stands": "The three notification conditions (NPC Circular 16-03 Sec. 11)",
+    "slide": "breach-conditions",
+    "icons": [
+      "shield-alert"
+    ]
+  },
+  {
+    "key": "72-5",
+    "phrase": "72-5",
+    "stands": "72 hours to notify; full report within 5 days from discovery",
+    "slide": "breach-duties",
+    "icons": [
+      "timer"
+    ]
+  },
+  {
+    "key": "3s-72-5",
+    "phrase": "3S, then 72-5",
+    "stands": "Sensitive, Stolen, Serious; then 72 hours to notify and 5 days for the full report",
+    "slide": "breach-conditions",
+    "icons": [
+      "shield-alert",
+      "timer"
+    ],
+    "recap": "when and how fast to notify"
+  },
+  {
+    "key": "smoke",
+    "phrase": "Smell smoke? Call. Don't wait for ashes.",
+    "stands": "The clock starts at reasonable belief, not certainty",
+    "slide": "breach-duties",
+    "icons": [
+      "alarm-smoke"
+    ]
+  },
+  {
+    "key": "rppt",
+    "phrase": "Rules, People, Places, Tech",
+    "stands": "ISO/IEC 27001:2022 Annex A themes: 37, 8, 14, 34 = 93",
+    "slide": "iso-annex",
+    "icons": [
+      "scroll-text",
+      "users",
+      "building-2",
+      "cpu"
+    ],
+    "recap": "ISO's 93 controls"
+  },
+  {
+    "key": "asean",
+    "phrase": "Trust it? Fair? Who answers?",
+    "stands": "The seven ASEAN AI principles grouped into three questions",
+    "slide": "asean",
+    "icons": [
+      "handshake",
+      "scale",
+      "message-circle-question"
+    ],
+    "recap": "AI at work"
+  },
+  {
+    "key": "house",
+    "phrase": "The house",
+    "stands": "Asset, threat, vulnerability, likelihood, impact, risk, control",
+    "slide": "house",
+    "icons": [
+      "house"
+    ],
+    "recap": "asset, threat, vulnerability, likelihood, impact, risk, control"
+  },
+  {
+    "key": "no-weakness",
+    "phrase": "No weakness, no risk",
+    "stands": "Removing weaknesses is where an office has the most power",
+    "slide": "risk-words",
+    "icons": [
+      "shield-check"
+    ]
+  },
+  {
+    "key": "ppt",
+    "phrase": "People, Process, Technology",
+    "stands": "Where weaknesses hide, and the three layers of defense",
+    "slide": "weak-spots",
+    "icons": [
+      "users",
+      "workflow",
+      "cpu"
+    ],
+    "recap": "where weaknesses hide"
+  },
+  {
+    "key": "four-q",
+    "phrase": "Four questions",
+    "stands": "What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job? (Threat Modeling Manifesto)",
+    "slide": "tm-questions",
+    "icons": [
+      "circle-help"
+    ],
+    "recap": "working on? go wrong? do about it? good enough?"
+  },
+  {
+    "key": "stride",
+    "phrase": "STRIDE",
+    "stands": "Spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege",
+    "slide": "stride",
+    "icons": [
+      "crosshair"
+    ],
+    "recap": "six threats to ask about at every trust boundary"
+  },
+  {
+    "key": "5x5",
+    "phrase": "5 by 5",
+    "stands": "Likelihood × impact; Low 1 to 4, Medium 5 to 9, High 10 to 16, Critical 20 to 25 (this course's bands)",
+    "slide": "matrix",
+    "icons": [
+      "grid-3x3"
+    ],
+    "recap": "likelihood × impact; treat Critical and High first"
+  },
+  {
+    "key": "tara",
+    "phrase": "TARA",
+    "stands": "Transfer, Avoid, Reduce, Accept (ISO/IEC 27005: sharing, avoidance, modification, retention)",
+    "slide": "tara",
+    "icons": [
+      "share-2",
+      "ban",
+      "wrench",
+      "handshake"
+    ],
+    "recap": "Transfer, Avoid, Reduce, Accept"
+  },
+  {
+    "key": "slam",
+    "phrase": "SLAM, then pause, verify, report",
+    "stands": "Sender, Links, Attachments, Message",
+    "slide": "slam",
+    "icons": [
+      "mail-search"
+    ],
+    "recapPhrase": "SLAM",
+    "recap": "Sender, Links, Attachments, Message"
+  },
+  {
+    "key": "1326",
+    "phrase": "1326",
+    "stands": "The government's 24/7 scam hotline (Inter-Agency Response Center)",
+    "slide": "report",
+    "icons": [
+      "phone-call"
+    ],
+    "recap": "the 24/7 scam hotline; work incidents go to IT or the DPO"
+  },
+  {
+    "key": "layers",
+    "phrase": "Layers, not walls",
+    "stands": "Several controls, so one failure is not a disaster",
+    "slide": "m3-layers",
+    "icons": [
+      "layers"
+    ],
+    "recap": "never rely on a single control, however strong"
+  },
+  {
+    "key": "rooms",
+    "phrase": "Separate rooms",
+    "stands": "Network zones keep guests, devices, staff and servers apart",
+    "slide": "zones",
+    "icons": [
+      "network"
+    ],
+    "recap": "keep personal devices and visitors off the office network"
+  },
+  {
+    "key": "deny",
+    "phrase": "Deny by default",
+    "stands": "Block everything, allow by need, log what is blocked",
+    "slide": "fw-rules",
+    "icons": [
+      "shield"
+    ],
+    "recap": "ask IT for what you need instead of using a workaround"
+  },
+  {
+    "key": "ids-ips",
+    "phrase": "IDS tells, IPS stops",
+    "stands": "Detection raises an alert; prevention also blocks",
+    "slide": "ids-ips",
+    "icons": [
+      "bell-ring",
+      "octagon-alert"
+    ],
+    "recap": "report security alerts at once"
+  },
+  {
+    "key": "lss",
+    "phrase": "Lock, seal, sign",
+    "stands": "Encryption, hashing, digital signatures",
+    "slide": "lock-seal-sign",
+    "icons": [
+      "lock",
+      "fingerprint",
+      "signature"
+    ],
+    "recap": "use encrypted storage and secure links for personal data"
+  },
+  {
+    "key": "msk",
+    "phrase": "Moving, stored, keys",
+    "stands": "Protect data in transit, at rest, and the keys",
+    "slide": "keys",
+    "icons": [
+      "send",
+      "hard-drive",
+      "key-round"
+    ],
+    "recap": "never keep a password or key with the data it protects"
+  },
+  {
+    "key": "ntav",
+    "phrase": "Never trust, always verify",
+    "stands": "Zero Trust: check every request, assume breach, least privilege",
+    "slide": "zero-trust",
+    "icons": [
+      "scan-search"
+    ],
+    "recap": "expect MFA even inside the office"
+  },
+  {
+    "key": "kha",
+    "phrase": "Know, have, are",
+    "stands": "The three kinds of MFA proof",
+    "slide": "mfa",
+    "icons": [
+      "brain",
+      "smartphone",
+      "fingerprint"
+    ],
+    "recap": "turn MFA on; deny prompts you did not start"
+  },
+  {
+    "key": "rnp",
+    "phrase": "Roles, not people",
+    "stands": "Access by job function; two hands on money; joiner, mover, leaver",
+    "slide": "m3-roles",
+    "icons": [
+      "users",
+      "user-cog"
+    ],
+    "recap": "never share a login; report joiners, movers and leavers"
+  },
+  {
+    "key": "upel",
+    "phrase": "Update, protect, encrypt, lock",
+    "stands": "The endpoint baseline",
+    "slide": "baseline",
+    "icons": [
+      "refresh-cw",
+      "shield-check",
+      "hard-drive",
+      "lock"
+    ],
+    "recap": "install updates, keep protection on, encrypt the disk, lock the screen"
+  },
+  {
+    "key": "padlock",
+    "phrase": "Padlock means private, not honest",
+    "stands": "HTTPS encrypts the connection; it does not vouch for the site",
+    "slide": "padlock",
+    "icons": [
+      "lock-keyhole"
+    ],
+    "recap": "read the owner part of the address; type addresses you know"
+  },
+  {
+    "key": "approved",
+    "phrase": "Approved tools only",
+    "stands": "Shadow IT puts office data where nobody controls it",
+    "slide": "shadow-it",
+    "icons": [
+      "ticket-check"
+    ],
+    "recap": "ask IT and the DPO before you use a new tool"
+  },
+  {
+    "key": "decision",
+    "phrase": "Does it change a decision?",
+    "stands": "The test for threat intelligence",
+    "slide": "intel",
+    "icons": [
+      "list-filter"
+    ],
+    "recap": "act, and tell those who must act; otherwise file it"
+  },
+  {
+    "key": "tlp",
+    "phrase": "RED, AMBER, GREEN, CLEAR",
+    "stands": "How far a TLP-labelled report may travel",
+    "slide": "tlp",
+    "icons": [
+      "flag"
+    ],
+    "recap": "share only as far as the label allows"
+  },
+  {
+    "key": "ecf",
+    "phrase": "Evidence, control, fix",
+    "stands": "How to write an audit finding",
+    "slide": "audit-method",
+    "icons": [
+      "file-search",
+      "list-checks",
+      "wrench"
+    ],
+    "recap": "exhibit and row; the control it fails; a fix with an owner and a date"
+  },
+  {
+    "key": "phases",
+    "phrase": "Prepare, detect, contain, eradicate, recover, learn",
+    "stands": "The phases of incident response",
+    "slide": "ir-phases",
+    "icons": [
+      "footprints"
+    ],
+    "recap": "know your role in each one before anything happens"
+  },
+  {
+    "key": "isolate",
+    "phrase": "Isolate first, power off last",
+    "stands": "Containment that keeps the evidence",
+    "slide": "contain-evidence",
+    "icons": [
+      "power"
+    ],
+    "recap": "disconnect from the network; switch off only if you cannot disconnect"
+  },
+  {
+    "key": "preserve",
+    "phrase": "Preserve before you wipe",
+    "stands": "Evidence before repair",
+    "slide": "contain-evidence",
+    "icons": [
+      "file-lock"
+    ],
+    "recap": "copy logs and systems before any clean-up"
+  },
+  {
+    "key": "smoke725",
+    "phrase": "Smoke, not ashes: 72-5",
+    "stands": "Reasonable belief; 72 hours to notify, 5 days for the full report",
+    "slide": "rule-72-5",
+    "icons": [
+      "alarm-smoke"
+    ],
+    "recap": "tell the DPO at once; notify on what you know"
+  },
+  {
+    "key": "silence",
+    "phrase": "Silence is not approval",
+    "stands": "Requests to the NPC need written approval",
+    "slide": "requests-file",
+    "icons": [
+      "bell-off"
+    ],
+    "recap": "never assume a postponement was granted"
+  },
+  {
+    "key": "oclov",
+    "phrase": "One channel, one log, one voice",
+    "stands": "Incident discipline",
+    "slide": "dbrt",
+    "icons": [
+      "megaphone"
+    ],
+    "recap": "report in one place, log everything, let one person speak"
+  }
 ]

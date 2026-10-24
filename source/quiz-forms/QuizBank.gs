@@ -1,5 +1,6 @@
 /**
- * Quiz bank: Quizzes 1 and 2 (facilitator only), 19 October 2026.
+ * Quiz bank: Quizzes 1 and 2 (facilitator only), 19 October 2026, and the
+ * practice Quizzes 3 and 4 (21 October 2026, not graded), at the end.
  *
  * Keep this project private: it holds the answer keys for both runs.
  * Items follow the bank's order, under the bank's headings (item numbers in
@@ -258,6 +259,242 @@ const QUIZZES = [
             q: 'A caller who says he is from law enforcement may be given your one-time code if he already knows your name and address.',
             answer: false,
             why: 'Never share a one-time code with anyone; knowing your details does not prove who he is. Source: Lesson 2.3.',
+          },
+        ],
+      },
+    ],
+  },
+
+  // ---------- Practice quizzes (not graded) ----------
+  // The Module 3 learner guide says nothing in Module 3 is graded, and Module 4's
+  // only grade is the controls audit (20%). So Quizzes 3 and 4 are practice:
+  // anonymous, no sign-in, and the right answer and why appear on submitting.
+  // Written from the Module 3 and Module 4 learner guides (21 October 2026):
+  // Check yourself, Try it, the key ideas and the desk card. No item repeats an
+  // exit-check item in ExitChecks.gs.
+  {
+    key: 'quiz3',
+    label: 'Quiz 3 · Module 3 (practice)',
+    title: 'Quiz 3 (practice): Security controls and data protection',
+    minutes: 10,
+    practice: true,
+    when: {
+      f2f: 'Thursday 22 October 2026, end of the morning or over lunch',
+      online: 'Tuesday 27 October 2026, end of the morning or over lunch',
+    },
+    topics: [
+      {
+        name: 'Network security principles',
+        items: [
+          { // 1
+            scenario: true,
+            q: "A visitor on the RSSO's guest Wi-Fi tries to open the file server. Which control stops this?",
+            choices: [
+              'Segmentation: guest Wi-Fi reaches only the internet',
+              "A stronger password on the visitor's phone",
+              'An IDS alert on outbound traffic',
+              'Full-disk encryption on the file server',
+            ],
+            answer: 'A',
+            why: "Separate rooms: each network zone reaches only what it needs, so a visitor's phone never reaches the servers. Source: Lesson 3.1, Try it 3.1.",
+          },
+          { // 2
+            scenario: true,
+            q: 'A firewall reads these rules from the top. Rule 1: allow the staff network to anywhere, any service. Rule 2: deny the staff network to the applicant database. Malware on a staff computer tries to reach the database. What happens?',
+            choices: [
+              'Blocked by rule 2',
+              'Allowed by rule 1, because the firewall acts on the first rule that matches',
+              'Blocked by the default deny',
+              'Allowed only at night',
+            ],
+            answer: 'B',
+            why: 'Order matters: the firewall acts on the first rule that matches, so the "allow any" rule lets it through before rule 2 is read. Start from "block everything" and add specific allows. Source: Lesson 3.1, Rules that work.',
+          },
+          { // 3
+            q: 'An intrusion detection system (IDS) blocks the attacks it finds.',
+            answer: false,
+            why: 'IDS tells, IPS stops: an IDS raises an alert; an intrusion prevention system (IPS) can also block what it finds. Source: Lesson 3.1.',
+          },
+        ],
+      },
+      {
+        name: 'Encryption at rest and in transit',
+        items: [
+          { // 4
+            q: 'Which tool proves who sent a file and that it was not changed?',
+            choices: ['Encryption', 'Hashing', 'A digital signature', 'A VPN'],
+            answer: 'C',
+            why: 'Lock, seal, sign: encryption locks data (Secret), hashing seals it so any change shows (Correct), and a digital signature proves who sent it. Source: Lesson 3.2.',
+          },
+          { // 5
+            q: 'Which versions of TLS, the protection behind HTTPS, should the Assistance Portal use?',
+            choices: ['TLS 1.0 or 1.1', 'TLS 1.2 or 1.3', 'Any version, as long as the padlock shows', 'None: a firewall is enough'],
+            answer: 'B',
+            why: 'TLS 1.0 and 1.1 were formally deprecated in 2021 (RFC 8996), so old versions are turned off. Source: Lesson 3.2, Data moving.',
+          },
+          { // 6
+            scenario: true,
+            q: "Ana keeps the nightly backup's encryption key in a text file on the same backup drive. What is wrong with this?",
+            choices: [
+              'Nothing, because the backup is encrypted',
+              'Whoever steals the drive also gets the key, so they can read everything',
+              'Keys must be changed every day',
+              'Backups should never be encrypted',
+            ],
+            answer: 'B',
+            why: 'Keys are kept apart from the data they protect, with a named custodian and a sealed recovery plan. Moving, stored, keys. Source: Lesson 3.2, Keys.',
+          },
+          { // 7
+            q: 'NPC Circular 2023-06 requires encryption when personal data must move on removable media, such as a USB drive.',
+            answer: true,
+            why: 'Use only office-issued encrypted USB drives, with approval. Source: Lesson 3.2, What the DPA and the NPC expect.',
+          },
+        ],
+      },
+      {
+        name: 'Zero Trust, MFA and role-based access',
+        items: [
+          { // 8
+            q: 'A login from inside the office network can be trusted without further checks.',
+            answer: false,
+            why: 'Never trust, always verify: being inside the office network proves nothing. Every request is checked for identity, device and need. Source: Lesson 3.3.',
+          },
+          { // 9
+            q: 'Which sign-in method resists phishing best?',
+            choices: ['A code sent by SMS', 'A code in an authenticator app', 'A security key or passkey (FIDO2)', 'A longer password'],
+            answer: 'C',
+            why: "The key checks the real site's address and will not sign in to a fake page; an SMS code can be typed into a fake page. CISA strongly urges phishing-resistant MFA. Source: Lesson 3.3.",
+          },
+          { // 10
+            scenario: true,
+            q: 'A records clerk is promoted to supervisor. What must happen to her clerk access?',
+            choices: [
+              'She keeps it, in case the clerks need help',
+              'It is removed on the day she moves, so she cannot encode and approve the same application',
+              'It is removed at the next yearly review',
+              'Nothing, as long as she uses MFA',
+            ],
+            answer: 'B',
+            why: 'Joiner, mover, leaver: access changes on the day of the transfer. Two hands on money: no one person encodes and approves. Source: Lesson 3.3, Try it 3.3.',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'quiz4',
+    label: 'Quiz 4 · Module 4 (practice)',
+    title: 'Quiz 4 (practice): Endpoint security and safe digital workflows',
+    minutes: 10,
+    practice: true,
+    when: {
+      f2f: 'Thursday 22 October 2026, after the audit or that evening',
+      online: 'Tuesday 27 October 2026, after the audit or that evening',
+    },
+    topics: [
+      {
+        name: 'Laptops, phones and remote work',
+        items: [
+          { // 1
+            q: 'Which part of the endpoint baseline turns "we lost the data" into "we lost a device"?',
+            choices: ['Screen lock', 'Full-disk encryption', 'Host firewall', 'Standard user account'],
+            answer: 'B',
+            why: 'With full-disk encryption, whoever finds the laptop cannot read what is on it. Source: Lesson 4.1, When a device is lost.',
+          },
+          { // 2
+            q: 'Why should daily work happen on a standard user account, not an administrator account?',
+            choices: [
+              'Standard accounts are faster',
+              'Anything that runs while you work, including malware opened by mistake, gets only your limited rights',
+              'Administrators cannot use email',
+              'So IT can read your files',
+            ],
+            answer: 'B',
+            why: 'Malware runs with the rights of whoever opened it, so limited rights limit the damage. Source: Lesson 4.1, Check yourself 4.1.',
+          },
+          { // 3
+            scenario: true,
+            q: "Sol's field laptop, holding unencrypted applicant records, is stolen. What should she do?",
+            choices: [
+              'Wait a week in case it turns up',
+              'Report it at once: it may be a notifiable breach, and the 72-hour clock may already be running',
+              'Buy a replacement and say nothing',
+              'Change her email password only',
+            ],
+            answer: 'B',
+            why: 'Under the 3S test it may be notifiable, the clock runs from reasonable belief, and IT may still be able to lock or wipe the device. Source: Lesson 4.1.',
+          },
+          { // 4
+            q: 'Under NPC Circular 2023-06, only known devices, properly configured to the office\'s security standards, may access personal data.',
+            answer: true,
+            why: 'Its rules also cover remote disconnection or deletion on mobile devices. Source: Lesson 4.1, Phones and tablets.',
+          },
+        ],
+      },
+      {
+        name: 'Safe websites and approved tools',
+        items: [
+          { // 5
+            scenario: true,
+            q: 'An SMS about a payout problem links to a sign-in page at assist.rss0-q.example. The page shows a padlock. What is true?',
+            choices: [
+              "The padlock proves it is the RSSO's site",
+              'It is a look-alike: a zero replaces the letter o, and the padlock only means the connection is encrypted',
+              'It is safe because it arrived by SMS',
+              'It is safe if the page looks official',
+            ],
+            answer: 'B',
+            why: 'Padlock means private, not honest. Do not sign in; report the text. Source: Lesson 4.2, Try it 4.2A.',
+          },
+          { // 6
+            q: 'How do you find who owns a web address?',
+            choices: [
+              'Read the first word after https://',
+              'Find the first single slash after https://, then read the words just before it from right to left: the last part names the owner',
+              'Look for the padlock',
+              'Count the dots in the address',
+            ],
+            answer: 'B',
+            why: 'In assist.rsso-q.example.verify-account.example, the owner is verify-account.example, not the RSSO. Source: Lesson 4.2, Look-alike addresses.',
+          },
+          { // 7
+            scenario: true,
+            q: 'A colleague wants to merge two beneficiary masterlists using a free online PDF converter. What is the main problem?',
+            choices: [
+              'The converter may be slow',
+              'The office stays responsible for the data, the free site has no agreement with the RSSO, and the data cannot be recalled once uploaded',
+              'PDF files are not allowed in government',
+              'Nothing, if the colleague deletes the file afterwards',
+            ],
+            answer: 'B',
+            why: 'Shadow IT puts office data where nobody controls it (RA 10173, Secs 14 and 21(a)). Use an approved tool or ask IT. Source: Lesson 4.2.',
+          },
+        ],
+      },
+      {
+        name: 'Threat intelligence and awareness',
+        items: [
+          { // 8
+            q: 'A report is marked TLP:AMBER. Who may you share it with?',
+            choices: [
+              'Anyone, with no limits',
+              'Your community, such as partner offices, but not the public',
+              'People in your organization, and its clients, who need to know',
+              'Only the named recipients',
+            ],
+            answer: 'C',
+            why: 'RED, AMBER, GREEN, CLEAR: from tightest to open. When in doubt, ask the sender. Source: Lesson 4.3, Traffic Light Protocol.',
+          },
+          { // 9
+            q: 'Which single question decides whether to act on a threat intelligence item?',
+            choices: ['Did it come from abroad?', 'Does it change a decision this week?', 'How many people forwarded it?', 'Is it longer than one page?'],
+            answer: 'B',
+            why: 'If yes, act and tell the people who must act; if no, file it for the monthly bulletin. Forwarding everything trains people to ignore warnings. Source: Lesson 4.3.',
+          },
+          { // 10
+            q: 'In an audit finding, it is enough to write what is wrong; the evidence is optional.',
+            answer: false,
+            why: 'Evidence, control, fix: each finding names its exhibit and row, the control it fails, a rating, and a fix with an owner and a date. Source: Graded controls audit, How to work.',
           },
         ],
       },

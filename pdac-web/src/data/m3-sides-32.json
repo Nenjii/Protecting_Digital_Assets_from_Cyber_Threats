@@ -1,0 +1,54 @@
+{
+  "_status": "Module 3, Lesson 3.2 'At your desk, in the server room' (learner guide of 21 October 2026), word for word. Every control has two sides: what you do at your desk, and what IT sets up in the server room.",
+  "prompt": "Whose side is it on? **You need to understand both, even if you only do the first.**",
+  "categories": [
+    {
+      "id": "desk",
+      "label": "At your desk",
+      "icon": "laptop"
+    },
+    {
+      "id": "server",
+      "label": "In the server room",
+      "icon": "server"
+    }
+  ],
+  "items": [
+    {
+      "id": "s1",
+      "text": "Lock your screen; keep work files on approved, encrypted storage",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s2",
+      "text": "Full-disk encryption on every laptop; encrypted database and backups",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s3",
+      "text": "Use only office-issued encrypted USB drives, with approval",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s4",
+      "text": "TLS 1.2 or 1.3 on the portal; old versions and plain FTP turned off",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s5",
+      "text": "Share personal data by secure link, never as a plain attachment",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s6",
+      "text": "Keys kept apart from data, with a named custodian and a recovery plan",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    }
+  ]
+}

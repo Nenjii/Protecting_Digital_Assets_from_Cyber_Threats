@@ -27,7 +27,7 @@ import { evidenceFor, hydrateQr } from './core/evidence';
 import { renderIcons } from './core/icons';
 import { pickModule, renderLauncher } from './core/modules';
 import { FallbackViewer, QrOverlay, SidePanel } from './core/overlays';
-import { initPresenter, itDepthFor, relayClicksFromReceiver, relayKeysFromReceiver } from './core/presenter';
+import { initPresenter, itDepthFor, initReceiverMirror, relayKeysFromReceiver } from './core/presenter';
 import { ProgressBar } from './core/progress';
 import type { Deck } from './core/types';
 
@@ -56,6 +56,8 @@ async function start(): Promise<void> {
   launcher.remove();
   revealEl.hidden = false;
   document.title = mod.number ? `Module ${mod.number} · ${mod.title}` : mod.title;
+  // Shown faintly on the blackout (pause) screen, so the room still sees the module.
+  revealEl.style.setProperty('--module-title', JSON.stringify(document.title));
   slidesEl.innerHTML = mod.html ?? '';
   renderIcons(slidesEl);
   const metas = decorateSlides(slidesEl);
@@ -89,7 +91,7 @@ async function start(): Promise<void> {
   onSlide();
   setInterval(() => highlightNow(current()), 30_000);
 
-  if (isReceiver) relayClicksFromReceiver(deck);
+  if (isReceiver) initReceiverMirror(deck);
   if (isReceiver || deck.isPrintView()) return;
 
   // Presenter UI (page level, outside the scaled canvas).

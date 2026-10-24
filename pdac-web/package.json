@@ -19,7 +19,12 @@
     "attack": "node tools/attack-extract.mjs",
     "kev": "node tools/kev-extract.mjs",
     "threat-dragon": "node tools/threat-dragon-models.mjs",
-    "poll-pack": "node tools/poll-pack.mjs"
+    "poll-pack": "node tools/poll-pack.mjs",
+    "range:build": "vite build --config vite.range.config.ts",
+    "range": "npm run range:build && node range/server/main.mjs",
+    "range:typecheck": "tsc --noEmit -p range/tsconfig.json",
+    "range:test": "node range/tools/engine-test.mjs && node range/tools/range-e2e.mjs",
+    "range:check": "node range/tools/check-range.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "5.2.8",

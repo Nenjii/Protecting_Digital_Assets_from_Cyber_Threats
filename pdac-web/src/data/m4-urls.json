@@ -1,10 +1,10 @@
 {
-  "_status": "Draft for the Module 4 deck. All names are invented around the fictional Region Q; none is a real office.",
+  "_status": "Module 4, Lesson 4.2 'Look-alike addresses' (learner guide of 21 October 2026): the fictional RSSO Assistance Portal at assist.rsso-q.example and the guide's three look-alikes. .example names are reserved for documentation (RFC 2606), so none of them can be a real site.",
+  "suffixes": ["gov.ph", "example"],
   "cases": [
-    { "url": "https://rsso-regionq.gov.ph/assistance/apply", "verdict": "real", "note": "The name just before **.gov.ph** is **rsso-regionq**: the office's own site (fictional)." },
-    { "url": "https://rsso-regionq.gov.ph.regionq-assist-claim.top/login", "verdict": "look-alike", "note": "Everything before **regionq-assist-claim.top** is decoration its owner chose. It has a padlock too: **the padlock means encrypted, not trustworthy.**" },
-    { "url": "https://portal.rsso-regionq.gov.ph/reset-password", "verdict": "real", "note": "A subdomain (portal.) of the real name is still the real office." },
-    { "url": "https://rsso-regionq.com/payout/verify?id=48213", "verdict": "look-alike", "note": "Same words, wrong ending: **.com**, not **.gov.ph**. Government offices use .gov.ph." },
-    { "url": "http://rssoregionq-gov.online/ayuda", "verdict": "look-alike", "note": "No padlock, a hyphen where a dot should be, and **.online**. Not a .gov.ph address at all." }
+    { "url": "https://assist.rsso-q.example/apply", "owner": "rsso-q.example", "verdict": "real", "note": "Find the first single slash after https://, then read the words just before it from right to left: the owner is **rsso-q.example**. The real portal (fictional)." },
+    { "url": "https://assist.rss0-q.example/login", "owner": "rss0-q.example", "verdict": "look-alike", "note": "**A swapped character:** a zero, not the letter o. It has a padlock too: the padlock means private, not honest." },
+    { "url": "https://rsso-q-payout.example/claim", "owner": "rsso-q-payout.example", "verdict": "look-alike", "note": "**Extra words:** \"rsso-q-payout\" is a different name, owned by whoever registered it." },
+    { "url": "https://assist.rsso-q.example.verify-account.example/signin", "owner": "verify-account.example", "verdict": "look-alike", "note": "**The real name at the front, the owner at the end.** Read right to left from the first single slash: the owner is **verify-account.example**, not the RSSO." }
   ]
 }

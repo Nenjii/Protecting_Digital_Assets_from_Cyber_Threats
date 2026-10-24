@@ -3,3 +3,7 @@ dist/
 shots/
 .DS_Store
 *.log
+
+# Module 5 LAN game (built clients + autosave)
+range-dist/
+range-save/

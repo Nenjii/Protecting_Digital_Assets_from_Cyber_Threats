@@ -1,0 +1,34 @@
+{
+  "_status": "Module 3, Lesson 3.3 'Roles, not people': joiner, mover, leaver (learner guide of 21 October 2026), including contract-of-service and job-order staff and consultants; case 4 is Try it 3.3 question 3. Fictional office.",
+  "options": [
+    { "id": "joiner", "label": "Joiner" },
+    { "id": "mover", "label": "Mover" },
+    { "id": "leaver", "label": "Leaver" }
+  ],
+  "items": [
+    {
+      "id": "j1", "text": "A job-order staff member starts on Monday as a records clerk.",
+      "answer": "joiner",
+      "facts": [{ "k": "What happens", "v": "Access is set up on the first day: a named account with the records clerk role only, and MFA" }],
+      "reason": "The rule covers contract-of-service and job-order staff and consultants too."
+    },
+    {
+      "id": "j2", "text": "Ben moves from records to the cashier unit next week.",
+      "answer": "mover",
+      "facts": [{ "k": "What happens", "v": "On the day he moves: the records clerk role is removed and the cashier role added" }],
+      "reason": "If his old role stays, one person could encode an application and release its payout."
+    },
+    {
+      "id": "j3", "text": "A consultant's contract ends on Friday.",
+      "answer": "leaver",
+      "facts": [{ "k": "What happens", "v": "Every account, including the VPN, is closed on the last day" }],
+      "reason": "Module 2's contractor could still connect two months after leaving."
+    },
+    {
+      "id": "j4", "text": "A records clerk is promoted to supervisor.",
+      "answer": "mover",
+      "facts": [{ "k": "What happens", "v": "Her clerk access is removed on the day she moves" }],
+      "reason": "So she cannot encode and approve the same application (Try it 3.3, question 3)."
+    }
+  ]
+}

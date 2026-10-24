@@ -287,5 +287,290 @@
     "id": "kill-chain",
     "term": "Cyber Kill Chain",
     "plain": "Seven steps most attacks go through, from scouting to stealing. Breaking any step stops the attack."
+  },
+  {
+    "id": "certificate",
+    "term": "Certificate",
+    "plain": "A site's digital ID, issued by a certificate authority, that lets your browser check it is talking to the right site.",
+    "match": [
+      "certificates",
+      "certificate authority"
+    ]
+  },
+  {
+    "id": "digital-signature",
+    "term": "Digital signature",
+    "plain": "A mark made with a private key that proves who sent a file and that it was not changed.",
+    "match": [
+      "digital signatures"
+    ]
+  },
+  {
+    "id": "dmz",
+    "term": "DMZ",
+    "plain": "The public zone: the part of a network that holds public services, kept apart from internal systems.",
+    "match": [
+      "public zone"
+    ]
+  },
+  {
+    "id": "fido2",
+    "term": "FIDO2, passkey, security key",
+    "plain": "Sign-in methods based on a key held on your device, which a fake site cannot use.",
+    "match": [
+      "FIDO2",
+      "passkey",
+      "passkeys",
+      "security key",
+      "security keys"
+    ]
+  },
+  {
+    "id": "firewall",
+    "term": "Firewall",
+    "plain": "A gatekeeper that allows or blocks connections according to rules.",
+    "match": [
+      "firewalls"
+    ]
+  },
+  {
+    "id": "hashing",
+    "term": "Hashing",
+    "plain": "Turning data into a fixed fingerprint; any change gives a different fingerprint.",
+    "match": [
+      "hash",
+      "hashes",
+      "fingerprint"
+    ]
+  },
+  {
+    "id": "ids-ips",
+    "term": "IDS, IPS",
+    "plain": "Systems that detect suspicious activity and alert (IDS), or also block it (IPS).",
+    "match": [
+      "IDS",
+      "IPS",
+      "intrusion detection",
+      "intrusion prevention"
+    ]
+  },
+  {
+    "id": "key-custodian",
+    "term": "Key custodian",
+    "plain": "The person responsible for keeping, and recovering, an encryption key.",
+    "match": [
+      "custodian"
+    ]
+  },
+  {
+    "id": "least-privilege",
+    "term": "Least privilege",
+    "plain": "Giving only the access a job needs, only for as long as it is needed."
+  },
+  {
+    "id": "rbac",
+    "term": "RBAC",
+    "plain": "Role-based access control: access given to roles that match job functions.",
+    "match": [
+      "role-based access"
+    ]
+  },
+  {
+    "id": "segmentation",
+    "term": "Segmentation",
+    "plain": "Dividing a network into zones that each reach only what they need.",
+    "match": [
+      "network zones",
+      "zones"
+    ]
+  },
+  {
+    "id": "separation-of-duties",
+    "term": "Separation of duties",
+    "plain": "Splitting a task so no one person can complete a risky action alone. Also called segregation of duties.",
+    "match": [
+      "segregation of duties",
+      "two hands on money"
+    ]
+  },
+  {
+    "id": "tls",
+    "term": "TLS",
+    "plain": "The protection behind HTTPS that encrypts data moving between a browser and a site.",
+    "match": [
+      "HTTPS"
+    ]
+  },
+  {
+    "id": "vpn",
+    "term": "VPN",
+    "plain": "An encrypted tunnel between a remote computer and the office network.",
+    "match": [
+      "virtual private network"
+    ]
+  },
+  {
+    "id": "waf",
+    "term": "WAF",
+    "plain": "A web application firewall, which inspects requests sent to a website.",
+    "match": [
+      "web application firewall"
+    ]
+  },
+  {
+    "id": "zero-trust",
+    "term": "Zero Trust",
+    "plain": "A strategy of checking every request, assuming breach, and granting least privilege."
+  },
+  {
+    "id": "access-review",
+    "term": "Access review",
+    "plain": "A regular check that every account still needs the access it has.",
+    "match": [
+      "access reviews"
+    ]
+  },
+  {
+    "id": "certificate-warning",
+    "term": "Certificate warning",
+    "plain": "A browser page saying it cannot confirm the site's identity.",
+    "match": [
+      "Your connection is not private"
+    ]
+  },
+  {
+    "id": "change-management",
+    "term": "Change management",
+    "plain": "Approving, recording and testing a change before it is made."
+  },
+  {
+    "id": "dlp",
+    "term": "Data leakage prevention (DLP)",
+    "plain": "Tools that warn or block when sensitive data leaves by email, upload or USB.",
+    "match": [
+      "data leakage prevention",
+      "DLP"
+    ]
+  },
+  {
+    "id": "data-masking",
+    "term": "Data masking",
+    "plain": "Hiding part of a value, such as showing only the last four digits of an ID number.",
+    "match": [
+      "masking",
+      "masked"
+    ]
+  },
+  {
+    "id": "dormant-account",
+    "term": "Dormant account",
+    "plain": "An account nobody has used for a long time.",
+    "match": [
+      "dormant"
+    ]
+  },
+  {
+    "id": "endpoint",
+    "term": "Endpoint",
+    "plain": "Any device that connects to office systems: laptop, desktop, phone or tablet.",
+    "match": [
+      "endpoints"
+    ]
+  },
+  {
+    "id": "endpoint-protection",
+    "term": "Endpoint protection",
+    "plain": "Software that detects and blocks malware on a device.",
+    "match": [
+      "antivirus"
+    ]
+  },
+  {
+    "id": "full-disk-encryption",
+    "term": "Full-disk encryption",
+    "plain": "Encryption of everything stored on a device, so a lost device does not expose its data."
+  },
+  {
+    "id": "shared-account",
+    "term": "Generic or shared account",
+    "plain": "One login used by several people, so no one is accountable for what it does.",
+    "match": [
+      "shared account",
+      "shared accounts",
+      "generic account"
+    ]
+  },
+  {
+    "id": "kev",
+    "term": "KEV catalog",
+    "plain": "CISA's list of weaknesses that attackers are known to be using.",
+    "match": [
+      "Known Exploited Vulnerabilities",
+      "KEV"
+    ]
+  },
+  {
+    "id": "look-alike",
+    "term": "Look-alike address",
+    "plain": "A web address made to resemble a real one.",
+    "match": [
+      "look-alike",
+      "look-alikes"
+    ]
+  },
+  {
+    "id": "mdm-mam",
+    "term": "MDM and MAM",
+    "plain": "Mobile device management controls a whole device; mobile app management protects only the work apps.",
+    "match": [
+      "MDM",
+      "MAM",
+      "device management"
+    ]
+  },
+  {
+    "id": "privileged-account",
+    "term": "Privileged account",
+    "plain": "An account that can change settings or other people's access.",
+    "match": [
+      "privileged accounts",
+      "privileged"
+    ]
+  },
+  {
+    "id": "report-rate",
+    "term": "Report rate",
+    "plain": "The share of staff who report a suspicious message."
+  },
+  {
+    "id": "shadow-it",
+    "term": "Shadow IT",
+    "plain": "Apps, sites, accounts or devices used for office work without approval."
+  },
+  {
+    "id": "standard-user",
+    "term": "Standard user account",
+    "plain": "A daily account without administrator rights.",
+    "match": [
+      "standard user"
+    ]
+  },
+  {
+    "id": "threat-intelligence",
+    "term": "Threat intelligence",
+    "plain": "Information about threats, analysed so that an office can act on it."
+  },
+  {
+    "id": "tlp",
+    "term": "TLP",
+    "plain": "Traffic Light Protocol: labels that say how far a report may be shared.",
+    "match": [
+      "Traffic Light Protocol"
+    ]
+  },
+  {
+    "id": "web-filtering",
+    "term": "Web filtering",
+    "plain": "Blocking known malicious or unwanted websites."
   }
 ]

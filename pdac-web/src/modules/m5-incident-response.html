@@ -1,0 +1,887 @@
+<!--
+  Module 5 · Incident Response and Integrated Capstone · Day 3, 8:00 to 12:00 NN
+  41 slides. Built 23 October 2026 from the Module 5 learner guide
+  (../source/Module 5 Learner Guide Incident Response and Integrated Capstone.pdf);
+  there is no Slides deck for this module, so the guide and the Tabletop Kit are the
+  source of truth for wording, the activities, the capstone and its rubric. The
+  tabletop runs from ../source (Module 5 Tabletop Kit) and the facilitator-only
+  White Cell Guide; keep the White Cell Guide away from participants, like the
+  Quiz Bank. Slide IDs and minutes: tools/slide-map.json.
+
+  The capstone tabletop (slides tabletop-run, final-report) is 40% of the course.
+  The LAN attack-and-defend game (pdac-web/range/, "RSSO Live") is an optional
+  warm-up before the tabletop; it plays a DIFFERENT incident, so it gives nothing
+  away. Every person, office, address and record is fictional. Nothing is tested live.
+
+  Never show reportouts or hotwash before the rounds close at 10:40: the hot wash
+  names the mistakes teams are about to make. ir-example is a WORKED EXAMPLE built
+  from Try it 5.2 case 1 in the learner guide (a different incident from the
+  capstone), and rules-submit carries a model log and plan built from the same
+  incident, so neither gives the capstone away.
+-->
+
+<!-- 1 -->
+<section id="m5-cover" class="l-cover" data-min="1" data-footer="none">
+  <div class="cover-art"><i data-lucide="siren"></i></div>
+  <p class="kicker">Protecting Digital Assets from Cyber Threats · Module 5 of 5</p>
+  <h1>Incident Response and Integrated Capstone</h1>
+  <p class="subtitle">What happens in the first hours when something goes wrong, then your team runs the whole response</p>
+  <div class="meta"><span>Nino Filipen Duque · DICT Region 2 · ICT Academy: Digital Workforce</span><span>Day 3 morning · Face-to-face 23 October 2026 · Online 28 October 2026</span></div>
+  <div class="exit-card materials-card cover-materials">
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="book-open"></i> Learner guide</p>
+      <pdac-qr-panel data-link="guide-m5"></pdac-qr-panel>
+    </div>
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="clipboard-list"></i> Tabletop Kit</p>
+      <pdac-qr-panel data-link="tabletop-kit"></pdac-qr-panel>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two QR codes — the Module 5 learner guide and the Tabletop Kit. Online: paste both links in the chat.</p>
+    <p><b>SAY:</b> Good morning, and welcome to the last module. For four modules we prepared: we named the threats, modeled risks, chose controls and secured the devices. Today we practise what happens when something goes wrong anyway: the first steps, who to call and how fast, and the duties the law puts on us. Then your team becomes the RSSO's response team and runs a whole incident, round by round. That capstone is 40 percent of your grade.</p>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section id="m5-recall" class="l-interactive" data-min="4" data-code="1.1, 1.2, 4.2" data-eyebrow="Recall · no notes" data-level="Remember" data-source="Modules 1, 2 and 4">
+  <h2>Three questions from Days 1 and 2</h2>
+  <div class="stage"><pdac-recall data-src="recall.json" data-module="5"></pdac-recall></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>RETRIEVAL:</b> teams agree each answer in 20 seconds; take answers from teams that were quiet yesterday.</p>
+    <p><b>ANSWERS:</b> 1. At reasonable belief — smell smoke, not ashes. 2. Ready (availability) first, and Secret too when data is stolen. 3. The connection is encrypted; it does not mean the site is honest.</p>
+    <p><b>UNCLEAR FROM THE EXIT CHECK:</b> open with the two most common "still unclear" answers from the Module 4 exit check (showExitCheckResults overnight), one sentence each.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next answer; A reveals all.</p>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section id="m5-flow" data-min="3" data-eyebrow="This morning · Day 3" data-source="Module 5 learner guide, This morning">
+  <h2>A short lesson, then the capstone</h2>
+  <div class="body grid-2 flow-grid">
+    <table class="t compact">
+      <thead><tr><th>Time</th><th>Segment</th></tr></thead>
+      <tbody>
+        <tr data-start="08:00" data-end="08:10"><td>8:00 to 8:10</td><td>Recall and capstone briefing <span class="now-tag">Now</span></td></tr>
+        <tr data-start="08:10" data-end="08:55"><td>8:10 to 8:55</td><td>5.1 The plan and the roles; duties when personal data is involved <span class="now-tag">Now</span></td></tr>
+        <tr data-start="09:05" data-end="09:20"><td>9:05 to 9:20</td><td>Tabletop briefing and an optional warm-up game <span class="now-tag">Now</span></td></tr>
+        <tr data-start="09:20" data-end="10:40"><td>9:20 to 10:40</td><td>Capstone tabletop: three rounds (graded) <span class="now-tag">Now</span></td></tr>
+        <tr data-start="10:50" data-end="11:15"><td>10:50 to 11:15</td><td>Final incident report <span class="now-tag">Now</span></td></tr>
+        <tr data-start="11:15" data-end="11:40"><td>11:15 to 11:40</td><td>Team report-outs and hot wash <span class="now-tag">Now</span></td></tr>
+        <tr data-start="11:40" data-end="12:00"><td>11:40 to 12:00</td><td>Course close <span class="now-tag">Now</span></td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <p class="flow-breaks"><i data-lucide="coffee"></i> Breaks 8:55 to 9:05 and 10:40 to 10:50</p>
+      <div class="card"><span class="k">Graded · 40%</span><h4>Capstone tabletop</h4><p>Your team runs the RSSO's response to a fictional incident. Every member gets the team score after a participation check.</p></div>
+      <div class="card"><span class="k">Bring</span><h4>Your desk card and Module 4 findings</h4><p>The root cause is often already in your findings register. One laptop per team for the log and the report.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> one short lesson this morning, then the capstone takes the rest of the day. Everything is fictional and nothing is tested live. Roles in your team are drawn by lot; anyone who led an earlier activity takes a different role.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the highlighted row follows the clock.</p>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section id="m5-objectives" data-min="2" data-eyebrow="From remembering to creating" data-source="Module 5 learner guide, What you will be able to do · Syllabus 5.1">
+  <h2>By noon, you will be able to</h2>
+  <ol class="levels body">
+    <li class="fragment"><span class="lv">Remember</span> The six phases of incident response and the 72-5 rule</li>
+    <li class="fragment"><span class="lv">Understand</span> Who does what in each phase, and why evidence comes before repair</li>
+    <li class="fragment"><span class="lv">Apply</span> Put the first-hour actions in a safe order</li>
+    <li class="fragment"><span class="lv">Analyze</span> Decide whether an incident must be reported to the NPC, and when the clock started</li>
+    <li class="fragment"><span class="lv">Evaluate</span> Weigh pressure to deny or pay against the law and the evidence</li>
+    <li class="fragment"><span class="lv">Create</span> An immediate response plan, an incident log, and a final incident report</li>
+  </ol>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> the last three lines are the capstone: decide the breach and the clock, weigh the pressure, and produce the plan, the log and the report. Everything this morning is a tool for that.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next level.</p>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section id="event-incident" class="l-table" data-min="2" data-code="5.1" data-eyebrow="The plan · Event, incident or breach?" data-source="Module 5 learner guide, Lesson 5.1 · NPC Circular 16-03" data-terms="dbnms">
+  <h2>Event, incident, or breach?</h2>
+  <table class="t body">
+    <thead><tr><th>Word</th><th>Plain meaning</th><th>RSSO example</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td><b>Event</b></td><td>Anything you can observe on a system</td><td>One failed sign-in; an antivirus pop-up</td></tr>
+      <tr class="fragment"><td><b>Incident</b></td><td>An event that harms, or threatens, the confidentiality, integrity or availability of information</td><td>A ransom note on the file server; an account used after its owner left</td></tr>
+      <tr class="fragment"><td><b>Personal data breach</b></td><td>An incident that affects personal data: destroyed, lost, altered, disclosed or accessed without authority</td><td>Applicant records copied to an unknown address</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> most of what you see every day are events, not incidents. The skill is telling them apart quickly, and knowing that a personal data breach brings extra duties we will cover before the capstone.</p>
+    <p><b>TURN AND TALK:</b> give one example of each from your own office, in plain words, nothing real named.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next row.</p>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section id="ir-phases" class="l-tiles" data-min="3" data-code="5.1" data-eyebrow="The plan · Key idea" data-source="Module 5 learner guide, The phases · NIST SP 800-61 Rev. 3" data-terms="containment,eradication,recovery">
+  <h2>Six phases, from prepare to learn</h2>
+  <div class="tiles body phase-tiles">
+    <div class="tile fragment is-prep"><span class="icon"><i data-lucide="clipboard-check"></i></span><h4>Prepare</h4><p>Are we ready before anything happens? A signed plan, a named team, backups restored and tested.</p></div>
+    <div class="tile fragment is-resp"><span class="icon"><i data-lucide="scan-search"></i></span><h4>Detect</h4><p>Is it real, how bad, and is personal data involved?</p></div>
+    <div class="tile fragment is-resp"><span class="icon"><i data-lucide="shield-half"></i></span><h4>Contain</h4><p>Stop the spread without destroying evidence.</p></div>
+    <div class="tile fragment is-resp"><span class="icon"><i data-lucide="wrench"></i></span><h4>Eradicate</h4><p>Remove the cause; close the way in.</p></div>
+    <div class="tile fragment is-resp"><span class="icon"><i data-lucide="refresh-cw"></i></span><h4>Recover</h4><p>Return to service safely, from backups verified clean.</p></div>
+    <div class="tile fragment is-learn"><span class="icon"><i data-lucide="lightbulb"></i></span><h4>Learn</h4><p>What do we change so it does not happen again? Fix the Module 4 findings.</p></div>
+  </div>
+  <div class="it-depth">
+    <h3>Other frameworks, same ideas</h3>
+    <p>NIST SP 800-61 Revision 3 (April 2025) places incident response inside the six functions of the NIST Cybersecurity Framework 2.0: Govern, Identify and Protect prepare for incidents; Detect, Respond and Recover handle them; lessons learned feed improvement. DICT has said it plans a six-stage model under the national cybersecurity plan: Identify, Contain, Analyze, Eradicate, Recover, and Lesson Learned.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> the four shaded phases are the response itself; preparing comes before and learning after. Learning feeds the next round of preparation: each incident should leave the office better prepared than before. The memory phrase is the whole row: prepare, detect, contain, eradicate, recover, learn.</p>
+    <p><b>PLAIN WORDS:</b> containment stops an incident from spreading; eradication removes the cause, such as malware or the attacker's access; recovery returns systems to service safely.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next phase; I shows the NIST and DICT frameworks.</p>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section id="plan-contains" class="l-table" data-min="1" data-code="5.1" data-eyebrow="The plan · written before, not during" data-source="Module 5 learner guide, What a plan contains · NPC Circular 16-03">
+  <h2>Write the plan before you need it</h2>
+  <table class="t compact body two-up">
+    <tbody>
+      <tr><td><b>Purpose, scope, authority</b></td><td>What it covers, and who signed it</td></tr>
+      <tr><td><b>Severity levels</b></td><td>How bad is bad, and who is called at each</td></tr>
+      <tr><td><b>Roles and contact tree</b></td><td>Names, deputies, numbers, after hours too</td></tr>
+      <tr><td><b>One reporting channel</b></td><td>Where anyone reports anything suspicious</td></tr>
+      <tr><td><b>Triage checklist</b></td><td>The first questions to answer</td></tr>
+      <tr><td><b>Playbooks</b></td><td>Short steps for ransomware, account compromise, data leak, defacement, lost device</td></tr>
+      <tr><td><b>Evidence handling</b></td><td>What to keep, how, and who keeps it</td></tr>
+      <tr><td><b>Communications</b></td><td>Staff, media, data subjects: who speaks, what is said</td></tr>
+      <tr><td><b>Legal triggers; continuity; review</b></td><td>When to tell the NPC, DICT and police; manual workarounds; a yearly review</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> decide before anything happens who does what, in what order, and who must be told. You do not need to memorise this list; you need to know your office has one, signed, and that you know your part.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the plan's parts, two to a row.</p>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section id="severity" class="l-table" data-min="2" data-code="5.1" data-eyebrow="The plan · how bad is bad" data-source="Module 5 learner guide, Severity scale (a course model)">
+  <h2>Severity decides who is called</h2>
+  <table class="t body">
+    <thead><tr><th>Level</th><th>Meaning</th><th>Who is called</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td><span class="pill ok">Low</span></td><td>One user or device; no personal data at risk</td><td>The IT officer</td></tr>
+      <tr class="fragment"><td><span class="pill warn">High</span></td><td>Several systems, or personal data may be involved</td><td>The response team, including the DPO</td></tr>
+      <tr class="fragment"><td><span class="pill no">Critical</span></td><td>A core service is down, or the sensitive personal data of many people may be exposed</td><td>The whole team; the head of office decides at once</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> severity is not about how upset you feel; it is who you wake up. This scale is a course model, not a standard — your office sets its own. In the capstone, declaring the right severity early earns marks.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next level.</p>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section id="npc-plan" class="l-cards-3" data-min="1" data-code="5.1" data-eyebrow="The plan · what the NPC requires" data-source="Module 5 guide · NPC Circular 16-03 Secs. 5 to 10">
+  <h2>Be ready before a breach</h2>
+  <div class="cards body">
+    <div class="card fragment"><span class="icon"><i data-lucide="users"></i></span><h4>A response team</h4><p>With at least one member who can make immediate decisions (Sec. 5).</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="workflow"></i></span><h4>Policy and procedures</h4><p>From discovery and reporting to assessment, evidence, containment, notification and mitigation (Sec. 8).</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="shield-check"></i></span><h4>Prevention measures</h4><p>Backups, access control, secure logs and encryption (Secs. 6 and 7).</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="file-text"></i></span><h4>Documentation</h4><p>Every incident recorded, with a post-breach review (Sec. 9).</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="calendar-clock"></i></span><h4>A yearly review</h4><p>Of the policy, by the DPO or a designee (Sec. 10).</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> NPC Circular 16-03 asks every office that holds personal data to be ready before a breach, not to improvise during one. The capstone scenario has none of these in place — that is part of what makes it hard, and realistic.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next requirement.</p>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section id="contain-evidence" class="l-cards-3" data-min="3" data-code="5.1" data-eyebrow="The plan · containment and evidence" data-source="Module 5 learner guide, Containment and evidence habits · CISA" data-terms="chain-of-custody">
+  <h2>Stop the spread, keep the evidence</h2>
+  <div class="cards body">
+    <div class="card fragment accent"><span class="icon"><i data-lucide="power"></i></span><h4>Isolate first, power off last</h4><p>Disconnect from the network; switch off only if you cannot disconnect, because powering down can destroy memory evidence.</p></div>
+    <div class="card fragment accent"><span class="icon"><i data-lucide="file-lock"></i></span><h4>Preserve before you wipe</h4><p>Copy the logs and image affected systems before anything is cleaned.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="clipboard-list"></i></span><h4>Log it</h4><p>Every action and decision into one incident log: who, what, when, why.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="phone-call"></i></span><h4>Talk on a separate channel</h4><p>Phones or in person, until IT confirms the attacker cannot read office email.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="hard-drive"></i></span><h4>Restore only from clean backups</h4><p>A backup taken after the attacker got in may bring them back.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="scroll-text"></i></span><h4>Keep a chain of custody</h4><p>For every copy or device kept: what, who, when, where, and who has handled it since.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> the two highlighted habits save the most marks and the most cases: isolate first, power off last, and preserve before you wipe. These come straight to your desk card.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next habit; the first two are highlighted.</p>
+  </aside>
+</section>
+
+<!-- 11 -->
+<section id="ransom" class="l-statement" data-min="2" data-code="5.1" data-eyebrow="The plan · the ransom question" data-source="Module 5 learner guide, The ransom question · FBI" data-theme="dark">
+  <h2>Paying does not end the duty to notify</h2>
+  <ul class="statement-points body">
+    <li class="fragment">The FBI does not support paying: it does not guarantee the data back, and it encourages more attacks.</li>
+    <li class="fragment">The data has already been taken, so the duty to notify remains.</li>
+    <li class="fragment">The decision belongs to the head of office, with legal advice and law enforcement involved — and it is recorded in the log, with the reasons.</li>
+  </ul>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> in the 2023 ransomware case from Module 1, the office said it would not pay. In the capstone, someone will pressure you to pay and to say nothing — have your reasons ready, and put the decision and its reasons in the log.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next point.</p>
+  </aside>
+</section>
+
+<!-- 12 -->
+<section id="try-5-1" class="l-interactive" data-min="3" data-code="5.1" data-eyebrow="Try it 5.1 · the first hour, in order" data-level="Apply" data-source="Module 5 learner guide, Try it 5.1" data-timer="3" data-timer-label="First hour in order">
+  <h2>A ransom note. What do you do first?</h2>
+  <div class="stage try-stage">
+    <div class="note-box">
+      <h4>Put these in a safe order, and cross out any that do not belong in the first hour</h4>
+      <ol class="loose">
+        <li>Restore the server from last night's backup</li>
+        <li>Disconnect the affected server from the network</li>
+        <li>Open the incident log and write down what Ben saw and when</li>
+        <li>Tell the DPO that applicant data may be involved</li>
+        <li>Wipe the infected computers to stop the spread</li>
+        <li>Copy the logs and image affected systems before anything changes</li>
+        <li>Declare the incident and its severity</li>
+        <li>Post on the office's page that everything is fine</li>
+      </ol>
+    </div>
+  </div>
+  <pdac-reveal-panel data-label="Show the safe order" data-title="A safe order (accept any that logs from the start, isolates before restoring, preserves before wiping, and tells the DPO within the first hour)">
+    <ol class="rp-order">
+      <li><b>7 and 3 together</b> — declare the incident and its severity, and open the log.</li>
+      <li><b>2</b> — disconnect the server (do not switch it off).</li>
+      <li><b>6</b> — preserve the logs and images.</li>
+      <li><b>4</b> — tell the DPO that applicant data may be involved.</li>
+    </ol>
+    <p class="rp-note"><b>Not in the first hour:</b> <b>1</b>, a restore comes only after eradication, from a backup verified clean. <b>5</b>, wiping before preserving destroys evidence, and clean-up belongs to eradication. <b>8</b>, never — a false statement misleads the public, and hiding a breach of sensitive personal information is a crime under the Data Privacy Act, Section 30. Use a holding statement instead.</p>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes in pairs.</p>
+    <p><b>TURN AND TALK:</b> order the eight, cross out the ones that do not belong. Take one pair's order, then reveal.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the eight actions; the button or A shows the model answer; R closes it. → still moves on, so a timed task never jumps to the answer. T starts the 3-minute timer.</p>
+  </aside>
+</section>
+
+<!-- 13 -->
+<section id="check-5-1" data-min="2" data-code="5.1" data-eyebrow="Check yourself 5.1 · answer from memory" data-source="Module 5 learner guide, Check yourself 5.1">
+  <h2>Four quick ones</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>Name the six phases this course uses, in order.</b><span class="answer"><span class="answer-label">Answer:</span> Prepare, detect, contain, eradicate, recover, learn.</span></li>
+    <li><b>Why isolate a computer before you power it off?</b><span class="answer"><span class="answer-label">Answer:</span> Powering down can destroy evidence held in memory; isolating stops the spread and keeps it.</span></li>
+    <li><b>Name three things NPC Circular 16-03 says an office must have ready for a breach.</b><span class="answer"><span class="answer-label">Answer:</span> Any three of: a response team with someone who can decide immediately; procedures from discovery to notification; documentation and a post-breach review; prevention measures such as backups, secure logs and encryption; a yearly review.</span></li>
+    <li><b>Does paying a ransom end the duty to notify? Why?</b><span class="answer"><span class="answer-label">Answer:</span> No. The data has already been taken, so the duty remains; paying also does not guarantee the data back.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask each, wait for answers from different teams, then reveal.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it), a click shows one, A shows all, R hides all.</p>
+  </aside>
+</section>
+
+<!-- 14 -->
+<section id="m5-roles" class="l-table" data-min="3" data-code="5.1.1" data-eyebrow="Roles · every phase, a named person" data-source="Module 5 learner guide, Lesson 5.1.1, Roles by phase">
+  <h2>Who does what, in each phase</h2>
+  <table class="t compact body">
+    <thead><tr><th>Role</th><th>Detect</th><th>Contain</th><th>Eradicate</th><th>Recover</th></tr></thead>
+    <tbody>
+      <tr><td><b>Incident commander</b></td><td>Declares the incident and its severity</td><td>Approves isolation</td><td>Approves the clean-up plan</td><td>Approves the return to service</td></tr>
+      <tr><td><b>Technical lead</b></td><td>Confirms the signs; finds what is affected</td><td>Isolates; disables accounts; preserves evidence</td><td>Removes access; updates; resets passwords</td><td>Restores from verified backups; watches for a return</td></tr>
+      <tr><td><b>DPO / privacy lead</b></td><td>Is personal data involved?</td><td>Starts the breach assessment and the clock</td><td>Confirms which data, how many people</td><td>Files the NPC notice; tells the people; documents</td></tr>
+      <tr><td><b>Communications lead</b></td><td>Keeps staff informed, one channel</td><td>Internal notices; a holding statement</td><td>Updates staff and partners</td><td>Drafts the public message</td></tr>
+      <tr><td><b>Scribe</b></td><td>Opens the log</td><td>Records every decision with its time</td><td>Keeps the timeline current</td><td>Drafts the final report</td></tr>
+      <tr><td><b>Legal / liaison</b></td><td>Advises on reporting duties</td><td>Contacts law enforcement and DICT</td><td>Clears external statements</td><td>Signs off the report and lessons learned</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> every phase needs a named person for every job, decided before the incident, with a deputy for each. In a small office one person may hold two roles — name a deputy, so the plan still works when someone is on leave or unreachable on a Friday night.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the six roles across the four response phases.</p>
+  </aside>
+</section>
+
+<!-- 15 -->
+<section id="rsso-roles" class="l-table" data-min="1" data-code="5.1.1" data-eyebrow="Roles · at the RSSO" data-source="Module 5 learner guide, At the RSSO">
+  <h2>At the RSSO, who holds each role</h2>
+  <table class="t body">
+    <thead><tr><th>Role</th><th>Usually</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td>Incident commander</td><td>Director Eva</td><td>She can make immediate decisions for the office</td></tr>
+      <tr class="fragment"><td>Technical lead</td><td>Ana</td><td>She runs the systems; a vendor helps only under a written agreement</td></tr>
+      <tr class="fragment"><td>DPO / privacy lead</td><td>Carla</td><td>She decides on notification and files it</td></tr>
+      <tr class="fragment"><td>Communications lead</td><td>A staff member named by the head</td><td>One voice for staff, media and applicants</td></tr>
+      <tr class="fragment"><td>Scribe</td><td>Ben</td><td>Careful records are his daily work</td></tr>
+      <tr class="fragment"><td>Legal / liaison</td><td>Named by the head; Carla advises</td><td>Links to the central office, law enforcement and DICT</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> these are the RSSO's people from Modules 1 to 4. In the capstone your team draws these roles by lot — you may not play the one you would in real life, which is the point: everyone should know every job.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next role.</p>
+  </aside>
+</section>
+
+<!-- 16 -->
+<section id="dbrt" class="l-cards-3" data-min="2" data-code="5.1.1" data-eyebrow="Roles · the team and the discipline" data-source="Module 5 guide · NPC Circular 16-03 Sec. 5">
+  <h2>One channel, one log, one voice</h2>
+  <div class="body">
+    <div class="cards">
+      <div class="card fragment"><span class="icon"><i data-lucide="megaphone"></i></span><h4>One channel</h4><p>Everyone knows where to report anything suspicious.</p></div>
+      <div class="card fragment"><span class="icon"><i data-lucide="clipboard-list"></i></span><h4>One log</h4><p>The scribe records every event, decision and action, each with its time.</p></div>
+      <div class="card fragment"><span class="icon"><i data-lucide="users"></i></span><h4>One voice</h4><p>Only the communications lead speaks outside the team — a holding statement, no guessing, no denying.</p></div>
+    </div>
+    <p class="callout"><b>The Data Breach Response Team (NPC Circular 16-03, Sec. 5):</b> at least one member can make immediate decisions on critical action; the DPO may be a member, or the team reports to the DPO in writing. The office may outsource parts of the response, but it keeps its obligations.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> three habits hold an incident together. A holding statement says what is known, what is being done, and when the next update will come — without guessing or denying.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals one habit; the Data Breach Response Team note is below.</p>
+  </aside>
+</section>
+
+<!-- 17 -->
+<section id="try-5-1-1" class="l-interactive" data-min="2" data-code="5.1.1" data-eyebrow="Try it 5.1.1 · who does it?" data-level="Apply" data-source="Module 5 learner guide, Try it 5.1.1">
+  <h2>Name the role for each task</h2>
+  <div class="stage try-stage">
+    <div class="note-box">
+      <ol class="loose two-col-list">
+        <li>Decides that the incident is Critical</li>
+        <li>Disables the account the attacker used</li>
+        <li>Writes "5:30 PM: large outbound transfer seen; Ana isolating the server"</li>
+        <li>Checks whether the copied files hold ID numbers and health information</li>
+        <li>Answers a reporter's call with a holding statement</li>
+        <li>Reports the crime to the NBI or the PNP Anti-Cybercrime Group</li>
+        <li>Files the notification through the NPC's DBNMS</li>
+        <li>Approves the portal's return to service</li>
+      </ol>
+    </div>
+  </div>
+  <pdac-reveal-panel data-label="Show the roles" data-title="Who does it">
+    <ol class="rp-order">
+      <li>Incident commander</li>
+      <li>Technical lead</li>
+      <li>Scribe</li>
+      <li>DPO / privacy lead</li>
+      <li>Communications lead</li>
+      <li>Legal / head-of-office liaison</li>
+      <li>DPO / privacy lead</li>
+      <li>Incident commander</li>
+    </ol>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes in class.</p>
+    <p><b>CALL IT OUT:</b> take answers quickly from the room, then reveal.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the eight tasks; the button or A shows the roles; R closes.</p>
+  </aside>
+</section>
+
+<!-- 18 -->
+<section id="check-5-1-1" data-min="1" data-code="5.1.1" data-eyebrow="Check yourself 5.1.1 · answer from memory" data-source="Module 5 learner guide, Check yourself 5.1.1">
+  <h2>Four quick ones</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>Which role declares the incident?</b><span class="answer"><span class="answer-label">Answer:</span> The incident commander.</span></li>
+    <li><b>What must at least one member of the Data Breach Response Team be able to do?</b><span class="answer"><span class="answer-label">Answer:</span> Make immediate decisions on critical action.</span></li>
+    <li><b>Who speaks to the media?</b><span class="answer"><span class="answer-label">Answer:</span> Only the communications lead, using agreed words.</span></li>
+    <li><b>Why name a deputy for every role?</b><span class="answer"><span class="answer-label">Answer:</span> So the plan still works when someone is on leave or cannot be reached.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute. Ask, wait, reveal.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> → reveals the next answer; A shows all; R hides all.</p>
+  </aside>
+</section>
+
+<!-- 19 -->
+<section id="must-notify" class="l-interactive" data-min="3" data-code="5.2" data-eyebrow="When personal data is involved · the 3S test" data-level="Analyze" data-source="Module 5 guide · NPC Circular 16-03 Secs. 11, 13" data-terms="dbnms,3s">
+  <h2>Must we notify? Smoke, not ashes</h2>
+  <div class="stage"><pdac-breach-flow data-src="m1-breach.json" data-part="3s"></pdac-breach-flow></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> you call the fire department when you smell smoke, not when you see ashes. Notify the NPC and the people affected when all three are true: Sensitive, Stolen, Serious. A single no means no notification is required, but you still document the decision. Three yeses start the 72-hour duty. When unsure, weigh the likelihood of harm first — and whether 100 or more people are involved, public safety, confidential information, or vulnerable groups.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> step through the three questions; A shows the outcome; R resets.</p>
+  </aside>
+</section>
+
+<!-- 20 -->
+<section id="rule-72-5" class="l-interactive" data-min="2" data-code="5.2" data-eyebrow="When personal data is involved · the 72-5 rule" data-level="Remember" data-source="NPC Circular 16-03 Secs. 17, 18 · Advisory 2026-02" data-terms="dbnms">
+  <h2>72 hours to notify, 5 days to report</h2>
+  <div class="stage"><pdac-breach-flow data-src="m1-breach.json" data-part="clock"></pdac-breach-flow></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> certainty is not required — notify on what you have and send more as you learn it. The NPC and each affected person within 72 hours of knowing or reasonably believing; the full report within 5 days of discovery. When 100 or more people are affected, no delay is allowed. File through the NPC's DBNMS.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the clock from discovery to notification to full report; A shows the deadlines; R resets.</p>
+  </aside>
+</section>
+
+<!-- 21 -->
+<section id="notices" class="l-two-col" data-min="1" data-code="5.2" data-eyebrow="When personal data is involved · what the notices say" data-source="NPC Circular 16-03 Secs. 17 (NPC) and 18 (each person)">
+  <h2>What the notices must say</h2>
+  <div class="two-col body">
+    <div class="col">
+      <p class="col-head"><i data-lucide="landmark"></i> To the NPC (Sec. 17)</p>
+      <ul>
+        <li>How it happened and the weakness that allowed it; a timeline</li>
+        <li>The approximate number of people or records, and the kind of breach</li>
+        <li>The sensitive data involved, and anything that could enable identity fraud</li>
+        <li>What was done and is planned; how people are being told; the DPO's contact</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="users"></i> To each affected person (Sec. 18)</p>
+      <ul>
+        <li>What happened, and which of their data may be involved</li>
+        <li>What the office has done to address it and to reduce harm</li>
+        <li>Whom to contact, and any help offered</li>
+        <li>Individually, by secure means; no extra personal data in the notice itself</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> the notice to each person is plain words, sent individually by secure means, with one line on what they can do now, such as watching for fake RSSO messages. If individual notice is impossible, ask the NPC in writing to approve another way.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two columns — to the NPC, and to each person.</p>
+  </aside>
+</section>
+
+<!-- 22 -->
+<section id="requests-file" class="l-cards-3" data-min="1" data-code="5.2" data-eyebrow="When personal data is involved · requests and filing" data-source="NPC Advisory 2026-02 · RA 10173 Sec. 30 · the DBNMS">
+  <h2>Silence is not approval</h2>
+  <div class="cards body">
+    <div class="card fragment"><span class="icon"><i data-lucide="file-text"></i></span><h4>Requests in writing</h4><p>An exemption, a postponement or alternative means must be requested and justified — and approval must be express and in writing.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="send"></i></span><h4>File through the DBNMS</h4><p>dbnms.privacy.gov.ph is the only channel; the full report to admindbnms@privacy.gov.ph within 5 days.</p></div>
+    <div class="card fragment no"><span class="icon"><i data-lucide="octagon-alert"></i></span><h4>Hiding a breach is a crime</h4><p>Concealing a breach of sensitive personal information is punished under the Data Privacy Act, Section 30.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>SAY:</b> a pending request does not stop the clock on the full report. Never assume a postponement was granted. Document every incident, including those that need no notification, in the annual summary to the NPC.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next card.</p>
+  </aside>
+</section>
+
+<!-- 23 -->
+<section id="other-reports" class="l-table" data-min="1" data-code="5.2" data-eyebrow="When personal data is involved · who else to tell" data-source="Module 5 learner guide, Other reports · DICT DC 005; RA 10175 Sec. 10">
+  <h2>Who else to tell</h2>
+  <table class="t body">
+    <thead><tr><th>Report to</th><th>When</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>DICT (National CERT)</td><td>A cybersecurity incident at a government office</td><td>Through DICT Department Circular 005 (2024); read it for any deadline</td></tr>
+      <tr><td>NBI or PNP Anti-Cybercrime Group</td><td>A crime may have been committed, such as illegal access or extortion</td><td>They enforce the Cybercrime Prevention Act, RA 10175, Sec. 10</td></tr>
+      <tr><td>Central office and partners</td><td>As your plan sets out</td><td>One voice, agreed words</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p><b>SAY:</b> citizens report scams to hotline 1326 and the CICC's ScamSafe; an office's own incident follows the routes above. In the capstone, "other reports identified" is worth marks — name DICT and law enforcement, with a time.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the three other reports.</p>
+  </aside>
+</section>
+
+<!-- 24 -->
+<section id="ir-example" class="l-two-col" data-min="4" data-code="5.1, 5.1.1, 5.2" data-eyebrow="One incident, end to end · a worked example" data-level="Understand" data-source="Module 5 learner guide, Try it 5.2 case 1 · Circular 16-03 Sec. 17">
+  <h2>From first sign to lessons learned</h2>
+  <div class="body">
+    <p class="lede-line">A supervisor's account exported 900 applicant records, with ID numbers, at 2:00 AM. Nobody noticed until Monday.</p>
+    <div class="two-col">
+      <div class="col">
+        <p class="col-head"><i data-lucide="hourglass"></i> The first hour</p>
+        <ul class="tl">
+          <li><b>9:00 Detect</b> — the export is found. Declared <b>Critical</b>.</li>
+          <li><b>9:05 Detect</b> — ID numbers, so the <b>clock starts at 9:00</b>: reasonable belief, not certainty.</li>
+          <li><b>9:10 Contain</b> — sessions ended, password reset, MFA checked. <b>Disconnect, do not power off.</b></li>
+          <li><b>9:20 Preserve</b> — logs copied, server imaged, chain of custody started.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="col-head"><i data-lucide="calendar-clock"></i> Then, over the days</p>
+        <ul class="tl">
+          <li><b>9:45 Eradicate</b> — access removed; admin passwords reset from a clean device.</li>
+          <li><b>Mon to Tue Recover</b> — restored from a backup verified clean.</li>
+          <li class="is-key"><b>By Thu 9:00 Notify</b> — the NPC <b>and</b> all 900 people. Full report by Saturday.</li>
+          <li><b>After Learn</b> — MFA everywhere, leaver process, outbound alerts, restore tests.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> this is the whole module on one slide, on a real-shaped incident. Walk down the left column: the six phases in order, with a clock beside each. Notice three things. One, the clock starts at 9:00, when Ana had reasonable belief — not when the investigation finished. Two, the server was disconnected, not switched off, and the logs were copied before anything was cleaned. Three, the notice goes to the NPC <i>and</i> to all 900 people, within the same 72 hours.</p>
+    <p><b>WHO DID WHAT:</b> Ana found it and did the technical work; the incident commander declared it; Carla (DPO) owned the clock and the notices; the scribe logged every line; Eva approved the return to service.</p>
+    <p><b>ASK:</b> "What would have gone wrong if they had restored the server at 9:10?" (The evidence would be gone, and the attacker's way in would still be open: restore comes after eradication, from a backup verified clean.)</p>
+    <p><b>WHERE IT COMES FROM:</b> this is case 1 of Try it 5.2 in your learner guide, played out in full. <b>Today’s capstone is a different incident</b>, so this gives nothing away.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the whole timeline at once; the notify row is highlighted.</p>
+  </aside>
+</section>
+
+<!-- 25 -->
+<section id="try-5-2" class="l-interactive" data-min="3" data-code="5.2" data-eyebrow="Try it 5.2 · must we notify?" data-level="Evaluate" data-source="Module 5 learner guide, Try it 5.2" data-timer="3" data-timer-label="Must we notify?">
+  <h2>Notify or not, and from when?</h2>
+  <div class="stage try-stage">
+    <div class="note-box">
+      <ol class="loose">
+        <li>Monday 9:00 AM: a supervisor's account signed in from abroad at 2:00 AM and exported 900 applicant records, with ID numbers. The supervisor was asleep.</li>
+        <li>The SMS vendor reports a breach of its own system: names and mobile numbers of RSSO applicants were taken. No ID numbers were stored there.</li>
+      </ol>
+      <p class="muted">Vote by show of hands first: notify, or not? Then reveal.</p>
+    </div>
+  </div>
+  <pdac-reveal-panel data-label="Show the model answers" data-title="Try it 5.2 · cases 1 and 4">
+    <div class="rp-cases">
+      <p><b>Case 1 — Notify.</b> Sensitive (government ID numbers), Stolen (an export the owner did not make), Serious (a real risk of identity fraud). Contain at once: end the account's sessions, reset its password, check MFA. The clock started Monday 9:00 AM, when Ana saw the export. With 100 or more people, no delay: the NPC and the 900 applicants by Thursday 9:00 AM; the full report within 5 days.</p>
+      <p><b>Case 4 — The RSSO decides, not the vendor.</b> Names and mobile numbers are not sensitive personal information, but they can be used for scam texts impersonating the RSSO. With so many people involved, weigh the harm under Section 13; many DPOs would notify. Either way, warn staff and applicants about fake RSSO texts, document the decision, and check the vendor's agreement. If notifiable, 72 hours from the vendor's report.</p>
+    </div>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes in class for cases 1 and 4; cases 2 and 3 are in the guide for after today.</p>
+    <p><b>VOTE:</b> show of hands — notify or not — for each case, then reveal the reasoning. The point is the reasoning, not a yes/no.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the two cases; the button or A shows the model answers; R closes. T starts the timer.</p>
+  </aside>
+</section>
+
+<!-- 26 -->
+<section id="check-5-2" data-min="2" data-break-after="10" data-code="5.2" data-eyebrow="Check yourself 5.2 · answer from memory" data-source="Module 5 learner guide, Check yourself 5.2">
+  <h2>Four quick ones, then a break</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>What are the 3S?</b><span class="answer"><span class="answer-label">Answer:</span> Sensitive, Stolen, Serious.</span></li>
+    <li><b>When does the 72-hour clock start?</b><span class="answer"><span class="answer-label">Answer:</span> When the office knows, or reasonably believes, that a breach needing notification has happened.</span></li>
+    <li><b>Name four things the notice to each affected person must contain.</b><span class="answer"><span class="answer-label">Answer:</span> Any four of: what happened; which personal data may be involved; what was done to address it; what was done to reduce harm; whom to contact; any help offered.</span></li>
+    <li><b>The NPC has not answered your postponement request. May you postpone?</b><span class="answer"><span class="answer-label">Answer:</span> No. Approval must be express and in writing; silence is not approval.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes, then the 10-minute break (8:55 to 9:05).</p>
+    <p class="notes-web"><b>ON SCREEN:</b> → reveals the next answer; A shows all. Press K for the break timer. After the break, the tabletop briefing.</p>
+  </aside>
+</section>
+
+<!-- 27 -->
+<section id="capstone-intro" class="l-statement" data-min="3" data-eyebrow="The capstone · 40% of the course" data-source="Module 5 Tabletop Kit, How the exercise works" data-theme="accent" data-blackout-first>
+  <h2>Your team is the response team</h2>
+  <div class="body">
+    <p class="lead">The facilitators are the white cell: they bring new information — injects — as the fictional clock moves, and they play everyone outside your team, from Director Eva to a reporter. Eighty minutes cover about three days. Everything is fictional; nothing real is named.</p>
+    <ul class="statement-points">
+      <li class="fragment"><b>What it is built on:</b> your <b>Module 5 Tabletop Kit</b> — the RSSO fact sheet, the role cards, the incident log, and the templates for the plan and the report.</li>
+      <li class="fragment"><b>Which office:</b> the same fictional RSSO you audited in Module 4, a few weeks later — with those findings still open.</li>
+      <li class="fragment"><b>How it is judged:</b> 40% of the course, and the report follows what <b>NPC Circular 16-03</b> asks an office to document (Sec. 9) and to tell the NPC and the people (Secs. 17 and 18).</li>
+    </ul>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>RETRIEVAL FIRST:</b> opens blacked out — ask the room what they think "running the response as a team" will involve, then press B.</p>
+    <p><b>THE BASIS, SAY IT PLAINLY:</b> everything you need is in the Tabletop Kit in your hands — nothing is hidden. The scenario is the RSSO from Module 4, so the root cause is probably already in your own findings register. The rubric is in the Kit too, so you know exactly what earns marks.</p>
+    <p><b>SAY:</b> this is where all five modules come together. Director Eva has delegated the response to you: your incident commander may order any containment step, but a public statement, a payment, or reopening services needs the head's approval. The clock runs in fictional time — the 72 hours are fictional hours. Credit any decision you can justify from what you knew at that fictional time.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the briefing. Keep the facilitator-only White Cell Guide off the screen.</p>
+  </aside>
+</section>
+
+<!-- 28 -->
+<section id="tabletop-how" class="l-cards-3" data-min="3" data-eyebrow="The capstone · how it works" data-source="Module 5 Tabletop Kit, How the exercise works; Rules">
+  <h2>How the exercise works</h2>
+  <div class="cards body">
+    <div class="card fragment"><span class="icon"><i data-lucide="users"></i></span><h4>Draw roles by lot</h4><p>Anyone who led an earlier activity takes a different role. Teams of five combine the scribe and the communications lead.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="clipboard-list"></i></span><h4>Log every decision</h4><p>With its fictional time, who decided, and why. A decision without a reason earns no credit.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="message-circle-question"></i></span><h4>Ask the white cell</h4><p>Anything you would ask in real life; it answers in character. Online, ask in your breakout room's chat.</p></div>
+    <div class="card fragment"><span class="icon"><i data-lucide="user-check"></i></span><h4>Stay in role</h4><p>The incident commander has the final word; the scribe records any disagreement.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> name nothing real — no real offices, people or systems. If you need a name, use a fictional one. The white cell will bring information as the clock moves; ask it anything you would ask in real life.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next rule.</p>
+  </aside>
+</section>
+
+<!-- 29 -->
+<section id="rounds" class="l-table" data-min="4" data-eyebrow="The capstone · the three rounds" data-source="Module 5 Tabletop Kit, The rounds">
+  <h2>Three rounds, about three days</h2>
+  <table class="t body">
+    <thead><tr><th>Round</th><th>Fictional time</th><th>Your team decides</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td><b>1. Detect</b><br><span class="muted">25 min</span></td><td>Friday, 4:45 to 9:00 PM</td><td>The incident and its severity; who is called; the first containment step; whether personal data is involved; when the 72-hour clock starts</td></tr>
+      <tr class="fragment"><td><b>2. Contain &amp; eradicate</b><br><span class="muted">30 min</span></td><td>Saturday</td><td>What to isolate; how evidence is kept; the eradication plan; a holding statement; whether the clock has already started</td></tr>
+      <tr class="fragment"><td><b>3. Notify &amp; recover</b><br><span class="muted">25 min</span></td><td>Sunday to Monday</td><td>The notices to the NPC and the people; any request to the NPC; reports to DICT and law enforcement; the ransom stance; the restore order; lessons learned</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> submit the immediate response plan at the end of Round 1; the incident log and the final report by 11:15 AM. If connectivity fails, the grace period runs until 5:00 PM the same day. Start the log in the first minute, and ask "is personal data involved?" in Round 1, not Round 3.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next round. The white cell runs the inject schedule from the facilitator guide.</p>
+  </aside>
+</section>
+
+<!-- 30 -->
+<section id="rules-submit" class="l-two-col" data-min="2" data-eyebrow="The capstone · rules and what you submit" data-source="Module 5 Tabletop Kit, Rules; What you submit">
+  <h2>The rules, and what you submit</h2>
+  <div class="two-col body">
+    <div class="col">
+      <p class="col-head"><i data-lucide="gavel"></i> The rules</p>
+      <ul>
+        <li>Log every decision with its time and a reason</li>
+        <li>Ask the white cell anything; it answers in character</li>
+        <li>Stay in role; the commander has the final word</li>
+        <li>Name nothing real</li>
+      </ul>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="file-check"></i> What you submit</p>
+      <ul>
+        <li>An immediate response plan (one page) at the end of Round 1</li>
+        <li>The incident log, kept from the first minute</li>
+        <li>The final incident report, with the NPC and affected-person fields</li>
+      </ul>
+    </div>
+  </div>
+  <pdac-reveal-panel data-label="Show what good looks like" data-title="Example — from the worked incident, not today's capstone">
+    <h4>Incident log: the first three lines</h4>
+    <table class="t compact">
+      <thead><tr><th>#</th><th>Time</th><th>What happened or was decided</th><th>Who</th><th>Why, or the source</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Mon 9:00</td><td>An export of 900 applicant records at 2:00 AM found in the sign-in records</td><td>Ana</td><td>Portal sign-in log</td></tr>
+        <tr><td>2</td><td>Mon 9:02</td><td>Declared an incident, severity Critical</td><td>Commander</td><td>Sensitive data of many people may be exposed</td></tr>
+        <tr><td>3</td><td>Mon 9:05</td><td>Clock started at 9:00; DPO told</td><td>DPO</td><td>Reasonable belief of a notifiable breach (Sec. 17)</td></tr>
+      </tbody>
+    </table>
+    <h4>Immediate response plan: the answers that earn marks</h4>
+    <table class="t compact">
+      <tbody>
+        <tr><td>Severity, and why</td><td><b>Critical</b> — sensitive personal data of about 900 people may be exposed</td></tr>
+        <tr><td>Personal data involved?</td><td><b>Yes</b> — names, addresses and government ID numbers</td></tr>
+        <tr><td>Clock start, and the reason</td><td><b>Mon 9:00</b>, when the export was seen: reasonable belief, not certainty</td></tr>
+        <tr><td>First containment steps</td><td>End the sessions, reset the password, check MFA (Ana, by 9:15); disconnect, do not power off</td></tr>
+        <tr><td>Evidence we are preserving</td><td>Sign-in and firewall logs, an image of the server, chain of custody (Ana)</td></tr>
+      </tbody>
+    </table>
+    <p class="rp-note"><b>What makes these score:</b> every line has a time, a named role and a reason — a decision without a reason earns no credit. <b>Today's capstone is a different incident,</b> so copy the shape, not the answers.</p>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> use your desk card — isolate first, preserve before you wipe, one voice. Your Module 4 findings register may already hold the root cause. Smoke, not ashes: the clock can start before you are sure.</p>
+    <p><b>SHOW THE EXAMPLE:</b> press the button (or A) for a model log and plan, built from the worked incident we just walked through. Point at the three columns that earn the marks: time, who, and why. Close it before the rounds start.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two columns — the rules, and the three things you submit. The button or A opens the example; R closes it.</p>
+  </aside>
+</section>
+
+<!-- 31 -->
+<section id="scoring" class="l-table" data-min="3" data-eyebrow="The capstone · how it is scored" data-source="Module 5 Tabletop Kit, How it is scored (100 points, scaled to 40%)">
+  <h2>How it is scored</h2>
+  <table class="t body">
+    <thead><tr><th>Criterion</th><th>Points</th><th>Full marks means</th></tr></thead>
+    <tbody>
+      <tr><td>Legal protocols and DPA notification</td><td><b>40</b></td><td>A correct breach decision; a defensible clock start; complete content for the NPC and the people; requests handled properly; DBNMS filing; other reports identified</td></tr>
+      <tr><td>Logic of containment</td><td><b>30</b></td><td>A sensible order and scope; evidence preserved; eradication and recovery justified</td></tr>
+      <tr><td>Final incident report</td><td><b>30</b></td><td>Accurate and complete, with a clear timeline, a preliminary root cause, and lessons learned with owners</td></tr>
+      <tr><td>Participation check</td><td><b>Gate</b></td><td>Every member held a role and contributed; exceptions are flagged to ILCDB, not scored</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> every member receives the team score, after a participation check. The biggest block of marks is the legal and notification decisions — the clock start alone is worth a lot, and it rewards starting early on reasonable belief.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the three criteria and the participation gate. The detailed indicators are in the facilitator score sheet.</p>
+  </aside>
+</section>
+
+<!-- 32 -->
+<section id="tabletop-run" class="l-activity" data-min="80" data-break-after="10" data-eyebrow="The capstone · run it" data-level="Create" data-source="Module 5 Tabletop Kit and White Cell Guide" data-timer="80" data-timer-label="Tabletop" data-checkpoints="25:End Round 1 — collect plans|55:End Round 2 — pulse check" data-blackout-first>
+  <h2>Run the response, round by round</h2>
+  <div class="body run-cols">
+    <div class="run-main">
+      <p class="lead">Friday, 4:45 PM. Ben calls Ana: the files on the shared drive are renamed and will not open, and a <b>RESTORE_YOUR_FILES</b> note sits in every folder — the data is copied, and will be published unless a payment is made within 72 hours. The portal still loads, but Ana cannot open its admin page.</p>
+      <ol class="run-steps">
+        <li><b>Round 1 · Detect</b> — name the scribe, start the log at 4:45 PM, declare the incident and severity, decide who to call, the first containment step, and when the clock starts. Submit the one-page plan.</li>
+        <li><b>Round 2 · Contain &amp; eradicate</b> — what to isolate, how to keep evidence, the eradication plan, a holding statement.</li>
+        <li><b>Round 3 · Notify &amp; recover</b> — the notices, any request to the NPC, reports to DICT and police, the ransom stance, the restore order, lessons learned.</li>
+      </ol>
+    </div>
+    <aside class="run-side">
+      <div class="exit-card is-wide">
+        <p class="exit-card__k"><i data-lucide="upload"></i> Submit here</p>
+        <pdac-qr-panel data-link="tabletop-submit"></pdac-qr-panel>
+      </div>
+    </aside>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 80 minutes: Round 1 (25), Round 2 (30), Round 3 (25), then the 10-minute break (10:40 to 10:50).</p>
+    <p><b>FACILITATORS:</b> run the inject schedule from the White Cell Guide — do not share it. Read each inject at its real time, announce the fictional time, and never say whether a decision is right during the rounds; the debrief does that. Collect the immediate response plans at the end of Round 1.</p>
+    <p><b>OPTIONAL WARM-UP:</b> if you use RSSO Live, run one short game before Round 1 (it plays a different incident, so it gives nothing away), then hand over to the paper tabletop.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> opens blacked out so you can brief first; press B. T runs the 80-minute timer with checkpoints at the end of Rounds 1 and 2. Keep the White Cell Guide off the projector.</p>
+  </aside>
+</section>
+
+<!-- 33 -->
+<section id="final-report" class="l-activity" data-min="25" data-eyebrow="The capstone · the final report" data-level="Create" data-source="Module 5 Tabletop Kit, Final incident report" data-timer="25" data-timer-label="Final report">
+  <h2>The final incident report</h2>
+  <div class="body grid-2">
+    <ol class="report-parts">
+      <li>Summary — what happened, when discovered, what was affected, where it stands</li>
+      <li>Timeline — discovery, declaration, each containment step, each notification, return to service</li>
+      <li>Systems and data affected — kinds of data, how many, breach type</li>
+      <li>Actions taken — containment, evidence, eradication, recovery</li>
+      <li>Notification decisions — the NPC, the people, any request, DICT, police</li>
+      <li>Draft notice to the NPC, and a plain-words notice to the people affected</li>
+      <li>Preliminary root cause, linked to your Module 4 findings, and lessons learned with named owners and dates</li>
+    </ol>
+    <div class="stack">
+      <div class="card"><span class="k">Due</span><h4>By 11:15 AM</h4><p>One file per team through the submission link. Grace period until 5:00 PM if connectivity fails.</p></div>
+      <div class="card"><span class="k">Structure</span><h4>NPC Circular 16-03</h4><p>The report follows what the circular asks an office to document (Sec. 9) and to tell the NPC and the people (Secs. 17, 18).</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 25 minutes (10:50 to 11:15).</p>
+    <p><b>SAY:</b> this is where the log pays off — a report built from a good log writes itself. Link each root cause to a finding from your Module 4 register where you can.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the report's parts; T runs the 25-minute timer. The template is in the Tabletop Kit.</p>
+  </aside>
+</section>
+
+<!-- 34 -->
+<section id="reportouts" class="l-cards-3" data-min="15" data-eyebrow="Report-outs · three minutes a team" data-source="Module 5 White Cell Guide, Report-outs">
+  <h2>Each team, in three minutes</h2>
+  <div class="cards body">
+    <div class="card"><span class="icon"><i data-lucide="route"></i></span><h4>Your timeline in one breath</h4><p>Discovery to return to service.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="list-checks"></i></span><h4>Three key decisions</h4><p>Severity, clock start, and one containment call — each with its reason.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="refresh-cw"></i></span><h4>One thing you would change</h4><p>What you learned to do differently.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 15 minutes (part of 11:15 to 11:40). Keep strictly to time; with more than six teams, two minutes each.</p>
+    <p><b>SAY:</b> we are not looking for the one right answer — we are looking for defensible decisions, logged with reasons. Listen for how differently teams read the same incident.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> what each team shows. Use the facilitator score sheet to note as they go.</p>
+  </aside>
+</section>
+
+<!-- 35 -->
+<section id="hotwash" class="l-cards-3" data-min="10" data-eyebrow="Hot wash · the common gaps" data-source="Module 5 White Cell Guide, Hot wash" data-terms="chain-of-custody">
+  <h2>What most teams get wrong</h2>
+  <div class="cards body">
+    <div class="card fragment no"><span class="icon"><i data-lucide="hourglass"></i></span><h4>Starting the clock late</h4><p>Waiting for certainty on Saturday afternoon. Smoke, not ashes.</p></div>
+    <div class="card fragment no"><span class="icon"><i data-lucide="trash-2"></i></span><h4>Wiping before preserving</h4><p>Cleaning or restoring before logs and images were kept.</p></div>
+    <div class="card fragment no"><span class="icon"><i data-lucide="mail-warning"></i></span><h4>A thin notice to the people</h4><p>No content planned for applicants until Monday, or a notice with personal data in it.</p></div>
+    <div class="card fragment no"><span class="icon"><i data-lucide="clipboard-list"></i></span><h4>No scribe</h4><p>Decisions nobody recorded, so the report was rebuilt from memory.</p></div>
+    <div class="card fragment no"><span class="icon"><i data-lucide="octagon-alert"></i></span><h4>Giving in to pressure</h4><p>Agreeing to "say nothing was taken", or paying without legal advice and law enforcement.</p></div>
+    <div class="card fragment no"><span class="icon"><i data-lucide="key"></i></span><h4>Vendor shortcuts</h4><p>Handing over the built-in admin password because service had to reopen.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> about 10 minutes (the rest of 11:15 to 11:40).</p>
+    <p><b>SAY:</b> name what most teams did well first, then these gaps. Close with the link back to the course: every root cause in this scenario was already in the Module 4 audit. The tabletop shows what those findings cost when nobody fixes them.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals a common gap.</p>
+  </aside>
+</section>
+
+<!-- 36 -->
+<section id="five-modules" class="l-table" data-min="4" data-eyebrow="Course close · five modules, one office" data-source="Module 5 learner guide, Five modules, one office">
+  <h2>What you can now do for your office</h2>
+  <table class="t body">
+    <thead><tr><th>Module</th><th>You can now</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td><b>1</b></td><td>Name the threats; apply the Data Privacy Act, ISO/IEC 27001 and the ASEAN AI guide</td></tr>
+      <tr class="fragment"><td><b>2</b></td><td>Find weak spots, model threats, rate risks, and spot social engineering</td></tr>
+      <tr class="fragment"><td><b>3</b></td><td>Choose controls: zones, encryption, MFA and roles</td></tr>
+      <tr class="fragment"><td><b>4</b></td><td>Keep devices and tools safe, use threat intelligence, and audit an office's records</td></tr>
+      <tr class="fragment"><td><b>5</b></td><td>Respond, notify, recover and report</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> one fictional office, the RSSO, carried all five modules. Everything you did to it, you can do for your own office — at awareness level, with the right people and written authority for anything technical.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next module.</p>
+  </aside>
+</section>
+
+<!-- 37 -->
+<section id="thirty-day" class="l-interactive" data-min="4" data-eyebrow="Course close · your 30-day plan" data-level="Create" data-source="Module 5 learner guide, Your 30-day office plan" data-timer="4" data-timer-label="30-day plan">
+  <h2>Three lines for your own office</h2>
+  <div class="stage">
+    <pdac-fill-template data-template="This week, I will {{this-week}}. Within two weeks, I will {{two-weeks}}. Within 30 days, I will {{thirty-days}}. I will know each is done when {{done}}."></pdac-fill-template>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes. Write, nothing saved.</p>
+    <p><b>SAY:</b> make each line checkable. Ideas: ask your ICT head to subscribe to the National CERT's advisories; test the incident reporting path — does everyone know the one channel?; restore-test one backup; name your Data Breach Response Team with a deputy for each role; hold a 30-minute awareness session; run a 60-minute tabletop with your unit.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> type live into the sentence; A fills an example; nothing is saved or sent.</p>
+  </aside>
+</section>
+
+<!-- 38 -->
+<section id="toolkit" class="l-table" data-min="3" data-eyebrow="Course close · take-home toolkit" data-source="Module 5 learner guide, Take-home toolkit and Desk card">
+  <h2>Where to go, and what to watch out for</h2>
+  <table class="t compact body">
+    <thead><tr><th>Need</th><th>Where to go</th><th>Watch out for</th></tr></thead>
+    <tbody>
+      <tr><td>Report a scam</td><td>Hotline 1326 and the CICC's ScamSafe</td><td>These take public reports; an office's own incident follows its plan</td></tr>
+      <tr><td>Check a suspicious message</td><td>ScamCheck.ph, as a second opinion</td><td>Remove names, numbers and codes first; never for official records</td></tr>
+      <tr><td>Check a password</td><td>Pwned Passwords</td><td>Invented passwords only; for real ones use a manager's own check</td></tr>
+      <tr><td>Check an image</td><td>Content Credentials Verify</td><td>A file without credentials is not proven fake</td></tr>
+      <tr><td>Run an exercise</td><td>CISA Tabletop Exercise Packages</td><td>Written for the US: swap its laws and channels for the DPA, NPC and DICT</td></tr>
+      <tr><td>Know the breach duties</td><td>The NPC's DBNMS; DICT Circular 005</td><td>Read Circular 005 itself before relying on its deadlines</td></tr>
+    </tbody>
+  </table>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> these are free, public tools you can use tomorrow. The rule is the same as all week: approved tools only for office data, and remove personal data before you check anything in a public tool.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the take-home toolkit.</p>
+  </aside>
+</section>
+
+<!-- 39 -->
+<section id="deskcard" class="l-interactive" data-min="3" data-eyebrow="Course close · desk card, Module 5 additions" data-source="Module 5 learner guide, Desk card: Module 5 additions">
+  <h2>Six phrases for your desk card</h2>
+  <div class="stage"><pdac-phrases data-keys="phases,isolate,preserve,smoke725,silence,oclov" data-cols="3"></pdac-phrases></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> add these to your desk card from Modules 1 to 4. Prepare, detect, contain, eradicate, recover, learn. Isolate first, power off last. Preserve before you wipe. Smoke, not ashes: 72-5. Silence is not approval. One channel, one log, one voice.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the six Module 5 phrases, each with its icon and what it stands for.</p>
+  </aside>
+</section>
+
+<!-- 40 -->
+<section id="m5-recap" class="l-statement" data-min="2" data-blackout-first data-footer="none">
+  <p class="eyebrow">Recap · the phrases that carry it all</p>
+  <h2>From a whole week, the ones to keep</h2>
+  <pdac-phrases data-keys="cia,3s-72-5,upel,phases,isolate,oclov" data-cols="3" data-recap></pdac-phrases>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>RETRIEVAL FIRST:</b> opens blacked out; ask the room to call out three phrases from the week, then press B and read these.</p>
+    <p><b>PHRASES:</b> Secret, Correct, Ready. 3S, then 72-5. Update, protect, encrypt, lock. Prepare, detect, contain, eradicate, recover, learn. Isolate first, power off last. One channel, one log, one voice.</p>
+  </aside>
+</section>
+
+<!-- 41 -->
+<section id="m5-exit" class="l-two-col" data-min="2" data-eyebrow="Course close · before you go" data-source="Course syllabus · NPC, DICT">
+  <h2>Two minutes, and you are done</h2>
+  <div class="two-col body close-cols">
+    <div class="col">
+      <p class="col-head"><i data-lucide="hand-heart"></i> Thank you</p>
+      <p>You protected a whole fictional office for a week — named the threats, found the weak spots, chose the controls, secured the devices, and responded when it still went wrong.</p>
+      <p class="muted">Everything here is fictional and awareness-level. For anything technical in your own office, use the right people and written authority.</p>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="clipboard-check"></i> Course exit check · 20 min</p>
+      <p>One form, one scan, one submit — the exit check for <b>all five modules</b>, taken today. Anonymous and ungraded; it tells us what stuck and what to make clearer next time.</p>
+    </div>
+  </div>
+  <div class="exit-card materials-card close-materials">
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="clipboard-check"></i> Exit check · Modules 1 to 5</p>
+      <pdac-qr-panel data-link="exit-course"></pdac-qr-panel>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes to explain; they fill it in as they go.</p>
+    <p><b>BEFORE YOU GO:</b> one exit check for the whole course, and only this one (anonymous, about 20 minutes): it carries all five modules’ exit checks, since we did not run them during the week — five "what stuck" items from every module, a before-and-now rating per module, and feedback. People can finish it after the session if time is short. Team scores for the capstone come after the participation check; every member gets the team score.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the course exit check QR (<code>exit-course</code>, from createCourseExitForms). Online: paste the link in the chat. Run showCourseExitResults after the session. This single form replaces the Module 5 exit check: one scan, one submit.</p>
+  </aside>
+</section>
+
+<!-- 42 -->
+<section id="m5-close" class="l-cover" data-min="2" data-footer="none" data-theme="dark">
+  <div class="cover-art"><i data-lucide="shield-check"></i></div>
+  <p class="kicker">Protecting Digital Assets from Cyber Threats</p>
+  <h1>Prepare, detect, contain, eradicate, recover, learn</h1>
+  <p class="subtitle">Take one thing back to your office this week, and make it checkable</p>
+  <div class="meta"><span>Nino Filipen Duque · DICT Region 2 · ICT Academy: Digital Workforce</span><span>Thank you — and good luck</span></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> you do not have to do everything. Pick one thing from your 30-day plan and actually do it this week. That is how a week of training becomes a safer office. Thank you.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the closing slide.</p>
+  </aside>
+</section>

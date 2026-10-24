@@ -1,19 +1,9 @@
 import { getData, hasData } from '../core/data';
 import type { PdacInteractive } from '../core/types';
-
-/** Escape text from data files before it goes into innerHTML. */
-export function esc(value: unknown): string {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-/** Escaped text with **bold** allowed (for reasons and explanations). */
-export function md(value: unknown): string {
-  return esc(value).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
-}
+// esc/md moved to core/esc.ts so NetMap can reuse them without bundling the
+// answer data. Re-exported here so existing imports keep working.
+export { esc, md } from '../core/esc';
+import { esc } from '../core/esc';
 
 /**
  * Base for every slide interactive. Subclasses implement setup(), reset() and

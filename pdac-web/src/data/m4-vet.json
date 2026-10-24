@@ -1,0 +1,27 @@
+{
+  "_status": "Module 4, Try it 4.2B 'Vet the tool' (learner guide of 21 October 2026, pages 7, 8 and 17): the three cards' facts and the guide's model answers to the five questions, word for word.",
+  "unit": "Card",
+  "items": [
+    { "id": "v1", "who": "Card 1", "text": "**ScamCheck.ph:** a free AI-assisted checker for suspicious messages, built by BetterGov.PH, a civic-tech group, launched on 2 October 2025. It accepts pasted text, a screenshot or a forwarded email. The site warns that AI results can be wrong. It is not an official government tool.",
+      "facts": [
+        { "k": "Who runs it?", "v": "BetterGov.PH, a civic-tech group, not a government agency" },
+        { "k": "Where does my input go?", "v": "The text, screenshot or email you send goes to the service" },
+        { "k": "Can a result be wrong?", "v": "Yes: the site warns that AI results can be wrong" },
+        { "k": "Official or approved?", "v": "Not official; personal awareness only, unless your office approves it" },
+        { "k": "Never put in", "v": "Applicants' names, ID numbers or case details: remove them first" } ] },
+    { "id": "v2", "who": "Card 2", "text": "**Content Credentials Verify:** reads Content Credentials, signed information attached to a file that shows how it was made and edited. A file without credentials is not proven fake, and a screenshot does not carry the original's credentials.",
+      "facts": [
+        { "k": "Who runs it?", "v": "The card does not say: find out from the site before office use" },
+        { "k": "Where does my input go?", "v": "Not stated on the card, so do not upload office files until you know" },
+        { "k": "Can a result be wrong?", "v": "A file without credentials is not proven fake; a screenshot carries none" },
+        { "k": "Official or approved?", "v": "Only after the approved-tools route" },
+        { "k": "Never put in", "v": "Images of applicants or their documents" } ] },
+    { "id": "v3", "who": "Card 3", "text": "**Pwned Passwords:** checks whether a password appears in known data breaches. Only the first 5 characters of the password's hash are sent, never the password itself (Troy Hunt).",
+      "facts": [
+        { "k": "Who runs it?", "v": "Have I Been Pwned" },
+        { "k": "Where does my input go?", "v": "Only the first 5 characters of the password's hash" },
+        { "k": "Can a result be wrong?", "v": "\"Found\" means never use it; \"not found\" does not mean strong" },
+        { "k": "Official or approved?", "v": "Only as your office's password policy allows" },
+        { "k": "Never put in", "v": "Anyone else's password" } ] }
+  ]
+}

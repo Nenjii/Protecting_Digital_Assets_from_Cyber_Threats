@@ -1,0 +1,22 @@
+{
+  "_status": "Module 4, Lesson 4.1 'Phones and tablets' and 'Office devices or personal ones?' (learner guide of 21 October 2026), including NPC Circular 2023-06 on known, properly configured devices. Cases invented around the fictional RSSO cast.",
+  "options": [
+    { "id": "all", "label": "IT locks and wipes it" },
+    { "id": "profile", "label": "IT wipes the work profile only" },
+    { "id": "never", "label": "Not allowed for work" }
+  ],
+  "items": [
+    { "id": "d1", "text": "Sol's office-issued phone is left on a jeepney. She reports it within the hour.", "answer": "all",
+      "facts": [{ "k": "Office-issued", "v": "The office controls it: full baseline; lost or stolen, IT locks and wipes it" }],
+      "reason": "Reporting at once is what makes the remote wipe possible." },
+    { "id": "d2", "text": "Ben's personal phone, with a separate work profile under the office's policy, is stolen.", "answer": "profile",
+      "facts": [{ "k": "Personal, where allowed", "v": "A written policy, an approved-apps list and a separate work profile; IT wipes the work profile only" }],
+      "reason": "App management (MAM) protects only the work apps on a personal phone." },
+    { "id": "d3", "text": "A staff member roots his phone to install a game, then signs in to work email on it.", "answer": "never",
+      "facts": [{ "k": "The guide", "v": "Never root or jailbreak a device used for work: it removes the phone's own protections" }],
+      "reason": "A rooted phone cannot be trusted with office data." },
+    { "id": "d4", "text": "Dan opens applicant records at home on a laptop of his own that IT has never set up.", "answer": "never",
+      "facts": [{ "k": "NPC Circular 2023-06", "v": "Only known devices, properly configured to the office's security standards, may access personal data" }],
+      "reason": "An unknown device has an unknown baseline: no proof of updates, protection or encryption." }
+  ]
+}

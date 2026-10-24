@@ -11,21 +11,29 @@ interface RbacData {
   start: Record<string, string[]>;
   recommended: Record<string, string[]>;
   conflicts: Conflict[];
+  /** The model answer's qualifier for a granted cell, keyed "role:function" (shown after A). */
+  notes?: Record<string, string>;
+  /** A line under the conflicts after A, e.g. a conflict the grid cannot show. */
+  answerNote?: string;
+  /** Words on the buttons (the default is "Least privilege" and "Start state"). */
+  labels?: { answer?: string; reset?: string };
 }
 
 /**
  * <pdac-rbac-matrix data-src="m3-rbac.json">
  * Roles × functions for the (fictional) RSSO Assistance Portal. Click a cell to
  * grant or remove; separation-of-duties conflicts are flagged in words.
- * A shows the least-privilege answer.
+ * A shows the least-privilege answer, with the model answer's notes in the cells.
  */
 export class PdacRbacMatrix extends PdacBase {
   private data!: RbacData;
   private grants = new Map<string, Set<string>>();
+  private answered = false;
 
   protected setup(): void {
     this.data = this.json<RbacData>();
     this.load(this.data.start);
+    const labels = this.data.labels ?? {};
     this.innerHTML = `
       <div class="rb-wrap">
         <table class="rb-table">
@@ -35,9 +43,10 @@ export class PdacRbacMatrix extends PdacBase {
         <aside class="rb-side">
           <p class="rb-k">${icon('triangle-alert')} Conflicts</p>
           <ul class="rb-conflicts" aria-live="polite"></ul>
+          <p class="rb-note-line" hidden></p>
           <div class="pdac-bar__left">
-            <button type="button" class="pdac-btn" data-act="answer">${icon('eye')} Least privilege <span class="pdac-key">A</span></button>
-            <button type="button" class="pdac-btn pdac-btn--quiet" data-act="reset">${icon('rotate-ccw')} Start state <span class="pdac-key">R</span></button>
+            <button type="button" class="pdac-btn" data-act="answer">${icon('eye')} ${esc(labels.answer ?? 'Least privilege')} <span class="pdac-key">A</span></button>
+            <button type="button" class="pdac-btn pdac-btn--quiet" data-act="reset">${icon('rotate-ccw')} ${esc(labels.reset ?? 'Start state')} <span class="pdac-key">R</span></button>
           </div>
         </aside>
       </div>`;
@@ -79,22 +88,28 @@ export class PdacRbacMatrix extends PdacBase {
         ${this.data.roles.map((r) => {
           const on = this.grants.get(r.id)!.has(fn.id);
           const conflict = hot.has(`${r.id}:${fn.id}`);
-          return `<td><button type="button" class="rb-cell ${on ? 'is-on' : ''} ${conflict ? 'is-conflict' : ''}" data-role="${r.id}" data-fn="${fn.id}"
-              aria-pressed="${on}" aria-label="${esc(r.label)}: ${esc(fn.label)}">${on ? `${icon('check')} Yes` : 'No'}</button></td>`;
+          const note = this.answered && on ? this.data.notes?.[`${r.id}:${fn.id}`] : undefined;
+          return `<td><button type="button" class="rb-cell ${on ? 'is-on' : ''} ${conflict ? 'is-conflict' : ''} ${note ? 'has-note' : ''}" data-role="${r.id}" data-fn="${fn.id}"
+              aria-pressed="${on}" aria-label="${esc(r.label)}: ${esc(fn.label)}${note ? ` (${esc(note)})` : ''}">${on ? `<span>${icon('check')} Yes</span>${note ? `<small class="rb-note">${esc(note)}</small>` : ''}` : 'No'}</button></td>`;
         }).join('')}
       </tr>`).join('');
     this.$('.rb-conflicts').innerHTML = conflicts.length
       ? conflicts.map(({ role, c }) => `<li><b>${esc(role.label)}:</b> ${md(c.why)}</li>`).join('')
       : `<li class="rb-none"><span class="pdac-verdict is-ok">✓ No conflicts</span></li>`;
+    const line = this.querySelector<HTMLElement>('.rb-note-line')!;
+    line.hidden = !(this.answered && this.data.answerNote);
+    line.innerHTML = this.answered && this.data.answerNote ? md(this.data.answerNote) : '';
   }
 
   showAnswer(): void {
     this.load(this.data.recommended);
+    this.answered = true;
     this.render();
   }
 
   reset(): void {
     this.load(this.data.start);
+    this.answered = false;
     this.render();
   }
 }

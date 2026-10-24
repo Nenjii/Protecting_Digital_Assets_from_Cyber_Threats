@@ -1,0 +1,38 @@
+{
+  "_status": "Module 3, Try it 3.2 'Encrypt it right' and its model answers (learner guide of 21 October 2026, pages 7, 13 and 14), word for word. A different answer with a sound reason can also be right.",
+  "unit": "Data set",
+  "items": [
+    { "id": "e1", "text": "The HR shared drive with staff records", "facts": [
+      { "k": "Stored", "v": "Drive or file encryption; access by role only" },
+      { "k": "Moving", "v": "Encrypted file sharing inside the office; VPN from outside" },
+      { "k": "Key holder", "v": "Ana, with access approved by the HR head" } ] },
+    { "id": "e2", "text": "A USB drive field staff use to bring home-visit forms to the office", "facts": [
+      { "k": "Stored", "v": "Office-issued encrypted USB drive" },
+      { "k": "Moving", "v": "Hand-carried with the head's approval; at most 1,000 sensitive records" },
+      { "k": "Key holder", "v": "The field supervisor, with Ana as backup" } ] },
+    { "id": "e3", "text": "The nightly database backup", "facts": [
+      { "k": "Stored", "v": "Encrypted, with one copy offline" },
+      { "k": "Moving", "v": "Encrypted transfer to the backup location" },
+      { "k": "Key holder", "v": "Ana, with a sealed recovery copy" } ] },
+    { "id": "e4", "text": "A data exchange between the RSSO's system and a partner agency's system", "facts": [
+      { "k": "Stored", "v": "Each agency's own encrypted database" },
+      { "k": "Moving", "v": "TLS with both sides authenticated, under a data sharing agreement" },
+      { "k": "Key holder", "v": "Each agency's IT, named in the agreement" } ] },
+    { "id": "e5", "text": "A mobile app social workers use on field visits", "facts": [
+      { "k": "Stored", "v": "Device and app encryption; remote wipe if lost" },
+      { "k": "Moving", "v": "TLS to the office server" },
+      { "k": "Key holder", "v": "IT, through device management" } ] },
+    { "id": "e6", "text": "Scanned IDs and medical certificates uploaded by applicants", "facts": [
+      { "k": "Stored", "v": "Encrypted storage, open only to staff who check applications" },
+      { "k": "Moving", "v": "HTTPS upload" },
+      { "k": "Key holder", "v": "Ana" } ] },
+    { "id": "e7", "text": "A list of payouts sent to the e-wallet provider", "facts": [
+      { "k": "Stored", "v": "Encrypted file, deleted from staff computers after upload" },
+      { "k": "Moving", "v": "The provider's business portal over HTTPS instead of email; if email cannot be avoided, an encrypted file with the password sent another way" },
+      { "k": "Key holder", "v": "Dan for the file; Ana for the system" } ] },
+    { "id": "e8", "text": "The public Assistance Portal", "facts": [
+      { "k": "Stored", "v": "No sensitive data kept on the web server itself" },
+      { "k": "Moving", "v": "HTTPS with TLS 1.2 or 1.3 and a valid certificate" },
+      { "k": "Key holder", "v": "Ana, renewing certificates before they expire" } ] }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "_status": "Module 3, Lesson 3.1 (learner guide of 21 October 2026): the RSSO network zones, 6 zones behind one firewall, plus the internet and remote staff. Layer story follows the guide's 'Layers, like a house' table. Every name, address and system is fictional.",
+  "title": "The RSSO network: six zones behind one firewall",
+  "map": {
+    "size": [
+      1350,
+      740
+    ],
+    "zones": [
+      {
+        "id": "internet",
+        "label": "Internet",
+        "x": 10,
+        "y": 10,
+        "w": 370,
+        "h": 720,
+        "tone": "internet"
+      },
+      {
+        "id": "dmz",
+        "label": "Public zone",
+        "x": 610,
+        "y": 10,
+        "w": 240,
+        "h": 222,
+        "tone": "office"
+      },
+      {
+        "id": "server",
+        "label": "Server zone",
+        "x": 865,
+        "y": 10,
+        "w": 475,
+        "h": 222,
+        "tone": "office"
+      },
+      {
+        "id": "staff",
+        "label": "Staff network",
+        "x": 610,
+        "y": 246,
+        "w": 240,
+        "h": 218,
+        "tone": "office"
+      },
+      {
+        "id": "admin",
+        "label": "Admin",
+        "x": 865,
+        "y": 246,
+        "w": 245,
+        "h": 218,
+        "tone": "office"
+      },
+      {
+        "id": "devices",
+        "label": "Devices",
+        "x": 1125,
+        "y": 246,
+        "w": 215,
+        "h": 218,
+        "tone": "office"
+      },
+      {
+        "id": "guest",
+        "label": "Guest Wi-Fi",
+        "x": 610,
+        "y": 478,
+        "w": 240,
+        "h": 250,
+        "tone": "home"
+      },
+      {
+        "id": "vpnzone",
+        "label": "Remote access (VPN)",
+        "x": 865,
+        "y": 478,
+        "w": 475,
+        "h": 250,
+        "tone": "office"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "attacker",
+        "label": "Attacker",
+        "icon": "skull",
+        "x": 115,
+        "y": 110,
+        "role": "attacker"
+      },
+      {
+        "id": "citizen",
+        "label": "Citizen",
+        "sub": "at home",
+        "icon": "smartphone",
+        "x": 290,
+        "y": 110,
+        "role": "person"
+      },
+      {
+        "id": "snooper",
+        "label": "Café Wi-Fi",
+        "sub": "listening",
+        "icon": "radar",
+        "x": 115,
+        "y": 345,
+        "role": "attacker"
+      },
+      {
+        "id": "net",
+        "label": "Internet",
+        "icon": "globe",
+        "x": 290,
+        "y": 345,
+        "role": "net"
+      },
+      {
+        "id": "unknown",
+        "label": "Unknown",
+        "sub": "site abroad",
+        "icon": "flag",
+        "x": 115,
+        "y": 590,
+        "role": "cloud"
+      },
+      {
+        "id": "remote",
+        "label": "Sol, at home",
+        "icon": "laptop",
+        "x": 290,
+        "y": 590,
+        "role": "person"
+      },
+      {
+        "id": "firewall",
+        "label": "Firewall",
+        "sub": "every zone",
+        "icon": "shield",
+        "x": 495,
+        "y": 345,
+        "role": "net"
+      },
+      {
+        "id": "portal",
+        "label": "Portal",
+        "sub": "web server",
+        "icon": "app-window",
+        "x": 730,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "db",
+        "label": "Database",
+        "sub": "48,000 records",
+        "icon": "database",
+        "x": 960,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "files",
+        "label": "File server",
+        "icon": "folder-open",
+        "x": 1120,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "backup",
+        "label": "Backup",
+        "icon": "hard-drive",
+        "x": 1250,
+        "y": 110,
+        "role": "server"
+      },
+      {
+        "id": "staffpc",
+        "label": "Staff PCs",
+        "sub": "Ben, Dan, Sol",
+        "icon": "monitor",
+        "x": 730,
+        "y": 345,
+        "role": "device"
+      },
+      {
+        "id": "ana",
+        "label": "Ana's PC",
+        "sub": "admin pages",
+        "icon": "user-cog",
+        "x": 987,
+        "y": 345,
+        "role": "device"
+      },
+      {
+        "id": "cctv",
+        "label": "CCTV",
+        "sub": "and printers",
+        "icon": "cctv",
+        "x": 1232,
+        "y": 345,
+        "role": "device"
+      },
+      {
+        "id": "visitor",
+        "label": "Visitor's phone",
+        "icon": "smartphone",
+        "x": 730,
+        "y": 590,
+        "role": "person"
+      },
+      {
+        "id": "vpn",
+        "label": "VPN gateway",
+        "sub": "MFA on every account",
+        "icon": "lock-keyhole",
+        "x": 1100,
+        "y": 590,
+        "role": "net"
+      }
+    ],
+    "links": [
+      {
+        "from": "attacker",
+        "to": "net"
+      },
+      {
+        "from": "citizen",
+        "to": "net"
+      },
+      {
+        "from": "snooper",
+        "to": "net"
+      },
+      {
+        "from": "unknown",
+        "to": "net"
+      },
+      {
+        "from": "remote",
+        "to": "net"
+      },
+      {
+        "from": "net",
+        "to": "firewall"
+      },
+      {
+        "from": "firewall",
+        "to": "portal",
+        "via": [
+          [
+            495,
+            239
+          ],
+          [
+            730,
+            239
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "db",
+        "via": [
+          [
+            495,
+            239
+          ],
+          [
+            960,
+            239
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "files",
+        "via": [
+          [
+            495,
+            239
+          ],
+          [
+            1120,
+            239
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "backup",
+        "via": [
+          [
+            495,
+            239
+          ],
+          [
+            1250,
+            239
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "staffpc"
+      },
+      {
+        "from": "firewall",
+        "to": "ana",
+        "via": [
+          [
+            495,
+            471
+          ],
+          [
+            987,
+            471
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "cctv",
+        "via": [
+          [
+            495,
+            471
+          ],
+          [
+            1232,
+            471
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "vpn",
+        "via": [
+          [
+            495,
+            471
+          ],
+          [
+            1310,
+            471
+          ],
+          [
+            1310,
+            590
+          ]
+        ]
+      },
+      {
+        "from": "firewall",
+        "to": "visitor",
+        "via": [
+          [
+            495,
+            590
+          ]
+        ]
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "house",
+      "tab": "Like a house",
+      "label": "Layers, not walls",
+      "steps": [
+        {
+          "title": "No single control is trusted alone",
+          "text": "A house has a fence and gate, locked rooms, an alarm, a key for each person and a safe. The RSSO puts the same five layers between an attacker and the applicant database, so that **when one fails, the next one holds**.",
+          "pre": {
+            "firewall": "focus|1 Fence",
+            "staffpc": "focus|2 Rooms",
+            "ana": "focus|3 Alarm",
+            "portal": "focus|4 Keys",
+            "db": "focus|5 Safe"
+          }
+        }
+      ]
+    },
+    {
+      "id": "l1",
+      "tab": "1 Perimeter",
+      "label": "Layer 1 · the fence and gate",
+      "steps": [
+        {
+          "title": "The firewall at the internet edge",
+          "text": "An internet scan looks for the portal's admin page. The firewall lets citizens reach the portal's public pages, and nothing else.",
+          "send": [
+            {
+              "route": [
+                "citizen",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "label": "Apply online"
+            },
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Admin page?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ Blocked",
+            "citizen": "ok|✓ Page loads"
+          }
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "tab": "2 Separate rooms",
+      "label": "Layer 2 · locked rooms inside",
+      "steps": [
+        {
+          "title": "Say layer 1 is beaten: a click inside",
+          "text": "A staff member opens a phishing link. Malware is now **inside** the perimeter, on a staff PC. The firewall at the edge cannot help with that.",
+          "pre": {
+            "staffpc": "bad|✗ Malware"
+          }
+        },
+        {
+          "title": "The next layer holds: zones",
+          "text": "The staff network may reach the portal and the file server, not the database directly. Every connection between zones passes the firewall's rules.",
+          "pre": {
+            "staffpc": "bad|✗ Malware"
+          },
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "db"
+              ],
+              "kind": "attack",
+              "label": "Database?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "staffpc": "warn|Contained",
+            "firewall": "ok|✓ Blocked"
+          },
+          "verdict": {
+            "tone": "ok",
+            "text": "One infected PC cannot reach the applicant database."
+          }
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "tab": "3 Alarm",
+      "label": "Layer 3 · the burglar alarm",
+      "steps": [
+        {
+          "title": "Monitoring: someone is told",
+          "text": "The malware tries door after door. Each blocked try is logged, and the intrusion detection system raises an alert on Ana's screen. Now a person can act.",
+          "pre": {
+            "staffpc": "warn|Contained"
+          },
+          "send": [
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "backup"
+              ],
+              "kind": "attack",
+              "label": "Backup?",
+              "blockAt": "firewall"
+            },
+            {
+              "route": [
+                "staffpc",
+                "firewall",
+                "ana"
+              ],
+              "kind": "attack",
+              "label": "Admin?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "ana": "warn|🔔 Alert",
+            "firewall": "ok|Logged"
+          }
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "tab": "4 A key each",
+      "label": "Layer 4 · a key for each person",
+      "steps": [
+        {
+          "title": "Named accounts, MFA and roles",
+          "text": "The malware stole Ben's password, and the attacker tries the portal's staff login from outside. MFA asks for a second proof that only Ben has, so the login fails.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "portal"
+              ],
+              "kind": "attack",
+              "label": "Ben's password",
+              "blockAt": "portal"
+            }
+          ],
+          "set": {
+            "portal": "ok|✓ MFA refused",
+            "attacker": "bad|✗ Refused"
+          }
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "tab": "5 Safe",
+      "label": "Layer 5 · a safe for valuables",
+      "steps": [
+        {
+          "title": "Encryption of the database and backups",
+          "text": "Suppose everything else fails and a backup drive walks out of the server room. It is encrypted, and the key is kept elsewhere: the thief has scrambled bytes, not 48,000 records.",
+          "set": {
+            "backup": "ok|🔒 Unreadable",
+            "db": "ok|🔒 Encrypted"
+          },
+          "close": true,
+          "verdict": {
+            "tone": "ok",
+            "text": "Five layers: each failure was caught by the next one."
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "Layer",
+      "In a house",
+      "At the RSSO"
+    ],
+    "rows": [
+      [
+        "Perimeter",
+        "Fence and gate",
+        "Firewall at the internet edge"
+      ],
+      [
+        "Separate rooms",
+        "Locked rooms inside",
+        "Network zones (segmentation)"
+      ],
+      [
+        "Alarm",
+        "Burglar alarm",
+        "Intrusion detection and monitoring"
+      ],
+      [
+        "A key for each person",
+        "Keys only for those who live there",
+        "Named accounts, MFA and roles (Lesson 3.3)"
+      ],
+      [
+        "Safe",
+        "A safe for valuables",
+        "Encryption of the database and backups (Lesson 3.2)"
+      ]
+    ]
+  }
+}

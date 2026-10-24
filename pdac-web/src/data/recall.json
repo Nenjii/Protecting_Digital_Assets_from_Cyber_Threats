@@ -1,5 +1,5 @@
 {
-  "_status": "Module 2 questions match the Module 2 deck's recall slide (synced 20 October 2026). Modules 3 to 5 are drafts.",
+  "_status": "Module 2 questions match the Module 2 deck's recall slide (synced 20 October 2026). Modules 3 and 4 follow their learner guides (21 October 2026): Module 3 opens with a recap of Day 1, Module 4 with a recall of this morning. Module 5 is a draft.",
   "2": {
     "title": "From this morning",
     "questions": [
@@ -14,15 +14,16 @@
       { "q": "Name the four threat modeling questions.", "a": "What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job?", "from": "2.2" },
       { "q": "Likelihood 4, impact 4. Score and band?", "a": "**16, High** (5 by 5).", "from": "2.2" },
       { "q": "What do the letters in SLAM stand for?", "a": "Sender, Links, Attachments, Message.", "from": "2.3" },
-      { "q": "Ben wants 2,500 records on a USB stick at home. What does Sec. 23 require?", "a": "Clearance, approval, 1,000, encrypt.", "from": "1.2" }
+      { "q": "Ben wants 2,500 applicant records on a USB stick at home. What does Sec. 23 require?", "a": "**Clearance, approval, 1,000, encrypt:** the head's approval, at most 1,000 records at a time, encrypted. 2,500 is too many.", "from": "1.2" }
     ]
   },
   "4": {
-    "title": "From this morning and Day 1",
+    "title": "From this morning",
     "questions": [
-      { "q": "A firewall reads its rules in what order?", "a": "From the top; the first rule that matches decides, then the default deny.", "from": "3.1" },
-      { "q": "Encryption at rest or in transit: a stolen laptop?", "a": "**At rest.**", "from": "3.2" },
-      { "q": "Name the four ways to treat a risk.", "a": "**TARA:** Transfer, Avoid, Reduce, Accept.", "from": "2.2" }
+      { "q": "A firewall reads its rules in what order?", "a": "From the top: **the first rule that matches decides**; everything else falls to the default deny.", "from": "3.1" },
+      { "q": "Lock, seal, sign: which one proves who sent a file?", "a": "**Sign:** a digital signature, checked with the sender's public key.", "from": "3.2" },
+      { "q": "Why does a security key resist phishing when an SMS code does not?", "a": "It checks the real site's address and will not sign in to a fake page.", "from": "3.3" },
+      { "q": "Two hands on money: give one RSSO example.", "a": "Whoever edits an e-wallet number cannot release the payout.", "from": "3.3" }
     ]
   },
   "5": {

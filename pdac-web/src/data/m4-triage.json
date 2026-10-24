@@ -1,0 +1,22 @@
+{
+  "_status": "Module 4, Try it 4.3 'Triage the inbox' and its model answers (learner guide of 21 October 2026, pages 10, 17 and 18), word for word.",
+  "unit": "Item",
+  "options": [
+    { "id": "act", "label": "Act this week" },
+    { "id": "file", "label": "File it or let it go" }
+  ],
+  "items": [
+    { "id": "x1", "text": "A vendor advisory says the RSSO's VPN product has a security update for a weakness listed in CISA's KEV catalog.", "answer": "act",
+      "facts": [{ "k": "Changes a decision?", "v": "Yes: attackers are already using this weakness, so update now" }, { "k": "Who acts", "v": "Ana; Director Eva approves any downtime" }, { "k": "How far to share", "v": "A public advisory: share freely" }] },
+    { "id": "x2", "text": "A news article on global ransomware trends this year.", "answer": "file",
+      "facts": [{ "k": "Changes a decision?", "v": "No: big-picture reading" }, { "k": "Who acts", "v": "Director Eva, in the monthly bulletin" }, { "k": "How far to share", "v": "Public: share freely" }] },
+    { "id": "x3", "text": "An alert, marked TLP:AMBER, says two RSSO staff email addresses appear in a newly reported breach.", "answer": "act",
+      "facts": [{ "k": "Changes a decision?", "v": "Yes: reset both passwords and check MFA and sign-in history" }, { "k": "Who acts", "v": "Ana, with the two staff" }, { "k": "How far to share", "v": "AMBER: within the office, on a need-to-know basis; not the all-staff chat" }] },
+    { "id": "x4", "text": "A partner office shares a list of mobile numbers used by scammers posing as the RSSO, marked TLP:GREEN.", "answer": "act",
+      "facts": [{ "k": "Changes a decision?", "v": "Yes: warn the staff who answer calls and texts" }, { "k": "Who acts", "v": "Sol and the frontline staff" }, { "k": "How far to share", "v": "GREEN: staff and partner offices, not the public. To warn citizens, ask the sender's permission or write your own warning without the list" }] },
+    { "id": "x5", "text": "A forwarded chain message, with no source, says \"Delete this app now or your phone will be hacked.\"", "answer": "file",
+      "facts": [{ "k": "Changes a decision?", "v": "No: no source, nothing to verify" }, { "k": "Who acts", "v": "Nobody; do not forward it" }, { "k": "How far to share", "v": "Do not pass it on; ask IT if unsure" }] },
+    { "id": "x6", "text": "A joint advisory asks government offices to give their head a readiness assessment within 24 hours.", "answer": "act",
+      "facts": [{ "k": "Changes a decision?", "v": "Yes: there is a 24-hour deadline" }, { "k": "Who acts", "v": "Ana prepares; Director Eva receives and decides" }, { "k": "How far to share", "v": "As the advisory itself allows" }] }
+  ]
+}

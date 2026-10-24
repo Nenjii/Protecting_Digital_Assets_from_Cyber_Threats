@@ -1,0 +1,808 @@
+<!--
+  Module 3 · Security Controls and Data Protection Strategies · Day 2, 8:00 AM to 12:00 NN
+  40 slides. Built 21 October 2026 from the Module 3 learner guide
+  (../source/Module 3 Learner Guide Security Controls and Data Protection Strategies.pdf);
+  there is no Slides deck for this module yet, so the guide is the source of truth
+  for wording, activities and model answers. Slide IDs and minutes: tools/slide-map.json.
+
+  Built for the Day 1 feedback: people followed the interactive parts best, so every
+  lesson idea is a live simulation or a room decision, with a prediction first.
+  The notes mark each one: PREDICT (ask before you press), VOTE (keys 1 to 9 count
+  hands), TURN AND TALK (30 seconds in pairs), and PLAIN WORDS for non-IT staff.
+-->
+
+<!-- 1 -->
+<section id="m3-cover" class="l-cover" data-min="1" data-footer="none">
+  <div class="cover-art"><i data-lucide="shield-half"></i></div>
+  <p class="kicker">Protecting Digital Assets from Cyber Threats · Module 3 of 5</p>
+  <h1>Security Controls and Data Protection Strategies</h1>
+  <p class="subtitle">The controls that stop or detect Day 1's attacks, then your team sets them up for the RSSO</p>
+  <div class="meta"><span>Nino Filipen Duque · DICT Region 2 · ICT Academy: Digital Workforce</span><span>Day 2 morning · Face-to-face 22 October 2026 · Online 27 October 2026</span></div>
+  <div class="exit-card materials-card cover-materials">
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="clipboard-list"></i> Your worksheet</p>
+      <pdac-qr-panel data-link="worksheet-m3"></pdac-qr-panel>
+    </div>
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="book-open"></i> Learner guide</p>
+      <pdac-qr-panel data-link="guide-m3"></pdac-qr-panel>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 1 minute.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two QR codes — the Module 3 worksheet (a Google Form for the Try it activities) and the learner guide PDF. Online: paste both links in the chat.</p>
+    <p><b>SAY:</b> Good morning. Yesterday we found what can go wrong. Today we fix it. This morning you learn the controls that stop or detect yesterday's attacks, and you will see each one work on the screen before we talk about it. Then your team sets them up, on paper, for the RSSO. Nothing this morning is graded.</p>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section id="m3-recall" class="l-interactive" data-min="5" data-code="2.2, 2.3, 1.2" data-eyebrow="Recall · no notes" data-level="Remember" data-source="Modules 1 and 2">
+  <h2>Four questions from Day 1</h2>
+  <div class="stage"><pdac-recall data-src="recall.json" data-module="3"></pdac-recall></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>RETRIEVAL:</b> ask all four before anyone opens the guide. Face-to-face: each team agrees an answer in 30 seconds, then one team calls it out; rotate teams. Online: answers in the chat on your signal.</p>
+    <p><b>ANSWERS:</b> 1. What are we working on? What can go wrong? What are we going to do about it? Did we do a good enough job? 2. 16, High. 3. Sender, Links, Attachments, Message. 4. Clearance, approval, 1,000, encrypt: the head's approval, at most 1,000 records at a time, and encrypted. 2,500 is too many.</p>
+    <p><b>LINK:</b> question 4 ends with "encrypt". Today we see what encryption actually does, live.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next answer; A reveals all.</p>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section id="m3-day1" data-min="5" data-eyebrow="Recap of Day 1 · Quiz 2 and your registers" data-source="Module 3 learner guide, The morning · Quiz 2 form summary">
+  <h2>Two risks from your registers</h2>
+  <div class="cards c2 day1-cards">
+    <div class="card"><span class="k">Quiz 2 results</span><h4>The two items most people missed</h4><p>Open the form's summary: we fix those two first.</p></div>
+    <div class="card"><span class="k">Bring</span><h4>Your team's Module 2 risk register</h4><p>Today's controls treat those risks. The workshop starts from it.</p></div>
+  </div>
+  <div class="body center-v day1-fill"><pdac-fill-template data-template="From our register: {{an admin page open to the internet, with a default password}}. The control we expect today: {{default deny, an admin network and MFA}}."></pdac-fill-template></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes (2 for Quiz 2, 3 for the registers).</p>
+    <p><b>QUIZ 2:</b> open the Quiz 2 form's Responses, Summary. Explain the two most-missed items, each with its desk card phrase, then release the scores if you have not.</p>
+    <p><b>REGISTERS:</b> ask two teams for one High or Critical risk each from yesterday's register. Type the first team's risk and their guess at the control in the sentence on the slide; ask the second team aloud.</p>
+    <p><b>SAY:</b> Hold on to these two. By 10:35 we will have seen the control that treats each one, and at 10:45 your team writes it into the workbook.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a blank and type the team's words (Enter returns to the deck). A fills in an example: the Day 1 admin page and its controls.</p>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section id="m3-flow" data-min="2" data-eyebrow="This morning · Day 2" data-source="Module 3 learner guide, The morning">
+  <h2>Three lessons, then your team configures the RSSO</h2>
+  <div class="body grid-2 flow-grid">
+    <table class="t compact">
+      <thead><tr><th>Time</th><th>Segment</th></tr></thead>
+      <tbody>
+        <tr data-start="08:00" data-end="08:15"><td>8:00 to 8:15</td><td>Recap of Day 1, Quiz 2 results, two risks from your registers <span class="now-tag">Now</span></td></tr>
+        <tr data-start="08:15" data-end="09:00"><td>8:15 to 9:00</td><td>3.1 Network security principles <span class="now-tag">Now</span></td></tr>
+        <tr data-start="09:10" data-end="09:50"><td>9:10 to 9:50</td><td>3.2 Encryption at rest and in transit <span class="now-tag">Now</span></td></tr>
+        <tr data-start="09:50" data-end="10:35"><td>9:50 to 10:35</td><td>3.3 Zero Trust, MFA and role-based access <span class="now-tag">Now</span></td></tr>
+        <tr data-start="10:45" data-end="11:45"><td>10:45 to 11:45</td><td>Configuration workshop (formative) <span class="now-tag">Now</span></td></tr>
+        <tr data-start="11:45" data-end="12:00"><td>11:45 to 12:00</td><td>Questions; preview of the Module 4 audit and its rules <span class="now-tag">Now</span></td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <p class="flow-breaks"><i data-lucide="coffee"></i> Breaks 9:00 to 9:10 and 10:35 to 10:45</p>
+      <div class="card"><span class="k">Not graded</span><h4>Formative</h4><p>The workshop is formative: your team's workbook is recorded as completed.</p></div>
+      <div class="card"><span class="k">Same teams</span><h4>As on Day 1</h4><p>The workbook holds the workshop tables: printed at your table, or your team's shared copy online.</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> Walk the timetable. Three lessons, each one short and hands-on, then a 60-minute workshop where your team hardens the RSSO portal on paper. Nothing is scored this morning; completion is recorded. The practice quiz and the exit check come at noon.</p>
+    <p><b>ONLINE:</b> breakout rooms are the same as on Day 1.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the highlighted row follows the clock (?now=09:20 rehearses it).</p>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section id="m3-objectives" data-min="2" data-eyebrow="From remembering to doing" data-source="Module 3 learner guide, What you will be able to do · Syllabus 3.1, 3.2, 3.3">
+  <h2>By noon, you will be able to</h2>
+  <ol class="levels body">
+    <li class="fragment"><span class="lv">Remember</span> The Module 3 memory phrases, from Layers, not walls to Roles, not people</li>
+    <li class="fragment"><span class="lv">Understand</span> Explain in plain words what a firewall, an IDS, an IPS and a VPN each do</li>
+    <li class="fragment"><span class="lv">Apply</span> Choose the control for each Module 2 threat, and the protection for data stored and moving</li>
+    <li class="fragment"><span class="lv">Analyze</span> Find separation-of-duties conflicts in a set of roles</li>
+    <li class="fragment"><span class="lv">Evaluate</span> Score another team's controls and name the gap that is left</li>
+    <li class="fragment"><span class="lv">Create</span> Firewall rules, a role matrix and a data protection plan for the RSSO</li>
+  </ol>
+  <p class="callout">Every control has two sides: <b>what you do at your desk</b>, and <b>what IT sets up in the server room</b>. You need to understand both, even if you only do the first.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes.</p>
+    <p><b>SAY:</b> The same ladder as Day 1. Read the dark line aloud: this morning is for everyone, not only IT. Non-IT staff do the desk side; they still need to know what the server side is for, so they can ask for it and notice when it is missing.</p>
+    <p><b>PLAIN WORDS:</b> a control is anything that lowers a risk: a rule, a habit, a lock, a setting.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next level.</p>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section id="m3-layers" class="l-interactive" data-min="7" data-code="3.1" data-eyebrow="Network security principles · Key idea" data-source="Module 3 learner guide, Lesson 3.1 · DICT DC 004 (s. 2024), title" data-terms="firewall,segmentation,ids-ips">
+  <h2>Layers, not walls: when one fails, the next one holds</h2>
+  <div class="stage"><pdac-net-sim data-src="m3-net.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes.</p>
+    <p><b>SAY:</b> No single control is trusted alone. Picture a house: a fence and gate, locked rooms, an alarm, a key for each person, and a safe for valuables. If a burglar climbs the fence, the locked room still holds. The RSSO puts the same five layers between an attacker and the applicant database.</p>
+    <p><b>PREDICT (before every press):</b> "The attacker gets past this layer. Does the next one hold?" Let the room answer, then press. Ask a non-IT participant first each time.</p>
+    <p><b>STORY:</b> 1. The firewall at the edge blocks a scan for the admin page. 2. A click inside: malware on a staff PC, past the perimeter; the zones hold, so it cannot reach the database. 3. Every blocked try is logged, and the alarm reaches Ana. 4. The stolen password fails at MFA. 5. Even a stolen backup is encrypted. Each failure is caught by the next layer.</p>
+    <p><b>KEY POINT:</b> the question is never "is our firewall good?" but "what holds when it fails?"</p>
+    <p><b>LAW:</b> DICT Department Circular 004 (s. 2024) is titled as prescribing a layered security and defense approach for government agencies. Ask your ICT head for its text before you quote any requirement from it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press plays the next layer on the RSSO map (the same map all of Lesson 3.1 uses). A opens the guide's table: layer, in a house, at the RSSO. R starts over.</p>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section id="zones" class="l-interactive" data-min="6" data-code="3.1" data-eyebrow="Separate rooms · segmentation" data-source="Module 3 learner guide, Lesson 3.1, RSSO network zones" data-terms="segmentation,dmz,flat-network">
+  <h2>Separate rooms: each zone reaches only what it needs</h2>
+  <div class="stage"><pdac-net-sim data-src="m3-zones.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> First, the office without rooms: a flat network. One infected PC, a visitor's phone, a camera with a default password: each can reach the applicant database directly. Now split the network into zones. The public zone holds the portal; the server zone holds the database, file server and backups; staff, admin, guests and devices each get their own zone; remote staff come in through the VPN. Every connection between zones passes the firewall's rules.</p>
+    <p><b>PREDICT:</b> before the "zones" tab plays, ask: "Will the visitor's phone still reach the file server?" (No: guest Wi-Fi reaches only the internet.)</p>
+    <p><b>KEY POINT:</b> zones block what is not needed, not the work. The last step shows citizens, the portal and staff still doing their jobs.</p>
+    <p><b>ASK:</b> in your own office, is the guest Wi-Fi separate from the staff network? Take two answers, no names.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> two tabs: "One flat network" (before) and "Separate rooms" (after). A opens the guide's zone table: zone, what sits there, may reach.</p>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section id="fw-types" data-min="4" data-code="3.1" data-eyebrow="Firewalls: the gatekeepers" data-source="Module 3 learner guide, Lesson 3.1 · ISO/IEC 27001 A.8.20, 8.22, 8.23" data-terms="firewall,waf">
+  <h2>A firewall checks each connection against a list of rules</h2>
+  <table class="t body fw-types">
+    <thead><tr><th>Type</th><th>What it checks</th><th>Plain example</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td>Packet filter</td><td>The address and "door number" (port) of each piece of traffic</td><td>Only HTTPS may reach the portal</td></tr>
+      <tr class="fragment"><td>Stateful</td><td>Whether traffic belongs to a conversation started from inside</td><td>A reply to Ben's request comes back in; a stranger's knock does not</td></tr>
+      <tr class="fragment"><td>Next-generation</td><td>The application and the user, not only the door number</td><td>Block file-sharing apps on the staff network</td></tr>
+      <tr class="fragment"><td>Web application firewall (WAF)</td><td>The content of web requests to the portal</td><td>Block a login form stuffed with database commands</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">ISO/IEC 27001:2022 covers these in Annex A <b>8.20</b> networks security, <b>8.22</b> segregation of networks and <b>8.23</b> web filtering.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> A firewall is a gatekeeper with a list. Four kinds, from simple to smart. A packet filter checks the address and the door number, called a port, of each piece of traffic: only HTTPS may reach the portal. A stateful firewall remembers conversations: a reply to Ben's request comes back in, a stranger's knock does not. A next-generation firewall knows the application and the user, not only the door: it can block file-sharing apps on the staff network. A web application firewall reads what is inside web requests to the portal: it blocks a login form stuffed with database commands.</p>
+    <p><b>PREDICT (row by row):</b> read the "what it checks" column first and ask the room for an example before you reveal the plain example.</p>
+    <p><b>PLAIN WORDS:</b> a port is a numbered door on a computer: web pages use one, email another, remote desktop another.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next type. The WAF returns in Try it 3.1, threat 3.</p>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section id="fw-rules" class="l-interactive" data-min="7" data-code="3.1" data-eyebrow="Rules that work" data-level="Apply" data-source="Module 3 learner guide, Lesson 3.1, Rules that work" data-terms="firewall">
+  <h2>Deny by default, allow by need, log what you block</h2>
+  <div class="stage"><pdac-firewall-sim data-src="m3-traffic-flows.json"></pdac-firewall-sim></div>
+  <div class="it-depth">
+    <h3>Rules that work, in five steps</h3>
+    <ol>
+      <li>Start from "block everything".</li>
+      <li>Add specific allows: who, to what, using which service.</li>
+      <li>Order matters: the firewall acts on the first rule that matches.</li>
+      <li>Log what is blocked, and have someone review the logs.</li>
+      <li>Filter outbound traffic too: a server that suddenly sends data to an unknown address is a warning sign.</li>
+    </ol>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes.</p>
+    <p><b>SAY:</b> Five rules that work. Start from block everything. Add specific allows: who, to what, using which service. Order matters, because the firewall acts on the first rule that matches. Log what is blocked, and have someone review the logs. And filter outbound traffic too.</p>
+    <p><b>PREDICT FIRST:</b> before pressing Send traffic, point at connection 5, malware on a staff PC trying the database. Ask: "Rule 8 denies it. Will it be blocked?" Most say yes. Send the traffic: rule 1, an "allow any" rule added years ago so nothing breaks, lets it through before rule 8 is ever read. Connection 3 also gets through: a "temporary" vendor rule nobody removed.</p>
+    <p><b>FIX IT LIVE (VOTE):</b> ask the room which rule to switch off first. Switch rule 1 off and send again; then the vendor rule. Or move rule 8 to the top to show that order alone changes the result.</p>
+    <p><b>KEY POINT:</b> the guide's usual mistakes are "allow any" rules and rules nobody reviews. Every block is logged: someone must read those logs.</p>
+    <p><b>LINK:</b> these six connections are the same six your team tests in the workshop, Task A.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> Send traffic plays the six connections; each shows which rule decided and whether that was intended. Off switches a rule off; ↑ ↓ move it. A fixes the rules (allow-any and vendor rules off, the deny on top): 6 of 6 as intended. I opens the five steps. R resets.</p>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section id="ids-ips" class="l-interactive" data-min="5" data-code="3.1" data-eyebrow="The alarm and the guard" data-source="Module 3 learner guide, Lesson 3.1, IDS and IPS" data-terms="ids-ips">
+  <h2>IDS tells, IPS stops</h2>
+  <div class="stage"><pdac-net-sim data-src="m3-ids.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> An intrusion detection system, an IDS, watches traffic or a computer and raises an alert. An intrusion prevention system, an IPS, can also block what it finds. Network-based systems watch traffic; host-based ones watch one computer or server. Signature-based systems look for known attacks, like antivirus; anomaly-based ones look for unusual behaviour, such as a large transfer at 2:00 AM.</p>
+    <p><b>VOTE (first tab):</b> "With an IDS only, what happens to the attack?" Press 1, 2 or 3 for each hand. Then reveal: it gets through, and an alert is raised. An IDS is only as good as the person who reads it.</p>
+    <p><b>VOTE (third tab):</b> the 2:00 AM transfer. Then play it with and without outbound filtering.</p>
+    <p><b>KEY POINT:</b> both raise false alarms, so IT tunes them, and their logs feed monitoring and, after an incident, the incident report (Module 5).</p>
+    <p><b>DESK SIDE:</b> report security alerts and odd behaviour on your computer at once. You are a sensor too.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> four tabs: IDS, IPS, the 2:00 AM transfer, false alarms. Steps with a question: the room votes (1 to 9 or tap), → reveals, → again plays it. A opens the summary table.</p>
+  </aside>
+</section>
+
+<!-- 11 -->
+<section id="vpn" class="l-interactive" data-min="4" data-code="3.1" data-eyebrow="A private tunnel" data-source="Module 3 learner guide, Lesson 3.1, VPNs" data-terms="vpn,mfa">
+  <h2>VPNs: an encrypted tunnel, with MFA on every account</h2>
+  <div class="stage"><pdac-net-sim data-src="m3-vpn.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> A virtual private network, a VPN, encrypts the connection between a remote computer and the office. A remote-access VPN connects one staff laptop to the office; a site-to-site VPN connects two office networks. Every VPN account needs MFA, and the accounts of people who leave are closed on their last day, as Module 2's contractor case showed. Remote desktop is never open directly to the internet; it sits behind the VPN.</p>
+    <p><b>VOTE (second tab):</b> "What two things should every VPN account have?" Then play the stolen password with and without them.</p>
+    <p><b>IT DEPTH:</b> split tunneling sends only office traffic through the VPN. It is convenient, but home-network risks then sit next to office access, so IT decides it deliberately.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> three tabs: the tunnel (what the café Wi-Fi sees), a stolen password, remote desktop. A opens the summary.</p>
+  </aside>
+</section>
+
+<!-- 12 -->
+<section id="sides-3-1" class="l-interactive" data-min="3" data-code="3.1" data-eyebrow="At your desk, in the server room" data-level="Understand" data-source="Module 3 learner guide, Lesson 3.1, At your desk, in the server room">
+  <h2>Whose side is it on?</h2>
+  <div class="stage"><pdac-match-board data-src="m3-sides-31.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes, whole room.</p>
+    <p><b>RUN IT:</b> read each card; the room calls "desk" or "server room"; click the card, then the side. Check at the end.</p>
+    <p><b>SAY:</b> the server-room side is IT's work, but the desk side is everyone's. Three habits for every desk: use the VPN when away and never share it, report alerts and odd behaviour, and never plug unknown devices into the office network.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a card, then a side; Check marks them; A places all.</p>
+  </aside>
+</section>
+
+<!-- 13 -->
+<section id="try-3-1" class="l-interactive" data-min="7" data-timer="5" data-timer-label="Try it 3.1" data-code="3.1" data-eyebrow="Try it 3.1 · teams" data-level="Apply" data-source="Module 3 learner guide, Try it 3.1 and model answers">
+  <h2>Try it 3.1: Which control stops this?</h2>
+  <div class="stage"><pdac-net-sim data-src="m3-try31.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes: 5 for the teams (T starts the timer), 2 to play the answers. Face-to-face: teams write their six answers in the worksheet first. Online: one breakout minute, then votes in the chat.</p>
+    <p><b>MODEL ANSWERS:</b> 1. Firewall default deny and an admin network: the admin page answers only on the admin network. 2. Segmentation: guest Wi-Fi reaches only the internet. 3. A web application firewall, while the vendor fixes the form itself; Module 4 adds the buying habit of asking for proof of security testing. 4. MFA on the VPN, and accounts closed on the last day. 5. Segmentation plus an IPS: staff computers cannot reach the database directly, and the IPS blocks the attempt. 6. An IDS alert on outbound traffic, with outbound filtering that allows only approved destinations.</p>
+    <p><b>DEBRIEF:</b> ask the team with the most non-IT members to answer threats 2 and 4 first; they are about guests and leavers, which managers control.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each threat plays first (it gets through). Press 1 to 6 for each team's answer, → reveals the guide's answer, → plays the control stopping it. The tabs jump between threats. A opens the summary of all six.</p>
+  </aside>
+</section>
+
+<!-- 14 -->
+<section id="check-3-1" data-min="2" data-code="3.1" data-eyebrow="Check yourself 3.1 · answer from memory" data-break-after="10" data-source="Module 3 learner guide, Check yourself 3.1">
+  <h2>Before the break</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>What does "layers, not walls" mean?</b><span class="answer"><span class="answer-label">Answer:</span> Several controls, so that when one fails the next one holds.</span></li>
+    <li><b>Name three zones a network should keep apart.</b><span class="answer"><span class="answer-label">Answer:</span> Any three of: public zone (DMZ), server zone, staff network, admin network, guest Wi-Fi, cameras and devices.</span></li>
+    <li><b>What is the difference between an IDS and an IPS?</b><span class="answer"><span class="answer-label">Answer:</span> An IDS detects and alerts; an IPS can also block.</span></li>
+    <li><b>Why should a firewall filter outbound traffic too?</b><span class="answer"><span class="answer-label">Answer:</span> To catch data leaving, and malware calling out to an attacker.</span></li>
+    <li><b>What two things should every VPN account have?</b><span class="answer"><span class="answer-label">Answer:</span> MFA, and closure when the person leaves.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask each question to the room and wait; take answers from different teams. Then reveal each answer to confirm it.</p>
+    <p><b>ANSWERS:</b> 1. Several controls, so that when one fails the next one holds. 2. Any three of: public zone (DMZ), server zone, staff network, admin network, guest Wi-Fi, cameras and devices. 3. An IDS detects and alerts; an IPS can also block. 4. To catch data leaving, and malware calling out to an attacker. 5. MFA, and closure when the person leaves.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it again), a click on a question shows its own answer, A shows all, R hides all. Break next (10 minutes): press K.</p>
+  </aside>
+</section>
+
+<!-- 15 -->
+<section id="lock-seal-sign" class="l-interactive" data-min="9" data-code="3.2" data-eyebrow="Encryption at rest and in transit · Key idea" data-source="Module 3 learner guide, Lesson 3.2 · live in this browser (Web Crypto)" data-terms="encryption,hashing,digital-signature">
+  <h2>Lock, seal, sign: three tools, three jobs</h2>
+  <div class="stage"><pdac-lock-seal-sign data-src="m3-lock-seal-sign.json"></pdac-lock-seal-sign></div>
+  <div class="it-depth">
+    <h3>What runs on this slide</h3>
+    <p><b>Lock:</b> AES-GCM with a fresh 256-bit key and a random 12-byte IV, from <code>crypto.subtle</code>. A wrong key fails GCM's authentication check, so decryption refuses instead of returning garbage.</p>
+    <p><b>Seal:</b> SHA-256, a one-way fingerprint with no key. Real password storage adds a salt and a slow algorithm made for passwords (for example bcrypt or Argon2), so stolen hashes are hard to guess.</p>
+    <p><b>Sign:</b> ECDSA on curve P-256 with SHA-256. The private key signs; anyone with the public key can check. Nothing on this slide leaves the computer.</p>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 9 minutes.</p>
+    <p><b>SAY:</b> Three tools, three jobs. Encryption locks data so only key holders can read it: a locked box. Hashing seals it so any change shows: a tamper seal. A digital signature proves who sent it: a signature checked against the signer's public key. And encryption without key management is false comfort.</p>
+    <p><b>PREDICT (before each press):</b> "The thief has the drive. What will he see?" "One digit changes. How much of the fingerprint changes?" (All of it.) "Someone swaps the wallet number on the way. Will the provider notice?" Let two people answer each time.</p>
+    <p><b>CLOSE WITH:</b> lock, seal, sign. And encryption without key management is false comfort: keep keys apart from the data, with a named custodian. That is the next slide.</p>
+    <p><b>KEY POINTS:</b> Lock protects Secret; a stolen backup drive cannot be read. Seal protects Correct, and it is how the portal stores passwords: a hash, never the password itself. Sign proves who sent the payout file and that nothing changed: the e-wallet provider rejects a changed or impostor file.</p>
+    <p><b>PLAIN WORDS:</b> a private key is like your own signature stamp, kept in a safe; the public key is the sample of your signature that everyone may check against.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> real cryptography, computed live in this browser: each press runs the next scene (lock, thief, custodian; fingerprint, one digit, passwords; sign, verify, swapped wallet, impostor). Back goes one scene back exactly. A shows the last scene; R clears. I explains the algorithms.</p>
+  </aside>
+</section>
+
+<!-- 16 -->
+<section id="moving-stored" data-proofs="tls-deprecated" class="l-interactive" data-min="7" data-code="3.2" data-eyebrow="Data moving, data stored" data-level="Apply" data-source="Module 3 learner guide, Lesson 3.2 · RFC 8996 · NPC Circular 2023-06" data-terms="tls,encryption,full-disk-encryption">
+  <h2>Protect data while it moves, and while it is stored</h2>
+  <div class="stage"><pdac-match-board class="mb-tight" data-src="m3-moving-stored.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 7 minutes.</p>
+    <p><b>RUN IT:</b> read each card; the room calls "moving" or "stored"; place it; after Check, read each protection aloud. Nine cards, about 30 seconds each.</p>
+    <p><b>SAY, data moving:</b> websites and portals use HTTPS, which uses TLS. The padlock means the connection is encrypted and the site's certificate was issued for that name by a certificate authority; it does not mean the site is honest. Current versions are TLS 1.2 or 1.3; 1.0 and 1.1 were formally deprecated in 2021. Remote work uses a VPN. File transfer uses SFTP or HTTPS, never plain FTP, which sends passwords and files unprotected. Wi-Fi uses WPA3, or WPA2-Enterprise with a personal login, with guests on their own network. Email with personal data goes encrypted, or as a secure link with access control: NPC Circular 2023-06 requires secure transmission for emails that carry personal data.</p>
+    <p><b>SAY, data stored:</b> laptops and phones have full-disk encryption, so a lost device does not mean lost data. Databases and files use database or file-level encryption for sensitive personal information. Removable media: office-issued encrypted USB drives only. Backups: encrypted, with at least one copy offline.</p>
+    <p><b>WATCH FOR:</b> the nightly backup. Some will say "moving". It moves once a night but sits on a drive all day: stored is the risk.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a card, then Moving or Stored; Check shows the protection for each; A places all.</p>
+  </aside>
+</section>
+
+<!-- 17 -->
+<section id="keys" class="l-interactive" data-min="6" data-code="3.2" data-eyebrow="Keys: the part people forget" data-level="Evaluate" data-source="Module 3 learner guide, Lesson 3.2, Keys" data-terms="key-custodian">
+  <h2>Moving, stored, keys: is this key safe?</h2>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m3-keys.json"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> encryption is only as good as the care of its keys. The RSSO decides four things. Who holds the key? A named key custodian, for example Ana, with a backup custodian. Where is it kept? Apart from the data it protects, never on the same drive or server. Who can recover it? Through a sealed recovery procedure approved by the head of office. When does it change? On a schedule, and at once when a custodian leaves or a key may be exposed.</p>
+    <p><b>VOTE:</b> five cases. Hands up for "safe" (press 1 per hand) and "not safe" (press 2), then reveal.</p>
+    <p><b>ANSWERS:</b> 1. Not safe: whoever steals both can read everything. 2. Safe. 3. Not safe: change it at once when a custodian leaves. 4. Not safe: send the password another way, or better, use the provider's business portal. 5. Not safe: one absence locks the office out of its own data.</p>
+    <p><b>MEMORY PHRASE:</b> moving, stored, keys. Protect data while it moves, while it is stored, and protect the keys.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press 1 or 2 for each vote; → reveals the answer with the guide's key rule; → next case.</p>
+  </aside>
+</section>
+
+<!-- 18 -->
+<section id="npc-expects" class="l-cards-3" data-min="3" data-code="3.2" data-eyebrow="What the DPA and the NPC expect" data-source="NPC Circular 16-03 Sec. 7 · NPC Circular 2023-06 · RA 10173 Sec. 23">
+  <h2>The law already asks for these controls</h2>
+  <div class="cards body">
+    <div class="card"><span class="k">NPC Circular 16-03, Section 7</span><h3>Security measures</h3><p>May include backup solutions, access control and secure log files, encryption, and a data disposal and return-of-assets policy.</p></div>
+    <div class="card"><span class="k">NPC Circular 2023-06</span><h3>Specific controls</h3><p>Encrypted removable media when that transfer is unavoidable; secure transmission of emails with personal data; and MFA or secure encrypted links for online access to sensitive personal information, privileged information and large volumes of personal data.</p></div>
+    <div class="card"><span class="k">Data Privacy Act, Section 23</span><h3>Off-site access</h3><p>Approved off-site access to government-held sensitive personal information uses the most secure encryption standard the NPC recognizes, at most 1,000 records at a time.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> none of this is optional extra. NPC Circular 16-03, Section 7, lists encryption, access control, secure logs and backups among the security measures. NPC Circular 2023-06 is more specific: encrypted removable media, secure email transmission, and MFA or secure encrypted links for online access to sensitive data. And Day 1's Section 23: off-site access uses the most secure encryption standard the NPC recognizes, at most 1,000 records at a time.</p>
+    <p><b>LINK:</b> Day 1's phrase "Clearance, approval, 1,000, encrypt" is Section 23. Today's slides showed what "encrypt" means in practice.</p>
+    <p><b>CAUTION:</b> this is training material, not legal advice; refer legal questions to the DPO or the NPC.</p>
+  </aside>
+</section>
+
+<!-- 19 -->
+<section id="sides-3-2" class="l-interactive" data-min="3" data-code="3.2" data-eyebrow="At your desk, in the server room" data-level="Understand" data-source="Module 3 learner guide, Lesson 3.2, At your desk, in the server room">
+  <h2>Whose side is it on?</h2>
+  <div class="stage"><pdac-match-board data-src="m3-sides-32.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes, whole room.</p>
+    <p><b>SAY:</b> the desk side of encryption is three habits: lock your screen and keep work files on approved, encrypted storage; use only office-issued encrypted USB drives, with approval; and share personal data by secure link, never as a plain attachment.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a card, then a side; Check marks them; A places all.</p>
+  </aside>
+</section>
+
+<!-- 20 -->
+<section id="try-3-2" class="l-interactive" data-min="10" data-timer="10" data-timer-label="Try it 3.2" data-code="3.2" data-eyebrow="Try it 3.2 · teams" data-level="Apply and Evaluate" data-source="Module 3 learner guide, Try it 3.2 and model answers">
+  <h2>Try it 3.2: Encrypt it right</h2>
+  <p class="brief-strip"><b>For each data set:</b> its protection when stored, when moving, and who holds the key. <span class="chip"><i data-lucide="timer"></i> 10 min</span></p>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m3-encrypt-it.json" data-no-vote></pdac-vote-reveal></div>
+  <p class="demo-strip"><a class="pdac-btn pdac-btn--quiet" href="https://dict.gov.ph" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link"></i> Optional: read a padlock</a> <span>Click the padlock on any public government website: who issued its certificate, and when does it expire? Never on a page that shows real personal data.</span></p>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes: about 6 in teams (T starts the timer), 4 to compare with the model answers. Face-to-face: split the eight data sets, two per team, then each team reports. Online: two data sets per breakout room.</p>
+    <p><b>MODEL ANSWERS:</b> on the slide, one data set per press. A different answer with a sound reason can also be right; ask "why?" before you reveal.</p>
+    <p><b>WATCH FOR:</b> data set 7, the payout list. Teams often say "email it encrypted". The guide prefers the provider's business portal over HTTPS; email only if it cannot be avoided, with the password sent another way.</p>
+    <p><b>OPTIONAL EXPERIMENT (2 minutes, if the internet works):</b> open any public government website, click the padlock, and read who issued the certificate and when it expires. Link it to Module 4: the padlock says private, not honest.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> teams answer first; each press shows the next data set's model answer (stored, moving, key holder), then moves on. The button opens a public government site in a new tab for the padlock experiment.</p>
+  </aside>
+</section>
+
+<!-- 21 -->
+<section id="check-3-2" data-min="2" data-code="3.2" data-eyebrow="Check yourself 3.2 · answer from memory" data-source="Module 3 learner guide, Check yourself 3.2">
+  <h2>Five quick ones</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>Which tool protects Secret, which protects Correct, and which proves who sent a file?</b><span class="answer"><span class="answer-label">Answer:</span> Encryption; hashing; digital signature.</span></li>
+    <li><b>What does the padlock tell you, and what does it not tell you?</b><span class="answer"><span class="answer-label">Answer:</span> The connection is encrypted and the certificate matches the site's name; it does not prove the site is honest.</span></li>
+    <li><b>Name two places where stored data must be encrypted.</b><span class="answer"><span class="answer-label">Answer:</span> Any two of: laptops and phones, databases, removable media, backups.</span></li>
+    <li><b>Why must keys be kept apart from the data they protect?</b><span class="answer"><span class="answer-label">Answer:</span> Whoever steals both can read everything.</span></li>
+    <li><b>What does NPC Circular 2023-06 require when personal data must go on a USB drive?</b><span class="answer"><span class="answer-label">Answer:</span> The drive must be encrypted.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask each question, wait for answers from different teams, then reveal it.</p>
+    <p><b>ANSWERS:</b> 1. Encryption; hashing; digital signature. 2. The connection is encrypted and the certificate matches the site's name; it does not prove the site is honest. 3. Any two of: laptops and phones, databases, removable media, backups. 4. Whoever steals both can read everything. 5. The drive must be encrypted.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it again), a click on a question shows its own answer, A shows all, R hides all.</p>
+  </aside>
+</section>
+
+<!-- 22 -->
+<section id="zt-habits" data-proofs="zt-no-implicit" data-min="3" data-code="3.3" data-eyebrow="Zero Trust, MFA and role-based access · Key idea" data-source="Module 3 learner guide, Lesson 3.3 · NIST SP 800-207" data-terms="zero-trust,least-privilege">
+  <h2>Never trust, always verify: being inside proves nothing</h2>
+  <table class="t body compact zt-table">
+    <thead><tr><th>Habit</th><th>Plain meaning</th><th>At the RSSO</th></tr></thead>
+    <tbody>
+      <tr class="fragment"><td>Verify every request</td><td>Check identity and device each time, not once at the door</td><td>Ben's login is checked with MFA even inside the office</td></tr>
+      <tr class="fragment"><td>Assume breach</td><td>Plan as if an attacker is already inside</td><td>Zones and logs limit how far a stolen account can go</td></tr>
+      <tr class="fragment"><td>Least privilege</td><td>Give only the access the job needs, only for as long as it is needed</td><td>Dan sees payout details, not health records</td></tr>
+      <tr class="fragment"><td>Keep checking</td><td>Watch for unusual behaviour and re-check access</td><td>A login from an unusual place is blocked and reviewed</td></tr>
+    </tbody>
+  </table>
+  <p class="callout">Zero Trust is a strategy, not a product you buy. <b>First steps:</b> list people, accounts and devices; MFA first for email, VPN and admin accounts; zones; logs you look at; access reviewed on a schedule.</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> never trust, always verify. Being inside the office network proves nothing. Every request to reach data is checked: who you are, from which device, and whether your role needs it. Four habits: verify every request; assume breach; least privilege; keep checking. Zero Trust is a strategy, not a product you buy. NIST Special Publication 800-207 sets out its principles: every resource is protected, all communication is secured whatever the network location, and access is decided for each request by policy.</p>
+    <p><b>ASK:</b> which of the four habits does your office already have? (Usually none fully; MFA on email is the most common start.)</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press reveals the next habit. The next slide puts the room in the policy's seat.</p>
+  </aside>
+</section>
+
+<!-- 23 -->
+<section id="zero-trust" data-proofs="zt-no-implicit" class="l-interactive" data-min="5" data-code="3.3" data-eyebrow="You are the policy" data-level="Apply" data-source="Module 3 learner guide, Lesson 3.3, Zero Trust in four habits" data-terms="zero-trust,least-privilege">
+  <h2>Five requests: allow, ask for more proof, or block?</h2>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m3-zt.json"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>RUN IT:</b> the room is the Zero Trust policy. For each request: hands for allow (1), ask for more proof (2), block and review (3). Reveal shows the checks: who you are, device, role, behaviour.</p>
+    <p><b>ANSWERS:</b> 1. Allow: every check passes, and it was checked even inside the office. 2. Block and review: a correct password from an unknown laptop at 2:10 AM proves nothing. 3. Block: being inside proves nothing; no staff role exports everything. 4. Ask for more proof: something changed (a new network), so verify again, then let her work. 5. Block: admin work uses a separate admin account, only for admin work.</p>
+    <p><b>WATCH FOR:</b> case 3. People trust "inside the office". That trust is exactly what ransomware uses to spread.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press 1, 2 or 3 for each vote; → reveals the checks and the reason; → next request.</p>
+  </aside>
+</section>
+
+<!-- 24 -->
+<section id="mfa" class="l-interactive" data-min="3" data-code="3.3" data-eyebrow="MFA: know, have, are" data-level="Remember" data-source="Module 3 learner guide, Lesson 3.3, MFA" data-terms="mfa">
+  <h2>Two or more kinds of proof: know, have, are</h2>
+  <div class="stage"><pdac-match-board data-src="m3-mfa-kinds.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> multi-factor authentication asks for two or more kinds of proof: something you know, such as a password or PIN; something you have, such as a phone or a security key; and something you are, such as a fingerprint or face. Two passwords are still one kind.</p>
+    <p><b>RUN IT:</b> the room calls each card. The SMS code is the interesting one: it proves you have the phone number, which is exactly what a SIM swap steals.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a card, then Know, Have or Are; Check; A places all.</p>
+  </aside>
+</section>
+
+<!-- 25 -->
+<section id="mfa-phish" data-proofs="cisa-urges,cisa-gold" class="l-interactive" data-min="6" data-code="3.3" data-eyebrow="Not all MFA is equal" data-level="Understand" data-source="Module 3 learner guide, Lesson 3.3 · CISA MFA fact sheet, October 2022" data-terms="fido2,mfa-fatigue">
+  <h2>Why a security key resists phishing</h2>
+  <div class="stage"><pdac-net-sim data-src="m3-mfa-phish.json"></pdac-net-sim></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> a code by SMS or voice call is better than a password alone, but codes can be stolen through SIM swaps and fake login pages. A code in an authenticator app, or a push with number matching, is stronger: number matching blunts MFA fatigue, but CISA calls it an interim step. A security key or passkey, FIDO2, is strongest: it resists phishing, because the key checks the real site's address. CISA strongly urges phishing-resistant MFA, based on FIDO/WebAuthn or PKI, since 31 October 2022.</p>
+    <p><b>VOTE (first tab):</b> "Ben has MFA by SMS. Is he safe?" Most say yes. Play it: the fake page simply asks for the code too.</p>
+    <p><b>VOTE (third tab):</b> "What does the key do on the fake page?" Then play it.</p>
+    <p><b>DESK SIDE:</b> if a sign-in prompt appears that you did not start, deny it and report it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> three tabs: SMS code, push with number matching, security key. Questions: vote, → reveals, → plays. A opens the guide's strength table. E quotes CISA's fact sheet, with a QR code.</p>
+  </aside>
+</section>
+
+<!-- 26 -->
+<section id="passwords" class="l-interactive" data-min="4" data-code="3.3" data-eyebrow="Passwords that work" data-source="Module 3 learner guide, Lesson 3.3 · zxcvbn-ts, in this browser">
+  <h2>Long beats complex</h2>
+  <div class="stage pw-stage">
+    <pdac-password-lab data-samples="rsso2026|Rss0@2026!|Mango-Season-Jeepney-44"></pdac-password-lab>
+    <ul class="pw-rules">
+      <li><b>A passphrase</b> of four or more unrelated words</li>
+      <li><b>One password per account</b>, kept in a password manager</li>
+      <li><b>Never reuse</b> an office password anywhere else</li>
+    </ul>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>PREDICT:</b> before clicking, ask which of the three samples lasts longest. Many pick the one with symbols, Rss0@2026!. Click each: the four-word passphrase wins by years, and it is easier to remember.</p>
+    <p><b>SAY:</b> long beats complex: a passphrase of four or more unrelated words. One password per account, kept in a password manager, and never reuse an office password anywhere else: when another site is breached, attackers try the same password on your office email.</p>
+    <p><b>RULE:</b> invented passwords only, in class. Never type a real one into any slide or website.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a sample or type an invented one (Enter returns to the deck). Two times: guessing at a login page that slows guessers down, and a stolen copy guessed offline at full speed. Nothing is saved or sent.</p>
+  </aside>
+</section>
+
+<!-- 27 -->
+<section id="pwned" data-proofs="hibp-kanon,hibp-800" class="l-interactive" data-min="3" data-code="3.3" data-eyebrow="Pwned Passwords" data-source="Module 3 learner guide, Lesson 3.3 · Have I Been Pwned (k-anonymity)">
+  <h2>Checking a password without sending it</h2>
+  <div class="stage"><pdac-hash-prefix-demo data-passwords="Mango-Season-2026|BlueJeepney#44|Sampaguita2026!"></pdac-hash-prefix-demo></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>SAY:</b> Pwned Passwords checks whether a password has appeared in known breaches without sending it: only the first 5 characters of the password's hash are sent, never the password itself. Hundreds of other passwords share those 5 characters, so the service cannot tell which one you have. Your own device does the final comparison.</p>
+    <p><b>LINK:</b> this is hashing from Lesson 3.2, the tamper seal, used to keep a secret while checking it.</p>
+    <p><b>MODULE 4:</b> this tool returns this afternoon, in Try it 4.2B: "Vet the tool".</p>
+    <p class="notes-web"><b>ON SCREEN:</b> each press shows the next step, computed on this laptop; nothing is sent. A shows all five.</p>
+  </aside>
+</section>
+
+<!-- 28 -->
+<section id="m3-roles" class="l-cards-3" data-min="4" data-code="3.3" data-eyebrow="Roles, not people" data-source="Module 3 learner guide, Lesson 3.3 · ISO/IEC 27001 · NPC 2023-06" data-terms="rbac,least-privilege,separation-of-duties">
+  <h2>Access goes to roles that match jobs; people are given roles</h2>
+  <div class="cards body roles-cards">
+    <div class="card"><span class="icon"><i data-lucide="filter"></i></span><h4>Least privilege</h4><p>Each role gets only what the job needs.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="hand"></i></span><h4>Two hands on money</h4><p>No one person can both create and approve a payout, or change an e-wallet number and release the payment.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="user-plus"></i></span><h4>Joiner, mover, leaver</h4><p>Access set up on the first day, changed on transfer, closed on the last day, including COS and JO staff and consultants.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="user-x"></i></span><h4>No shared accounts</h4><p>Least of all admin accounts. Admins use a separate admin account, only for admin work.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="calendar-clock"></i></span><h4>Reviewed every quarter</h4><p>And every privileged action is logged.</p></div>
+    <div class="card"><span class="icon"><i data-lucide="scroll-text"></i></span><h4>The rules behind it</h4><p>ISO/IEC 27001 Annex A 5.15 to 5.18, 8.2, 8.5. NPC Circular 2023-06: an access control policy, a security clearance filed with the DPO, a password policy.</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>SAY:</b> role-based access control, RBAC, gives access to roles that match job functions, and people are given roles, not one-off permissions: roles, not people. Least privilege. Two hands on money. Joiner, mover, leaver, including contract-of-service and job-order staff and consultants. No shared accounts, least of all admin accounts. Access reviewed every quarter, every privileged action logged.</p>
+    <p><b>ASK:</b> in your office, who tells IT when someone leaves, and how fast? (Often: nobody, or weeks later. That is Module 2's contractor.)</p>
+    <p><b>PLAIN WORDS:</b> COS and JO are contract-of-service and job-order staff.</p>
+  </aside>
+</section>
+
+<!-- 29 -->
+<section id="jml" class="l-interactive" data-min="3" data-code="3.3" data-eyebrow="Joiner, mover, leaver" data-level="Apply" data-source="Module 3 learner guide, Lesson 3.3, Roles, not people">
+  <h2>What must happen today?</h2>
+  <div class="stage"><pdac-vote-reveal class="vr-tight" data-src="m3-jml.json"></pdac-vote-reveal></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 3 minutes.</p>
+    <p><b>VOTE:</b> joiner (1), mover (2) or leaver (3)? Then reveal what happens.</p>
+    <p><b>ANSWERS:</b> 1. Joiner: a named account with the clerk role only, and MFA, on the first day. 2. Mover: on the day he moves, remove the clerk role and add the cashier role. 3. Leaver: close every account, including the VPN, on the last day. 4. Mover: remove her clerk access the day she moves, so she cannot encode and approve the same application.</p>
+    <p><b>DESK SIDE:</b> tell IT the day someone joins, moves or leaves. IT cannot close an account it has not heard about.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> press 1 to 3 per vote; → reveals; → next case.</p>
+  </aside>
+</section>
+
+<!-- 30 -->
+<section id="sides-3-3" class="l-interactive" data-min="2" data-code="3.3" data-eyebrow="At your desk, in the server room" data-level="Understand" data-source="Module 3 learner guide, Lesson 3.3, At your desk, in the server room">
+  <h2>Whose side is it on?</h2>
+  <div class="stage"><pdac-match-board data-src="m3-sides-33.json"></pdac-match-board></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes, quickly.</p>
+    <p><b>SAY:</b> three desk habits for access: turn on MFA wherever it is offered and deny prompts you did not start; never share your login, not even with your supervisor; tell IT the day someone joins, moves or leaves.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> click a card, then a side; Check; A places all.</p>
+  </aside>
+</section>
+
+<!-- 31 -->
+<section id="try-3-3" class="l-interactive" data-min="10" data-timer="10" data-timer-label="Try it 3.3" data-code="3.3" data-eyebrow="Try it 3.3 · teams" data-level="Create and Analyze" data-source="Module 3 learner guide, Try it 3.3 and model answers" data-terms="rbac,separation-of-duties">
+  <h2>Try it 3.3: Design the roles</h2>
+  <div class="stage"><pdac-rbac-matrix data-src="m3-rbac.json"></pdac-rbac-matrix></div>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes: 5 in teams (T starts the timer), 5 to build it live. Teams fill the grid in the worksheet first.</p>
+    <p><b>BUILD IT LIVE:</b> take one function at a time and ask a different team each time: "Who gets it?" Click the cells they name. When a conflict lights up red, stop and ask: "Why is that dangerous?" Let the room find the four conflicts themselves.</p>
+    <p><b>MODEL ANSWER (A):</b> Encode: clerk. View applicant records: clerk (assigned cases), supervisor, cashier (payout details only). Approve: supervisor. Edit an e-wallet number: clerk, after a call-back check. Release a payout: cashier. Create and disable accounts: system administrator, approved by the head of office. View audit logs: supervisor and administrator, read only; the DPO also reads them. Export: supervisor, with written approval.</p>
+    <p><b>QUESTION 1:</b> never with one person: encode and approve; edit an e-wallet number and release the payout; manage accounts and approve or pay; change the logs and act in the system.</p>
+    <p><b>QUESTION 2, Ana is the only system administrator:</b> one person with unchecked power, and nobody to fix things when she is away. Controls: a second trained administrator, logs sent where Ana cannot change them, and a sealed emergency account.</p>
+    <p><b>QUESTION 3, a clerk is promoted to supervisor:</b> her clerk access is removed on the day she moves (the mover step), so she cannot encode and approve the same application.</p>
+    <p><b>LINK:</b> keep the team's matrix. This afternoon, in the Module 4 audit, you compare the RSSO portal's real role table with it.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> starts empty. Click a cell to grant or remove; conflicts appear in red with the reason. A shows the model answer (the guide's), with its notes in the cells ("Assigned cases", "Read only"…). R empties it.</p>
+  </aside>
+</section>
+
+<!-- 32 -->
+<section id="check-3-3" data-min="2" data-code="3.3" data-eyebrow="Check yourself 3.3 · answer from memory" data-break-after="10" data-source="Module 3 learner guide, Check yourself 3.3">
+  <h2>Before the break</h2>
+  <pdac-checks class="body"><ol class="checks">
+    <li><b>What does "never trust, always verify" mean for a login from inside the office?</b><span class="answer"><span class="answer-label">Answer:</span> It is checked like any other request, for identity, device and need; being inside proves nothing.</span></li>
+    <li><b>Name the three kinds of proof that MFA can use.</b><span class="answer"><span class="answer-label">Answer:</span> Something you know, something you have, something you are.</span></li>
+    <li><b>Why does a security key resist phishing when an SMS code does not?</b><span class="answer"><span class="answer-label">Answer:</span> The key checks the real site's address and will not sign in to a fake page; an SMS code can be typed into a fake page.</span></li>
+    <li><b>What is separation of duties? Give one RSSO example.</b><span class="answer"><span class="answer-label">Answer:</span> Splitting a task so no one person can complete it alone; whoever edits an e-wallet number cannot release the payout.</span></li>
+    <li><b>What are the three steps of joiner, mover, leaver?</b><span class="answer"><span class="answer-label">Answer:</span> Set up access on the first day, change it on transfer, close it on the last day.</span></li>
+  </ol></pdac-checks>
+  <aside class="notes">
+    <p><b>TIME:</b> 2 minutes. Ask each question, wait for answers from different teams, then reveal it.</p>
+    <p><b>ANSWERS:</b> 1. It is checked like any other request, for identity, device and need; being inside proves nothing. 2. Something you know, something you have, something you are. 3. The key checks the real site's address and will not sign in to a fake page; an SMS code can be typed into a fake page. 4. Splitting a task so no one person can complete it alone; for example, whoever edits an e-wallet number cannot release the payout. 5. Set up access on the first day, change it on transfer, close it on the last day.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> the room answers from memory first; → reveals the next answer (← hides it again), a click on a question shows its own answer, A shows all, R hides all. Break next (10 minutes): press K. During the break, put one printed workbook (or the shared copy link) at each table.</p>
+  </aside>
+</section>
+
+<!-- 33 -->
+<section id="ws-brief" class="l-table" data-min="5" data-eyebrow="Configuration workshop · formative · 60 minutes" data-source="Module 3 learner guide, Configuration workshop · Module 3 workbook">
+  <h2>Harden the RSSO Assistance Portal, on paper</h2>
+  <table class="t body compact ws-table">
+    <thead><tr><th>Part</th><th>Minutes</th><th>What your team does</th><th>Output in the workbook</th></tr></thead>
+    <tbody>
+      <tr><td>Brief</td><td>5</td><td>Read the network and the three tasks</td><td>None</td></tr>
+      <tr><td>Task A, perimeter</td><td>15</td><td>Write firewall rules with a default-deny stance, then test them against six sample connections</td><td>Rule table and self-check</td></tr>
+      <tr><td>Task B, access</td><td>15</td><td>Give four roles their functions, set the MFA policy, list the joiner, mover and leaver steps</td><td>Role matrix, MFA policy, three checklists</td></tr>
+      <tr><td>Task C, data protection</td><td>15</td><td>Classify six data sets, choose protection when stored and moving, name a key custodian, set backup rules</td><td>Data protection table and backup rules</td></tr>
+      <tr><td>Peer evaluation</td><td>10</td><td>Swap workbooks with another team and score each control from 1 to 3</td><td>Scorecard with the gap left</td></tr>
+    </tbody>
+  </table>
+  <div class="ws-foot">
+  <p class="callout"><b>Start each task from your Day 1 risk register:</b> which of your risks does this control treat? Rotate roles: facilitator, scribe, timekeeper, reviewer.</p>
+  <pdac-reveal-panel data-label="Show an example" data-title="Example: from a Day 1 risk to today's controls">
+    <p>Take each High or Critical risk from your team's Module 2 register, and ask which task treats it.</p>
+    <table class="t compact">
+      <thead><tr><th>Day 1 risk, from the register</th><th>Task</th><th>Today's control</th></tr></thead>
+      <tbody>
+        <tr><td>The portal's admin page is open to the internet, with a default password (Critical)</td><td>A</td><td>Default deny; admin pages answer on the admin network only; a security key for admins</td></tr>
+        <tr><td>One shared login for the approval spreadsheet (High)</td><td>B</td><td>One named account per person, with a role and MFA, so the log shows who approved</td></tr>
+        <tr><td>A contractor who left can still use the VPN (High)</td><td>B</td><td>The leaver step: every account, the VPN included, closed on the last day</td></tr>
+        <tr><td>Backups never test-restored (High)</td><td>C</td><td>Encrypted backups, one copy offline, a restore test every month</td></tr>
+        <tr><td>Applicant forms on personal USB sticks (High)</td><td>C</td><td>Office-issued encrypted USB drives only, with the head's approval</td></tr>
+      </tbody>
+    </table>
+  </pdac-reveal-panel>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes.</p>
+    <p><b>SAY:</b> your team hardens the fictional RSSO Assistance Portal on paper, using this morning's controls. No command line is needed. Completion is recorded; nothing is scored. Face-to-face, your team works on the printed workbook at its table; online, in its own shared copy, in its breakout room.</p>
+    <p><b>TIPS (read aloud):</b> start each task from your Day 1 risk register. In mixed teams, non-IT members often know best who should see what (Task B), and IT members help word the rules (Task A). Rotate roles from Day 1. The usual mistakes: "allow any" rules, shared admin accounts, and backups that were never restored.</p>
+    <p><b>LINK:</b> your role matrix comes back this afternoon: in Module 4 you compare the RSSO portal's role table with it.</p>
+    <p><b>MATERIALS:</b> one Module 3 workbook per team (source/worksheets/Module 3 Workbook.docx); the facilitator key is in the answer key document.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> "Show an example" (or A) opens a worked example over the slide: five Day 1 risks and the task and control that treat each. R or ← closes it.</p>
+  </aside>
+</section>
+
+<!-- 34 -->
+<section id="ws-task-a" data-min="15" data-timer="15" data-timer-label="Task A, perimeter" data-checkpoints="9:Rules written, default deny last|15:Six connections tested" data-eyebrow="Workshop · Task A, perimeter · 15 minutes" data-level="Create" data-source="Module 3 workbook, Task A · Lesson 3.1, Rules that work">
+  <h2>Task A: write the rules, then test them</h2>
+  <div class="body grid-2 ws-grid">
+    <div class="stack">
+      <ol class="milestones">
+        <li><span class="t">1</span> Start from "block everything"</li>
+        <li><span class="t">2</span> Specific allows: who, to what, which service, and why</li>
+        <li><span class="t">3</span> Order: specific rules first; the first match decides</li>
+        <li><span class="t">4</span> Log what is blocked; servers reach approved sites only</li>
+      </ol>
+    </div>
+    <div class="note-box ws-conns">
+      <h4>Test your rules: six sample connections</h4>
+      <ol>
+        <li>A citizen opens the Assistance Portal</li>
+        <li>The portal saves a new application to the database</li>
+        <li>An internet scan tries the portal's admin page</li>
+        <li>A visitor's phone on guest Wi-Fi tries the file server</li>
+        <li>Malware on a staff PC tries the database directly</li>
+        <li>The backup server sends data abroad at 2:00 AM</li>
+      </ol>
+      <p class="muted">For each: which rule decides, allowed or blocked, and as intended?</p>
+    </div>
+  </div>
+  <pdac-reveal-panel data-label="Show a model answer" data-title="Task A · a model rule set and its self-check">
+    <table class="t compact">
+      <thead><tr><th>#</th><th>Action</th><th>From</th><th>To</th><th>Service</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="yes">Allow</td><td>Internet</td><td>Public zone (portal)</td><td>HTTPS</td><td>Citizens reach the Assistance Portal</td></tr>
+        <tr><td>2</td><td class="yes">Allow</td><td>Public zone (portal)</td><td>Applicant database</td><td>Database</td><td>The one approved connection</td></tr>
+        <tr><td>3</td><td class="yes">Allow</td><td>Staff network</td><td>Public zone (portal)</td><td>HTTPS</td><td>Staff use the portal</td></tr>
+        <tr><td>4</td><td class="yes">Allow</td><td>Staff network</td><td>File server</td><td>File sharing</td><td>The file server, never the database</td></tr>
+        <tr><td>5</td><td class="yes">Allow</td><td>Admin network</td><td>Admin pages, servers</td><td>Admin</td><td>Ana manages from the admin network only</td></tr>
+        <tr><td>6</td><td class="yes">Allow</td><td>VPN (with MFA)</td><td>Portal, file server</td><td>By role</td><td>Only what each person's role needs</td></tr>
+        <tr><td>7</td><td class="yes">Allow</td><td>Server zone</td><td>Approved update sites</td><td>HTTPS</td><td>Updates only; nothing else outbound</td></tr>
+        <tr><td>8</td><td class="yes">Allow</td><td>Guest Wi-Fi</td><td>Internet</td><td>Web</td><td>Visitors get the internet only</td></tr>
+        <tr><td>9</td><td class="yes">Allow</td><td>Cameras, devices</td><td>Their own recorder</td><td>Their service</td><td>Devices stay in their room</td></tr>
+        <tr><td>Last</td><td>Deny</td><td>Anything</td><td>Anything</td><td>Any</td><td>Default deny; every block logged and reviewed</td></tr>
+      </tbody>
+    </table>
+    <p class="rp-note"><b>Self-check:</b> 1 allowed by rule 1 · 2 allowed by rule 2 · 3, 4, 5 and 6 blocked by the default deny; 6 is also logged and alerts Ana. <b>Usual mistakes:</b> an "allow any" rule, admin pages open to the internet, no outbound filtering, nobody named to read the logs.</p>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 15 minutes. Press T; chimes at 9 minutes (rules written) and 15 (tested).</p>
+    <p><b>COACH (ask, do not answer):</b> Where is your default deny? What does the staff network really need to reach? Who manages the admin pages, and from where? What may the server zone send out? Which Day 1 risk does each rule treat?</p>
+    <p><b>EXPECT TO SEE:</b> allow internet to the portal (HTTPS); allow the portal to the database (one approved connection); allow staff to the portal and the file server; allow the admin network to the admin pages; allow the server zone to approved update sites; guests to the internet only; then the default deny, with blocks logged. Connections 1 and 2 allowed; 3 to 6 blocked.</p>
+    <p><b>SELF-CHECK SHORTCUT:</b> if a team is stuck, jump to the fw-rules slide (press J, type fw-rules) and run the same six connections on screen.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> "Show a model answer" (or A) opens a model rule set and its self-check over the slide. Show it at the end of the 15 minutes, or to a team that is stuck; R or ← closes it.</p>
+  </aside>
+</section>
+
+<!-- 35 -->
+<section id="ws-task-b" data-min="15" data-timer="15" data-timer-label="Task B, access" data-checkpoints="6:Role matrix done|10:MFA policy written|15:Joiner, mover, leaver checklists" data-eyebrow="Workshop · Task B, access · 15 minutes" data-level="Create" data-source="Module 3 workbook, Task B · Lesson 3.3">
+  <h2>Task B: roles, MFA, and people who join, move and leave</h2>
+  <div class="cards c3 body">
+    <div class="card"><span class="k">6 minutes</span><h4>Role matrix</h4><p>Four roles, eight functions, from Try it 3.3. Mark every separation-of-duties conflict you avoided.</p></div>
+    <div class="card"><span class="k">4 minutes</span><h4>MFA policy</h4><p>Which accounts get MFA first, with which method? What do staff do with a prompt they did not start?</p></div>
+    <div class="card"><span class="k">5 minutes</span><h4>Three checklists</h4><p>The steps when someone joins, moves or leaves, including COS and JO staff and consultants.</p></div>
+  </div>
+  <p class="callout">Non-IT members often know best who should see what. Ask them first.</p>
+  <pdac-reveal-panel data-label="Show an example" data-title="Task B · an example: roles, MFA policy, joiners, movers, leavers">
+    <div class="rp-grid">
+      <table class="t compact">
+        <thead><tr><th>Function</th><th>Clerk</th><th>Supervisor</th><th>Cashier</th><th>Admin</th></tr></thead>
+        <tbody>
+          <tr><td>Encode an application</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>View applicant records</td><td class="yes">Assigned cases</td><td class="yes">Yes</td><td class="yes">Payout details only</td><td class="no">No</td></tr>
+          <tr><td>Approve an application</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Edit an e-wallet number</td><td class="yes">After a call-back check</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Release a payout</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr>
+          <tr><td>Create, disable accounts</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes, head approves</td></tr>
+          <tr><td>View audit logs</td><td class="no">No</td><td class="yes">Read only</td><td class="no">No</td><td class="yes">Read only; DPO too</td></tr>
+          <tr><td>Export applicant data</td><td class="no">No</td><td class="yes">With written approval</td><td class="no">No</td><td class="no">No</td></tr>
+        </tbody>
+      </table>
+      <div class="stack">
+        <div class="rp-box"><h4>MFA policy</h4><ul><li>First: email, VPN and admin accounts</li><li>Admins: security keys; staff: an authenticator app with number matching; SMS only where nothing else works</li><li>A prompt you did not start: deny it, and report it to Ana</li></ul></div>
+        <div class="rp-box"><h4>Joiner, mover, leaver</h4><ul><li><b>Joiner:</b> the unit head's request, clearance filed with the DPO, a named account with one role and MFA, a briefing before access</li><li><b>Mover:</b> on the day of the transfer, old role off, new role on; check no conflict remains</li><li><b>Leaver:</b> on the last day, every account closed, the VPN included; devices returned; the same for COS, JO staff and consultants</li></ul></div>
+      </div>
+    </div>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 15 minutes. Press T; chimes at 6, 10 and 15 minutes.</p>
+    <p><b>COACH:</b> Who approves an account before Ana creates it? What happens on a clerk's last day, and who tells IT? Which accounts would hurt most if phished? (Email, VPN, admin: MFA first; security keys for admins.) Is there a second administrator?</p>
+    <p><b>EXPECT TO SEE:</b> the Try it 3.3 matrix with no conflicts; MFA first on email, VPN and admin accounts, security keys for admins, "deny prompts you did not start and report them"; joiner (approved request, named account, the role only, MFA, briefing), mover (remove old role on the day, add new), leaver (close all accounts including VPN on the last day, collect devices, review shared files).</p>
+    <p class="notes-web"><b>ON SCREEN:</b> "Show an example" (or A) opens an example role matrix, MFA policy and joiner, mover and leaver steps. Show it at the end of the task; R or ← closes it.</p>
+  </aside>
+</section>
+
+<!-- 36 -->
+<section id="ws-task-c" data-min="15" data-timer="15" data-timer-label="Task C, data protection" data-checkpoints="8:Six data sets classified and protected|11:Key custodian named|15:Backup rules set" data-eyebrow="Workshop · Task C, data protection · 15 minutes" data-level="Create" data-source="Module 3 workbook, Task C · Lesson 3.2">
+  <h2>Task C: protect six data sets, and the backups</h2>
+  <div class="body grid-2 ws-grid">
+    <div class="note-box ws-conns">
+      <h4>For each data set</h4>
+      <ol>
+        <li>The applicant database</li>
+        <li>Scanned IDs and medical certificates</li>
+        <li>The payout list for the e-wallet provider</li>
+        <li>The nightly backup</li>
+        <li>Staff records and leave files</li>
+        <li>The portal's public pages</li>
+      </ol>
+      <p class="muted">Classify it, choose its protection when stored and when moving, and name the key custodian.</p>
+    </div>
+    <div class="stack">
+      <div class="card"><span class="k">Backup rules</span><h4>How often, where, tested?</h4><p>Encrypted, with at least one copy offline. How often a restore is tested, and who checks it.</p></div>
+      <p class="callout">A backup that was never restored is a hope, not a backup.</p>
+    </div>
+  </div>
+  <pdac-reveal-panel data-label="Show a model answer" data-title="Task C · a model data protection table">
+    <table class="t compact">
+      <thead><tr><th>Data set</th><th>Classification</th><th>Stored</th><th>Moving</th><th>Key custodian</th></tr></thead>
+      <tbody>
+        <tr><td>The applicant database</td><td>Sensitive personal</td><td>Database or file encryption; access by role</td><td>Only the portal reaches it, over TLS</td><td>Ana, with a backup custodian</td></tr>
+        <tr><td>Scanned IDs and medical certificates</td><td>Sensitive personal</td><td>Encrypted storage, open only to staff who check applications</td><td>HTTPS upload</td><td>Ana</td></tr>
+        <tr><td>The payout list</td><td>Personal, high fraud risk</td><td>Encrypted file, deleted after upload</td><td>The provider's business portal over HTTPS, never a plain attachment</td><td>Dan for the file; Ana for the system</td></tr>
+        <tr><td>The nightly backup</td><td>Sensitive personal</td><td>Encrypted, one copy offline</td><td>Encrypted transfer to the backup location</td><td>Ana, with a sealed recovery copy</td></tr>
+        <tr><td>Staff records and leave files</td><td>Personal</td><td>Drive or file encryption; access by role</td><td>Encrypted sharing inside; VPN from outside</td><td>Ana, access approved by the HR head</td></tr>
+        <tr><td>The portal's public pages</td><td>Public</td><td>No sensitive data on the web server</td><td>HTTPS, TLS 1.2 or 1.3, valid certificate</td><td>Ana, renewing certificates on time</td></tr>
+      </tbody>
+    </table>
+    <p class="rp-note"><b>Backup rules:</b> nightly; encrypted, with the key kept apart; one copy offline and off-site; a restore tested every month by someone other than the person who runs the backups; a failed backup alerts Ana and her backup the same morning.</p>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 15 minutes. Press T; chimes at 8, 11 and 15 minutes.</p>
+    <p><b>COACH:</b> Which of the six holds sensitive personal information? Where does each one move, and how? Who holds the key, and where is the key kept? When did anyone last restore a backup?</p>
+    <p><b>EXPECT TO SEE:</b> database, IDs and certificates, payout list: sensitive or high-risk personal data, encrypted stored and moving (HTTPS, provider's business portal); backup: encrypted, one copy offline, restore tested on a schedule; staff records: personal, role access only; public pages: public, HTTPS with a valid certificate, no sensitive data on the web server. Key custodian: Ana with a backup custodian and a sealed recovery copy.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> "Show a model answer" (or A) opens a model data protection table and backup rules. Show it at the end of the task; R or ← closes it.</p>
+  </aside>
+</section>
+
+<!-- 37 -->
+<section id="ws-peer" data-min="10" data-timer="10" data-timer-label="Peer evaluation" data-checkpoints="7:Every control scored|10:Gaps written, workbooks back" data-eyebrow="Workshop · peer evaluation · 10 minutes" data-level="Evaluate" data-source="Module 3 learner guide, Configuration workshop, Peer evaluation scale">
+  <h2>Score the other team's controls: what gap is left?</h2>
+  <div class="body grid-2 ws-grid">
+    <ol class="milestones peer-scale">
+      <li><span class="t">3</span> Covers the risk</li>
+      <li><span class="t">2</span> Partly covers it</li>
+      <li><span class="t">1</span> Leaves a gap</li>
+    </ol>
+    <div class="note-box">
+      <p><b>For every 1 or 2, write down the gap that is left.</b></p>
+      <p class="muted">Face-to-face: swap workbooks with the next table. Online: share your copy with the next breakout room.</p>
+    </div>
+  </div>
+  <p class="callout">Be the auditor you would want: specific, fair, and kind.</p>
+  <pdac-reveal-panel data-label="Show an example" data-title="Peer evaluation · an example scorecard">
+    <table class="t compact">
+      <thead><tr><th>Control</th><th>Score</th><th>The gap that is left</th></tr></thead>
+      <tbody>
+        <tr><td>Task A: default deny and specific allows</td><td>3</td><td>None: every connection in the self-check was handled as intended</td></tr>
+        <tr><td>Task A: outbound filtering and logging</td><td>2</td><td>Blocks are logged, but nobody is named to read the logs: data could leave for weeks unnoticed</td></tr>
+        <tr><td>Task B: MFA policy</td><td>2</td><td>Admins still use SMS codes: a fake sign-in page can steal them; use security keys</td></tr>
+        <tr><td>Task C: backup rules</td><td>1</td><td>No offline copy and no restore test: ransomware would lock the backups too</td></tr>
+      </tbody>
+    </table>
+    <p class="rp-note"><b>A useful gap says what an attacker, or a mistake, could still do</b>: not "weak", but "a departed contractor's password would still open the VPN".</p>
+  </pdac-reveal-panel>
+  <aside class="notes">
+    <p><b>TIME:</b> 10 minutes. Press T; chimes at 7 and 10 minutes.</p>
+    <p><b>SAY:</b> swap workbooks. Score each control from 1 to 3. For every 1 or 2, write the gap that is left: not "weak", but what an attacker could still do.</p>
+    <p><b>DEBRIEF (last minute):</b> ask two teams for one gap they found. These gaps are this afternoon's audit skill: Module 4 asks you to find control gaps in records, on your own.</p>
+    <p><b>RECORD:</b> collect or photograph every workbook; completion is recorded for each team.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> "Show an example" (or A) opens an example scorecard: what a useful "gap that is left" sounds like. Show it at the start, so teams write gaps like it.</p>
+  </aside>
+</section>
+
+<!-- 38 -->
+<section id="m3-recap" class="l-statement" data-min="4" data-blackout-first data-footer="none">
+  <p class="eyebrow">Recap · your desk card additions</p>
+  <h2>Nine phrases to add to your Day 1 desk card</h2>
+  <pdac-phrases data-keys="layers,rooms,deny,ids-ips,lss,msk,ntav,kha,rnp" data-cols="3" data-recap></pdac-phrases>
+  <aside class="notes">
+    <p><b>TIME:</b> 4 minutes.</p>
+    <p><b>RETRIEVAL FIRST:</b> the slide opens blacked out. Ask the room to call out this morning's phrases; then press B to reveal and check. For each, say what you do at your desk.</p>
+    <p><b>PHRASES:</b> Layers, not walls: never rely on a single control. Separate rooms: keep personal devices and visitors off the office network. Deny by default: ask IT for what you need instead of a workaround. IDS tells, IPS stops: report alerts at once. Lock, seal, sign: encrypted storage and secure links for personal data. Moving, stored, keys: never keep a password or key with the data it protects. Never trust, always verify: expect MFA even inside the office. Know, have, are: turn MFA on; deny prompts you did not start. Roles, not people: never share a login; report joiners, movers and leavers.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> opens blacked out; B reveals.</p>
+  </aside>
+</section>
+
+<!-- 39 -->
+<section id="m3-qa" class="l-statement" data-min="5" data-footer="none" data-eyebrow="Questions and answers · 5 minutes">
+  <p class="statement">Your questions</p>
+  <p class="support">Parking-lot questions first. Anything unclear about firewalls, encryption, MFA or roles?</p>
+  <aside class="notes">
+    <p><b>TIME:</b> 5 minutes. Parking-lot questions first; online, the co-host reads them from the chat.</p>
+    <p><b>COMMON QUESTIONS AND SHORT ANSWERS:</b> (1) Do we need a next-generation firewall? Start with default deny, zones and logs someone reads; a costly firewall with "allow any" rules protects nothing. (2) Is SMS MFA still worth it? Yes, it is far better than a password alone; move admins to security keys first. (3) Can we encrypt everything? Laptops, backups and the database first, and plan the keys before you switch it on. (4) Our office has one IT person. Then a second trained administrator, or a sealed emergency account, is the first fix. If a question needs a legal opinion, refer it to the DPO or the NPC.</p>
+  </aside>
+</section>
+
+<!-- 40 -->
+<section id="m3-close" class="l-two-col" data-min="6" data-eyebrow="This afternoon · Module 4 and its audit rules" data-source="Module 4 learner guide, Audit rules · RA 10175 Sec. 4(a)(1)">
+  <h2>This afternoon: an audit you do on paper, by the rules</h2>
+  <div class="two-col close-cols">
+    <div class="col">
+      <p class="col-head"><i data-lucide="laptop"></i> Module 4 · 1:00 PM</p>
+      <h3>Endpoint Security and Safe Digital Workflows</h3>
+      <p>Then an individual controls audit of the RSSO Assistance Portal's records: <b>20% of your grade</b>.</p>
+      <p class="muted">Bring a laptop with a current browser, and your team's Module 3 role matrix.</p>
+    </div>
+    <div class="col">
+      <p class="col-head"><i data-lucide="gavel"></i> The audit rules</p>
+      <ol class="close-rules">
+        <li>Work only from the Audit File: everything in it is fictional</li>
+        <li>Never scan, probe or sign in to any real system: that can be illegal access (RA 10175)</li>
+        <li>No real names, accounts or data in your findings</li>
+        <li>Your own work; ask about the rules, not for answers</li>
+        <li>Submit by 4:30 PM</li>
+      </ol>
+    </div>
+  </div>
+  <div class="exit-card materials-card close-materials">
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="clipboard-check"></i> Exit check · 5 min</p>
+      <pdac-qr-panel data-link="exit-m3"></pdac-qr-panel>
+    </div>
+    <div class="mat">
+      <p class="exit-card__k"><i data-lucide="list-checks"></i> Practice quiz · not graded</p>
+      <pdac-qr-panel data-link="quiz3"></pdac-qr-panel>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>TIME:</b> 6 minutes.</p>
+    <p><b>SAY:</b> this afternoon you secure the devices and habits at every desk, then audit the controls of the RSSO Assistance Portal on your own, using its records. It is worth 20 percent. You do it on paper: nothing is tested live. Accessing a computer system without right is illegal access under the Cybercrime Prevention Act, RA 10175, Section 4(a)(1), so the scope of the audit is a legal line, not a courtesy. You sign the five rules at 1:00 PM.</p>
+    <p><b>BEFORE YOU GO:</b> the exit check (anonymous, about 5 minutes) tells me what to explain again. The practice quiz is 10 items, not graded: take it now or over lunch; you see the right answers and why as soon as you submit.</p>
+    <p><b>BRING:</b> a laptop with a current browser (face-to-face) and your team's Module 3 role matrix.</p>
+    <p class="notes-web"><b>ON SCREEN:</b> QR codes for the Module 3 exit check and practice Quiz 3. Online: paste both links in the chat. Over lunch, run showExitCheckResults and open Module 4 with what is still unclear.</p>
+  </aside>
+</section>

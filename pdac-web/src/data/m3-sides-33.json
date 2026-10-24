@@ -1,0 +1,54 @@
+{
+  "_status": "Module 3, Lesson 3.3 'At your desk, in the server room' (learner guide of 21 October 2026), word for word. Every control has two sides: what you do at your desk, and what IT sets up in the server room.",
+  "prompt": "Whose side is it on? **You need to understand both, even if you only do the first.**",
+  "categories": [
+    {
+      "id": "desk",
+      "label": "At your desk",
+      "icon": "laptop"
+    },
+    {
+      "id": "server",
+      "label": "In the server room",
+      "icon": "server"
+    }
+  ],
+  "items": [
+    {
+      "id": "s1",
+      "text": "Turn on MFA wherever it is offered; deny prompts you did not start",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s2",
+      "text": "MFA first on email, VPN and admin accounts; security keys for admins",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s3",
+      "text": "Never share your login, not even with your supervisor",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s4",
+      "text": "Roles that match job functions; separate admin accounts",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s5",
+      "text": "Tell IT the day someone joins, moves or leaves",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s6",
+      "text": "Quarterly access reviews; a log of every privileged action",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    }
+  ]
+}

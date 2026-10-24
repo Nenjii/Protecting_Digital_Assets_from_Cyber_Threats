@@ -1,0 +1,76 @@
+{
+  "_status": "Module 3, Lesson 3.2 'Data moving (in transit)' and 'Data stored (at rest)' (learner guide of 21 October 2026). Each item's reason is the guide's protection for it. Fictional office.",
+  "prompt": "Is the data **moving** or **stored**? Then name its protection.",
+  "categories": [
+    {
+      "id": "moving",
+      "label": "Moving",
+      "term": "in transit",
+      "icon": "send",
+      "hint": "HTTPS with TLS 1.2 or 1.3 (1.0 and 1.1 deprecated in 2021), VPN, SFTP, WPA3, secure links"
+    },
+    {
+      "id": "stored",
+      "label": "Stored",
+      "term": "at rest",
+      "icon": "hard-drive",
+      "hint": "Full-disk, database and file encryption; encrypted USB; encrypted backups"
+    }
+  ],
+  "items": [
+    {
+      "id": "m1",
+      "text": "A citizen submits an application on the portal",
+      "answer": "moving",
+      "why": "HTTPS with TLS 1.2 or 1.3"
+    },
+    {
+      "id": "m2",
+      "text": "Sol's field laptop",
+      "answer": "stored",
+      "why": "Full-disk encryption"
+    },
+    {
+      "id": "m3",
+      "text": "The applicant database",
+      "answer": "stored",
+      "why": "Database or file-level encryption"
+    },
+    {
+      "id": "m4",
+      "text": "Ana sends files to a partner agency",
+      "answer": "moving",
+      "why": "SFTP or HTTPS, never plain FTP"
+    },
+    {
+      "id": "m5",
+      "text": "A USB drive with home-visit forms",
+      "answer": "stored",
+      "why": "Office-issued encrypted USB only (NPC 2023-06)"
+    },
+    {
+      "id": "m6",
+      "text": "Staff on the office Wi-Fi",
+      "answer": "moving",
+      "why": "WPA3, or WPA2-Enterprise with personal logins"
+    },
+    {
+      "id": "m7",
+      "text": "An email with a medical certificate attached",
+      "answer": "moving",
+      "why": "Encrypted, or a secure link (NPC 2023-06)"
+    },
+    {
+      "id": "m8",
+      "text": "The nightly backup",
+      "answer": "stored",
+      "why": "Encrypted, one copy offline"
+    },
+    {
+      "id": "m9",
+      "text": "Sol opens office systems from home",
+      "answer": "moving",
+      "why": "A VPN tunnel"
+    }
+  ]
+}

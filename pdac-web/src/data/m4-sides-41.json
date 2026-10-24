@@ -1,0 +1,54 @@
+{
+  "_status": "Module 4, Lesson 4.1 'At your desk, in the server room' (learner guide of 21 October 2026), word for word.",
+  "prompt": "Whose side is it on? **You need to understand both, even if you only do the first.**",
+  "categories": [
+    {
+      "id": "desk",
+      "label": "At your desk",
+      "icon": "laptop"
+    },
+    {
+      "id": "server",
+      "label": "In the server room",
+      "icon": "server"
+    }
+  ],
+  "items": [
+    {
+      "id": "s1",
+      "text": "Install updates when asked, and lock your screen",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s2",
+      "text": "Automatic updates; endpoint protection renewed on time",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s3",
+      "text": "Use approved, encrypted storage and USB drives",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s4",
+      "text": "Full-disk encryption; device management with remote wipe",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    },
+    {
+      "id": "s5",
+      "text": "Report a lost device at once",
+      "answer": "desk",
+      "why": "What you do yourself."
+    },
+    {
+      "id": "s6",
+      "text": "Standard user accounts; a written policy for personal devices",
+      "answer": "server",
+      "why": "What IT sets up; ask for it, and know it is there."
+    }
+  ]
+}

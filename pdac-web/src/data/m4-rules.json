@@ -1,0 +1,24 @@
+{
+  "_status": "Module 4 learner guide, Audit rules (21 October 2026): the five rules, and why scope is a legal line (RA 10175 Sec. 4(a)(1)). Cases invented to practise the rules before signing.",
+  "options": [
+    { "id": "ok", "label": "Allowed" },
+    { "id": "no", "label": "Not allowed" }
+  ],
+  "items": [
+    { "id": "r1", "text": "To check a finding, you open your own office's portal and try a few passwords.", "answer": "no",
+      "facts": [{ "k": "Rule 2", "v": "Do not scan, probe or sign in to any real system, including your own office's" }],
+      "reason": "Accessing a computer system without right is illegal access under RA 10175, Section 4(a)(1). Scope is a legal line, not a courtesy." },
+    { "id": "r2", "text": "You ask the facilitator what \"MFA: App\" means in Exhibit B.", "answer": "ok",
+      "facts": [{ "k": "Rule 4", "v": "You may ask the facilitator about the rules or the records, not for answers" }],
+      "reason": "Questions about the records are fine. \"Is this a finding?\" is not." },
+    { "id": "r3", "text": "To make a finding feel real, you write the name of a colleague from your own office.", "answer": "no",
+      "facts": [{ "k": "Rule 3", "v": "Never add real names, accounts or data to your findings" }],
+      "reason": "Everything in the Audit File is fictional, and your findings stay that way." },
+    { "id": "r4", "text": "You talk an idea through with the person beside you, then write the finding in your own words.", "answer": "ok",
+      "facts": [{ "k": "Work", "v": "Individual. You may talk ideas through with the person beside you, but every word you submit is your own" }],
+      "reason": "Talking is allowed; copying is not." },
+    { "id": "r5", "text": "You search the internet for the vendor named in Exhibit E to learn more about it.", "answer": "no",
+      "facts": [{ "k": "Rule 1", "v": "Work only from the Module 4 audit file. Everything in it is fictional" }],
+      "reason": "The vendor does not exist. Your evidence is the exhibit and row, nothing else." }
+  ]
+}

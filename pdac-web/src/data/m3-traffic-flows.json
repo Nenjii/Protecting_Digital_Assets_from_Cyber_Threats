@@ -1,117 +1,154 @@
 {
-  "_status": "Draft for the Module 3 deck (fictional RSSO network). Align wording with the Module 3 learner guide when it exists.",
+  "_status": "Module 3, Lesson 3.1 'Rules that work' and the configuration workshop's six sample connections (learner guide of 21 October 2026; the same six are in the Module 3 workbook, Task A). The start state has the guide's usual mistakes: an 'allow any' rule, and a 'temporary' rule never removed. Fictional office.",
   "zones": {
     "internet": "Internet",
-    "vendor": "SMS vendor",
-    "dmz": "Portal server",
-    "db": "Database",
-    "lan": "Staff network"
+    "dmz": "Portal (DMZ)",
+    "server": "Servers",
+    "staff": "Staff",
+    "admin": "Admin",
+    "guest": "Guest Wi-Fi",
+    "updates": "Update sites"
   },
   "rules": [
     {
-      "id": "r1",
+      "id": "anyout",
+      "action": "allow",
+      "from": "staff",
+      "to": "any",
+      "service": "Any",
+      "why": "Added years ago 'so nothing breaks': an allow-any rule"
+    },
+    {
+      "id": "web",
       "action": "allow",
       "from": "internet",
       "to": "dmz",
-      "service": "HTTPS 443",
+      "service": "HTTPS",
       "why": "Citizens reach the Assistance Portal"
     },
     {
-      "id": "r2",
+      "id": "dbconn",
       "action": "allow",
       "from": "dmz",
-      "to": "db",
-      "service": "Database 5432",
-      "why": "Only the portal talks to the database"
+      "to": "server",
+      "service": "Database",
+      "why": "The one approved connection: portal to applicant database"
     },
     {
-      "id": "r3",
+      "id": "files",
       "action": "allow",
-      "from": "lan",
-      "to": "dmz",
-      "service": "SSH 22",
-      "why": "Ana maintains the server from the office"
+      "from": "staff",
+      "to": "server",
+      "service": "File sharing",
+      "why": "Staff reach the file server"
     },
     {
-      "id": "r4",
+      "id": "adminpages",
       "action": "allow",
-      "from": "vendor",
+      "from": "admin",
       "to": "dmz",
-      "service": "HTTPS 443",
-      "why": "The SMS vendor sends delivery reports"
+      "service": "Admin pages",
+      "why": "Ana manages the portal from the admin network"
     },
     {
-      "id": "r5",
-      "action": "deny",
+      "id": "vendor",
+      "action": "allow",
       "from": "internet",
-      "to": "any",
-      "service": "Any",
-      "why": "Block everything else from the internet"
+      "to": "dmz",
+      "service": "Admin pages",
+      "why": "'Temporary' vendor support access, never removed"
+    },
+    {
+      "id": "updates",
+      "action": "allow",
+      "from": "server",
+      "to": "updates",
+      "service": "HTTPS",
+      "why": "Servers reach approved update sites only"
+    },
+    {
+      "id": "nodb",
+      "action": "deny",
+      "from": "staff",
+      "to": "server",
+      "service": "Database",
+      "why": "Staff computers never reach the database directly"
     }
   ],
   "flows": [
     {
-      "id": "t1",
-      "label": "A citizen opens the portal",
+      "id": "c1",
+      "label": "1. A citizen opens the portal",
       "from": "internet",
       "to": "dmz",
-      "service": "HTTPS 443",
+      "service": "HTTPS",
       "expect": "allow"
     },
     {
-      "id": "t2",
-      "label": "Someone tries the database directly",
-      "from": "internet",
-      "to": "db",
-      "service": "Database 5432",
-      "expect": "deny"
-    },
-    {
-      "id": "t3",
-      "label": "The portal saves an application",
+      "id": "c2",
+      "label": "2. The portal saves an application",
       "from": "dmz",
-      "to": "db",
-      "service": "Database 5432",
+      "to": "server",
+      "service": "Database",
       "expect": "allow"
     },
     {
-      "id": "t4",
-      "label": "Ana updates the server from the office",
-      "from": "lan",
-      "to": "dmz",
-      "service": "SSH 22",
-      "expect": "allow"
-    },
-    {
-      "id": "t5",
-      "label": "Someone tries remote desktop from outside",
+      "id": "c3",
+      "label": "3. A scan tries the admin page",
       "from": "internet",
       "to": "dmz",
-      "service": "RDP 3389",
+      "service": "Admin pages",
       "expect": "deny"
     },
     {
-      "id": "t6",
-      "label": "The SMS vendor sends a delivery report",
-      "from": "vendor",
-      "to": "dmz",
-      "service": "HTTPS 443",
-      "expect": "allow"
+      "id": "c4",
+      "label": "4. A visitor's phone tries the file server",
+      "from": "guest",
+      "to": "server",
+      "service": "File sharing",
+      "expect": "deny"
+    },
+    {
+      "id": "c5",
+      "label": "5. Malware on a staff PC tries the database",
+      "from": "staff",
+      "to": "server",
+      "service": "Database",
+      "expect": "deny"
+    },
+    {
+      "id": "c6",
+      "label": "6. The backup server sends data abroad at 2 AM",
+      "from": "server",
+      "to": "internet",
+      "service": "HTTPS",
+      "expect": "deny"
     }
   ],
   "start": [
-    "r5",
-    "r1",
-    "r2",
-    "r3",
-    "r4"
+    "anyout",
+    "web",
+    "dbconn",
+    "files",
+    "adminpages",
+    "vendor",
+    "updates",
+    "nodb"
   ],
   "answer": [
-    "r1",
-    "r4",
-    "r2",
-    "r3",
-    "r5"
+    "nodb",
+    "web",
+    "dbconn",
+    "files",
+    "adminpages",
+    "updates",
+    "vendor",
+    "anyout"
   ],
-  "lesson": "**Order matters:** specific allow rules first, broad blocks last, then the default deny."
+  "answerOff": [
+    "anyout",
+    "vendor"
+  ],
+  "lesson": "**Order matters:** the first rule that matches decides. Switch a rule off, or move it, then send the traffic again.",
+  "answerNote": "**Fixed:** the allow-any and forgotten vendor rules are off, and the specific deny is on top. The rest falls to the default deny, and every block is logged."
 }

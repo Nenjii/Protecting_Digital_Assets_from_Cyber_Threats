@@ -1,10 +1,151 @@
 {
   "_readme": "Fill in this run's Google or Microsoft Forms links before each run, then run: npm run qr && npm run build",
-  "quiz1": { "label": "Quiz 1 · Module 1", "url": "", "short": "", "note": "15 items · 20 minutes" },
-  "quiz2": { "label": "Quiz 2 · Module 2", "url": "", "short": "", "note": "12 items · 15 minutes" },
-  "ra-submit": { "label": "Risk assessment submission", "url": "", "short": "", "note": "Submit by 4:45 PM · grace period to 8:00 AM" },
-  "exit-m1": { "label": "Exit check · Module 1", "url": "", "short": "", "note": "Anonymous · about 5 minutes" },
-  "exit-m2": { "label": "Exit check · Module 2", "url": "", "short": "", "note": "Anonymous · about 5 minutes" },
-  "phishing-quiz": { "label": "Phishing quiz by Jigsaw (Google)", "url": "https://phishingquiz.withgoogle.com/", "short": "phishingquiz.withgoogle.com", "note": "Make up a name and email: they stay on your phone · needs internet" },
-  "live-poll": { "label": "Live poll", "url": "", "short": "", "note": "Slido or Mentimeter: paste your event link here (press L on any slide)" }
+  "quiz1": {
+    "label": "Quiz 1 · Module 1",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSdlha8hR_ASwmmE5V-4g-54hDlybKhvFRlKqLP2EHxOJsmQxA/viewform",
+    "short": "Google Forms",
+    "note": "15 items · 20 minutes · closed book"
+  },
+  "quiz2": {
+    "label": "Quiz 2 · Module 2",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLScTvadBfRUxgDHxvS96mCYCgq6LOnQYsvqOKu4YgH8C4Cb1tg/viewform",
+    "short": "Google Forms",
+    "note": "12 items · 15 minutes · closed book"
+  },
+  "quiz3": {
+    "label": "Quiz 3 · Module 3 (practice)",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLScRkNgW1S6H6kCN1CkomsiAZCWy_MaIoSdl4nHKvP9RJQujMg/viewform",
+    "short": "Google Forms",
+    "note": "10 items · about 10 minutes · practice, not graded"
+  },
+  "quiz4": {
+    "label": "Quiz 4 · Module 4 (practice)",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLScW-OKfoa-UEUyzGY5rA3eAHn69bFYvoyd2Klzgdg4DFE4Y1w/viewform",
+    "short": "Google Forms",
+    "note": "10 items · about 10 minutes · practice, not graded"
+  },
+  "worksheet-m1": {
+    "label": "Worksheet · Module 1",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSei6PEvvK9xboEUd77WNY7O-dxwVkWBNYeXn786qcgq7tfGVw/viewform",
+    "short": "Google Forms",
+    "note": "Open it now · keep it during the morning"
+  },
+  "worksheet-m2": {
+    "label": "Worksheet · Module 2",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeLTitwErXx3OTB3CqBXfKkeKrKsEUdsg_s-kWDC70_SUDd6w/viewform",
+    "short": "Google Forms",
+    "note": "Open it now · keep it during the afternoon"
+  },
+  "worksheet-m3": {
+    "label": "Worksheet · Module 3",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSclZZGZQjOoSJTDoGAFFXtyVSTR79juMbNtKm1yg9MuPhFArg/viewform",
+    "short": "Google Forms",
+    "note": "Open it now · keep it during the morning"
+  },
+  "worksheet-m4": {
+    "label": "Worksheet · Module 4",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSfB3aCWTLh6wtNk_VbhypevqtX4TslKXGE3C0poTbH1eGai9w/viewform",
+    "short": "Google Forms",
+    "note": "Open it now · keep it during the afternoon"
+  },
+  "guide-m1": {
+    "label": "Learner guide · Module 1",
+    "url": "https://drive.google.com/file/d/1tMAAAjegwrxMVioMVj7hrfIl_4GL7bg6/view",
+    "short": "Google Drive · PDF",
+    "note": "Open or download the PDF"
+  },
+  "guide-m2": {
+    "label": "Learner guide · Module 2",
+    "url": "https://drive.google.com/file/d/14HvXO1ICROriaFa-5VhalyjIz_XjOkFM/view",
+    "short": "Google Drive · PDF",
+    "note": "Open or download the PDF"
+  },
+  "guide-m3": {
+    "label": "Learner guide · Module 3",
+    "url": "https://drive.google.com/file/d/12f10TRRnuFBU81VZeCqUCNoXXPRZJKe6/view",
+    "short": "Google Drive · PDF",
+    "note": "Open or download the PDF"
+  },
+  "guide-m4": {
+    "label": "Learner guide · Module 4",
+    "url": "https://drive.google.com/file/d/1jfzHA7_qwZqsOAq21rAcaWctWyjawpKb/view",
+    "short": "Google Drive · PDF",
+    "note": "Open or download the PDF"
+  },
+  "ra-submit": {
+    "label": "Risk assessment submission",
+    "url": "",
+    "short": "",
+    "note": "Submit by 4:45 PM · grace period to 8:00 AM"
+  },
+  "audit-submit": {
+    "label": "Controls audit submission",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSepunTjC_zNh9tZsoniXr_0UiofJ2XBv4TY1IT5ZM6CQBmUNg/viewform",
+    "short": "Google Forms",
+    "note": "The audit form · one per person · by 4:30 PM · grace period to 8:00 AM"
+  },
+  "exit-m1": {
+    "label": "Exit check · Module 1",
+    "url": "",
+    "short": "",
+    "note": "Anonymous · about 5 minutes"
+  },
+  "exit-m2": {
+    "label": "Exit check · Module 2",
+    "url": "",
+    "short": "",
+    "note": "Anonymous · about 5 minutes"
+  },
+  "exit-m3": {
+    "label": "Exit check · Module 3",
+    "url": "",
+    "short": "",
+    "note": "Anonymous · about 5 minutes"
+  },
+  "exit-m4": {
+    "label": "Exit check · Module 4",
+    "url": "",
+    "short": "",
+    "note": "Anonymous · about 5 minutes"
+  },
+  "phishing-quiz": {
+    "label": "Phishing quiz by Jigsaw (Google)",
+    "url": "https://phishingquiz.withgoogle.com/",
+    "short": "phishingquiz.withgoogle.com",
+    "note": "Make up a name and email: they stay on your phone · needs internet"
+  },
+  "live-poll": {
+    "label": "Live poll",
+    "url": "",
+    "short": "",
+    "note": "Slido or Mentimeter: paste your event link here (press L on any slide)"
+  },
+  "guide-m5": {
+    "label": "Learner guide · Module 5",
+    "url": "https://drive.google.com/file/d/1h0k4BQwJsXap9u3l0gpGuklebsndqd-q/view",
+    "short": "Google Drive · PDF",
+    "note": "Open or download the PDF"
+  },
+  "tabletop-kit": {
+    "label": "Tabletop Kit · Module 5",
+    "url": "https://drive.google.com/file/d/1Tz7JGng65j54RgBWIjCwpg-jFksK_IGu/view",
+    "short": "Google Drive · PDF",
+    "note": "Fact sheet, role cards, log and templates"
+  },
+  "tabletop-submit": {
+    "label": "Capstone submission",
+    "url": "",
+    "note": "Hand-made form; one file per team"
+  },
+  "exit-m5": {
+    "label": "Module 5 exit check",
+    "url": "",
+    "note": "From ExitChecks.gs (showExitCheckLinks)"
+  },
+  "exit-course": {
+    "label": "Exit check · whole course (Modules 1 to 5)",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSekT3uhHO2lOV_AQaTqGpZvKhi8MpkyvoUze-W7xpPcUUtFrA/viewform",
+    "short": "Google Forms",
+    "note": "Anonymous · about 10 minutes"
+  }
 }

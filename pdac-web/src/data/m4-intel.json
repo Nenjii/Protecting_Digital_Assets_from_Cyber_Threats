@@ -1,0 +1,17 @@
+{
+  "_status": "Module 4, Lesson 4.3 'What threat intelligence is' (learner guide of 21 October 2026): ISO/IEC 27001:2022 Annex A 5.7 and its three layers, with the guide's RSSO examples plus three invented ones.",
+  "prompt": "Which layer is each item? Then: **does it change a decision this week?**",
+  "categories": [
+    { "id": "strategic", "label": "Strategic", "icon": "binoculars", "hint": "The big picture · Director Eva, Carla" },
+    { "id": "tactical", "label": "Tactical", "icon": "crosshair", "hint": "Methods, tools, technologies · Ana, supervisors" },
+    { "id": "operational", "label": "Operational", "icon": "list-filter", "hint": "Specific attacks, technical signs · Ana" }
+  ],
+  "items": [
+    { "id": "i1", "text": "An advisory telling government offices to raise their guard", "answer": "strategic", "why": "The big picture: what kinds of attackers and attacks are rising." },
+    { "id": "i2", "text": "Callers posing as DICT staff who threaten to cut off your SIM", "answer": "tactical", "why": "An attacker's method: supervisors warn frontline staff." },
+    { "id": "i3", "text": "A list of sender addresses and links to block today", "answer": "operational", "why": "Technical signs of a specific attack: Ana blocks them today." },
+    { "id": "i4", "text": "A yearly report: ransomware against local governments is rising in the region", "answer": "strategic", "why": "Trends for the head of office's decisions and budget." },
+    { "id": "i5", "text": "Scammers now send fake payout QR codes on posters", "answer": "tactical", "why": "A method: tell the staff who meet applicants." },
+    { "id": "i6", "text": "Two web addresses used in this week's fake payout texts", "answer": "operational", "why": "Specific signs: block them, and warn staff today." }
+  ]
+}

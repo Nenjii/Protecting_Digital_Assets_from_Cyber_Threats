@@ -1,0 +1,193 @@
+{
+  "_status": "Module 3, Lesson 3.1, 'VPNs: a private tunnel' (learner guide of 21 October 2026), including the Module 2 contractor case. Fictional office.",
+  "title": "VPNs: a private tunnel",
+  "map": "m3-net.json",
+  "tracks": [
+    {
+      "id": "tunnel",
+      "tab": "The tunnel",
+      "label": "Remote-access VPN",
+      "steps": [
+        {
+          "title": "Sol works from a café",
+          "text": "Without a VPN, office systems are not reachable from the internet at all, and anyone on the café Wi-Fi sees what is not encrypted.",
+          "pre": {
+            "snooper": "focus|Listening"
+          }
+        },
+        {
+          "title": "Through the VPN: an encrypted tunnel",
+          "text": "The VPN encrypts the connection between Sol's laptop and the office, after MFA. The person on the café Wi-Fi sees scrambled bytes; the firewall lets the tunnel reach only what Sol's role needs.",
+          "send": [
+            {
+              "route": [
+                "remote",
+                "net",
+                "firewall",
+                "vpn"
+              ],
+              "kind": "secure",
+              "label": "VPN + MFA"
+            },
+            {
+              "route": [
+                "vpn",
+                "firewall",
+                "files"
+              ],
+              "kind": "secure",
+              "label": "Her case files"
+            }
+          ],
+          "set": {
+            "remote": "ok|✓ Connected",
+            "snooper": "warn|Sees noise",
+            "vpn": "ok|✓ MFA passed"
+          },
+          "screen": {
+            "title": "What the café Wi-Fi sees",
+            "lines": [
+              "17 03 03 00 4a 8f 2c e1 9b 0d 77 c4 51 3a",
+              "(an encrypted tunnel: no names, no files)"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "stolen",
+      "tab": "A stolen password",
+      "label": "Module 2's contractor case",
+      "steps": [
+        {
+          "title": "A contractor left two months ago",
+          "text": "His VPN password was stolen, and it is used at night from abroad.",
+          "ask": {
+            "q": "What two things should every VPN account have?",
+            "options": [
+              "A long name and a photo",
+              "MFA, and closure on the person's last day",
+              "A shared password, so IT can help"
+            ],
+            "answer": 1,
+            "why": "Every VPN account needs MFA, and the accounts of people who leave are closed on their last day."
+          }
+        },
+        {
+          "title": "Password only: the attacker is in",
+          "text": "With a password alone, the tunnel opens for whoever has it.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "vpn"
+              ],
+              "kind": "attack",
+              "label": "Old password"
+            },
+            {
+              "route": [
+                "vpn",
+                "firewall",
+                "files"
+              ],
+              "kind": "attack",
+              "label": "Files"
+            }
+          ],
+          "set": {
+            "files": "bad|✗ Opened",
+            "vpn": "bad|Password only"
+          }
+        },
+        {
+          "title": "MFA, and the account closed on his last day",
+          "text": "MFA asks for a second proof the attacker does not have. Better still, the account was closed the day the contract ended.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "vpn"
+              ],
+              "kind": "attack",
+              "label": "Old password",
+              "blockAt": "vpn"
+            }
+          ],
+          "set": {
+            "vpn": "ok|✓ Account closed",
+            "attacker": "bad|Refused"
+          },
+          "close": true,
+          "verdict": {
+            "tone": "ok",
+            "text": "MFA on every VPN account; close leavers' accounts on their last day."
+          }
+        }
+      ]
+    },
+    {
+      "id": "rdp",
+      "tab": "Remote desktop",
+      "label": "Never open to the internet",
+      "desk": "Use the VPN for office systems when away, and never share your VPN account.",
+      "it": "MFA on VPN and admin accounts; no remote desktop open to the internet; decide split tunneling deliberately.",
+      "steps": [
+        {
+          "title": "Remote desktop sits behind the VPN",
+          "text": "Attackers scan the internet for remote desktop doors. At the RSSO there is none to find: remote desktop works only inside the VPN.",
+          "send": [
+            {
+              "route": [
+                "attacker",
+                "net",
+                "firewall",
+                "ana"
+              ],
+              "kind": "attack",
+              "label": "Remote desktop?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ Not open",
+            "ana": "focus|VPN users only"
+          },
+          "close": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "VPN fact",
+      "Why it matters"
+    ],
+    "rows": [
+      [
+        "Remote-access VPN connects one laptop; site-to-site connects two office networks",
+        "Both encrypt the connection between them"
+      ],
+      [
+        "Every VPN account needs MFA",
+        "A stolen password alone does not open the tunnel"
+      ],
+      [
+        "Leavers' accounts close on their last day",
+        "Module 2's contractor could still connect two months later"
+      ],
+      [
+        "Split tunneling sends only office traffic through the VPN",
+        "Convenient, but home-network risks then sit next to office access: IT decides it deliberately"
+      ],
+      [
+        "Remote desktop is never open directly to the internet",
+        "It sits behind the VPN"
+      ]
+    ]
+  }
+}

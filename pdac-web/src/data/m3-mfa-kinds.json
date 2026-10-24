@@ -1,0 +1,18 @@
+{
+  "_status": "Module 3, Lesson 3.3 'MFA: know, have, are' (learner guide of 21 October 2026): something you know (a password or PIN), something you have (a phone or a security key), something you are (a fingerprint or face).",
+  "prompt": "Which kind of proof is each one?",
+  "categories": [
+    { "id": "know", "label": "Know", "icon": "brain" },
+    { "id": "have", "label": "Have", "icon": "smartphone" },
+    { "id": "are", "label": "Are", "icon": "fingerprint" }
+  ],
+  "items": [
+    { "id": "f1", "text": "A password", "answer": "know", "why": "Something you know." },
+    { "id": "f2", "text": "A PIN", "answer": "know", "why": "Something you know." },
+    { "id": "f3", "text": "A security key", "answer": "have", "why": "Something you have: and it resists phishing." },
+    { "id": "f4", "text": "A code from an authenticator app", "answer": "have", "why": "It proves you have your phone." },
+    { "id": "f5", "text": "A code sent by SMS", "answer": "have", "why": "It proves you have the phone number, which is why SIM swaps can steal it." },
+    { "id": "f6", "text": "A fingerprint", "answer": "are", "why": "Something you are." },
+    { "id": "f7", "text": "Your face", "answer": "are", "why": "Something you are." }
+  ]
+}

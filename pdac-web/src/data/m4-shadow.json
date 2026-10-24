@@ -1,0 +1,277 @@
+{
+  "_status": "Module 4, Lesson 4.2 'Shadow IT: the tool nobody approved', 'The approved-tools route' and 'What IT can add' (learner guide of 21 October 2026), including RA 10173 Secs 14 and 21(a). Fictional office and site; .example names are reserved for documentation.",
+  "title": "Where does the masterlist go?",
+  "map": {
+    "size": [
+      1140,
+      620
+    ],
+    "zones": [
+      {
+        "id": "office",
+        "label": "RSSO office",
+        "x": 10,
+        "y": 10,
+        "w": 470,
+        "h": 600,
+        "tone": "office"
+      },
+      {
+        "id": "internet",
+        "label": "Internet",
+        "x": 500,
+        "y": 10,
+        "w": 630,
+        "h": 600,
+        "tone": "internet"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "pc",
+        "label": "A colleague's PC",
+        "sub": "two masterlists",
+        "icon": "monitor",
+        "x": 120,
+        "y": 150,
+        "role": "device"
+      },
+      {
+        "id": "approved",
+        "label": "Approved tool",
+        "sub": "on the office list",
+        "icon": "ticket-check",
+        "x": 120,
+        "y": 450,
+        "role": "server"
+      },
+      {
+        "id": "firewall",
+        "label": "Firewall",
+        "sub": "web filter, DLP",
+        "icon": "shield",
+        "x": 390,
+        "y": 300,
+        "role": "net"
+      },
+      {
+        "id": "net",
+        "label": "Internet",
+        "icon": "globe",
+        "x": 610,
+        "y": 300,
+        "role": "net"
+      },
+      {
+        "id": "free",
+        "label": "Free PDF converter",
+        "sub": "freepdf-merge.example",
+        "icon": "cloud-upload",
+        "x": 860,
+        "y": 150,
+        "role": "cloud"
+      },
+      {
+        "id": "copies",
+        "label": "Its storage",
+        "sub": "where, how long?",
+        "icon": "database",
+        "x": 990,
+        "y": 440,
+        "role": "cloud"
+      },
+      {
+        "id": "others",
+        "label": "Who else?",
+        "sub": "partners, buyers",
+        "icon": "users",
+        "x": 750,
+        "y": 470,
+        "role": "attacker"
+      }
+    ],
+    "links": [
+      {
+        "from": "pc",
+        "to": "firewall"
+      },
+      {
+        "from": "approved",
+        "to": "firewall"
+      },
+      {
+        "from": "pc",
+        "to": "approved"
+      },
+      {
+        "from": "firewall",
+        "to": "net"
+      },
+      {
+        "from": "net",
+        "to": "free"
+      },
+      {
+        "from": "free",
+        "to": "copies"
+      },
+      {
+        "from": "copies",
+        "to": "others"
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "free",
+      "tab": "The free converter",
+      "label": "Shadow IT: the tool nobody approved",
+      "steps": [
+        {
+          "title": "Two masterlists, one deadline",
+          "text": "A colleague needs to merge two beneficiary masterlists by noon. A free online PDF converter would take one minute.",
+          "pre": {
+            "pc": "focus|2 masterlists"
+          },
+          "ask": {
+            "q": "Nothing leaks, and the file is deleted afterwards. Is there still a problem?",
+            "options": [
+              "No: no harm done",
+              "Yes: the office stays responsible, with no controls, no record and no way back"
+            ],
+            "answer": 1,
+            "why": "Why it matters even when nothing leaks: the office stays responsible (RA 10173, Secs 14 and 21(a)); there are no controls and no record; and once uploaded, the data cannot be recalled."
+          }
+        },
+        {
+          "title": "The upload: out of the office's control",
+          "text": "The masterlists leave for a site that has no agreement with the RSSO. The office cannot see who opens the file, where it is stored, or whether it can be deleted.",
+          "send": [
+            {
+              "route": [
+                "pc",
+                "firewall",
+                "net",
+                "free"
+              ],
+              "kind": "leak",
+              "label": "Masterlists"
+            },
+            {
+              "route": [
+                "free",
+                "copies"
+              ],
+              "kind": "leak",
+              "label": "Copy kept?"
+            }
+          ],
+          "set": {
+            "free": "bad|No agreement",
+            "copies": "warn|No record",
+            "pc": "warn|Done in 1 minute"
+          }
+        },
+        {
+          "title": "No way back",
+          "text": "Whatever the site does next is out of reach. A personal information controller remains responsible for personal data it hands to another party (RA 10173, Sections 14 and 21(a)), and a free website has no agreement with the RSSO.",
+          "send": [
+            {
+              "route": [
+                "copies",
+                "others"
+              ],
+              "kind": "attack",
+              "label": "Shared?"
+            }
+          ],
+          "set": {
+            "others": "bad|Unknown",
+            "copies": "bad|No way back"
+          },
+          "verdict": {
+            "tone": "bad",
+            "text": "Shadow IT puts office data where nobody controls it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "route",
+      "tab": "The approved route",
+      "label": "Approved tools only",
+      "desk": "Use approved tools only; ask before you upload. Report odd pop-ups and downloads.",
+      "it": "An approved-tools list with a fast approval route; web filtering and data leakage prevention; security terms in every supplier contract.",
+      "steps": [
+        {
+          "title": "What IT can add: data leakage prevention",
+          "text": "Data leakage prevention warns or blocks when sensitive data leaves by email, upload or USB (ISO/IEC 27001 Annex A 8.12). Web filtering blocks known malicious and look-alike sites (8.23).",
+          "send": [
+            {
+              "route": [
+                "pc",
+                "firewall",
+                "net",
+                "free"
+              ],
+              "kind": "leak",
+              "label": "Masterlists?",
+              "blockAt": "firewall"
+            }
+          ],
+          "set": {
+            "firewall": "ok|✓ DLP blocked",
+            "pc": "warn|Warned"
+          }
+        },
+        {
+          "title": "The approved-tools route",
+          "text": "Ask first: is there an approved tool already? If not, request it; IT checks security and the DPO checks privacy; agree terms in writing if a vendor processes personal data; list it. **A fast route is itself a control:** people take workarounds when the official way is slow.",
+          "send": [
+            {
+              "route": [
+                "pc",
+                "approved"
+              ],
+              "kind": "secure",
+              "label": "Merge here"
+            }
+          ],
+          "set": {
+            "approved": "ok|✓ Approved",
+            "pc": "ok|✓ Done by noon"
+          },
+          "close": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "head": [
+      "Step",
+      "The approved-tools route"
+    ],
+    "rows": [
+      [
+        "1. Ask first",
+        "Is there an approved tool for this already?"
+      ],
+      [
+        "2. Request it",
+        "If not, tell IT what you need to do and what data is involved"
+      ],
+      [
+        "3. Check it",
+        "IT checks security; the DPO checks privacy, with a privacy impact assessment where personal data is involved"
+      ],
+      [
+        "4. Agree terms",
+        "If the vendor will process personal data, a written agreement comes first"
+      ],
+      [
+        "5. List it",
+        "The tool goes on the approved list, with who may use it and for what data"
+      ]
+    ]
+  }
+}

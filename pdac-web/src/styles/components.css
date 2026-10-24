@@ -612,3 +612,187 @@ pdac-inject-clock.is-over .ic-left { color: var(--no); }
 /* phrase icon groups */
 .phrase-icon { display: inline-flex; gap: 6px; color: var(--accent); }
 .reveal section.is-dark .phrase-icon { color: var(--accent-soft); }
+
+/* firewall: switches, the blocked-connections log (Module 3) */
+.reveal .fw-table tr.is-off td:not(.fw-move) { opacity: .45; text-decoration: line-through; text-decoration-thickness: 2px; }
+.fw-action.is-off { background: #EDF0F4; color: var(--ink-muted); }
+.fw-move .pdac-btn { min-height: 46px; }
+.fw-move .pdac-btn--icon { width: 48px; min-height: 46px; font-size: 26px; }
+.fw-switch { min-width: 72px; padding: 0 12px; font-size: 22px; margin-right: 4px; }
+.fw-logged { display: inline-flex; align-items: center; gap: 6px; font: 600 22px/1 var(--font-body); color: var(--ink-soft); background: #EDF0F4; border-radius: 8px; padding: 4px 10px; }
+.fw-log { font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+.fw-log b { color: var(--navy); }
+.fw-lesson b { color: var(--navy); }
+
+/* phish or legit: browser windows and messaging groups (Module 4, Try it 4.2A) */
+.pl-browser { width: 100%; background: var(--white); border: 2px solid #B9C2D0; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 28px rgba(20, 33, 61, .1); }
+.pl-browser__bar { display: flex; align-items: center; gap: 16px; background: #E6EAF0; padding: 12px 18px; }
+.pl-browser__dots { display: flex; gap: 8px; }
+.pl-browser__dots i { display: block; width: 14px; height: 14px; border-radius: 50%; background: #B9C2D0; }
+.pl-browser__url { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--white); border-radius: 999px; padding: 10px 18px; font: 500 25px/1.25 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--navy); overflow-wrap: anywhere; }
+.pl-browser__url.is-lock > svg.lucide { color: var(--ok); }
+.pl-browser__url.is-warn > svg.lucide { color: var(--no); }
+.pl-browser__via { margin: 0; display: flex; align-items: center; gap: 10px; padding: 8px 20px; font-size: 22px; color: var(--ink-soft); background: #F4F6FA; border-bottom: 2px solid var(--rule); }
+.pl-browser__page { padding: 26px 32px; min-height: 300px; display: flex; flex-direction: column; }
+.pl-page__t { margin: 0 0 10px; font: 700 34px/1.15 var(--font-display); color: var(--navy); }
+.pl-page__p { margin: 0 0 14px; font-size: 25px; line-height: 1.4; color: var(--ink-soft); }
+.pl-fakebtn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; border-radius: 10px; border: 2px solid #B9C2D0; font: 600 23px/1 var(--font-body); color: var(--navy); background: var(--white); }
+.pl-fakebtn.is-primary { background: #2F5BD3; border-color: #2F5BD3; color: var(--white); }
+.pl-btnrow { display: flex; gap: 14px; margin-top: 6px; }
+.pl-browser__page.kind-warning { background: #F8EAEA; }
+.pl-warnpage > svg.lucide { width: 72px; height: 72px; color: var(--no); margin-bottom: 8px; }
+.pl-warnpage .pl-page__t { color: var(--no); }
+.pl-login, .pl-tool, .pl-portal { display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
+.pl-field { display: block; border: 2px solid #C9D1DE; border-radius: 10px; padding: 12px 16px; font-size: 22px; color: var(--ink-muted); }
+.pl-news { position: relative; min-height: 300px; }
+.pl-news__lines { display: grid; gap: 16px; }
+.pl-news__lines i { display: block; height: 18px; border-radius: 6px; background: #E6EAF0; }
+.pl-news__lines i:nth-child(odd) { width: 86%; }
+.pl-popup { position: absolute; left: 50%; top: 18px; transform: translateX(-50%); width: 82%; background: var(--white); border: 3px solid var(--no); border-radius: 14px; padding: 18px 22px; box-shadow: 0 16px 40px rgba(20, 33, 61, .3); }
+.pl-popup > svg.lucide { width: 44px; height: 44px; color: var(--no); }
+.pl-drop { display: flex; align-items: center; gap: 14px; border: 3px dashed #9AA6B8; border-radius: 14px; padding: 20px; font-size: 24px; color: var(--ink-soft); }
+.pl-drop svg.lucide { width: 48px; height: 48px; color: #2F5BD3; }
+.pl-files { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 23px; color: var(--navy); }
+.pl-files li { margin: 0; display: flex; align-items: center; gap: 10px; }
+.pl-chat { width: 600px; background: #ECE5DD; border-radius: 20px; overflow: hidden; box-shadow: 0 14px 34px rgba(20, 33, 61, .18); }
+.pl-chat__top { display: flex; align-items: center; gap: 12px; padding: 16px 22px; background: #1F6F5C; color: var(--white); font: 600 26px/1.2 var(--font-body); }
+.pl-chat__posts { display: grid; gap: 12px; padding: 18px; }
+.pl-post { display: flex; flex-direction: column; gap: 6px; background: var(--white); border-radius: 4px 16px 16px 16px; padding: 10px 16px; max-width: 92%; }
+.pl-post__who { font: 600 21px/1.2 var(--font-body); color: #1F6F5C; }
+.pl-post__text { font-size: 24px; line-height: 1.35; color: #111827; }
+.pl-post__img { display: flex; align-items: center; gap: 12px; background: #D7DEE7; border-radius: 10px; padding: 14px; font-size: 22px; color: var(--navy); }
+.pl-post__img svg.lucide { width: 56px; height: 56px; color: #5B6B82; flex-shrink: 0; }
+
+/* RBAC: the model answer's notes inside granted cells (Module 3, Try it 3.3) */
+.rb-cell.has-note { flex-direction: column; gap: 4px; padding: 6px 8px; line-height: 1.1; }
+.rb-note { display: block; font: 500 20px/1.15 var(--font-body); color: #DCE6F5; text-align: center; }
+.rb-cell.is-conflict .rb-note { color: var(--white); }
+.rb-note-line { margin: 0; font-size: 24px; line-height: 1.35; background: #F4F6FA; border-radius: 8px; padding: 8px 14px; }
+.fw-switch.is-on { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.fw-switch.is-off { background: #EDF0F4; border-color: #B9C2D0; color: var(--ink-muted); }
+.reveal .fw-table td:nth-child(3), .reveal .fw-table td:nth-child(4), .reveal .fw-table td:nth-child(5) { white-space: nowrap; }
+.reveal .fw-table td { padding-top: 4px; padding-bottom: 4px; }
+.fw-flows .fw-lesson { margin-top: 14px; font-size: 24px; }
+
+/* compact vote-and-reveal for long cases with several facts (Modules 3 and 4) */
+pdac-vote-reveal.vr-tight { gap: 14px; }
+.vr-tight .vr-case { font-size: 32px; padding: 18px 28px; }
+.vr-tight .vr-who { font-size: 22px; margin-bottom: 4px; }
+.vr-tight .vr-opt { min-height: 72px; padding: 8px 20px 14px; font-size: 27px; }
+.vr-tight .vr-opt__count { font-size: 36px; }
+.vr-tight .vr-reveal { padding: 14px 24px; }
+.vr-tight .vr-answer { font-size: 30px; margin-bottom: 6px; }
+.vr-tight .vr-facts { font-size: 25px; gap: 4px 18px; margin-bottom: 6px; }
+.vr-tight .vr-why { font-size: 25px; }
+.vr-tight .vr-room { font-size: 23px; margin-top: 6px; }
+pdac-vote-reveal.is-no-vote .vr-case { font-size: 34px; }
+
+/* RBAC: compact rows so the guide's notes fit (Try it 3.3) */
+.rb-table { border-spacing: 5px; }
+.rb-cell { min-height: 54px; font-size: 22px; }
+.rb-table tbody th { font-size: 23px; }
+.rb-note { font-size: 18px; }
+.fw-list { gap: 8px; }
+.fw-flow { padding: 6px 14px; }
+.fw-flow__label { font-size: 24px; }
+.fw-flow__row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.fw-flow__meta { font-size: 22px; }
+.fw-flow__result { margin-top: 0; font-size: 22px; gap: 6px; }
+.fw-flow__result .pdac-verdict { font-size: 21px; padding: 3px 10px; }
+.fw-logged { font-size: 20px; padding: 3px 8px; }
+.fw-flows .fw-lesson { font-size: 22px; line-height: 1.35; margin-top: 10px; }
+#try-3-3 .rb-wrap { grid-template-columns: minmax(0, 1fr) 330px; gap: 24px; }
+
+/* match board: tighter chips when every reason stays visible (Module 3 moving or stored) */
+pdac-match-board.mb-tight { gap: 14px; }
+.mb-tight .mb-chip { padding: 8px 14px; min-height: 0; gap: 2px; }
+.mb-tight .mb-chip__why { font-size: 22px; }
+.mb-tight .mb-cat { gap: 8px; padding: 10px 12px; }
+.mb-tight .mb-cat__items { gap: 8px; }
+.reveal .fw-table td { padding-top: 2px; padding-bottom: 2px; }
+.fw-move .pdac-btn { min-height: 40px; }
+.fw-move .pdac-btn--icon { width: 44px; min-height: 40px; font-size: 24px; }
+.fw-switch { min-width: 64px; font-size: 21px; }
+.fw-controls { margin-top: 12px; }
+.fw-controls .pdac-btn { min-height: 56px; }
+.reveal .fw-table .fw-action { padding: 2px 10px; }
+.fw-flow__label { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
+.fw-mark { font-size: 20px; padding: 2px 10px; }
+.fw-wrap { grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr); gap: 28px; }
+.fw-mark { font-size: 19px; padding: 2px 9px; }
+.fw-flow__label { font-size: 23px; }
+.fw-flow__meta, .fw-flow__result { font-size: 21px; }
+.reveal .fw-table th, .reveal .fw-table td { padding-right: 16px; }
+
+/* ---------- Check yourself with answers on demand (pdac-checks) ---------- */
+pdac-checks { gap: 18px; }
+pdac-checks ol.checks { gap: 14px; }
+pdac-checks .ck-item {
+  position: relative; cursor: pointer; border-radius: 12px; padding: 10px 16px 10px 8px; margin-left: -8px;
+  transition: background .2s;
+}
+pdac-checks .ck-item:hover { background: rgba(20, 33, 61, .04); }
+pdac-checks .ck-item:focus-visible { outline: 4px solid var(--accent); outline-offset: 2px; }
+pdac-checks .ck-item.is-revealed { background: var(--ok-soft); }
+.reveal pdac-checks .ck-item.is-revealed .answer { visibility: visible; opacity: 1; }
+.reveal pdac-checks ol.checks .answer { margin-top: 6px; }
+pdac-checks .ck-hint { display: inline-flex; margin-left: 12px; color: #9AA6B8; vertical-align: -2px; }
+pdac-checks .ck-item.is-revealed .ck-hint { color: var(--ok); }
+pdac-checks .ck-bar { margin-top: auto; }
+
+/* ---------- Example or model answer over the slide (pdac-reveal-panel) ---------- */
+pdac-reveal-panel { gap: 0; flex: 0 0 auto !important; }
+pdac-reveal-panel .rp-open { align-self: flex-start; min-height: 56px; font-size: 24px; background: #FFF6EE; border-color: var(--accent); color: var(--accent-deep); }
+pdac-reveal-panel .rp-open:hover { background: #FDEBD9; }
+.reveal .rp-panel {
+  position: absolute; left: 96px; right: 96px; top: 52px; bottom: 92px; z-index: 30;
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--paper); border: 3px solid var(--accent); border-radius: 20px; padding: 22px 30px;
+  box-shadow: 0 24px 60px rgba(20, 33, 61, .28); animation: pdac-pop .25s ease;
+}
+.reveal .rp-panel[hidden] { display: none; }
+.reveal .rp-head { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex: 0 0 auto; }
+.reveal .rp-title { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 36px/1.15 var(--font-display); color: var(--navy); }
+.reveal .rp-title svg.lucide { color: var(--accent); }
+.reveal .rp-close { min-height: 52px; font-size: 22px; }
+.reveal .rp-body { flex: 1 1 auto; min-height: 0; overflow: auto; display: flex; flex-direction: column; gap: 14px; }
+.reveal .rp-body p { margin: 0; font-size: 25px; line-height: 1.4; }
+.reveal .rp-body table.t { font-size: 22px; line-height: 1.3; }
+.reveal .rp-body table.t th { font-size: 19px; padding: 8px 18px 8px 0; }
+.reveal .rp-body table.t td { padding: 7px 18px 7px 0; }
+.reveal .rp-body .rp-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.reveal .rp-body .rp-box { background: var(--white); border: 2px solid var(--rule); border-radius: 14px; padding: 14px 20px; }
+.reveal .rp-body .rp-box h4 { font-size: 26px; margin: 0 0 6px; }
+.reveal .rp-body .rp-box ul { margin: 0; padding-left: 1.1em; }
+.reveal .rp-body .rp-box li { font-size: 22px; line-height: 1.35; margin: 0 0 4px; }
+.reveal .rp-body .rp-note { font-size: 23px; color: var(--ink-soft); }
+.reveal .rp-body .rp-note b { color: var(--navy); }
+.reveal .rp-body .yes { color: var(--ok); font-weight: 600; }
+.reveal .rp-body .no { color: var(--ink-muted); }
+/* compact Check yourself: five questions and their answers fit with the bar */
+pdac-checks ol.checks { gap: 8px; }
+.reveal pdac-checks ol.checks li { font-size: 28px; line-height: 1.32; }
+.reveal pdac-checks ol.checks .answer { font-size: 25px; margin-top: 2px; }
+pdac-checks .ck-item { padding: 6px 14px 6px 8px; }
+/* model-answer panels: larger text for the back of the room */
+.reveal .rp-body p { font-size: 26px; }
+.reveal .rp-body table.t { font-size: 24px; }
+.reveal .rp-body table.t th { font-size: 20px; }
+.reveal .rp-body .rp-box h4 { font-size: 28px; }
+.reveal .rp-body .rp-box li { font-size: 24px; }
+.reveal .rp-body .rp-note { font-size: 24px; }
+
+/* ---------- spacing pass (22 October 2026): room inside small labels and buttons ---------- */
+.pdac-key { font-size: 21px; }
+.pdac-verdict { padding: 7px 15px; }
+.mb-chip__text .pdac-verdict { padding: 4px 12px; }
+.reveal .fw-table .fw-action { padding: 3px 10px; }
+.fw-mark { padding: 3px 10px; }
+.reveal .tlp { padding: 8px 12px; }
+.reveal .exhibits b { width: 44px; height: 44px; }
+/* Module 3 and 4 recall: four cards and their answers clear the footer */
+#m3-recall .rc-list, #m4-recall .rc-list { gap: 12px; }
+#m3-recall .rc-card, #m4-recall .rc-card { padding-top: 12px; padding-bottom: 12px; }
+.mb-chip__text .pdac-verdict { padding: 5px 12px; }
+.reveal .fw-table .fw-action { font-size: 22px; }
+.rg-band { padding: 7px 11px; }
